@@ -27,7 +27,7 @@ If you find any corrections, or believe a section would benefit from more explan
 
 [^1]: My University of Warwick email is: Prabhat.Tummala@warwick.ac.uk. 
 
-![QR code for website](QR-website.png)
+![QR code for website](QR-website.png){width=2in, height=2in}
 
 # Navigating the website
 
