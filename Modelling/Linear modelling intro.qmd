@@ -15,6 +15,14 @@ format:
 ---
 
 This section will begin by introducing a linear model, the key assumptions we must make to fit such a model and model diagnostics. 
+A linear model is one of the most important tools in statistics because it provides a simple way to describe relationships between variables. It is also a foundation for many more advanced models, so understanding it clearly is essential.
+
+### How to use this section
+
+- Read the conceptual explanation first.
+- Follow each example by running the code yourself.
+- Check that you understand how each assumption affects the model.
+- Use the diagnostic page to learn what to do when a model does not fit well.
 
 Specifically, the pages cover the following:
 
@@ -22,11 +30,15 @@ Specifically, the pages cover the following:
 * What is a linear model?
   + Model assumptions, with extra notes on linearity
   + Principle of parsimony
+* Loading in data
+  + Inspecting and preparing data before modelling
 * A continuous data example
   + Using `lm()` and `anova()`
 * A categorical data example
   + Intercepts and reference terms
   + Interaction terms
-* Check your understanding by fitting various models on the `data.csv` and `coursework.csv` files. 
+* Model diagnostics
+  + Checking the key assumptions using residual plots
+* Check your understanding by fitting various models on the `data.csv` and `coursework.csv` files.
 
 :::

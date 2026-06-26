@@ -1,5 +1,5 @@
 ---
-title: "Specialized Visualization Techniques"
+title: "Specialised Visualisation Techniques"
 format: 
   html:
     fig-width: 10
@@ -13,13 +13,13 @@ format:
 
 # Introduction
 
-This chapter covers specialized visualization techniques that don't fit neatly into other categories but are incredibly useful for specific types of data and questions. Think of these as tools for your "advanced visualization toolkit"—you won't use them every day, but when you need them, they're perfect for the job.
+This chapter covers specialised visualisation techniques that don't fit neatly into other categories but are incredibly useful for specific types of data and questions. Think of these as tools for your "advanced visualisation toolkit"—you won't use them every day, but when you need them, they're perfect for the job.
 
 We'll explore:
-- Visualizing three-dimensional relationships
+- Visualising three-dimensional relationships
 - Displaying flows and transitions
 - Creating comparison matrices
-- Specialized chart types for specific purposes
+- Specialised chart types for specific purposes
 
 Let's load our packages:
 
@@ -58,7 +58,7 @@ ggplot(penguins, aes(x = flipper_length_mm,
 
 ## Enhanced Bubble Chart
 
-Let's improve this with better styling and add a fourth variable (species) using color:
+Let's improve this with better styling and add a fourth variable (species) using colour:
 
 ```{r}
 #| echo: true 
@@ -84,18 +84,16 @@ ggplot(penguins, aes(x = flipper_length_mm,
 The `scale_size_continuous(range = c(2, 12))` controls the minimum and maximum bubble sizes.
 
 :::{.callout-note}
-
- Bubble charts are controversial because humans are better at judging length than area. Use them when the approximate relationship is more important than exact values.
-
- :::
+Bubble charts are controversial because humans are better at judging length than area. Use them when the approximate relationship is more important than exact values.
+:::
 
 # Correlation Heatmaps
 
-Heatmaps display data values as colored cells, making patterns immediately visible. They're particularly useful for comparing many variables at once.
+Heatmaps display data values as coloured cells, making patterns immediately visible. They're particularly useful for comparing many variables at once.
 
 ## Creating a Correlation Matrix
 
-Let's visualize correlations between penguin measurements:
+Let's visualise correlations between penguin measurements:
 
 ```{r}
 #| echo: true 
@@ -103,17 +101,17 @@ Let's visualize correlations between penguin measurements:
 #| warning: false
 
 # Prepare data - select numeric columns only
-penguin_numeric <- penguins %>%
+pnum <- penguins %>%
   select(bill_length_mm, bill_depth_mm, 
          flipper_length_mm, body_mass_g) %>%
   na.omit()
 
 # Calculate correlation matrix
-cor_matrix <- cor(penguin_numeric)
+corMat <- cor(pnum)
 
 # Convert to long format for ggplot
 library(tidyr)
-cor_long <- cor_matrix %>%
+corLong <- corMat %>%
   as.data.frame() %>%
   mutate(var1 = rownames(.)) %>%
   pivot_longer(cols = -var1, 
@@ -121,7 +119,7 @@ cor_long <- cor_matrix %>%
                values_to = "correlation")
 
 # Create heatmap
-ggplot(cor_long, aes(x = var1, y = var2, fill = correlation)) +
+ggplot(corLong, aes(x = var1, y = var2, fill = correlation)) +
   geom_tile(color = "white") +
   geom_text(aes(label = round(correlation, 2)), 
             color = "black", size = 4) +
@@ -147,13 +145,13 @@ A scatterplot matrix shows relationships between multiple variables in a grid fo
 library(GGally)
 
 # Select variables for the matrix
-penguin_subset <- penguins %>%
+sub <- penguins %>%
   select(bill_length_mm, bill_depth_mm, 
          flipper_length_mm, body_mass_g, species) %>%
   na.omit()
 
 # Create scatterplot matrix
-ggpairs(penguin_subset, 
+ggpairs(sub, 
         aes(color = species, alpha = 0.5),
         columns = 1:4) +
   labs(title = "Relationships Between Penguin Measurements") +
@@ -161,17 +159,14 @@ ggpairs(penguin_subset,
 ```
 
 **Reading the matrix**:
-:::
 
 * **Diagonal**: Distribution of each variable
 * **Lower triangle**: Scatterplots (row variable on y-axis, column variable on x-axis)
 * **Upper triangle**: Correlation coefficients
 
-:::
-
 ## Custom Scatterplot Matrix
 
-You can customize the appearance with your own functions:
+You can customise the appearance with your own functions:
 
 ```{r}
 #| echo: true 
@@ -179,27 +174,27 @@ You can customize the appearance with your own functions:
 #| warning: false
 
 # Custom function for density plots
-my_density <- function(data, mapping, ...) {
+myDensity <- function(data, mapping, ...) {
   ggplot(data = data, mapping = mapping) + 
     geom_density(alpha = 0.6, fill = "steelblue")
 }
 
 # Custom function for scatterplots
-my_scatter <- function(data, mapping, ...) {
+myScatter <- function(data, mapping, ...) {
   ggplot(data = data, mapping = mapping) + 
     geom_point(alpha = 0.4, color = "steelblue", size = 1.5) + 
     geom_smooth(method = "lm", se = FALSE, color = "darkred", linewidth = 0.8)
 }
 
 # Create customized matrix
-penguin_numeric_only <- penguins %>%
+pnumOnly <- penguins %>%
   select(bill_length_mm, bill_depth_mm, 
          flipper_length_mm, body_mass_g) %>%
   na.omit()
 
-ggpairs(penguin_numeric_only,
-        lower = list(continuous = my_scatter),
-        diag = list(continuous = my_density)) +
+ggpairs(pnumOnly,
+        lower = list(continuous = myScatter),
+        diag = list(continuous = myDensity)) +
   labs(title = "Penguin Measurements: Detailed Relationships") +
   theme_minimal()
 ```
@@ -220,13 +215,13 @@ Let's examine how penguins are distributed across species, islands, and sex:
 library(ggalluvial)
 
 # Prepare data
-penguin_flows <- penguins %>%
+flows <- penguins %>%
   filter(!is.na(sex)) %>%
   group_by(species, island, sex) %>%
   summarise(count = n(), .groups = "drop")
 
 # Create alluvial diagram
-ggplot(penguin_flows,
+ggplot(flows,
        aes(axis1 = species,
            axis2 = island,
            axis3 = sex,
@@ -245,14 +240,10 @@ ggplot(penguin_flows,
 
 **How to read this**:
 
-:::
-
 * Start on the left with species
 * Follow the flows to see how each species is distributed across islands
 * Continue following to see the sex distribution
 * Flow width represents the number of penguins
-
-:::
 
 ## Enhanced Alluvial Diagram
 
@@ -263,7 +254,7 @@ Let's create a more detailed version with better styling:
 #| message: false
 #| warning: false
 
-ggplot(penguin_flows,
+ggplot(flows,
        aes(axis1 = species,
            axis2 = island,
            axis3 = sex,
@@ -337,7 +328,7 @@ This shows clearly how the initial grant is allocated across different expenses.
 
 # Advanced Heatmap: Time Series
 
-Heatmaps can be good for visualizing changes over time. Let's create one using economic data:
+Heatmaps can be good for visualising changes over time. Let's create one using economic data:
 
 ```{r}
 #| echo: true 
@@ -345,7 +336,7 @@ Heatmaps can be good for visualizing changes over time. Let's create one using e
 #| warning: false
 
 # Prepare time series data
-econ_monthly <- economics %>%
+econMonth <- economics %>%
   mutate(year = lubridate::year(date),
          month = lubridate::month(date, label = TRUE)) %>%
   filter(year >= 2000, year <= 2015) %>%
@@ -353,7 +344,7 @@ econ_monthly <- economics %>%
   mutate(unemploy_scaled = scale(unemploy)[,1])
 
 # Create heatmap
-ggplot(econ_monthly, aes(x = month, y = factor(year), fill = unemploy_scaled)) +
+ggplot(econMonth, aes(x = month, y = factor(year), fill = unemploy_scaled)) +
   geom_tile(color = "white", linewidth = 0.5) +
   scale_fill_gradient2(low = "darkgreen", mid = "white", high = "darkred",
                        midpoint = 0,
@@ -380,20 +371,20 @@ This reveals seasonal patterns and trends across years.
 
 # Common Mistakes
 
-1. **Overcomplicating**: Don't use specialized charts when simple ones work better
-2. **Too many variables**: Even specialized charts have limits (typically 4-8 variables)
+1. **Overcomplicating**: Don't use specialised charts when simple ones work better
+2. **Too many variables**: Even specialised charts have limits (typically 4-8 variables)
 3. **Poor scaling**: Always consider rescaling variables for fair comparisons
 4. **Missing context**: These charts often need extra explanation, so do add subtitles and annotations
 5. **Wrong tool**: Make sure your chart type matches your data structure
 
-The key is knowing when to use each technique. Start simple, and only use these specialized charts when they truly add insight that simpler visualizations can't provide.
+The key is knowing when to use each technique. Start simple, and only use these specialised charts when they truly add insight that simpler visualisations can't provide.
 
 # Practice Exercises
 
 1. Create a bubble chart with penguin data using bill dimensions and body mass
 2. Make a correlation heatmap for the `economics` dataset numeric variables
 3. Build an alluvial diagram showing penguin distribution across all three categorical variables
-4. Create a scatterplot matrix colored by penguin sex
+4. Create a scatterplot matrix coloured by penguin sex
 5. Make a waterfall chart showing hypothetical monthly savings (mix of income and expenses)
 
 # Further Resources

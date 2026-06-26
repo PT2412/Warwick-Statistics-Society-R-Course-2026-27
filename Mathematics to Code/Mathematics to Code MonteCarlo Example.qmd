@@ -19,10 +19,14 @@ editor: visual
 
 # Mathematical Intuition
 
-We throw random points ($(x,y)$) uniformly in the square $([-1,1]^2)$.\
-The fraction inside the unit circle ($x^2 + y^2 \le 1$) equals $(\pi/4)$:
+We throw random points $(x,y)$ uniformly in the square $[-1,1]^2$.\
+The fraction inside the unit circle $x^2 + y^2 \le 1$ equals $\pi/4$.
 
-$\pi \approx 4 \times \frac{\text{points inside circle}}{\text{total points}}$ .
+*Why $\pi/4$?* The square $[-1,1]^2$ has side $2$, so its area is $2 \times 2 = 4$. The unit circle has radius $1$, so its area is $\pi r^2 = \pi$. A uniformly scattered point lands in the circle with probability equal to the ratio of those areas, $\pi/4$. Rearranging gives our estimator:
+
+$$
+\frac{\text{points inside circle}}{\text{total points}} \approx \frac{\pi}{4} \quad\Longrightarrow\quad \pi \approx 4 \times \frac{\text{points inside circle}}{\text{total points}} .
+$$
 
 ------------------------------------------------------------------------
 
@@ -58,40 +62,55 @@ flowchart TD
 ```{r}
 set.seed(0)
 
-estimate_pi <- function(N) {
+estimatePi <- function(N) {
   x <- runif(N, -1, 1)
   y <- runif(N, -1, 1)
-  inside <- (x^2 + y^2) <= 1
-  4 * mean(inside)
+  inCirc <- (x^2 + y^2) <= 1
+  4 * mean(inCirc)
 }
 
-estimate_pi(100)
+estimatePi(100)
 
-estimate_pi(10000)
+estimatePi(10000)
 
-estimate_pi(1000000)
+estimatePi(1000000)
 ```
 
 ------------------------------------------------------------------------
 
-# Visualization
+# Visualisation
 
 ```{r}
 set.seed(1)
 N <- 10000
 x <- runif(N, -1, 1)
 y <- runif(N, -1, 1)
-inside <- (x^2 + y^2) <= 1
+inCirc <- (x^2 + y^2) <= 1
 
-plot(x[inside], y[inside], col='skyblue', pch=16, cex=0.5,
+plot(x[inCirc], y[inCirc], col='skyblue', pch=16, cex=0.5,
      xlab='x', ylab='y', asp=1,
      main='Monte Carlo π Approximation',
      xlim=c(-1,1), ylim=c(-1,1))
-points(x[!inside], y[!inside], col='gray', pch=16, cex=0.5)
+points(x[!inCirc], y[!inCirc], col='gray', pch=16, cex=0.5)
 symbols(0, 0, circles=1, inches=FALSE, add=TRUE, lwd=2)
 ```
 
 ------------------------------------------------------------------------
+
+::: {.callout-tip title="Going further 🚀"}
+How fast does the estimate actually converge? We can *watch* it by plotting the running estimate as each new point arrives — reusing the `inCirc` vector from the plot above:
+
+```{r}
+#| code-fold: true
+running <- cumsum(inCirc) / seq_len(N)        # running fraction inside the circle
+plot(4 * running, type = "l", col = "steelblue", log = "x",
+     xlab = "number of points (log scale)", ylab = expression(hat(pi)),
+     main = "The estimate settles down as N grows")
+abline(h = pi, col = "firebrick", lwd = 2, lty = 2)
+```
+
+The wild swings early on calm into a tight line around the true $\pi$ (red). The error shrinks like $1/\sqrt{N}$ — so to get one more decimal place of accuracy you need about **100×** more points. That slow-but-sure convergence is the signature of every Monte Carlo method. Try `uniroot()`/`integrate()` for R's exact tools, or estimate a harder integral the same way for a real challenge.
+:::
 
 # Reflection
 

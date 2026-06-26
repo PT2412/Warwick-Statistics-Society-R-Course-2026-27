@@ -32,7 +32,7 @@ Several practical rules can greatly improve clarity and readability:
 
 2. **Avoid the personal pronoun “I”.** Scientific and statistical writing is usually impersonal. Passive constructions or neutral phrasing are generally preferable, for example: “A regression analysis was carried out” rather than “I carried out a regression analysis”.
 
-3. **Use tenses consistently.** Reports should generally be written in the present tense when describing results and conclusions (e.g. “The analysis shows that…”). The past tense should be reserved for events that genuinely occurred in the past, such as data collection.
+3. **Use tenses consistently.** The usual convention is to use the past tense when describing what was done (for example, methods and data collection, as in "A regression analysis was carried out"), and the present tense when stating results and conclusions (e.g. “The analysis shows that…”).
 
 4. **Ensure correct spelling.** If uncertain about a word, consult a reliable dictionary or use a spell-checker. Persistent spelling errors distract the reader and undermine confidence in the work.
 

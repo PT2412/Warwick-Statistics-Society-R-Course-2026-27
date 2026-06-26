@@ -1,5 +1,5 @@
 ---
-title: "Visualizing Time"
+title: "Visualising Time"
 format: 
   html:
     fig-width: 12
@@ -16,7 +16,7 @@ format:
 
 A graph is a powerful vehicle for displaying change. While standard bar charts compare static categories, time-dependent graphs capture the *motion* of data.
 
-In this chapter, we move beyond simple line charts to explore more sophisticated ways to visualize temporal change.
+In this chapter, we move beyond simple line charts to explore more sophisticated ways to visualise temporal change.
 
 # Time Series
 
@@ -68,13 +68,24 @@ library(quantmod)
 library(dplyr)
 
 getSymbols(c("AAPL", "META"), from = "2023-01-01", to = "2023-07-31")
+```
 
-mseries <- bind_rows(
+::: {.callout-note title="In a nutshell: getSymbols works by side effect"}
+`quantmod::getSymbols("AAPL")` fetches live data from the internet and, rather than returning it, quietly creates an object named `AAPL` for you (notice there is no `<-` assignment). This means it needs an internet connection to run, and because the data is live the results may differ slightly each time you run it.
+:::
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+
+
+mts <- bind_rows(
 data.frame(Date = index(AAPL), Close = as.numeric(AAPL$AAPL.Close), Company = "Apple"),
 data.frame(Date = index(META), Close = as.numeric(META$META.Close), Company = "Meta")
 )
 
-ggplot(mseries, aes(x = Date, y = Close, color = Company)) +
+ggplot(mts, aes(x = Date, y = Close, color = Company)) +
 geom_line(linewidth = 1) +
 scale_color_brewer(palette = "Dark2") +
 labs(
@@ -88,7 +99,7 @@ theme_minimal()
 
 # Dumbbell Charts
 
-A dumbbell chart visualizes **change between two time points**.
+A dumbbell chart visualises **change between two time points**.
 
 ::: {.callout-tip title="Math to Code Mindset"}
 
@@ -106,12 +117,12 @@ A dumbbell chart visualizes **change between two time points**.
 library(tidyr)
 data(gapminder, package = "gapminder")
 
-plotdata <- gapminder %>%
+pdat <- gapminder %>%
 filter(continent == "Americas", year %in% c(1952, 2007)) %>%
 select(country, year, lifeExp) %>%
 pivot_wider(names_from = year, values_from = lifeExp, names_prefix = "y")
 
-ggplot(plotdata, aes(y = reorder(country, y1952))) +
+ggplot(pdat, aes(y = reorder(country, y1952))) +
 geom_segment(
 aes(x = y1952, xend = y2007, yend = reorder(country, y1952)),
 color = "grey70",
@@ -143,7 +154,7 @@ Key idea:
 
 library(forcats)
 
-df_slope <- gapminder %>%
+slope <- gapminder %>%
 filter(
 year %in% c(1992, 1997, 2002, 2007),
 country %in% c(
@@ -156,7 +167,7 @@ mutate(rank = rank(-lifeExp, ties.method = "first")) %>%
 ungroup() %>%
 mutate(year = factor(year))
 
-ggplot(df_slope, aes(x = year, y = rank, group = country)) +
+ggplot(slope, aes(x = year, y = rank, group = country)) +
 geom_line(color = "grey50", linewidth = 1) +
 geom_point(size = 3) +
 scale_y_reverse(breaks = 1:7) +
@@ -175,7 +186,7 @@ Crossing lines indicate **rank reversals** — for example, Guatemala overtakes 
 
 # Area Charts
 
-Area charts emphasize **magnitude** by filling the area beneath a line.
+Area charts emphasise **magnitude** by filling the area beneath a line.
 
 ## Stacked Area Charts
 
@@ -202,19 +213,23 @@ theme_minimal()
 ```
 
 
-# Stream Graphs 
+# Stream Graphs
 
-A stream graph is a **centered stacked area chart**.
-Instead of stacking values from zero upward, the entire stack is **recentered around a moving baseline**, reducing visual bias caused by accumulation from the bottom.
+::: {.callout-note title="In a nutshell: this section is advanced/optional"}
+Stream graphs are a more specialised technique. If you are still finding your feet, feel free to skip this section, the earlier charts cover everything you need, and you can return here later.
+:::
+
+A stream graph is a **centred stacked area chart**.
+Instead of stacking values from zero upward, the entire stack is **recentred around a moving baseline**, reducing visual bias caused by accumulation from the bottom.
 
 ## From Stacked Areas to Streams
 
 ::: {.callout-tip title="Math to Code Mindset"}
 
 * **Input:** Time $t$, group $g$, value $y_{tg}$
-* **Normalize:** $p_{tg} = y_{tg} / \sum_g y_{tg}$
+* **Normalise:** $p_{tg} = y_{tg} / \sum_g y_{tg}$
 * **Stack:** cumulative sums within each $t$
-* **Recenter:** shift stack midpoint to zero
+* **Recentre:** shift stack midpoint to zero
 * **Output:** Filled ribbons around a central baseline
 
 :::
@@ -230,7 +245,7 @@ Instead of stacking values from zero upward, the entire stack is **recentered ar
 
 library(dplyr)
 
-stream_data <- uspopage %>%
+stream <- uspopage %>%
 group_by(Year) %>%
 mutate(
 prop = Thousands / sum(Thousands),
@@ -265,7 +280,7 @@ This removes the fixed baseline that causes distortion in stacked area charts.
 #| message: false
 #| warning: false
 
-ggplot(stream_data) +
+ggplot(stream) +
 geom_ribbon(
 aes(
 x = Year,
@@ -290,11 +305,11 @@ theme_minimal()
 
 ::: {.callout-note}
 
-A stream graph is **not a new chart type** — it is a stacked area chart with a **moving, centered baseline**.
+A stream graph is **not a new chart type** — it is a stacked area chart with a **moving, centred baseline**.
 
 :::
 
-The widening of upper bands toward the right visualizes the aging of the US population.
+The widening of upper bands toward the right visualises the ageing of the US population.
 
 
 

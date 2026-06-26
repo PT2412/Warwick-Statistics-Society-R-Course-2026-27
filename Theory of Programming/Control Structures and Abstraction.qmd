@@ -1,0 +1,275 @@
+---
+title: "Control Structures & Code Abstraction"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+## Abstraction
+Abstraction is the process of hiding unnecessary detail so we can focus on the essential structure of a problem. In programming, this means solving a smaller, simpler problem first and then using that solution as a building block.
+
+We use high-level languages because they let us write logic without thinking about hardware-level details. R and Python are far from the machine, so we can spend our energy on the algorithm rather than memory addresses.
+
+Programming languages exist on a spectrum of abstraction. The level refers to how close the syntax is to human reasoning versus how close it is to the computer hardware.
+
+|Attribute| Low Level (Binary, Assembly)| Higher Level (R, Python)|
+|---------|-----------------------------|-------------------------|
+|Abstraction| Very low; interacts directly with memory/CPU | High; hides hardware complexities|
+|Execution Time|Extremely fast; minimal translation required|Slower; requires interpretation or heavy runtime environments|
+|Memory Management|Manual (allocating/freeing memory addresses)|Automatic|
+|Development Time|Long; requires writing many lines of verbose code|Short; concise libraries solve problems instantly|
+
+From this it is evident that there is a trade off between efficiency and ease of use. Languages like C or C# are lower level than Python or R but are much more pedantic about small issues like semi-colons and declaring variable types.
+
+For this course and for general understanding we will use very high level code syntax as a baseline and explore more efficient versions when needed (The lowest level versions I will leave up your interpretation). For this course examples will mostly be in R or Python since most uses of pseudo logic that people use is very similar to these programming languages.
+
+## The Three Pillars of Logic
+
+Every algorithm ever written relies on exactly three fundamental control structures to direct the flow of execution: **Sequence**, **Selection**, and **Iteration**. 
+
+## Sequence
+
+**Sequence** means execution happens sequentially, one line after another, from top to bottom. The computer must completely finish the current statement before moving to the next one.
+
+$$\text{Step 1: } x \leftarrow 5 \longrightarrow \text{Step 2: } y \leftarrow x + 10 \longrightarrow \text{Step 3: } \text{print}(y)$$
+
+### Example: Linear Execution in R
+```{r}
+# Sequential operations
+radius <- 7
+area <- pi * radius^2
+print(area)
+```
+
+---
+
+## Selection
+
+Selection (conditional branching) allows a program to choose different paths of execution based on whether a condition evaluates to TRUE or FALSE. There are multiple ways to use this to your advantage, including:
+1. Adding extra steps in certain cases
+2. Ignoring steps in certain cases
+3. Mutually exclusive steps
+
+Examples of each are shown below
+
+### Adding New Steps
+```{r}
+# Assume condition is some arbitrary TRUE/FALSE statement.
+# Using this we can run a block of code only when the condition holds.
+condition <- FALSE
+if (condition) {
+  print("Condition was TRUE")
+} else {
+  print("Condition was FALSE")
+}
+```
+
+### Skipping Steps
+```{r}
+x <- 5
+if(x<=10){
+  x <- 3*x+1
+  x <- x**0.5
+}
+# This is a very simple example but conditioning can be used to ignore very complex code chunks where they are not applicable
+print(x+17)
+```
+
+### Mutually Exclusive Steps
+```{r}
+x <- 7
+if (x <= 6) {
+  print("Less than 6")
+} else if (x <= 10) {
+  print("Between 7 and 10")
+} else {
+  print("11 or greater")
+}
+```
+
+Selection is not about the exact syntax; it is about the idea that the code can branch into different paths.
+
+---
+
+## Iteration
+This is the process of designing the algorithm to repeat sections of code. There are 2 main ways of doing this:
+1. Count-controlled loops - loops that repeat a fixed number of times.
+2. Condition-controlled loops - loops that repeat until a condition changes.
+
+::: {.callout-important}
+## Important Tip
+There is a very clear reason why we iterate which is to control the sequence, but more so **to prevent writing the same code** which can compound the number of mistakes you make when writing. When you have all of the code in 1 place it is really easy to diagnose where things go wrong and you only have to edit the code in one place.
+:::
+
+### Count-controlled loops
+This shows an example in both C# and R. Both do the same thing: start with a counter, test whether the loop should continue, execute the loop body, and then update the counter.
+```{csharp}
+//| eval: false
+using System;
+
+class Program {
+    static void Main() {
+        for (int i = 0; i < 5; i++) {
+            Console.WriteLine(i);
+        }
+    }
+}
+```
+```{r}
+for (i in 1:5) {
+  print(i)
+}
+```
+
+### Condition Controlling
+Unlike a count-controlled loop which knows exactly how many times it will run before it starts, a condition-controlled loop (`while` loop) continues indefinitely until a specific logical condition becomes `FALSE`. This is incredibly useful for statistical simulations or algorithms like Newton-Raphson where you do not know how many steps it will take to converge.
+
+::: {.callout-warning}
+ If the condition never evaluates to `FALSE`, the loop will run forever, crashing your program!
+:::
+```{r}
+count <- 1
+while (count < 10) {
+  print(count)
+  count <- count + 3
+}
+```
+
+This form is useful when the loop should continue until some condition changes.
+
+### Modular programming
+Modular programming means breaking code into reusable pieces, such as functions. This is the best way to keep control logic manageable.
+
+```{r}
+zScore <- function(value, mean, sd) {
+  z <- (value - mean) / sd
+  return(z)
+}
+
+print(zScore(85, 70, 10))
+print(zScore(60, 70, 10))
+```
+
+A function encapsulates a sequence of steps and makes the overall program easier to read, test, and maintain.
+
+---
+
+## Visualising Control Structures
+It can be difficult to see how these three pillars interact. The flowchart below shows how Sequence, Selection, and Iteration form the core workflow of any algorithm.
+```{mermaid}
+%%| echo: false
+flowchart TD
+    subgraph Sequence
+    direction TB
+    A[Step 1] --> B[Step 2] --> C[Step 3]
+    end
+
+    subgraph Selection
+    direction TB
+    D{Condition?}
+    D -- True --> E[Path A]
+    D -- False --> F[Path B]
+    end
+
+    subgraph Iteration
+    direction TB
+    G[Start Loop] --> H{Condition Met?}
+    H -- No --> I[Execute Code] --> H
+    H -- Yes --> J[Exit Loop]
+    end
+```
+
+---
+
+## Putting It All Together
+
+In practice, algorithms rarely use just one of these structures. They are nested. Here is a classic statistical example: simulating a coin flip to count how many heads we get in 10 flips.
+
+* **Iteration:** We need to flip the coin 10 times.
+* **Sequence:** In each flip, we generate a random number, check it, and update our count.
+* **Selection:** We only add to our count *if* the result is a Head.
+
+```r
+# SEQUENCE: Initialise our starting variables
+nFlips <- 10
+heads <- 0
+
+# ITERATION: Run the process 10 times
+for (i in 1:nFlips) {
+
+  # SEQUENCE: Generate a random number (0 or 1)
+  flip <- sample(0:1, 1)
+
+  # SELECTION: Check if it is a 1 (Head)
+  if (flip == 1) {
+    heads <- heads + 1
+  }
+}
+
+# SEQUENCE: Print final result
+print(paste("Total Heads:", heads))
+```
+---
+
+## 💻 Try It Yourself: The FizzBuzz Challenge
+
+This is a classic programming interview question. Write an R script that loops through the numbers 1 to 15. 
+* If the number is divisible by 3, print "Fizz".
+* If it is divisible by 5, print "Buzz".
+* If it is divisible by both 3 and 5, print "FizzBuzz".
+* Otherwise, just print the number.
+
+**Hint:** You will need a `for` loop, an `if...else if` chain, and the modulo operator (`%%`) to check for remainders!
+
+**Answer**
+```{r}
+#| eval: false
+#| code-fold: true
+for (i in 1:15) {
+  if (i %% 3 == 0 && i %% 5 == 0) {
+    print("FizzBuzz")
+  } else if (i %% 3 == 0) {
+    print("Fizz")
+  } else if (i %% 5 == 0) {
+    print("Buzz")
+  } else {
+    print(i)
+  }
+}
+```
+
+::: {.callout-tip title="Going further 🚀"}
+The loop checks one number at a time. In R we can often replace such a loop with a **vectorised** expression that acts on the whole vector `1:15` at once — usually shorter and faster. `dplyr::case_when()` reads like the `if...else if` chain, testing each condition in order:
+
+```{r}
+#| eval: false
+library(dplyr)
+n <- 1:15
+case_when(
+  n %% 15 == 0 ~ "FizzBuzz",   # divisible by both 3 and 5
+  n %% 3  == 0 ~ "Fizz",
+  n %% 5  == 0 ~ "Buzz",
+  TRUE         ~ as.character(n)
+)
+```
+
+Pure base R can do the same with nested `ifelse()`, which also works element-by-element across the vector:
+
+```{r}
+n <- 1:15
+ifelse(n %% 15 == 0, "FizzBuzz",
+ifelse(n %% 3 == 0, "Fizz",
+ifelse(n %% 5 == 0, "Buzz", as.character(n))))
+```
+
+Same logic, no explicit loop — the iteration is handled for you inside the vectorised call.
+:::

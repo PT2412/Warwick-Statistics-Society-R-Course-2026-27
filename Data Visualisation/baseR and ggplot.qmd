@@ -14,7 +14,7 @@ format:
     echo: fenced
 ---
 
-This section offers a primer on how the `ggplot2` package operates. Unlike many other plotting systems, `ggplot2` is based on the "Grammar of Graphics," which allows you to build graphs layer by layer. We will construct a complex visualization starting from a blank canvas and adding elements—like data points, trend lines, and labels—one step at a time.
+This section offers a primer on how the `ggplot2` package operates. Unlike many other plotting systems, `ggplot2` is based on the "Grammar of Graphics," which allows you to build graphs layer by layer. We will construct a complex visualisation starting from a blank canvas and adding elements—like data points, trend lines, and labels—one step at a time.
 
 Let’s start with an example.
 
@@ -82,7 +82,7 @@ ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
 
 The plot above shows a strong positive correlation: as flipper length increases, body mass tends to increase.
 
-We can customize the appearance of these geoms. Parameters like `color`, `size`, and `alpha` (transparency) can be set directly inside the geom function. Transparency is particularly useful when you have many points overlapping each other.
+We can customise the appearance of these geoms. Parameters like `color`, `size`, and `alpha` (transparency) can be set directly inside the geom function. Transparency is particularly useful when you have many points overlapping each other.
 
 ```{r}
 # Make points blue, larger, and semi-transparent
@@ -93,7 +93,7 @@ ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
 
 ## 2.2 Smoothers (Trend Lines)
 
-To visualize the trend more clearly, we can add a smoothing layer using `geom_smooth()`. We can control the method (linear vs. curved), the color, and whether to show the confidence interval. Here, we'll use a linear model (`method = "lm"`).
+To visualise the trend more clearly, we can add a smoothing layer using `geom_smooth()`. We can control the method (linear vs. curved), the colour, and whether to show the confidence interval. Here, we'll use a linear model (`method = "lm"`).
 
 ```{r}
 #| echo: true 
@@ -110,7 +110,7 @@ ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
 
 While the plot above is informative, it treats all penguins as one homogeneous group. We know our dataset contains different **Species**.
 
-We can map variables to visual characteristics like **color** or **shape** inside the `aes()` function. This allows us to superimpose groups on a single graph. Let's map `species` to color.
+We can map variables to visual characteristics like **colour** or **shape** inside the `aes()` function. This allows us to superimpose groups on a single graph. Let's map `species` to colour.
 
 ```{r}
 #| echo: true 
@@ -132,9 +132,9 @@ We can now see that Gentoo penguins are generally larger than Adelie or Chinstra
 
 ## 2.4 Scales
 
-"Scales" control how the data values are translated into visual properties (like specific colors or axis ticks). Scale functions always start with `scale_`.
+"Scales" control how the data values are translated into visual properties (like specific colours or axis ticks). Scale functions always start with `scale_`.
 
-Let's modify the X-axis breaks and manually define the colors for our species to be more distinct.
+Let's modify the X-axis breaks and manually define the colours for our species to be more distinct.
 
 ```{r}
 #| echo: true 
@@ -143,8 +143,8 @@ Let's modify the X-axis breaks and manually define the colors for our species to
 # Customize axes and color palette
 ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + 
   geom_point(alpha = 0.6, size = 3) + 
-  geom_smooth(method = "lm", se = FALSE, size = 1.5) + 
-  scale_x_continuous(breaks = seq(170, 230, 10)) + 
+  geom_smooth(method = "lm", se = FALSE, linewidth = 1.5) +
+  scale_x_continuous(breaks = seq(170, 230, 10)) +
   scale_y_continuous(breaks = seq(2500, 6500, 1000)) +
   scale_color_manual(values = c("coral4", "purple", "cyan4"))
 
@@ -173,7 +173,7 @@ Faceting allows us to simultaneously view the data cut by different dimensions w
 
 ## 2.6 Labels
 
-Good data visualization requires clear communication. The `labs()` function allows you to customize the title, subtitle, captions, and axis labels so the viewer doesn't have to guess what "flipper_length_mm" means.
+Good data visualisation requires clear communication. The `labs()` function allows you to customise the title, subtitle, captions, and axis labels so the viewer doesn't have to guess what "flipper_length_mm" means.
 
 ```{r}
 # Add infomative labels
@@ -195,7 +195,7 @@ ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, co
 
 ## 2.7 Themes
 
-Finally, we can polish the overall look using **Themes**. Theme functions (starting with `theme_`) control non-data elements like background colors, fonts, and grid lines. `theme_minimal()` is a popular choice for a clean, modern look.
+Finally, we can polish the overall look using **Themes**. Theme functions (starting with `theme_`) control non-data elements like background colours, fonts, and grid lines. `theme_minimal()` is a popular choice for a clean, modern look.
 
 ```{r}
 #| echo: true 
@@ -254,23 +254,33 @@ In R, a graph is just an object. You can save it to a variable, modify it later,
 
 ```{r}
 # 1. Create the base plot object
-my_plot <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) + 
+p <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(color = species))
 
 # 2. Add a theme and labels to the object
-final_plot <- my_plot + 
-  theme_light() + 
+pFinal <- p +
+  theme_light() +
   labs(title = "Saved Graph Object")
 
 # 3. Print the final result
-final_plot
+pFinal
 
 ```
+
+::: {.callout-tip title="Going further 🚀"}
+Once you have saved a plot to an object, the `plotly` package can turn it interactive in a single line, giving you tooltips, zooming and panning for free.
+
+```{r}
+#| eval: false
+library(plotly)
+ggplotly(pFinal)
+```
+:::
 
 # Further Resources
 
 To deepen your understanding of `ggplot2`, consider these resources:
 
 - [ggplot2 documentation](https://ggplot2.tidyverse.org)
-- [R for Data Science](https://r4ds.had.co.nz/) - In particular the Data Visualisation chapter
+- [R for Data Science](https://r4ds.hadley.nz/) - In particular the Data Visualisation chapter
 - [The R Graph Gallery](https://r-graph-gallery.com/)

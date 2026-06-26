@@ -1,0 +1,129 @@
+---
+title: "Introduction to Generalised Linear Models"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+The **Linear modelling** section fitted a straight-line relationship $Y = X\beta + \epsilon$ and leaned on four assumptions — linearity, constant variance, independence and **normal** errors. That model is superb when the response is a continuous, unbounded quantity (height, burn time, river length). But a great deal of real data is *not* like that: a coin lands heads or tails, a hospital records a count of admissions, a survey returns a proportion. Forcing a linear model onto such data breaks its assumptions and produces nonsense — negative counts, predicted probabilities above 1, wildly wrong uncertainty.
+
+**Generalised linear models (GLMs)** are the elegant fix. They keep everything good about the linear model — a linear combination of predictors — but *generalise* it in two precise ways so it can handle binary, count, and other non-normal responses. This section builds them from the linear model you already know and the maximum-likelihood machinery from the **Frequentist Statistics** section.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart LR
+  LM["Linear model<br/>continuous, normal response<br/>Y = Xβ + ε"] --> G["Generalise in two ways"]
+  G --> R["1. Let Y follow a<br/>different distribution<br/>(binomial, Poisson, …)"]
+  G --> L["2. Connect the mean to Xβ<br/>through a link function"]
+  R --> GLM["Generalised linear model"]
+  L --> GLM
+```
+
+# Why the linear model is not enough
+
+Consider three responses a statistician meets constantly:
+
+- **Binary** — did the patient survive (1) or not (0)? A linear model can predict $1.4$ or $-0.2$, neither of which is a valid probability.
+- **Counts** — how many emails arrived this hour? Counts are non-negative integers; a straight line happily predicts $-3$ emails, and the variance of counts *grows* with the mean, violating constant variance.
+- **Proportions** — what fraction of seeds germinated? Bounded in $[0,1]$, with variance that shrinks near the boundaries.
+
+In every case two linear-model assumptions fail at once: the response is **not normal**, and its **variance is not constant**. We could try transforming $Y$, but that is a blunt instrument — you cannot take the log of a zero count, and modelling $\log Y$ changes the question. GLMs solve the problem at the source.
+
+::: {.callout-note title="In a nutshell: when do I reach for a GLM?"}
+Look at your **response** variable. If it is a continuous measurement that can sensibly be any real number, an ordinary linear model is fine. If it is **yes/no**, a **count**, a **proportion**, or **strictly positive and skewed**, a linear model will misbehave and you want a GLM with the matching distribution.
+:::
+
+# The three components of a GLM
+
+Every GLM is built from exactly three pieces. Learn these and you can read any GLM — logistic, Poisson, or otherwise — off a single template.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart TD
+  A["<b>1. Random component</b><br/>the distribution of Y<br/>(Normal, Binomial, Poisson, …)<br/>with mean μ = E[Y]"]
+  B["<b>2. Systematic component</b><br/>the linear predictor<br/>η = β₀ + β₁x₁ + … = Xβ"]
+  C["<b>3. Link function</b><br/>g(μ) = η<br/>connects the mean to the predictor"]
+  B --> C
+  C --> A
+```
+
+1. **The random component** — the probability distribution assumed for the response $Y$. For a linear model this is the Normal; for binary data it is the Bernoulli/Binomial; for counts the Poisson. All the usual choices belong to a family (the *exponential family*) that makes the maths work out cleanly, but you rarely need that detail to *use* a GLM.
+2. **The systematic component** — the **linear predictor** $\eta = \beta_0 + \beta_1 x_1 + \dots + \beta_p x_p = X\beta$. This is *exactly* the right-hand side of the linear model; it is still linear in the parameters, so everything you learned about design matrices and coefficients carries over.
+3. **The link function** $g$ — the new ingredient. Instead of equating the mean directly to the linear predictor, we connect them through an invertible function: $g(\mu) = \eta$, equivalently $\mu = g^{-1}(\eta)$. The link is what keeps the mean inside its natural range.
+
+# The link function: the key new idea
+
+Why not just set $\mu = X\beta$ as in a linear model? Because the linear predictor $\eta = X\beta$ can be *any* real number — but the mean of the response often **cannot**. A probability must lie in $[0,1]$; a Poisson rate must be positive. The link function is a translator between the unbounded world of $X\beta$ and the constrained world of $\mu$.
+
+Take binary data. The mean of a 0/1 response is a probability $p \in [0,1]$. The **logit** link
+$$
+g(p) = \log\!\frac{p}{1-p} = \eta
+$$
+maps a probability in $[0,1]$ to a *log-odds* in $(-\infty, \infty)$, so the linear predictor is free to roam while the back-transformed prediction $p = g^{-1}(\eta) = \dfrac{1}{1+e^{-\eta}}$ is **guaranteed** to stay a valid probability. For counts, the **log** link $g(\mu) = \log\mu = \eta$ does the same job: $\mu = e^{\eta}$ is always positive.
+
+::: {.callout-note title="In a nutshell: what the link is for"}
+The link function exists so the model can never make an impossible prediction. We do the linear algebra on a scale where any number is allowed (the link scale, $\eta = X\beta$), then squash the answer back into the response's legal range (probabilities into $[0,1]$, rates into the positives). Fit on the link scale; interpret on the response scale.
+:::
+
+# The common GLMs at a glance
+
+Three choices — distribution, plus its standard ("canonical") link — cover the vast majority of practice. Notice the **first row is just the ordinary linear model**: the linear model is the special case of a GLM with a Normal response and an identity link.
+
+| Response type | Distribution | Canonical link | `family =` in R | Section page |
+|---|---|---|---|---|
+| Continuous, unbounded | Normal (Gaussian) | identity, $\mu=\eta$ | `gaussian` | *(the Linear modelling section)* |
+| Binary / proportion | Binomial | logit, $\log\frac{p}{1-p}=\eta$ | `binomial` | Logistic regression |
+| Count | Poisson | log, $\log\mu=\eta$ | `poisson` | Poisson regression |
+| Positive, skewed | Gamma | log (or inverse) | `Gamma` | *(brief mention)* |
+
+# How a GLM is fitted
+
+A linear model has a tidy closed-form solution (least squares). A GLM usually does not — but we already have the tool to fit it: **maximum likelihood**, from the Frequentist section. We write down the likelihood implied by the chosen distribution, with the mean of each observation tied to its linear predictor through the link, and find the $\hat\beta$ that maximises it.
+
+Because the score equations have no closed form, R solves them numerically with an algorithm called **iteratively reweighted least squares (IRLS)** — in effect, repeatedly fitting a *weighted* linear model until the estimates stop changing. You never run it by hand: the single function `glm()` does everything, and its output deliberately mirrors `lm()`.
+
+```{r}
+#| warning: false
+#| message: false
+
+# A linear model IS a GLM — fitting mtcars mpg ~ wt both ways gives identical coefficients
+linModel <- lm(mpg ~ wt, data = mtcars)
+glmModel <- glm(mpg ~ wt, data = mtcars, family = gaussian)   # Normal + identity link
+
+rbind(lm  = coef(linModel),
+      glm = coef(glmModel))
+```
+
+The two rows are identical — confirming that `glm()` with `family = gaussian` *is* ordinary linear regression. Switching `family` to `binomial` or `poisson` is all it takes to move to logistic or Poisson regression, which the next pages do in detail.
+
+::: {.callout-tip title="Going further 🚀"}
+The exponential family is the formal glue here: every distribution in the table writes its density in a common form, which is exactly what guarantees the score has mean zero and makes IRLS work. The same framework extends well beyond this section — to **quasi-likelihood** (modelling the mean–variance relationship without a full distribution), **`mgcv::gam()`** for *generalised additive* models (smooth, non-linear predictors), and **`lme4::glmer()`** for *generalised linear mixed models* with random effects. All of them keep the three-component skeleton you have just learned.
+:::
+
+# Where this section is going
+
+We now turn the template into working models, one distribution at a time.
+
+:::{}
+* **Logistic regression** — binary and proportion data with the logit link; odds, odds ratios, and turning predictions into classifications.
+* **Poisson regression** — count data with the log link; rate ratios, offsets, and the ever-present problem of **overdispersion** (and its fix, the negative binomial).
+* **Diagnostics and inference for GLMs** — deviance, residuals, likelihood-ratio tests, AIC, and how to check a GLM actually fits.
+* **Check your understanding** — fit and interpret GLMs yourself.
+:::
+
+The thread throughout: a GLM is the linear model you already know, wearing a distribution and a link so it can speak the language of binary, count and bounded data.

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Operations – Warwick Statistics Society R Course 2025-2026</title>
+<title>Operators – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,9 +105,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -144,7 +148,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -172,7 +176,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -181,7 +185,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Introduction to R/introduction to r.html">Introduction to R</a></li><li class="breadcrumb-item"><a href="../Introduction to R/operators.html">Operations</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Introduction to R/introduction to r.html">Introduction to R</a></li><li class="breadcrumb-item"><a href="../Introduction to R/operators.html">Operators</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -237,7 +241,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,12 +279,65 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -311,17 +368,23 @@ window.Quarto = {
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -332,6 +395,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,13 +431,154 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -381,17 +591,23 @@ window.Quarto = {
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -425,25 +641,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -456,13 +672,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -483,6 +699,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -490,7 +712,83 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -515,9 +813,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Introduction to R/introduction to r.html">Introduction to R</a></li><li class="breadcrumb-item"><a href="../Introduction to R/operators.html">Operations</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Introduction to R/introduction to r.html">Introduction to R</a></li><li class="breadcrumb-item"><a href="../Introduction to R/operators.html">Operators</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Operations</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Operators</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -539,14 +837,14 @@ window.Quarto = {
 <p>“an operator is a character, or characters, that determine what action is to be performed or considered”,</p>
 </blockquote>
 <p>according to the <a href="https://www.bbc.co.uk/bitesize/guides/znh6pbk/revision/9">BBC Bitesize website</a>. These will form the base building blocks of everything we will do in the future.</p>
-<p>We will start with arithmetic operators (<span class="math inline">\(+\)</span>,<span class="math inline">\(-\)</span>,<span class="math inline">\(\times\)</span>,<span class="math inline">\(\div\)</span>), then go to comparison operators (<span class="math inline">\(=\)</span>,<span class="math inline">\(\ne\)</span>,<span class="math inline">\(\geq\)</span>,<span class="math inline">\(\leq\)</span>) and finally logical operators (and, or).</p>
+<p>We will start with arithmetic operators (<span class="math inline">\(+\)</span>,<span class="math inline">\(-\)</span>,<span class="math inline">\(\times\)</span>,<span class="math inline">\(\div\)</span>), then go to comparison operators (<span class="math inline">\(==\)</span>,<span class="math inline">\(\ne\)</span>,<span class="math inline">\(\geq\)</span>,<span class="math inline">\(\leq\)</span>) and finally logical operators (and, or).</p>
 <section id="arithmetic-operators" class="level1">
 <h1>Arithmetic operators</h1>
 <p>The 4 base arithmetic operators are addition (<code>+</code>), subtraction (<code>-</code>), multiplication (<code>*</code>) and division (<code>/</code>). The following are some base examples of how these can be used.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Addition</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">+</span><span class="dv">10</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -558,7 +856,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">###| Division</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dv">23</span><span class="sc">/</span><span class="dv">7</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 13
@@ -577,19 +875,19 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is important to note that R follows the traditional <a href="https://thirdspacelearning.com/blog/what-is-bodmas/#:~:text=BODMAS%20is%20an%20acronym%20to,%2DAddition%2C%20S%2DSubtraction.">BODMASS</a> order of operations. As such, we can use brackets to control the order in which operations are performed.</p>
+<p>It is important to note that R follows the traditional <a href="https://thirdspacelearning.com/blog/what-is-bodmas/#:~:text=BODMAS%20is%20an%20acronym%20to,%2DAddition%2C%20S%2DSubtraction.">BODMAS</a> order of operations. As such, we can use brackets to control the order in which operations are performed.</p>
 </div>
 </div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| BODMASS</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| BODMAS</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">+</span><span class="dv">7</span>)<span class="sc">/</span><span class="dv">2</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">7</span><span class="sc">/</span><span class="dv">2</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">*</span><span class="dv">5</span><span class="sc">+</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">*</span>(<span class="dv">5</span><span class="sc">+</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">3</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4
@@ -602,14 +900,14 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Exponents </span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">**</span><span class="dv">2</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">**</span><span class="fl">0.5</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 25
@@ -621,14 +919,14 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Modulo</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%%</span> <span class="dv">2</span> <span class="co"># remainder of 10 divided by 2</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%%</span> <span class="dv">4</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%/%</span> <span class="dv">2</span> <span class="co"># how many times 2 goes into 10</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%/%</span> <span class="dv">4</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0
@@ -646,7 +944,7 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Equal to</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">"a banana"</span> <span class="sc">==</span> <span class="st">"a banana"</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">"a banana"</span> <span class="sc">==</span> <span class="st">"a fruit"</span></span>
@@ -654,13 +952,13 @@ Note
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">==</span> <span class="dv">5</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">###| Not wqual to</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">###| Not equal to</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="st">"a banana"</span> <span class="sc">!=</span> <span class="st">"a banana"</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="st">"a banana"</span> <span class="sc">!=</span> <span class="st">"a fruit"</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">!=</span> <span class="dv">5</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">!=</span> <span class="dv">5</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE
@@ -676,7 +974,7 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Less than</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&lt;</span> <span class="dv">7</span> </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&lt;</span> <span class="dv">5</span></span>
@@ -696,7 +994,7 @@ Note
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;=</span> <span class="dv">7</span> </span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&gt;=</span> <span class="dv">5</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="co"># note that this will return TRUE!</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE
@@ -721,14 +1019,14 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Negation of TRUE FALSE</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(<span class="cn">TRUE</span>)</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(<span class="cn">TRUE</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE
@@ -740,14 +1038,14 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Example of negation on relational operators</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">&lt;</span><span class="dv">7</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(<span class="dv">5</span><span class="sc">&lt;</span><span class="dv">7</span>)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">==</span><span class="dv">7</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(<span class="dv">5</span><span class="sc">==</span><span class="dv">7</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE
@@ -760,7 +1058,7 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| And on TRUE FALSE</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">&amp;</span> <span class="cn">TRUE</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="cn">FALSE</span></span>
@@ -770,7 +1068,7 @@ Note
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span><span class="sc">&gt;</span><span class="dv">5</span>) <span class="sc">&amp;</span> (<span class="dv">10</span><span class="sc">&lt;</span><span class="dv">12</span>)</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span><span class="sc">&lt;</span><span class="dv">5</span>) <span class="sc">&amp;</span> (<span class="dv">10</span><span class="sc">&gt;</span><span class="dv">12</span>)</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span><span class="sc">&lt;</span><span class="dv">5</span>) <span class="sc">&amp;</span> (<span class="dv">10</span><span class="sc">&lt;</span><span class="dv">12</span>)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE
@@ -784,7 +1082,7 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| OR on TRUE FALSE</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">|</span> <span class="cn">TRUE</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">|</span> <span class="cn">FALSE</span></span>
@@ -794,7 +1092,7 @@ Note
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span><span class="sc">&gt;</span><span class="dv">5</span>) <span class="sc">|</span> (<span class="dv">10</span><span class="sc">&lt;</span><span class="dv">12</span>)</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span><span class="sc">&lt;</span><span class="dv">5</span>) <span class="sc">|</span> (<span class="dv">10</span><span class="sc">&gt;</span><span class="dv">12</span>)</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span><span class="sc">&lt;</span><span class="dv">5</span>) <span class="sc">|</span> (<span class="dv">10</span><span class="sc">&lt;</span><span class="dv">12</span>)</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE
@@ -808,7 +1106,7 @@ Note
 </section>
 <section id="check-your-understanding" class="level1">
 <h1>Check your understanding</h1>
-<p>The following are some extercises to test your understanding about operations.</p>
+<p>The following are some exercises to test your understanding about operations.</p>
 <div>
 <ul>
 <li>Use R to determine the area of a circle with diameter of 20cm.
@@ -829,18 +1127,18 @@ Note
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="do">###| Answers</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span>pi</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">14</span> <span class="sc">*</span> <span class="fl">0.51</span>)<span class="sc">^</span>(<span class="dv">3</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>( <span class="dv">4</span><span class="sc">&lt;=</span><span class="dv">15</span> <span class="sc">|</span> <span class="dv">7</span><span class="sc">+</span><span class="dv">10</span> <span class="sc">&lt;</span> <span class="dv">16</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>(<span class="dv">14</span> <span class="sc">*</span> <span class="fl">0.51</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>( <span class="dv">4</span><span class="sc">^</span><span class="dv">2</span><span class="sc">&gt;=</span><span class="dv">15</span> <span class="sc">|</span> <span class="dv">7</span><span class="sc">+</span><span class="dv">10</span> <span class="sc">&lt;</span> <span class="dv">16</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 314.1593
-[1] 363.9943
+[1] 1.9256
 [1] FALSE</code></pre>
 </div>
 </div>
@@ -902,13 +1200,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1301,8 +1600,8 @@ Note
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Operations"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Operators"</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
@@ -1323,7 +1622,7 @@ Note
 <span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>according to the <span class="co">[</span><span class="ot">BBC Bitesize website</span><span class="co">](https://www.bbc.co.uk/bitesize/guides/znh6pbk/revision/9)</span>. These will form the base building blocks of everything we will do in the future. </span>
 <span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>We will start with arithmetic operators ($+$,$-$,$\times$,$\div$), then go to comparison operators ($=$,$\ne$,$\geq$,$\leq$) and finally logical operators (and, or).</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>We will start with arithmetic operators ($+$,$-$,$\times$,$\div$), then go to comparison operators ($==$,$\ne$,$\geq$,$\leq$) and finally logical operators (and, or).</span>
 <span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># Arithmetic operators</span></span>
 <span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span>
@@ -1344,11 +1643,11 @@ Note
 <span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>It is important to note that R follows the traditional <span class="co">[</span><span class="ot">BODMASS</span><span class="co">](https://thirdspacelearning.com/blog/what-is-bodmas/#:~:text=BODMAS%20is%20an%20acronym%20to,%2DAddition%2C%20S%2DSubtraction.)</span> order of operations. As such, we can use brackets to control the order in which operations are performed. </span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>It is important to note that R follows the traditional <span class="co">[</span><span class="ot">BODMAS</span><span class="co">](https://thirdspacelearning.com/blog/what-is-bodmas/#:~:text=BODMAS%20is%20an%20acronym%20to,%2DAddition%2C%20S%2DSubtraction.)</span> order of operations. As such, we can use brackets to control the order in which operations are performed. </span>
 <span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a><span class="do">###| BODMASS</span></span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a><span class="do">###| BODMAS</span></span>
 <span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">+</span><span class="dv">7</span>)<span class="sc">/</span><span class="dv">2</span></span>
 <span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">7</span><span class="sc">/</span><span class="dv">2</span></span>
 <span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">*</span><span class="dv">5</span><span class="sc">+</span><span class="dv">2</span><span class="sc">/</span><span class="dv">3</span></span>
@@ -1391,7 +1690,7 @@ Note
 <span id="cb23-98"><a href="#cb23-98" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">==</span> <span class="dv">5</span></span>
 <span id="cb23-99"><a href="#cb23-99" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">5</span></span>
 <span id="cb23-100"><a href="#cb23-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a><span class="do">###| Not wqual to</span></span>
+<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a><span class="do">###| Not equal to</span></span>
 <span id="cb23-102"><a href="#cb23-102" aria-hidden="true" tabindex="-1"></a><span class="st">"a banana"</span> <span class="sc">!=</span> <span class="st">"a banana"</span></span>
 <span id="cb23-103"><a href="#cb23-103" aria-hidden="true" tabindex="-1"></a><span class="st">"a banana"</span> <span class="sc">!=</span> <span class="st">"a fruit"</span></span>
 <span id="cb23-104"><a href="#cb23-104" aria-hidden="true" tabindex="-1"></a></span>
@@ -1473,7 +1772,7 @@ Note
 <span id="cb23-190"><a href="#cb23-190" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-191"><a href="#cb23-191" aria-hidden="true" tabindex="-1"></a><span class="fu"># Check your understanding</span></span>
 <span id="cb23-192"><a href="#cb23-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-193"><a href="#cb23-193" aria-hidden="true" tabindex="-1"></a>The following are some extercises to test your understanding about operations.</span>
+<span id="cb23-193"><a href="#cb23-193" aria-hidden="true" tabindex="-1"></a>The following are some exercises to test your understanding about operations.</span>
 <span id="cb23-194"><a href="#cb23-194" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-195"><a href="#cb23-195" aria-hidden="true" tabindex="-1"></a>:::{}</span>
 <span id="cb23-196"><a href="#cb23-196" aria-hidden="true" tabindex="-1"></a><span class="ss">*   </span>Use R to determine the area of a circle with diameter of 20cm.</span>
@@ -1491,10 +1790,10 @@ Note
 <span id="cb23-210"><a href="#cb23-210" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-211"><a href="#cb23-211" aria-hidden="true" tabindex="-1"></a><span class="do">###| Answers</span></span>
 <span id="cb23-212"><a href="#cb23-212" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>)<span class="sc">*</span>pi</span>
-<span id="cb23-213"><a href="#cb23-213" aria-hidden="true" tabindex="-1"></a>(<span class="dv">14</span> <span class="sc">*</span> <span class="fl">0.51</span>)<span class="sc">^</span>(<span class="dv">3</span>)</span>
-<span id="cb23-214"><a href="#cb23-214" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>( <span class="dv">4</span><span class="sc">&lt;=</span><span class="dv">15</span> <span class="sc">|</span> <span class="dv">7</span><span class="sc">+</span><span class="dv">10</span> <span class="sc">&lt;</span> <span class="dv">16</span>)</span>
+<span id="cb23-213"><a href="#cb23-213" aria-hidden="true" tabindex="-1"></a>(<span class="dv">14</span> <span class="sc">*</span> <span class="fl">0.51</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb23-214"><a href="#cb23-214" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>( <span class="dv">4</span><span class="sc">^</span><span class="dv">2</span><span class="sc">&gt;=</span><span class="dv">15</span> <span class="sc">|</span> <span class="dv">7</span><span class="sc">+</span><span class="dv">10</span> <span class="sc">&lt;</span> <span class="dv">16</span>)</span>
 <span id="cb23-215"><a href="#cb23-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

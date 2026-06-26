@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Variables – Warwick Statistics Society R Course 2025-2026</title>
+<title>Variables – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,9 +105,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -144,7 +148,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -172,7 +176,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -237,7 +241,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,12 +279,65 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -311,17 +368,23 @@ window.Quarto = {
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -332,6 +395,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,13 +431,154 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -381,17 +591,23 @@ window.Quarto = {
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -425,25 +641,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -456,13 +672,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -483,6 +699,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -490,7 +712,83 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -532,11 +830,11 @@ window.Quarto = {
 
 
 <p>Thus far, we have covered some very important content. However, it is not in a practical, useable form. Instead of having to rewrite values each time, we want to be able to have the computer remember them (store them) so that we can recall them. We do this using variables.</p>
-<p>We can assign a value to a named variable using <code>=</code> or <code>-\&gt;</code>. (Note that we use <code>=</code> for assigning variables and <code>==</code> for check if equal!) We can check what our variable is by outputting it.</p>
+<p>We can assign a value to a named variable using <code>&lt;-</code> (the most common operator), <code>=</code>, or <code>-&gt;</code>. (Note that we use <code>=</code> for assigning variables and <code>==</code> for check if equal!) We can check what our variable is by outputting it.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Assigning a variable</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="cn">TRUE</span></span>
@@ -544,7 +842,7 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">###| Outputting a variable</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5
@@ -555,7 +853,7 @@ window.Quarto = {
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Assigning variables</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">1</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">2</span></span>
@@ -577,7 +875,7 @@ window.Quarto = {
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>(d <span class="sc">&lt;</span> b) <span class="sc">&amp;</span> (c <span class="sc">&gt;</span> d)</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>(d <span class="sc">&lt;</span> b) <span class="sc">|</span> (c <span class="sc">&gt;</span> d)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(d <span class="sc">&lt;</span> b)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0
@@ -593,7 +891,7 @@ window.Quarto = {
 </div>
 <section id="check-your-understanding" class="level1">
 <h1>Check your understanding</h1>
-<p>The following are some extercises to test your understanding about variables.</p>
+<p>The following are some exercises to test your understanding about variables.</p>
 <div>
 <ul>
 <li>Define variables called <code>velocity</code>, <code>time</code> and <code>acceleration</code> with 5, 10 and 9.8 respectively. Calculate the displacement.
@@ -607,17 +905,36 @@ window.Quarto = {
 </ul></li>
 </ul>
 </div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: build the formula one step at a time">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: build the formula one step at a time
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A long formula is much easier if you translate it piece by piece into named variables. For <span class="math inline">\(f(x)=\frac{1}{\sqrt{2\pi}}\exp{(-\frac{1}{2}x^2)}\)</span>:</p>
+<ol type="1">
+<li>Compute the <strong>exponent</strong> first: <code>expPart &lt;- exp(-0.5 * x^2)</code>.</li>
+<li>Then the <strong>constant</strong> out front: <code>constant &lt;- 1/sqrt(2*pi)</code>.</li>
+<li>Finally <strong>multiply</strong> them together: <code>fX &lt;- constant * expPart</code>.</li>
+</ol>
+<p>Breaking it into steps means each part is easy to check before you combine them.</p>
+</div>
+</div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">###| Answers</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>vecolity <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>velocity <span class="ot">&lt;-</span> <span class="dv">5</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>acceleration <span class="ot">&lt;-</span> <span class="fl">9.8</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>displacement <span class="ot">&lt;-</span> vecolity <span class="sc">*</span> time <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> acceleration <span class="sc">*</span> time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>displacement <span class="ot">&lt;-</span> velocity <span class="sc">*</span> time <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> acceleration <span class="sc">*</span> time<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>displacement</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="dv">5</span></span>
@@ -627,9 +944,9 @@ window.Quarto = {
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="do">###| Extension question</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>f_x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>f_x</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>fX <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>fX</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 540
@@ -695,13 +1012,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1094,7 +1412,7 @@ window.Quarto = {
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Variables"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
@@ -1113,7 +1431,7 @@ window.Quarto = {
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>Thus far, we have covered some very important content. However, it is not in a practical, useable form. Instead of having to rewrite values each time, we want to be able to have the computer remember them (store them) so that we can recall them. We do this using variables.</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>We can assign a value to a named variable using <span class="in">`=`</span> or <span class="in">`-\&gt;`</span>. (Note that we use <span class="in">`=`</span> for assigning variables and <span class="in">`==`</span> for check if equal!) We can check what our variable is by outputting it.</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>We can assign a value to a named variable using <span class="in">`&lt;-`</span> (the most common operator), <span class="in">`=`</span>, or <span class="in">`-&gt;`</span>. (Note that we use <span class="in">`=`</span> for assigning variables and <span class="in">`==`</span> for check if equal!) We can check what our variable is by outputting it.</span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="do">###| Assigning a variable</span></span>
@@ -1153,7 +1471,7 @@ window.Quarto = {
 <span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="fu"># Check your understanding</span></span>
 <span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>The following are some extercises to test your understanding about variables.</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>The following are some exercises to test your understanding about variables.</span>
 <span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
@@ -1165,27 +1483,37 @@ window.Quarto = {
 <span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
 <span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="do">###| Answers</span></span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>vecolity <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>acceleration <span class="ot">&lt;-</span> <span class="fl">9.8</span></span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>displacement <span class="ot">&lt;-</span> vecolity <span class="sc">*</span> time <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> acceleration <span class="sc">*</span> time<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>displacement</span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>width <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> height <span class="sc">*</span> width</span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>area</span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="do">###| Extension question</span></span>
-<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>f_x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>f_x</span>
-<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: build the formula one step at a time"}</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>A long formula is much easier if you translate it piece by piece into named variables. For $f(x)=\frac{1}{\sqrt{2\pi}}\exp{(-\frac{1}{2}x^2)}$:</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Compute the **exponent** first: <span class="in">`expPart &lt;- exp(-0.5 * x^2)`</span>.</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Then the **constant** out front: <span class="in">`constant &lt;- 1/sqrt(2*pi)`</span>.</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Finally **multiply** them together: <span class="in">`fX &lt;- constant * expPart`</span>.</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>Breaking it into steps means each part is easy to check before you combine them.</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a><span class="do">###| Answers</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>velocity <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>acceleration <span class="ot">&lt;-</span> <span class="fl">9.8</span></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>displacement <span class="ot">&lt;-</span> velocity <span class="sc">*</span> time <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> acceleration <span class="sc">*</span> time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>displacement</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>width <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> height <span class="sc">*</span> width</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>area</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="do">###| Extension question</span></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>fX <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span>pi)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span><span class="fl">0.5</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>fX</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

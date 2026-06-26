@@ -1,0 +1,125 @@
+---
+title: "Introduction to Machine Learning"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+This section steps from *statistics* into its close cousin, **machine learning (ML)** — the art of building models that **learn patterns from data in order to predict or to find structure**. Much of it will feel familiar: the linear and logistic regressions you have already met *are* machine-learning models. What changes is the **emphasis** — from explaining and inferring, toward **predicting well on data the model has never seen** — and the **toolkit**, which we deliberately showcase in **both R and Python**, the two dominant languages of data science.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart LR
+  D["Data"] --> Q{"Do we have a labelled<br/>outcome to predict?"}
+  Q -->|"Yes — predict a label/number"| S["<b>Supervised learning</b><br/>regression &amp; classification"]
+  Q -->|"No — just features"| U["<b>Unsupervised learning</b><br/>clustering &amp; dimension reduction"]
+  S --> P["Evaluate on held-out data<br/>(does it generalise?)"]
+  U --> P
+```
+
+# Statistics vs machine learning
+
+The two fields overlap so much that the border is blurry, but the *attitude* differs.
+
+- **Classical statistics** (the previous sections) asks "**what is true** about the process that generated this data?" — it prizes interpretable parameters, confidence intervals, and hypothesis tests.
+- **Machine learning** asks "**how well can I predict** the next observation?" — it prizes predictive accuracy on new data, and will happily use a complex, less-interpretable model if it predicts better.
+
+Neither is superior; they answer different questions. A GLM fit to *understand* which factors drive an outcome is doing statistics; the *same* GLM used to *predict* future outcomes is doing machine learning. This section leans into the predictive view.
+
+::: {.callout-note title="In a nutshell: it's the same models, a different goal"}
+You already know machine-learning models — linear regression, logistic regression, the GLMs. Machine learning keeps those, adds more flexible ones (trees, forests, neural networks), and changes the question from "*is this effect real?*" to "*will this predict well on data I haven't seen?*" That single shift in goal drives everything else in this section.
+:::
+
+# The two families
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart TD
+  ML["Machine Learning"]
+  ML --> SUP["<b>Supervised</b><br/>data has a known answer (label)<br/>→ learn to predict it"]
+  ML --> UNS["<b>Unsupervised</b><br/>data has no labels<br/>→ discover structure"]
+  SUP --> REG["Regression<br/>(predict a number)"]
+  SUP --> CLF["Classification<br/>(predict a category)"]
+  UNS --> CLU["Clustering<br/>(find groups)"]
+  UNS --> DIM["Dimension reduction<br/>(simplify / visualise)"]
+```
+
+- **Supervised learning** uses data with a known **label** $y$ and learns a rule from the **features** $X$ to predict it. If $y$ is a number it is **regression** (predicting house prices); if $y$ is a category it is **classification** (spam / not spam). This is the direct descendant of regression and GLMs.
+- **Unsupervised learning** has **no labels** — only features. It looks for hidden structure: **clustering** groups similar observations, **dimension reduction** compresses many variables into a few informative ones.
+
+# The one idea that defines machine learning: generalisation
+
+If a model could simply memorise the data it was trained on, prediction would be trivial and useless. The whole game is **generalisation** — performing well on **new, unseen** data. This forces the single most important habit in ML: **never judge a model on the data it was trained on.** We split the data:
+
+- a **training set** to fit the model,
+- a **test set**, held back and untouched, to honestly estimate how it performs on the unseen.
+
+A model that does brilliantly on training data but poorly on test data is **overfitting** — it has learned the noise, not the signal. Managing that trade-off (the *bias–variance trade-off*) is what the rest of the section is really about.
+
+Here is the idea in the most basic possible form: fit a linear model on a training split of `mtcars` and measure its error on the held-out test split.
+
+```{r}
+set.seed(1)
+
+# 70% of rows for training, the rest held back for testing
+n        <- nrow(mtcars)
+trainIdx <- sample(seq_len(n), size = 0.7 * n)
+trainSet <- mtcars[trainIdx, ]
+testSet  <- mtcars[-trainIdx, ]
+
+# Fit on the training set only
+model <- lm(mpg ~ wt + hp, data = trainSet)
+
+# Honest error: predict on data the model never saw
+pred <- predict(model, newdata = testSet)
+rmse <- sqrt(mean((testSet$mpg - pred)^2))           # root-mean-square test error
+
+c(testRMSE = rmse)
+```
+
+That `testRMSE` — the typical prediction error on unseen cars — is the number a machine learner cares about. Every method in this section is, at heart, a different way to make it smaller without overfitting.
+
+::: {.callout-note title="In a nutshell: train, test, and overfitting"}
+**Train** the model on one slice of data; **test** it on another it has never seen. If it does much worse on the test slice, it **overfit** — it memorised quirks of the training data instead of learning the real pattern. The test score is the only honest measure of how the model will do in the wild.
+:::
+
+# Why both R and Python?
+
+R and Python are the two great languages of data science, and a well-rounded statistician is comfortable in both. They are more alike than different — the *concepts* in this section are identical in each — but their cultures differ:
+
+| | **R** | **Python** |
+|---|---|---|
+| Strengths | Statistics, modelling, visualisation, reporting | General-purpose, production, deep learning |
+| ML toolkit | `tidymodels`, `caret`, plus base `rpart`, `glmnet` | `scikit-learn`, `PyTorch`, `TensorFlow` |
+| Typical home | Academia, statistics, bioinformatics | Industry, engineering, large-scale ML |
+
+Throughout this section we show the **same task in both languages, side by side**, so you can read across and see that a random forest is a random forest whichever you use. The R code runs live; the Python code is shown as illustrative blocks (it needs a separate Python setup), so you can copy it into your own environment.
+
+::: {.callout-tip title="Going further 🚀"}
+Running both languages from *one* document is itself a neat trick. Quarto executes **Python chunks via the `reticulate` package**, so a single `.qmd` can mix live R and live Python and even pass objects between them (`py$x`, `r.y`). For deep learning specifically, Python currently leads with **PyTorch** and **TensorFlow/Keras**, though R has first-class interfaces (`torch`, `keras3`) to both. If you only learn one language deeply, learn the *concepts* deeply — they port across in an afternoon.
+:::
+
+# Where this section is going
+
+:::{}
+* **Supervised learning: classification** — decision trees and random forests on the `iris` data, in R and Python; the train/test split and overfitting made concrete.
+* **Regularisation and cross-validation** — ridge and lasso to tame overfitting, and k-fold cross-validation to tune them; the disciplined way to choose a model.
+* **Unsupervised learning** — k-means clustering and principal component analysis to find groups and compress dimensions when there is no label to predict.
+:::
+
+The thread: machine learning is the predictive face of the modelling you already know — same foundations, more flexible models, and a relentless focus on **how well it works on data it has never seen**.

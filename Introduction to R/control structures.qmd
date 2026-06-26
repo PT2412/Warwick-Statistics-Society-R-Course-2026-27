@@ -33,7 +33,7 @@ These are not always efficient as they can take a relatively long processing tim
 
 # If statements
 
-The code of code after an if statement is only executed if the condition within the if statement is met. 
+The block of code after an if statement is only executed if the condition within the if statement is met. 
 
 ```{mermaid}
 %%| echo: false
@@ -52,7 +52,7 @@ if (5<7) {
 }
 ```
 
-Moreover, we can add an additional condition. If 'if 5 $<$ 7' is false, we can specify what we would like the computer to do instead using an `else()` command. (In this case, we output "It.". )
+Moreover, we can add an additional condition. If 'if 5 $<$ 7' is false, we can specify what we would like the computer to do instead using an `else` statement. (In this case, we output "It.". )
 
 ```{r}
 ###| Example of if() and else()
@@ -82,7 +82,7 @@ One such example is the following function that checks if a number is a multiple
 ###| Nested if statement example
 
 # Function to check divisibility by 2, 3, 5, or 7
-check_divisibility <- function(num) {
+checkDivisibility <- function(num) {
   # Ensure the input is numeric
   if (!is.numeric(num)) {
     return("Please provide a numeric input.")
@@ -103,11 +103,11 @@ check_divisibility <- function(num) {
 }
 
 # Example usage:
-check_divisibility(14) # Output: "The number is divisible by 2."
-check_divisibility(21) # Output: "The number is divisible by 3."
-check_divisibility(25) # Output: "The number is divisible by 5."
-check_divisibility(49) # Output: "The number is divisible by 7."
-check_divisibility(11) # Output: "The number is not divisible by 2, 3, 5, or 7."
+checkDivisibility(14) # Output: "The number is divisible by 2."
+checkDivisibility(21) # Output: "The number is divisible by 3."
+checkDivisibility(25) # Output: "The number is divisible by 5."
+checkDivisibility(49) # Output: "The number is divisible by 7."
+checkDivisibility(11) # Output: "The number is not divisible by 2, 3, 5, or 7."
 ```
 The following illustrates this as a flow diagram: 
 
@@ -160,7 +160,7 @@ for (x in c(1:4)) {
 R will automatically increase the counter. We do not need to include `x<-x+1` as we do in Python.
 :::
 
-Alternatively, suppose we wanted to print the number 1, then the numbers 1 to 3, then the number 2, then 1 to 3 again, then 3 ... . We can use nested for loops for this:
+Alternatively, suppose we wanted to print each outer value followed by the numbers 1 to 3: so 1, then 1 to 3, then 2, then 1 to 3 again, then 3, then 1 to 3, and finally 4, then 1 to 3. We can use nested for loops for this:
 
 ```{r}
 ###| Nested loop

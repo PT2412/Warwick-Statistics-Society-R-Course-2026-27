@@ -1,8 +1,5 @@
 ---
 title: "Data"
-author: 
-  name: Maria-Louiza Van den Bergh
-  email: maria-louiza.van-den-bergh@warwick.ac.uk
 format: 
   html:
     fig-width: 12

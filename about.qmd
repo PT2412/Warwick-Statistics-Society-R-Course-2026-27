@@ -1,8 +1,5 @@
 ---
 title: "Using R"
-author: 
-  name: Maria-Louiza Van den Bergh
-  email: maria-louiza.van-den-bergh@warwick.ac.uk
 format: 
   html:
     fig-width: 12
@@ -19,22 +16,40 @@ format:
 
 # Accessing R
 
-Please ensure that you have access to R. This can be a local version on your computer ([Warwick download link](https://anorien.csc.warwick.ac.uk/CRAN/)) or [online](https://noteable.edina.ac.uk). 
+Please ensure that you have access to R. This can be a local version on your computer ([Warwick download link](https://anorien.csc.warwick.ac.uk/CRAN/)) or [online](https://noteable.edina.ac.uk).
 
-If you have a local version, it is also worth downloading an IDE (integrated development envrionment). I personally use [RStudio](https://posit.co/download/rstudio-desktop/).
+If you have a local version, it is also worth downloading an IDE (integrated development environment). I personally use [RStudio](https://posit.co/download/rstudio-desktop/).
+
+Whether you use R locally or in a browser-based environment, the most important thing is that you can run code, inspect the results, and save your work. This course is designed so the examples will work in both a simple R script and in a Quarto document.
+
+## How to use this course
+
+Each section is written as a mix of:
+
+- short explanations of the key ideas,
+- concrete code examples you can run,
+- practical checks to test your understanding.
+
+Start by reading the introductory pages, then run the examples yourself. When a page includes a “Check your understanding” exercise, try solving it before opening the answer.
+
+The course is deliberately written for two readers at once. If you are **finding it hard**, stick to the core explanation and the code examples — you do not need to absorb every detail on the first pass. If you **already know the basics and want more**, watch for the green **"Going further" boxes**, which point to cooler packages, neater techniques and deeper ideas you can safely explore (or skip). See the [Welcome page](index.qmd) for a fuller description of how to read the course at your own level.
+
+## Navigation tips
+
+The course is organised by topic rather than by difficulty. If you are new to R, follow the **Introduction to R** section first. If you already know the basics, you can move directly to the **Theory of Programming**, **Mathematics to R**, **Linear modelling**, **Exploratory data analysis**, **Data Visualisation**, or **Report Writing** sections.
 
 # Creating a new document
 
-There are many possible files that you can create in R. The simplest is to create an R script. This allows you to write code, run code and produce output. You can also annotate your code through comments by writing `#` and then adding any relevant text. 
+There are many possible files that you can create in R. The simplest is to create an R script. This allows you to write code, run code and produce output. You can also annotate your code through comments by writing `#` and then adding any relevant text.
 
-Alternatively, you can create an R Markdown file. This combines chunks of R code with normal text. Thus, you can create lovely reports that blend code output (e.g. figures and tables) with analysis. RStudio has created a detailed guide available [here](https://rmarkdown.rstudio.com/articles_intro.html) on how to use an R Markdown file.
+Alternatively, you can create an R Markdown file. This combines chunks of R code with normal text. Thus, you can create lovely reports that blend code output (e.g. figures and tables) with analysis. There is a detailed [Quarto](https://quarto.org/docs/get-started/) getting-started guide on how to use these documents.
 
 # R Studio and R Markdown
 
-The following are two cheatsheets produced by R Studio on using their software. 
+The following are two cheatsheets produced by R Studio on using their software.
 
-(If the files are not loading, there also available on the GitHub under the `Cheatsheets` folder [link](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025).)
+(If the files are not loading, there also available on the GitHub under the `Cheatsheets` folder [link](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27).)
 
-![](Cheatsheets/R Studio Cheat Sheet.pdf){fig-alt="R studio sheet, A4." width=90% height=500}
+![](Cheatsheets/R%20Studio%20Cheat%20Sheet.pdf){fig-alt="R studio sheet, A4." width="90%" height="500"}
 
-![](Cheatsheets/RMarkdown.pdf){fig-alt="R Markdown sheet, A4." width=90% height=500}
+![](Cheatsheets/RMarkdown.pdf){fig-alt="R Markdown sheet, A4." width="90%" height="500"}

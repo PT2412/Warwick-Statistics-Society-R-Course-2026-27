@@ -15,7 +15,7 @@ format:
 ---
 
 :::{.callout-important}
-A linear model aims predict or explain the relationship between a single outcome variable and one (or more) explanatory variables. It is the simplest form of a regression model.
+A linear model aims to predict or explain the relationship between a single outcome variable and one (or more) explanatory variables. It is the simplest form of a regression model.
 :::
 
 In this case, a variable is a quantifiable quantity. The observed data is a realisation of the variable, obtained by conducting tests (observations). Variables can be numerical (continuous or discrete) or categorical.
@@ -32,7 +32,7 @@ Regardless of whether we are fitting a model to predict or explain, our aim is t
 
 # Deterministic with error
 
-It is important to note that the relationship between explanatory and outcome variables is not deterministic - that is to say, knowing the values of the explanatory variables does not allow you to predict the outcome variable exactly. We can decompose the relationship into the deterministic/systemic component ($X\beta$) and random error ($\epsilon$):
+It is important to note that the relationship between explanatory and outcome variables is not deterministic - that is to say, knowing the values of the explanatory variables does not allow you to predict the outcome variable exactly. We can decompose the relationship into the deterministic/systematic component ($X\beta$) and random error ($\epsilon$):
 
 $$
 Y = X \beta + \epsilon,
@@ -41,14 +41,29 @@ where $Y\in \mathbb{R}^{n\times 1}$ is the outcome/response variable, $X \in \ma
 
 Here, we assume we have $n$ data points and $p$ explanatory variables. We have $p+1$ in the dimensions to account for the intercept term.
 
+::: {.callout-note title="In a nutshell: what the design matrix actually looks like"}
+The matrix notation is just a tidy way to stack the simple equation $y_i = \alpha + \beta x_i + \epsilon_i$ for *every* row at once. Suppose we have 3 people and one explanatory variable, height $x$:
+
+$$
+\underbrace{\begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix}}_{Y}
+=
+\underbrace{\begin{pmatrix} 1 & x_1 \\ 1 & x_2 \\ 1 & x_3 \end{pmatrix}}_{X}
+\underbrace{\begin{pmatrix} \alpha \\ \beta \end{pmatrix}}_{\beta}
++
+\underbrace{\begin{pmatrix} \epsilon_1 \\ \epsilon_2 \\ \epsilon_3 \end{pmatrix}}_{\epsilon}
+$$
+
+The **first column of 1s is the intercept** (it multiplies $\alpha$), and each later column is one explanatory variable. Multiplying row $i$ of $X$ by $\beta$ literally rebuilds $\alpha + \beta x_i$. That is *all* $X\beta$ means — don't let the $\mathbb{R}^{n\times p+1}$ notation scare you. R builds this matrix for you automatically when you call `lm()`.
+:::
+
 # Assumptions
 
 To use a linear model, we need to make 4 key assumptions. We will see in later sections how we can relax some of these assumptions to fit a generalised linear model. However, for now, we must make sure our model meets these assumptions:
 
 <div>
 
-1.  **Linearity** - the systemic component is linear in parameters, that is, $$\mathbb{E}[Y] = \mathbb{E}[X\beta].$$ Note that the explanatory variables do not have to be linear. They can be polynomials, log and more!
-2.  **Homoscedasticity** - the errors must have constant variance, i.e. $$Var(\epsilon_1) = Var(\epsilon_2) = \; ... \; = Var(\epsilon_{n+1}) = \sigma^2.$$
+1.  **Linearity** - the systematic component is linear in parameters, that is, $$\mathbb{E}[Y \mid X] = X\beta.$$ Note that the explanatory variables do not have to be linear. They can be polynomials, log and more!
+2.  **Homoscedasticity** - the errors must have constant variance, i.e. $$Var(\epsilon_1) = Var(\epsilon_2) = \; ... \; = Var(\epsilon_{n}) = \sigma^2.$$
 3.  The errors are **independent** of each other.
 4.  The errors are **normally distributed**, $$\epsilon_i \sim \text{Normal}(0,\sigma^2).$$
 
@@ -70,9 +85,9 @@ There are several things we should note about the response variable as a consequ
 
 It is very important to be careful with the linearity assumption.
 
-Suppose we are given a dataset. Let $y_i$ denote the ith observation of the response variable. Let $x_{i1}$ denote the ith observation of the first explanatory variable and $x_{i2}$ denote the ith observation of the second explanatory variable.Let $\beta = (a,b,c)^{T}$.
+Suppose we are given a dataset. Let $y_i$ denote the ith observation of the response variable. Let $x_{i1}$ denote the ith observation of the first explanatory variable and $x_{i2}$ denote the ith observation of the second explanatory variable. Let $\beta = (a,b,c)^{T}$.
 
-Then, which of the following are linear models - i.e. when does $\mathbb{E}[y_i] = \mathbb{E}[X_i\beta]$?
+Then, which of the following are linear models - i.e. when does $\mathbb{E}[y_i] = X_i\beta$?
 
 <div>
 
@@ -85,6 +100,10 @@ Then, which of the following are linear models - i.e. when does $\mathbb{E}[y_i]
 </div>
 
 In this case, all are linear models except for 3. This is because the parameters are not linear in point 3 as we have $b^3$!
+
+::: {.callout-note title="In a nutshell: the plain-English test"}
+"Linear in parameters" means each parameter is simply multiplied by a fixed/known quantity — never raised to a power or put inside a function. That is why $b^3$ disqualifies option 3: the parameter $b$ itself has been cubed. Notice that doing things to the *explanatory variables* is fine: squaring $(x_{i1}-x_{i2})$ in option 4 or taking $\log(x_{i2})$ in option 5 still leaves the parameters multiplied by fixed quantities, so both are linear models.
+:::
 
 # Principle of parsimony - simplest is best
 

@@ -1,0 +1,150 @@
+---
+title: "Introduction to Bayesian Statistics"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+::: {.callout-quote title="Bruno de Finetti"}
+*"Probability does not exist."* — B. de Finetti, opening line of *Theory of Probability* (1974). His point: probability is not a property of the world waiting to be measured, but a description of **our own uncertainty** — which is exactly the object Bayesian statistics manipulates.
+:::
+
+The previous section developed **frequentist** parametric inference, built on one commitment: the parameter $\theta$ is a *fixed unknown constant*, and all the randomness lives in the data. This section develops the main alternative — the **Bayesian** approach — which makes the opposite move. It treats $\theta$ itself as an object of uncertainty, describes that uncertainty with a *probability distribution*, and updates it as data arrives.
+
+The two sections are deliberate mirror images. Where the frequentist reasons "the data is random, so let me study the long-run behaviour of my estimator," the Bayesian reasons "the data is fixed once I have seen it, so let me study my updated beliefs about $\theta$." Almost every frequentist idea — likelihood, estimation, intervals, testing — has a Bayesian counterpart in this section, reached from the other side.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart LR
+  D["Data"] --> F["Frequentist<br/>θ is fixed, data is random<br/>→ point estimate + confidence interval"]
+  D --> B["Bayesian<br/>θ is uncertain, data is fixed<br/>→ a whole posterior distribution for θ"]
+  F -. "two answers to one question:<br/>what does the data tell us about θ?" .-> B
+```
+
+# The one idea: turn beliefs into a distribution
+
+The entire Bayesian programme rests on a single decision the frequentist refuses to make: **put a probability distribution on the unknown parameter.**
+
+For a frequentist, "the probability that $\theta = 0.5$" is meaningless — $\theta$ is a fixed number, not a random one. For a Bayesian, it is the most natural thing in the world: probability *is* a measure of uncertainty, and we are uncertain about $\theta$, so $\theta$ gets a distribution. That distribution is not a claim that the coin's bias physically fluctuates; it is a bookkeeping device for *what we know*.
+
+::: {.callout-note title="In a nutshell: \"θ is random\" means \"we are uncertain about θ\""}
+When a Bayesian says $\theta$ is random, they do **not** mean the coin's bias wobbles from flip to flip — the coin has one fixed, true bias. "Random" here describes *our state of knowledge*: we do not know that fixed value, so we spread a distribution over the possibilities. This is the single most common beginner confusion, so it is worth re-reading: the distribution lives in our heads, not in the coin.
+:::
+
+Once we allow this, inference becomes a single mechanical act: **start with a distribution describing what you believe before seeing the data, then use the data to update it into a distribution describing what you believe after.** Those two distributions have names.
+
+- The **prior** $p(\theta)$ — your uncertainty about $\theta$ *before* seeing this data.
+- The **posterior** $p(\theta \mid \text{data})$ — your uncertainty about $\theta$ *after* folding the data in.
+
+The engine that turns one into the other is **Bayes' theorem**, the subject of the next page. Everything else in this section — priors, credible intervals, model comparison, computation — is detail hung on this one skeleton.
+
+# Bayes' theorem in one line
+
+We will derive it properly next page, but it is worth seeing the shape now. Bayes' theorem says the posterior is proportional to the prior times the likelihood:
+
+$$
+\boxed{\,\underbrace{p(\theta \mid \text{data})}_{\text{posterior}} \;\propto\; \underbrace{p(\theta)}_{\text{prior}} \;\times\; \underbrace{p(\text{data} \mid \theta)}_{\text{likelihood}}\,}
+$$
+
+::: {.callout-note title="In a nutshell: what ∝ means"}
+The symbol $\propto$ means "**proportional to**" — equal up to a constant we sort out later by making the whole thing integrate to 1. So $p(\theta \mid \text{data}) \propto p(\theta)\,p(\text{data}\mid\theta)$ says the posterior has the same *shape* as prior $\times$ likelihood; the missing constant just rescales it into a proper distribution.
+:::
+
+Notice the **likelihood** — the very object the frequentist section was built around — sits right in the middle. Bayesian inference does not throw away the likelihood; it *multiplies it by a prior* and renormalises. This is the precise sense in which the two approaches are relatives rather than rivals: they share the likelihood and disagree only about whether to combine it with a prior.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart LR
+  PR["Prior p(θ)<br/>belief before data"] --> X["×"]
+  LK["Likelihood p(data | θ)<br/>what the data says<br/>(the frequentist's object)"] --> X
+  X --> PO["Posterior p(θ | data)<br/>belief after data"]
+```
+
+# Frequentist vs Bayesian, side by side
+
+The disagreement is not about arithmetic — both camps obey the same probability axioms — but about *what is allowed to be random*, and therefore about what an "answer" even looks like.
+
+| | **Frequentist** | **Bayesian** |
+|---|---|---|
+| **Is $\theta$ random?** | No — fixed but unknown | Yes — described by a distribution |
+| **Role of prior beliefs** | None | Encoded explicitly as a *prior* |
+| **Core object** | The likelihood $L(\theta)$ | The posterior $p(\theta \mid \text{data})$ |
+| **Meaning of probability** | Long-run frequency | Degree of belief / uncertainty |
+| **Typical output** | Point estimate + confidence interval | A whole posterior + credible interval |
+| **Interpretation of "95%"** | 95% of intervals cover $\theta$ on repetition | 95% probability $\theta$ lies in *this* interval |
+
+That last row is the punchline most people meet first. The frequentist 95% confidence interval makes a statement about the *procedure* across hypothetical repetitions; it cannot say "there is a 95% chance $\theta$ is in here." The Bayesian **credible interval** says exactly that — because for a Bayesian $\theta$ is random, so a probability statement about it is legitimate. The price of that cleaner interpretation is the prior.
+
+::: {.callout-note title="The same data, two honest answers"}
+Given identical data and model, the two approaches often produce numerically *similar* intervals — especially when the data is plentiful or the prior is weak (a fact we make precise on the *Priors and the large-sample bridge* page). They differ most when data is scarce, when genuine prior knowledge exists, or when the question itself is about a probability of a hypothesis. Neither is "correct"; they answer subtly different questions.
+:::
+
+## Why use the Bayesian approach?
+
+- **Direct probability statements.** You can say "there is a 95% probability $\theta$ is between 0.6 and 0.8," or "an 88% probability the new treatment beats the old" — the statements people *actually want*, which frequentism cannot make.
+- **Prior knowledge is used, not wasted.** If previous studies, physical limits, or expert judgement constrain $\theta$, a prior folds them in formally instead of discarding them.
+- **Small samples and complex models.** With little data the posterior degrades gracefully toward the prior rather than producing the unstable estimates and mis-covering intervals frequentist asymptotics can give.
+- **One coherent rule for everything.** Estimation, intervals, prediction, and model comparison all fall out of the *same* posterior — there is no separate machinery for each.
+- **Natural updating.** Yesterday's posterior is today's prior; evidence accumulates seamlessly as new data arrives.
+
+## Why someone might prefer frequentist instead
+
+For balance: frequentist methods need **no prior** (and so dodge the charge of subjectivity), give **objective, reproducible** answers two analysts will agree on, come with clean **long-run guarantees** and optimality results, and are often **computationally cheaper** — no posterior to integrate or sample. They are also the **lingua franca** of most journals and regulators. The "right" choice depends on the problem; but **this section is firmly Bayesian**, and that choice shapes every method that follows. The previous section made the opposite choice, and the contrast is the point.
+
+# The three ingredients you will keep meeting
+
+Every Bayesian analysis in this section, no matter how elaborate, is assembled from exactly three pieces. It is worth fixing them now.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart TD
+  A["1. PRIOR  p(θ)<br/>what you believe before the data"] --> D["Bayes' theorem<br/>combines them"]
+  B["2. LIKELIHOOD  p(data | θ)<br/>how the model generates data<br/>(shared with the frequentist section)"] --> D
+  D --> C["3. POSTERIOR  p(θ | data)<br/>what you believe after the data<br/>— the answer to every question"]
+```
+
+1. **The prior** $p(\theta)$ — a distribution capturing your uncertainty before the data. Choosing it well (informative? weak? flat?) is a craft we devote a whole page to.
+2. **The likelihood** $p(\text{data}\mid\theta)$ — *identical* to the frequentist likelihood. The probability model for the data given a parameter value. This is the bridge between the two sections.
+3. **The posterior** $p(\theta \mid \text{data})$ — the output. Not a single number but an entire distribution, from which every estimate, interval, prediction and test is read off.
+
+# Where this section is going
+
+Having committed to the Bayesian worldview, we now need the machine that does the updating, and then the tools to use, choose, compute and compare what comes out of it.
+
+:::{}
+* **Bayes' theorem and the posterior** — the engine of the whole section
+  + Deriving Bayes' theorem; prior, likelihood, evidence and posterior
+  + The Beta–Binomial coin model worked by hand (conjugacy)
+  + Summarising a posterior: posterior mean, MAP, and **credible intervals**
+* **Priors and the large-sample bridge** — where the prior comes from, and why it eventually stops mattering
+  + Conjugate, informative, weakly-informative and flat priors; prior sensitivity
+  + How the data washes the prior out as $n$ grows
+  + The **Bernstein–von Mises** theorem: the posterior becomes normal and Bayesian and frequentist answers converge
+* **Bayesian computation** — what to do when there is no formula
+  + Grid approximation and Monte Carlo summaries of the posterior
+  + The **Metropolis–Hastings** algorithm (MCMC), hand-coded, plus diagnostics
+  + A glimpse of how a probabilistic-programming package does this for you
+* **Bayesian testing and model comparison** — turning the posterior into a decision
+  + Posterior probabilities of hypotheses and the **ROPE**
+  + **Bayes factors**, posterior odds, and the contrast with p-values
+* **Worked examples** — the whole Bayesian pipeline, end to end, on real data
+:::
+
+The next page builds Bayes' theorem from the ground up and turns the coin-flip model from the frequentist section into its Bayesian twin.

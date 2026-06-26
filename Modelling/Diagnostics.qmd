@@ -1,8 +1,5 @@
 ---
 title: "Model diagnostics"
-author: 
-  name: Maria-Louiza Van den Bergh
-  email: maria-louiza.van-den-bergh@warwick.ac.uk
 format: 
   html:
     fig-width: 12
@@ -23,8 +20,8 @@ To recap, the 4 key assumptions are:
 
 <div>
 
-1.  **Linearity** - the systemic component is linear in parameters, that is, $$\mathbb{E}[Y] = \mathbb{E}[X\beta].$$ Note that the explanatory variables do not have to be linear. They can be polynomials, log and more!
-2.  **Homoscedasticity** - the errors must have constant variance, i.e. $$Var(\epsilon_1) = Var(\epsilon_2) = \; ... \; = Var(\epsilon_{n+1}) = \sigma^2.$$
+1.  **Linearity** - the systematic component is linear in parameters, that is, $$\mathbb{E}[Y \mid X] = X\beta.$$ Note that the explanatory variables do not have to be linear. They can be polynomials, log and more!
+2.  **Homoscedasticity** - the errors must have constant variance, i.e. $$Var(\epsilon_1) = Var(\epsilon_2) = \; ... \; = Var(\epsilon_{n}) = \sigma^2.$$
 3.  The errors are **independent** of each other.
 4.  The errors are **normally distributed**, $$\epsilon_i \sim \text{Normal}(0,\sigma^2) \;\; \forall i.$$
 
@@ -32,10 +29,14 @@ To recap, the 4 key assumptions are:
 
 # Generating data
 
+::: {.callout-note title="In a nutshell: why we make up the data"}
+On this page we invent data where we *know* the true relationship in advance, so that we can see exactly what good versus bad diagnostic plots look like.
+:::
+
 We are going to create some data to illustrate good and bad model assumptions.
 
 ```{r}
-###| For reproducability, we set a seed
+###| For reproducibility, we set a seed
 set.seed(419)
 
 ###| Generating random numbers
@@ -65,7 +66,7 @@ head(data)
 One way to test model assumptions is to look at the residual plots.
 
 ::: callout-note
-A residual (or fitting deviation) is an estimate of the unobsereved statistical error. It is the difference between the observed $y_i$ and the estimated $\hat{y}_i$, the value predicted by the model [residuals](https://en.wikipedia.org/wiki/Errors_and_residuals).
+A residual (or fitting deviation) is an estimate of the unobserved statistical error. It is the difference between the observed $y_i$ and the estimated $\hat{y}_i$, the value predicted by the model [residuals](https://en.wikipedia.org/wiki/Errors_and_residuals).
 :::
 
 We want our model's predictions to be as close to the true observed values as possible (i.e. we want to minimise the residuals). We also use the residuals to check if we are meeting the linearity and normality assumptions. We can also identify outliers this way.
@@ -86,14 +87,14 @@ plot(m1, which = 1)
 
 The **residuals v fitted values plot** is a scatter plot of with the residuals on the y-axis and the fitted/predicted values on the x-axis. The red line (called the smoother) is a curve fitted to the residuals. If the structural component of the model is correct (i.e. the explanatory variables and not the errors), the smoother will be horizontal around 0.
 
-In this example, we see a very flat smoother, centered at 0, with 3 labelled points that deviate from the general trend.
+In this example, we see a very flat smoother, centred at 0, with 3 labelled points that deviate from the general trend.
 
 ```{r}
 ###| Q-Q plot
 plot(m1, which = 2)
 ```
 
-Recall that a model assumption is that the errors are normally distributed. The **Q-Q plot** allows us to check this assumption by plotting the absolute values of the standardized residuals on the y-axis and the theoretical quantiles of the standard half-normal distribution on the x-axis. If the errors are normally distributed, the dashed line will go through the origin and have a gradient of 1.
+Recall that a model assumption is that the errors are normally distributed. The **Normal Q-Q plot** (`which = 2`) allows us to check this assumption by plotting the (signed) standardised residuals on the y-axis against the theoretical quantiles of the standard Normal distribution on the x-axis. If the errors are Normal, the points lie close to the straight reference line.
 
 In this example, we see that the residuals do appear to be normally distributed, although at the tails, we do see 3 points that deviate from this.
 
@@ -104,7 +105,20 @@ plot(m1, which = 4)
 
 This graph plots the **Cook's distance** against the observation number, with the largest 3 values labelled. The [Cook's distance](https://www.statisticshowto.com/cooks-distance/) can be thought of as a measure of the influence of a particular observation. That is, it summarises how much the model changes, when you do and don't include the ith data point.
 
-You may notice that we have skipped several plots, namely: the location-scale plot and the standardized resivual v leverage plot. More information about diasgnotstic plots can be found [here](https://library.virginia.edu/data/articles/diagnostic-plots) for those interested.
+You may notice that we have skipped several plots, namely: the location-scale plot and the standardised residual v leverage plot. More information about diagnostic plots can be found [here](https://library.virginia.edu/data/articles/diagnostic-plots) for those interested.
+
+::: {.callout-tip title="Going further 🚀"}
+Calling `plot()` four times is laborious. The `performance` package draws every diagnostic in one call (with helpful annotations), and `ggfortify` lets you render the base plots as tidy `ggplot2` graphics.
+
+```{r}
+#| eval: false
+library(performance)
+check_model(m1)   # all diagnostics in a single annotated panel
+
+library(ggfortify)
+autoplot(m1)      # the base diagnostic plots, as ggplot2
+```
+:::
 
 ## A bad model
 
@@ -136,7 +150,7 @@ On top of choosing which variables we include in our model, we can transform our
 For example, in the $y2$ case, we can create a new variable $b2$ that is $b^2$ and include this transformed variable into our model. However, by the principle of parsimony, we also need to include $b$ into the model as well.
 
 ```{r}
-###| Modeeling y2
+###| Modelling y2
 m3 <- lm(y2 ~ a + b + I(b^2), data = data)
 
 ###| Residuals v fitted plot
@@ -150,7 +164,7 @@ In the residuals plot, we observe a flat smoother. This indicates we are meeting
 plot(m3, which = 2)
 ```
 
-In the Q-Q plot, we see that the data follows the dashed line, baring 3 exceptions at the extreme. Thus, the model appears to meet the normally distributed errors assumption.
+In the Q-Q plot, we see that the data follows the dashed line, barring 3 exceptions at the extreme. Thus, the model appears to meet the normally distributed errors assumption.
 
 ## Another bad model
 
@@ -164,7 +178,7 @@ m4 <- lm(y3 ~ a, data = data)
 plot(m4, which = 1)
 ```
 
-Fitting this model, we observe a curve shape in the smoother, indicating that we are violating the linearity assumption. As the shape is not symmetric, it doesn't seem like this is can be corrected by using $a^2$. Instead, we can try using a logarithm.
+Fitting this model, we observe a curve shape in the smoother, indicating that we are violating the linearity assumption. As the shape is not symmetric, it doesn't seem like this can be corrected by using $a^2$. Instead, we can try using a logarithm.
 
 ```{r}
 ###| y3 = log(a)
@@ -215,7 +229,7 @@ y2_i & = a_i + b_i + b_i^2 + \epsilon_i.
 \end{align}
 
 :::{.callout-note}
-I have placed the graphs side by side for comparison using the `par(mfrow = c(1,2)))` command. More information about this, and graphics more generally, appears [here](https://intro2r.com/mult_graphs.html).
+I have placed the graphs side by side for comparison using the `par(mfrow = c(1,2))` command. More information about this, and graphics more generally, appears [here](https://intro2r.com/mult_graphs.html).
 :::
 
 ```{r}
@@ -245,8 +259,8 @@ Similarly, in the Q-Q plots, we observe that the left graph deviates at the tail
 ## Another bad model revisited
 
 Now, we fit both of the following models: \begin{align}
-y2_i & = a_i \epsilon_i, \\
-y2_i & = \log(a_i) + \epsilon_i.
+y3_i & = a_i + \epsilon_i, \\
+y3_i & = \log(a_i) + \epsilon_i.
 \end{align}
 
 Again, for ease, I have plotted the graphs side by side.

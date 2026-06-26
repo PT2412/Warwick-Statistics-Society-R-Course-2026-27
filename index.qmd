@@ -1,8 +1,8 @@
 ---
-title: "Warwick Statistics Society R Course 2025-2026"
+title: "Warwick Statistics Society R Course 2026-2027"
 author: 
-  name: Nikoloz (Niko) Gigiberia
-  email: niko.gigiberia@warwick.ac.uk
+  name: Prabhat Tummala
+  email: Prabhat.Tummala@warwick.ac.uk
 format: 
   html:
     fig-width: 12
@@ -19,13 +19,13 @@ format:
 
 # Welcome!
 
-R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached [Github](https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26) aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).
+R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached [Github](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27) aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).
 
-This Github was created for the Warwick Statistics Society's R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling and ST221 Linear Statistical Modelling. While I (Nikoloz) have revamped this R course, the foundational work was set by my predecessor, Maria-Louiza Van den Bergh, who originally compiled this Github. The course builds off of the work by previous R Course Coordinators: Neel Shah, Mia Carla Chapman, and Viresh Shah.
+This Github was created for the Warwick Statistics Society's R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling, and ST231 Linear Statistical Modelling alongside other modules that require some programming knowledge like ST236 Python for Data Analytic Tasks, ST237 Visualisation and Communication of Data, and others.. While I (Prabhat) have revamped this R course, the foundational work was set by my predecessor, **Maria-Louiza Van den Bergh**, who originally compiled this Github. This work was built upon by subsequent contributors: **Niko Gigiberia**. The course builds off of the work by previous R Course Coordinators: **Neel Shah**, **Mia Carla Chapman**, and **Viresh Shah**.
 
 If you find any corrections, or believe a section would benefit from more explanations, please do reach out and email me [^1].
 
-[^1]: My University of Warwick email is: niko.gigiberia@warwick.ac.uk. 
+[^1]: My University of Warwick email is: Prabhat.Tummala@warwick.ac.uk. 
 
 ![QR code for website](QR-website.png)
 
@@ -38,11 +38,17 @@ On the left, it is possible to jump to the relevant page. These are grouped by s
 :::{}
 * Welcome
 * Introduction to R
+* Theory of Programming
 * Mathematics to R
 * Linear modelling
+* Generalised linear models
+* Frequentist statistics (Parametric models)
+* Bayesian statistics
 * Exploratory data analysis (EDA)
 * Data Visualisation
 * Report Writing
+* Python for R Users
+* Machine Learning (R and Python)
 
 :::
 
@@ -65,16 +71,33 @@ y <- 10
 x + y # comment example
 ```
 
-Finally, there will be several 'Check you understanding' areas. Answers to these questions (and the code used to produce them) are available just below the questions. However, I strongly recommend you attempt to answer them before reviewing the solutions! 
+Finally, there will be several 'Check you understanding' areas. Answers to these questions (and the code used to produce them) are available just below the questions. However, I strongly recommend you attempt to answer them before reviewing the solutions!
+
+# Two ways to read this course
+
+This course is written to work for two very different readers, and you should feel free to read it differently depending on which you are on a given day.
+
+- **If you are finding it hard:** stick to the **core path**. Read the short explanation, run the code example exactly as written, then change one thing and re-run it to see what happens. You do *not* need to understand every line the first time — the "Check your understanding" exercises and the plain-English summaries are enough to move on. It is completely normal to revisit a page two or three times.
+- **If you want more:** look out for the **"Going further" boxes**. These are optional, self-contained detours that point you to genuinely useful or interesting corners of R — extra packages, slicker idioms, deeper theory, or a small challenge to try. Nothing later in the course depends on them, so they are pure upside for the curious.
+
+To make these easy to spot, two kinds of coloured box recur throughout:
+
+::: {.callout-note title="In a nutshell"}
+A plain-English summary of the key idea on a page, with no maths or jargon. If you only remember one thing, remember this. (Aimed at readers who want the takeaway without the detail.)
+:::
+
+::: {.callout-tip title="Going further 🚀"}
+An optional extension for the curious — a cool package, a neater technique, or a deeper idea to explore. Safe to skip; fun to read. (Aimed at readers who want to see more of what R can do.)
+:::
 
 # Sections
 
-There are several sections and pages to this website. The following is a general overview of each section and the pages included.
+There are several sections and pages to this website. The following is a general overview of each section and the pages included. Please note that any module references are only general ideas of which parts of the course are most relevant to that module.
 
 :::{}
 
 * **Welcome** - This page. 
-* **Introduction to R** - This section covers how R stores data, variables, control structures and basic plots. 
+* **Introduction to R (ST117)** - This section covers how R stores data, variables, control structures and basic plots. 
   + Introduction - *Reviews what material is covered by this section*.
   + Data types - *The different values R can recognise*.
   + Data structures - *How R stores data*.
@@ -84,22 +107,53 @@ There are several sections and pages to this website. The following is a general
   + Custom functions - *How to create a custom function to reduce repetitive code.*
   + Random numbers - *Generate a random number in R and find the probability it was generated using a particular statistical distribution.*
   + Figures - *Use base R to plot scatter plots, box plots, histograms and line graphs. *
+* **Theory of Programming** - This section explores the tenets of programming (not specific to R) and covers,
+  + Purpose of Programming - *Reviews the purpose of programming, its purpose and strengths compared to manual solving of problems*.
+  + Control Structures & Code Abstraction - *The flow of logic in code and how to write reusable program pieces*.
+  + Interpreter vs Compilers - *How code is translated and executed in languages like R and Python*.
+  + Data Structures and Algorithms - *Core data structures and algorithmic thinking for statistical computing*.
+  + Time and Space Efficiency - *How to write good code in terms of space and time efficiency*.
+  + Efficiency in R - *R-specific performance ideas such as vectorisation and compiled code*.
+  + Programming Best Practices - *Tips for readable, reproducible, and robust statistical code*.
 * **Mathematics to Code** - This section covers the intuition and algorithmic thinking with which one should approach programming.
   + Introduction - *How does the computer think and interpret your code?*
   +  Mathematical intuition behind coding - *How do you go about translating mathematical logic into computer code?*
   + Euclidean Algorithm - *An example implementation of the Euclidean Algorithm for finding GCDs with the logic and R code explained.*
   + Monte Carlo Approximation - *An example implementation of Monte Carlo approximation of \pi with the logic and R code explained.*
   + Newton-Raphson Method - *An example implementation of the Newton-Raphson method for finding roots of functions with the logic and R code explained.*
-* **Modelling** - This section covers how to plot a linear model and check diagnostic plots. 
+  + Markov Chains - *Simulating a Markov chain and finding its long-run (stationary) behaviour — the engine behind the MCMC sampler in the Bayesian section.*
+* **Linear Modelling (ST231)** - This section covers how to plot a linear model and check diagnostic plots. 
   + What is a linear model? - *A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.*
   + Fitting a model with continuous data - *Examples of fitting a linear model with integer and real number data.*
   + Fitting a model with categorical data - *Examples of fitting a linear model with categorical data on the agriculture dataset, with and without intercept terms.*
   + Model diagnostics - *Linear models must fit the 4 key assumptions. This is how we check they do.*
   + Check your understanding - *Fit linear models on two datasets.*
-* **Exploratory data analysis** - This section covers a few different ways to get insights about a dataset. 
+* **Generalised Linear Models (ST231/ST346/ST426)** - Extends linear models to binary, count and other non-normal responses by adding a distribution and a link function. Fitted by maximum likelihood, building on the Frequentist Statistics section.
+  + Introduction to GLMs - *Why linear models fail for binary/count data; the three components and the link function.*
+  + Logistic regression - *Binary data with the logit link; odds, odds ratios, predicted probabilities and classification.*
+  + Poisson regression - *Count data with the log link; rate ratios, offsets, and overdispersion (with the negative-binomial fix).*
+  + Diagnostics and inference - *Deviance, residuals, likelihood-ratio tests, AIC and confidence intervals for GLMs.*
+  + Check your understanding - *Fit and interpret GLMs yourself, with hidden solutions.*
+* **Frequentist Statistics (ST230)** - This section moves beyond linear models onto parametric fitting — the rigorous fitting of distributions to data — from the *frequentist* viewpoint where the parameter is fixed and the data is random.
+  + Introduction - *Probability vs statistics, the frequentist worldview, and method of moments vs maximum likelihood.*
+  + Likelihood, score and Fisher information - *The central engine: from likelihood to a point estimate and its standard error.*
+  + Asymptotics and confidence intervals - *Large-sample normality, and the Wald and likelihood-ratio intervals.*
+  + Simulation - *Bootstrapping and `optim` for when the formulas run out.*
+  + Hypothesis testing - *p-values, power, and the Wald/score/likelihood-ratio "trinity".*
+  + Worked examples - *The whole pipeline end to end on real data, including model checking.*
+* **Bayesian Statistics** - The mirror image of the frequentist section: here the parameter is treated as *uncertain* and given a probability distribution, which the data updates.
+  + Introduction - *The Bayesian worldview and how it contrasts with frequentism.*
+  + Bayes' theorem and the posterior - *Prior × likelihood → posterior, the Beta–Binomial coin model, and credible intervals.*
+  + Priors and the large-sample bridge - *Choosing priors, prior sensitivity, and how Bayesian and frequentist answers converge.*
+  + Bayesian computation - *Grid approximation and a hand-coded MCMC sampler (with a glimpse of probabilistic-programming packages).*
+  + Bayesian testing and model comparison - *Posterior probabilities, the ROPE, and Bayes factors.*
+  + Worked examples - *The whole Bayesian pipeline end to end, including posterior predictive checks.*
+  + Bayesian forecasting - *Time-series forecasting with an AR(1) model fitted by MCMC, producing a full predictive distribution for the future.*
+* **Exploratory data analysis (ST117)** - This section covers a few different ways to get insights about a dataset.
   + cars dataset - *A simple example covering investigating and cleaning the inbuilt `mtcars` dataset.*
   + dplyr: summary tables - *Examples of using the `dplyr` package's `summarise()` function on the `mtcars` dataset.*
-* **Data Visualisation** - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.
+  + Data wrangling with the tidyverse - *The core `dplyr` verbs, the pipe, reshaping with `tidyr`, and joining tables.*
+* **Data Visualisation (ST117/ST237)** - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.
   + Introduction to Data Visualisation
   + Data Import and Preparation in R 
   + Introduction to ggplot2
@@ -108,11 +162,26 @@ There are several sections and pages to this website. The following is a general
   + Visualising Bivariate Data
   + Visualising Time
   + Visualising Multiple Variables
-  + Specialised Visualization Techniques
+  + Specialised Visualisation Techniques
   + Best Practices
-* **Report Writing and Mathematical Communication** - This sections covers how to approach report writing for audiences both inside and outside of one's field.
+* **Report Writing and Mathematical Communication (ST117)** - This section covers how to approach report writing for audiences both inside and outside of one's field.
+  + Introduction, structure and reporting results - *How to structure a report and present numbers, tables and figures clearly.*
+  + Reproducibility and workflow - *RMarkdown, project organisation, version control and reproducible environments so your analysis can be rerun and trusted.*
+  + Writing and use of AI - *Clear technical English and the sensible use of AI tools.*
+* **Python for R Users (ST236)** - A bridge into Python for students who already know R: the same ideas in a new language, with the libraries that underpin the Machine Learning section. All code is executable.
+  + Setup and basics - *Running Python, and Python syntax mapped onto the R you already know (0-indexing, methods, lists, dictionaries, loops, functions).*
+  + NumPy - *Arrays and vectorised computing — the analogue of R's vectorised vectors and matrices.*
+  + pandas - *DataFrames for wrangling — the analogue of `data.frame`/tibble and `dplyr`.*
+  + R vs Python - *A reference of the key differences and gotchas, and when to use which language.*
+* **Machine Learning (ST236/ST349)** - This section steps from statistics into machine learning — building models that predict and find structure — and showcases the same ideas in **both R and Python**, the two main languages of data science.
+  + Introduction to Machine Learning - *Supervised vs unsupervised learning, the train/test split, overfitting, and why we use both R and Python.*
+  + Supervised learning - *Classification with decision trees and random forests on the iris data, in R and Python side by side.*
+  + Regularisation and cross-validation - *Ridge and lasso to control overfitting, with k-fold cross-validation to tune them.*
+  + Unsupervised learning - *k-means clustering and principal component analysis when there is no label to predict.*
+  + Deep learning - *Neural networks from the ground up — neurons, layers and how they learn — with a small network in R and the modern frameworks in R and Python.*
+
 :::
 
-The necessary data for this website can be found in the `Datasets` folder ([link](https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26)). There is guidance in the relevant pages on how to load in data. 
+The necessary data for this website can be found in the `Datasets` folder ([link](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27)). There is guidance in the relevant pages on how to load in data. 
 
-Please note that **future pages** aim to include: model selection; generalised linear modelling; exploratory data analysis; and using the `kableExtra` and `dplyr` packages to produce tables. Time permitting, these will be created for the 2025/256 R course and aim to go alongside ST404 Applied Statistical Modelling and provide additional support for ST346 Generalised Linear Models. I, Niko will aim to implement these as well as the year 2025-26 rolls along. I also aim to add pages on Bayesian statistics and Markov Chain Monte Carlo using R and Python.
+Please note that **future pages** aim to include: Machine Learning paradigms, Bayesian forecasting, and possibly smaller pages dedicated to other programming languages like C for the sake of efficiency.

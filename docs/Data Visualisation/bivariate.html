@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Visualizing Bivariate Data – Warwick Statistics Society R Course 2025-2026</title>
+<title>Visualising Bivariate Data – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,6 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -115,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -143,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -152,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/bivariate.html">Visualizing Bivariate Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/bivariate.html">Visualising Bivariate Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -246,12 +250,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -282,17 +339,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -303,6 +366,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -333,13 +402,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -352,17 +562,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -396,25 +612,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -427,13 +643,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -454,6 +670,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -461,7 +683,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -507,9 +805,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/bivariate.html">Visualizing Bivariate Data</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/bivariate.html">Visualising Bivariate Data</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Visualizing Bivariate Data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Visualising Bivariate Data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -534,11 +832,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For this section, we will use the <code>penguins</code> dataset to explore the relationship between <strong>Island</strong> and <strong>Species</strong>.</p>
 <section id="stacked-bar-charts" class="level2">
 <h2 class="anchored" data-anchor-id="stacked-bar-charts">Stacked Bar Charts</h2>
-<p>The default behavior of a bar chart in <code>ggplot2</code> is to stack categories on top of one another. This gives you a sense of the total count while showing the breakdown of subgroups.</p>
+<p>The default behaviour of a bar chart in <code>ggplot2</code> is to stack categories on top of one another. This gives you a sense of the total count while showing the breakdown of subgroups.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
@@ -547,7 +845,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Stacked bar chart</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Species Distribution by Island (Stacked)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Species Distribution by Island (Stacked)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -561,14 +859,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="grouped-bar-charts" class="level2">
 <h2 class="anchored" data-anchor-id="grouped-bar-charts">Grouped Bar Charts</h2>
-<p>If you want to compare the specific counts of species side-by-side, the “grouped bar chart is preferred. It un-stacks the bars and places them next to each other.</p>
+<p>If you want to compare the specific counts of species side-by-side, the “grouped bar chart” is preferred. It un-stacks the bars and places them next to each other.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grouped bar chart</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grouped bar chart</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Species Distribution by Island (Grouped)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Species Distribution by Island (Grouped)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -598,14 +896,14 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Segmented bar chart</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> </span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent) <span class="sc">+</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Proportion"</span>, <span class="at">title =</span> <span class="st">"Species Proportion by Island"</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -622,17 +920,17 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create a summary table with labels</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>pdat <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island, species) <span class="sc">%&gt;%</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">lbl =</span> scales<span class="sc">::</span><span class="fu">percent</span>(pct, <span class="at">accuracy =</span> <span class="dv">1</span>))</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Plot using the summary data</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> pct, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pdat, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> pct, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use geom_col for pre-calculated data</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> </span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> lbl), </span>
@@ -640,7 +938,7 @@ Note
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent) <span class="sc">+</span></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">title =</span> <span class="st">"Species Composition by Island"</span>) <span class="sc">+</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -661,13 +959,13 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"cornflowerblue"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Flipper Length vs. Body Mass"</span>,</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -684,17 +982,17 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for US data</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, country <span class="sc">==</span> <span class="st">"United States"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>us <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, country <span class="sc">==</span> <span class="st">"United States"</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Line plot with points</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(us_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(us, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span> </span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Life Expectancy (1952-2007)"</span>,</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life Expectancy (years)"</span>) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -716,18 +1014,18 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate means</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mean_data <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate means</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g))</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot means</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mean_data, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_mass)) <span class="sc">+</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(means, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_mass)) <span class="sc">+</span> </span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(mean_mass, <span class="dv">0</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6000</span>)) <span class="sc">+</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Average Body Mass by Species"</span>, <span class="at">y =</span> <span class="st">"Mass (g)"</span>) <span class="sc">+</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -760,11 +1058,11 @@ Caution
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Body Mass Distribution by Species"</span>) <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -781,12 +1079,12 @@ Caution
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="co"># Add boxplot inside for reference</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Violin Plot with Embedded Boxplot"</span>) <span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -804,13 +1102,13 @@ Caution
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Ridgeline Plot of Body Mass"</span>) <span class="sc">+</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ridges</span>() <span class="sc">+</span> </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -827,8 +1125,8 @@ Caution
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate stats</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate stats</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>summ <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
@@ -840,13 +1138,13 @@ Caution
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Mean +/- SE</span></span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">position_dodge</span>(<span class="fl">0.2</span>) <span class="co"># To separate overlapping bars</span></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summary_stats, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean, <span class="at">color =</span> sex, <span class="at">group =</span> sex)) <span class="sc">+</span> </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summ, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean, <span class="at">color =</span> sex, <span class="at">group =</span> sex)) <span class="sc">+</span> </span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> pd, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> se, <span class="at">ymax =</span> mean <span class="sc">+</span> se), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> pd, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> se, <span class="at">ymax =</span> mean <span class="sc">+</span> se), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> pd, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mean Body Mass by Species and Sex"</span>,</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Error bars represent Standard Error"</span>,</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>) <span class="sc">+</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -863,12 +1161,12 @@ Caution
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">shape =</span> <span class="dv">95</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># Add mean bar</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Raw Data with Mean Indicator"</span>) <span class="sc">+</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -886,7 +1184,7 @@ Caution
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>americas <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">&amp;</span> year <span class="sc">==</span> <span class="dv">2007</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -897,7 +1195,7 @@ Caution
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Life Expectancy in the Americas (2007)"</span>,</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Life Expectancy (Years)"</span>, <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) <span class="co"># Remove horizontal grid lines for clarity</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) <span class="co"># Remove horizontal grid lines for clarity</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -966,13 +1264,14 @@ Caution
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1365,8 +1664,8 @@ Caution
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visualizing Bivariate Data"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visualising Bivariate Data"</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
@@ -1395,7 +1694,7 @@ Caution
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stacked Bar Charts</span></span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>The default behavior of a bar chart in <span class="in">`ggplot2`</span> is to stack categories on top of one another. This gives you a sense of the total count while showing the breakdown of subgroups.</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>The default behaviour of a bar chart in <span class="in">`ggplot2`</span> is to stack categories on top of one another. This gives you a sense of the total count while showing the breakdown of subgroups.</span>
 <span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Data Penguins}</span></span>
 <span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
@@ -1419,7 +1718,7 @@ Caution
 <span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Grouped Bar Charts</span></span>
 <span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>If you want to compare the specific counts of species side-by-side, the "grouped bar chart is preferred. It un-stacks the bars and places them next to each other.</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>If you want to compare the specific counts of species side-by-side, the "grouped bar chart" is preferred. It un-stacks the bars and places them next to each other.</span>
 <span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Penguins 1}</span></span>
 <span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
@@ -1471,14 +1770,14 @@ Caution
 <span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create a summary table with labels</span></span>
-<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a>pdat <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island, species) <span class="sc">%&gt;%</span></span>
 <span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
 <span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),</span>
 <span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>         <span class="at">lbl =</span> scales<span class="sc">::</span><span class="fu">percent</span>(pct, <span class="at">accuracy =</span> <span class="dv">1</span>))</span>
 <span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Plot using the summary data</span></span>
-<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> pct, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pdat, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">y =</span> pct, <span class="at">fill =</span> species)) <span class="sc">+</span> </span>
 <span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use geom_col for pre-calculated data</span></span>
 <span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> </span>
 <span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> lbl), </span>
@@ -1524,11 +1823,11 @@ Caution
 <span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
 <span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for US data</span></span>
-<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a>us_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, country <span class="sc">==</span> <span class="st">"United States"</span>)</span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a>us <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, country <span class="sc">==</span> <span class="st">"United States"</span>)</span>
 <span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a><span class="co"># Line plot with points</span></span>
-<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(us_data, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
-<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span> </span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(us, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
 <span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span> </span>
 <span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Life Expectancy (1952-2007)"</span>,</span>
 <span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life Expectancy (years)"</span>) <span class="sc">+</span></span>
@@ -1552,12 +1851,12 @@ Caution
 <span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
 <span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate means</span></span>
-<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a>mean_data <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
 <span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g))</span>
 <span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot means</span></span>
-<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mean_data, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_mass)) <span class="sc">+</span> </span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(means, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_mass)) <span class="sc">+</span> </span>
 <span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span> </span>
 <span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(mean_mass, <span class="dv">0</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6000</span>)) <span class="sc">+</span></span>
@@ -1641,7 +1940,7 @@ Caution
 <span id="cb14-286"><a href="#cb14-286" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
 <span id="cb14-287"><a href="#cb14-287" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-288"><a href="#cb14-288" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate stats</span></span>
-<span id="cb14-289"><a href="#cb14-289" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb14-289"><a href="#cb14-289" aria-hidden="true" tabindex="-1"></a>summ <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
 <span id="cb14-290"><a href="#cb14-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">%&gt;%</span></span>
 <span id="cb14-291"><a href="#cb14-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
 <span id="cb14-292"><a href="#cb14-292" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
@@ -1653,9 +1952,9 @@ Caution
 <span id="cb14-298"><a href="#cb14-298" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Mean +/- SE</span></span>
 <span id="cb14-299"><a href="#cb14-299" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">position_dodge</span>(<span class="fl">0.2</span>) <span class="co"># To separate overlapping bars</span></span>
 <span id="cb14-300"><a href="#cb14-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-301"><a href="#cb14-301" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summary_stats, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean, <span class="at">color =</span> sex, <span class="at">group =</span> sex)) <span class="sc">+</span> </span>
+<span id="cb14-301"><a href="#cb14-301" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summ, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean, <span class="at">color =</span> sex, <span class="at">group =</span> sex)) <span class="sc">+</span> </span>
 <span id="cb14-302"><a href="#cb14-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> pd, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb14-303"><a href="#cb14-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> se, <span class="at">ymax =</span> mean <span class="sc">+</span> se), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> pd, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-303"><a href="#cb14-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> se, <span class="at">ymax =</span> mean <span class="sc">+</span> se), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> pd, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb14-304"><a href="#cb14-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mean Body Mass by Species and Sex"</span>,</span>
 <span id="cb14-305"><a href="#cb14-305" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Error bars represent Standard Error"</span>,</span>
 <span id="cb14-306"><a href="#cb14-306" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>) <span class="sc">+</span></span>
@@ -1706,7 +2005,7 @@ Caution
 <span id="cb14-355"><a href="#cb14-355" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) <span class="co"># Remove horizontal grid lines for clarity</span></span>
 <span id="cb14-356"><a href="#cb14-356" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-357"><a href="#cb14-357" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Fitting a model with continuous data – Warwick Statistics Society R Course 2025-2026</title>
+<title>Fitting a model with continuous data – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,9 +105,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -144,7 +148,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -172,7 +176,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -237,7 +241,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,12 +279,65 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -311,17 +368,23 @@ window.Quarto = {
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -332,6 +395,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,13 +431,154 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -381,17 +591,23 @@ window.Quarto = {
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -425,25 +641,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -456,13 +672,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -483,6 +699,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -490,7 +712,83 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -536,7 +834,7 @@ window.Quarto = {
 
 
 <p>Suppose we are contacted by a group of scientists who are conducting experiments on leaf burn times. They have provided us with the leaf dataset and want to know what the relationship between the elements in the soil and burn time.</p>
-<p>They tell us that the ‘lburn’ variable is the log of the leaf burn time. They also tell us that the ‘Nitrogen’, ‘Chlorine’ and ‘Potassium’ variables are the percentage of prevalant in soil.</p>
+<p>They tell us that the ‘lburn’ variable is the log of the leaf burn time. They also tell us that the ‘Nitrogen’, ‘Chlorine’ and ‘Potassium’ variables are the percentage present in the soil.</p>
 <p>To answer their question, and find the relationship between the elements and burn time, we are going to fit a linear model on the leaf dataset. However, before we fit the model, it is important to review the dataset carefully.</p>
 <section id="a-quick-look-at-the-data" class="level1">
 <h1>A quick look at the data</h1>
@@ -551,7 +849,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The data can be found on the associated github <a href="https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025/tree/main/Data">here</a>. Please download this to your computer and save it to your documents.</p>
+<p>The data can be found on the associated GitHub <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27/tree/main/Data">here</a>. Please download this to your computer and save it to your documents.</p>
 <p>You will need to change the location of the file path. You can find this by clicking the file and reading the pop up window.</p>
 </div>
 </div>
@@ -559,13 +857,13 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Loading in data</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>leaf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../Data/leaf.csv"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| First 6 rows</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(leaf)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Nitrogen Chlorine Potassium lburn
@@ -597,13 +895,13 @@ y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i,
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| lburn ~ nitrogen model</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen, <span class="at">data =</span> leaf) </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| output</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>m1</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -619,9 +917,9 @@ Coefficients:
 <div>
 <ul>
 <li>If there is no Nitrogen in the soil, the expected log leaf burn time is 2.6.</li>
-<li>For every increase of 1% of Nitrogren in the soil, we expect a 0.6 decrease in the log leaf burn time.
+<li>For every increase of 1% of Nitrogen in the soil, we expect a 0.6 decrease in the log leaf burn time.
 <ul>
-<li>(Alternatively, we expect the leaf burn time to decrease by $(0.6).)</li>
+<li>(Alternatively, since the response is logged, a 1-unit (1%) increase in Nitrogen multiplies the leaf burn time by <span class="math inline">\(\exp(-0.59)\approx 0.55\)</span>, i.e.&nbsp;about a 45% reduction.)</li>
 </ul></li>
 </ul>
 </div>
@@ -629,10 +927,10 @@ Coefficients:
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary output of a model</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -660,19 +958,56 @@ F-statistic: 29.75 on 1 and 28 DF,  p-value: 8.025e-06</code></pre>
 <ul>
 <li>Pr(&gt;|t|) is the p-value after performing a hypothesis test.
 <ul>
-<li>The asterics (*) indicate the significance. Depending on the context, different significance levels are suitable. In most cases <span class="math inline">\(0.05\)</span> is a ‘good’ level.</li>
+<li>The asterisks (*) indicate the significance. Depending on the context, different significance levels are suitable. In most cases <span class="math inline">\(0.05\)</span> is a ‘good’ level.</li>
 </ul></li>
 <li>The <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span> describe how much variance is accounted for by the model (the closer to 1 the better)</li>
 </ul>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: reading the summary table">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: reading the summary table
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>p-value</strong> (<code>Pr(&gt;|t|)</code>) is, roughly, the probability of seeing an estimate this large if the true coefficient were actually zero — so a small p-value means it is unlikely the variable has no effect, i.e.&nbsp;the variable matters. The <strong>Std. Error</strong> is how uncertain we are about the estimate, and the <strong>t value</strong> is just the estimate divided by its standard error (a bigger t value gives a smaller p-value).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>broom</code> package turns messy model output into tidy data frames you can sort, filter or plot. <code>tidy()</code> gives one row per coefficient (estimate, std. error, p-value) and <code>glance()</code> gives a one-row model summary (<span class="math inline">\(R^2\)</span>, AIC, etc.).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1)    <span class="co"># coefficient table as a tidy data frame</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(m1)  <span class="co"># one-row model-fit summary</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
 </div>
 <p>We can also get information using ‘anova()’.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Anova output</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Anova output</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
@@ -694,13 +1029,13 @@ y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}}+ \epsi
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| lburn ~ Nitrogen + Chlorine</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen <span class="sc">+</span> Chlorine, <span class="at">data =</span> leaf)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| anova on larger model</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| lburn ~ Nitrogen + Chlorine</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen <span class="sc">+</span> Chlorine, <span class="at">data =</span> leaf)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| anova on larger model</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
@@ -715,7 +1050,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <p>The first row of the anova output is: <span class="math display">\[ Nitrogen \quad  1 \quad 3.4460 \quad 3.4460 \quad 38.9352 \quad 1.127e-06 \text{***}.\]</span></p>
-<p>The p-value <span class="math inline">\(1.127e-06\)</span> comes from a hypothesis test with null hypothsis <span class="math inline">\(\beta = 0\)</span>. That is to say, we compare the following 2 models, one where <span class="math inline">\(\beta =0\)</span> and one where <span class="math inline">\(\beta \neq 0\)</span>:</p>
+<p>The p-value <span class="math inline">\(1.127e-06\)</span> comes from a hypothesis test with null hypothesis <span class="math inline">\(\beta = 0\)</span>. That is to say, we compare the following 2 models, one where <span class="math inline">\(\beta =0\)</span> and one where <span class="math inline">\(\beta \neq 0\)</span>:</p>
 <div>
 <ol type="1">
 <li><span class="math inline">\(y_i = \alpha + \epsilon_i\)</span></li>
@@ -724,7 +1059,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>As the p-value is <span class="math inline">\(&lt;0.05\)</span>, we say that there is sufficient evidence to reject the null hypothesis.</p>
 <p>The second row of the anova output is: <span class="math display">\[Chlorine \quad  1 \quad 0.8538 \quad 0.8538 \quad 9.6473 \quad 0.004424 \text{**}.\]</span></p>
-<p>The p-value <span class="math inline">\(0.004424\)</span> comes from a hypothesis test with null hypothesis <span class="math inline">\(\gamma = 0\)</span>. That is to say, we compare the following 2 models, one where <span class="math inline">\(\beta =0\)</span> and one where <span class="math inline">\(\beta \neq 0\)</span>:</p>
+<p>The p-value <span class="math inline">\(0.004424\)</span> comes from a hypothesis test with null hypothesis <span class="math inline">\(\gamma = 0\)</span>. That is to say, we compare the following 2 models, one where <span class="math inline">\(\gamma =0\)</span> and one where <span class="math inline">\(\gamma \neq 0\)</span>:</p>
 <div>
 <ol type="1">
 <li><span class="math inline">\(y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i\)</span></li>
@@ -743,13 +1078,13 @@ y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}} + \del
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Saturated model</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen <span class="sc">+</span> Chlorine <span class="sc">+</span> Potassium, <span class="at">data =</span> leaf)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| Output</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>m3</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Saturated model</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen <span class="sc">+</span> Chlorine <span class="sc">+</span> Potassium, <span class="at">data =</span> leaf)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| Output</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>m3</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -785,10 +1120,10 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Saturated model anova</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m3)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Saturated model anova</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m3)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
@@ -865,13 +1200,14 @@ y_i = 1.8 -0.5 \; x_{i,\text{Nitrogen}} -0.4 \; x_{i,\text{Chlorine}} + 0.2 \; x
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1264,193 +1600,208 @@ y_i = 1.8 -0.5 \; x_{i,\text{Nitrogen}} -0.4 \; x_{i,\text{Chlorine}} + 0.2 \; x
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Fitting a model with continuous data"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>Suppose we are contacted by a group of scientists who are conducting experiments on leaf burn times. They have provided us with the leaf dataset and want to know what the relationship between the elements in the soil and burn time.</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>They tell us that the 'lburn' variable is the log of the leaf burn time. They also tell us that the 'Nitrogen', 'Chlorine' and 'Potassium' variables are the percentage of prevalant in soil.</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>To answer their question, and find the relationship between the elements and burn time, we are going to fit a linear model on the leaf dataset. However, before we fit the model, it is important to review the dataset carefully.</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># A quick look at the data</span></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>We can load in the data and inspect the first 6 rows as follows. </span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>The data can be found on the associated github <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025/tree/main/Data)</span>. Please download this to your computer and save it to your documents. </span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>You will need to change the location of the file path. You can find this by clicking the file and reading the pop up window. </span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>(If you cannot load in the data, a version appears in the <span class="in">`Data`</span> tab at the top of the website. You should be able to copy and paste that version into your R script and run it directly.)</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="do">###| Loading in data</span></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>leaf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../Data/leaf.csv"</span>)</span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="do">###| First 6 rows</span></span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(leaf)</span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># Set up</span></span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>From the previous section, we observe 4 variables: Nitrogen, Chlorine, Potassium and lburn. We note that all 4 are continuous (as we would expect given what we have been told).</span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>Now, we want to fit a linear model of the form: $$\text{lburn} = \alpha + \beta \times \text{Nitrogen}+ \gamma \times \text{Chlorine} + \delta \times \text{Potassium} + \epsilon.$$ Expressing this as a matrix, by reading off the first 2 rows of the dataframe,</span>
-<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix} 0.34 <span class="sc">\\</span> 0.11 <span class="sc">\\</span> ... \end{pmatrix} = \begin{pmatrix} 1 &amp; 3.05 &amp; 1.45 &amp; 5.67 <span class="sc">\\</span> 1 &amp; 4.22 &amp; 1.35 &amp; 4.86 <span class="sc">\\</span> ... &amp; ... &amp; ... &amp; ... \end{pmatrix} \times \begin{pmatrix} \alpha <span class="sc">\\</span> \beta <span class="sc">\\</span> \gamma <span class="sc">\\</span> \delta \end{pmatrix} + \epsilon.</span>
-<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>Thus, our goal is to estimate the $\alpha$,$\beta$,$\gamma$ and $\delta$ that best captures the relationship between the response variable (lburn) and the explanatory variables (Nitrogen, Chlorine and Potassium).</span>
-<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a><span class="fu"># Using 'lm()'</span></span>
-<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>In R, the command 'lm()' will fit a linear model for you. We will begin by fitting a model where we only use the Nitrogen soil percentage to predict the burn time. That is, we fit the following model:</span>
-<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i,</span>
-<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>where $x_{i,\text{Nitrogen}}$ represents the Nitrogen percentage of the ith observation. We fit this using the <span class="in">`lm()`</span> command with <span class="in">`lburn ~ Nitrogen`</span> formula and setting the <span class="in">`data=leaf`</span>. </span>
-<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a><span class="do">###| lburn ~ nitrogen model</span></span>
-<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen, <span class="at">data =</span> leaf) </span>
-<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a><span class="do">###| output</span></span>
-<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>m1</span>
-<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>From the output, we obtain an estimate for $\alpha = 2.6257$ and an estimate for $\beta = -0.5916$. We interpret this as follows:</span>
-<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>If there is no Nitrogen in the soil, the expected log leaf burn time is 2.6.</span>
-<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For every increase of 1% of Nitrogren in the soil, we expect a 0.6 decrease in the log leaf burn time. </span>
-<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>(Alternatively, we expect the leaf burn time to decrease by $\exp(0.6)\approx 1.82.)</span>
-<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>However, if we want to get more information about the model, we can use the <span class="in">`summary()`</span> command on a model, rather than looking at the raw output.</span>
-<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary output of a model</span></span>
-<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
-<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>Now, the estimates of $\alpha$ and $\beta$ are reported in the Estimate column. The rest of the output consists of useful information about the performance of the model. A detailed blogpost of information was created by Felipe Rego and is available <span class="co">[</span><span class="ot">here</span><span class="co">](https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R)</span>. I have pulled out 2 key values that you need to be very comfortable with calculating and using:</span>
-<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Pr(<span class="sc">\&gt;\|</span>t<span class="sc">\|</span>) is the p-value after performing a hypothesis test. </span>
-<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>The asterics (<span class="sc">\*</span>) indicate the significance. Depending on the context, different significance levels are suitable. In most cases $0.05$ is a 'good' level.</span>
-<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The $R^2$ and adjusted $R^2$ describe how much variance is accounted for by the model (the closer to 1 the better)</span>
-<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a>We can also get information using 'anova()'.</span>
-<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a><span class="do">###| Anova output</span></span>
-<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1)</span>
-<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a>This no longer gives the $R^2$ values. However, it will perform consecutive hypothesis tests.</span>
-<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a><span class="fu"># Using 'anova()'</span></span>
-<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a>To explore anova further, let us fit a different linear model: $$</span>
-<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a>y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}}+ \epsilon_i.$$</span>
-<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a><span class="do">###| lburn ~ Nitrogen + Chlorine</span></span>
-<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen <span class="sc">+</span> Chlorine, <span class="at">data =</span> leaf)</span>
-<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a><span class="do">###| anova on larger model</span></span>
-<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2)</span>
-<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a>The first row of the anova output is: $$ Nitrogen \quad  1 \quad 3.4460 \quad 3.4460 \quad 38.9352 \quad 1.127e-06 \text{***}.$$</span>
-<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>The p-value $1.127e-06$ comes from a hypothesis test with null hypothsis $\beta = 0$. That is to say, we compare the following 2 models, one where $\beta =0$ and one where $\beta \neq 0$: </span>
-<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>:::{} </span>
-<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$y_i = \alpha + \epsilon_i$ </span>
-<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>$y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i$ </span>
-<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a>As the p-value is $&lt;0.05$, we say that there is sufficient evidence to reject the null hypothesis.</span>
-<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>The second row of the anova output is: $$Chlorine \quad  1 \quad 0.8538 \quad 0.8538 \quad 9.6473 \quad 0.004424 \text{**}.$$</span>
-<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a>The p-value $0.004424$ comes from a hypothesis test with null hypothesis $\gamma = 0$. That is to say, we compare the following 2 models, one where $\beta =0$ and one where $\beta \neq 0$: </span>
-<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a>:::{} </span>
-<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i$ </span>
-<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>$y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}} + \epsilon_i$ </span>
-<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a>As the p-value is $&lt;0.05$, we say that there is sufficient evidence to reject the null hypothesis.</span>
-<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a>More information about interpreting anova can be found <span class="co">[</span><span class="ot">here</span><span class="co">](https://bookdown.org/steve_midway/DAR/understanding-anova-in-r.html)</span>.</span>
-<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fitting a model with all 3 explanatory variables</span></span>
-<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-159"><a href="#cb15-159" aria-hidden="true" tabindex="-1"></a>Now that we have some familiarity with the outputs, let us fit the model with all possible terms (i.e. the fully saturated model). That is, we fit</span>
-<span id="cb15-160"><a href="#cb15-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-161"><a href="#cb15-161" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb15-162"><a href="#cb15-162" aria-hidden="true" tabindex="-1"></a>y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}} + \delta x_{i,\text{Potassium}} + \epsilon_i.</span>
-<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a><span class="do">###| Saturated model</span></span>
-<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen <span class="sc">+</span> Chlorine <span class="sc">+</span> Potassium, <span class="at">data =</span> leaf)</span>
-<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a><span class="do">###| Output</span></span>
-<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a>m3</span>
-<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-174"><a href="#cb15-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-175"><a href="#cb15-175" aria-hidden="true" tabindex="-1"></a>From fitting this model, we obtain estimates for $\alpha$,$\beta$,$\gamma$ and $\delta$. We interpret these as follows: </span>
-<span id="cb15-176"><a href="#cb15-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-177"><a href="#cb15-177" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For a leaf with no Nitrogen, Chlorine and Potassium in the soil, we expect the log burning time to be $1.8$. Thus, the burning time is $\exp(1.8)\approx 6$. </span>
-<span id="cb15-178"><a href="#cb15-178" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Holding all other element concentrations, an increase of $1\%$ in Nitrogen concentration corresponds to a decrease of 0.5 in the log burning time. </span>
-<span id="cb15-179"><a href="#cb15-179" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Holding all other element concentrations, an increase of $1\%$ in Chlorine concentration corresponds to a decrease of 0.4 in the log burning time. </span>
-<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Holding all other element concentrations, an increase of $1\%$ in Potassium concentration corresponds to an increase of 0.2 in the log burning time.</span>
-<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a>:::{.callout-important}</span>
-<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a>It is very important that we state that the other explanatory variables are held constant when interpreting the estimates! The estimate only explains the relationship when that specific explanatory variable is altered.</span>
-<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb15-186"><a href="#cb15-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-187"><a href="#cb15-187" aria-hidden="true" tabindex="-1"></a>Now, we can consider if we need all of these variables in our model. We do this by using 'anova()'.</span>
-<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a><span class="do">###| Saturated model anova</span></span>
-<span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m3)</span>
-<span id="cb15-194"><a href="#cb15-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a>In all 3 consecutive tests ($\beta=0$,$\gamma=0$ and $\delta=0$), we observe evidence to reject the null hypothesis. Thus, we keep all 3 variables and propose the following linear model to the scientists: </span>
-<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a>y_i = 1.8 -0.5 \; x_{i,\text{Nitrogen}} -0.4 \; x_{i,\text{Chlorine}} + 0.2 \; x_{i,\text{Potassium}} + \epsilon_i.</span>
-<span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a>$$</span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Fitting a model with continuous data"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>Suppose we are contacted by a group of scientists who are conducting experiments on leaf burn times. They have provided us with the leaf dataset and want to know what the relationship between the elements in the soil and burn time.</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>They tell us that the 'lburn' variable is the log of the leaf burn time. They also tell us that the 'Nitrogen', 'Chlorine' and 'Potassium' variables are the percentage present in the soil.</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>To answer their question, and find the relationship between the elements and burn time, we are going to fit a linear model on the leaf dataset. However, before we fit the model, it is important to review the dataset carefully.</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># A quick look at the data</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>We can load in the data and inspect the first 6 rows as follows. </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>The data can be found on the associated GitHub <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27/tree/main/Data)</span>. Please download this to your computer and save it to your documents.</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>You will need to change the location of the file path. You can find this by clicking the file and reading the pop up window. </span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>(If you cannot load in the data, a version appears in the <span class="in">`Data`</span> tab at the top of the website. You should be able to copy and paste that version into your R script and run it directly.)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="do">###| Loading in data</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>leaf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../Data/leaf.csv"</span>)</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="do">###| First 6 rows</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(leaf)</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># Set up</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>From the previous section, we observe 4 variables: Nitrogen, Chlorine, Potassium and lburn. We note that all 4 are continuous (as we would expect given what we have been told).</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>Now, we want to fit a linear model of the form: $$\text{lburn} = \alpha + \beta \times \text{Nitrogen}+ \gamma \times \text{Chlorine} + \delta \times \text{Potassium} + \epsilon.$$ Expressing this as a matrix, by reading off the first 2 rows of the dataframe,</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix} 0.34 <span class="sc">\\</span> 0.11 <span class="sc">\\</span> ... \end{pmatrix} = \begin{pmatrix} 1 &amp; 3.05 &amp; 1.45 &amp; 5.67 <span class="sc">\\</span> 1 &amp; 4.22 &amp; 1.35 &amp; 4.86 <span class="sc">\\</span> ... &amp; ... &amp; ... &amp; ... \end{pmatrix} \times \begin{pmatrix} \alpha <span class="sc">\\</span> \beta <span class="sc">\\</span> \gamma <span class="sc">\\</span> \delta \end{pmatrix} + \epsilon.</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>Thus, our goal is to estimate the $\alpha$,$\beta$,$\gamma$ and $\delta$ that best captures the relationship between the response variable (lburn) and the explanatory variables (Nitrogen, Chlorine and Potassium).</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="fu"># Using 'lm()'</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>In R, the command 'lm()' will fit a linear model for you. We will begin by fitting a model where we only use the Nitrogen soil percentage to predict the burn time. That is, we fit the following model:</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i,</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>where $x_{i,\text{Nitrogen}}$ represents the Nitrogen percentage of the ith observation. We fit this using the <span class="in">`lm()`</span> command with <span class="in">`lburn ~ Nitrogen`</span> formula and setting the <span class="in">`data=leaf`</span>. </span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="do">###| lburn ~ nitrogen model</span></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen, <span class="at">data =</span> leaf) </span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="do">###| output</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>m1</span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>From the output, we obtain an estimate for $\alpha = 2.6257$ and an estimate for $\beta = -0.5916$. We interpret this as follows:</span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>If there is no Nitrogen in the soil, the expected log leaf burn time is 2.6.</span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For every increase of 1% of Nitrogen in the soil, we expect a 0.6 decrease in the log leaf burn time.</span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>(Alternatively, since the response is logged, a 1-unit (1%) increase in Nitrogen multiplies the leaf burn time by $\exp(-0.59)\approx 0.55$, i.e. about a 45% reduction.)</span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>However, if we want to get more information about the model, we can use the <span class="in">`summary()`</span> command on a model, rather than looking at the raw output.</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary output of a model</span></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>Now, the estimates of $\alpha$ and $\beta$ are reported in the Estimate column. The rest of the output consists of useful information about the performance of the model. A detailed blogpost of information was created by Felipe Rego and is available <span class="co">[</span><span class="ot">here</span><span class="co">](https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R)</span>. I have pulled out 2 key values that you need to be very comfortable with calculating and using:</span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Pr(<span class="sc">\&gt;\|</span>t<span class="sc">\|</span>) is the p-value after performing a hypothesis test. </span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>The asterisks (<span class="sc">\*</span>) indicate the significance. Depending on the context, different significance levels are suitable. In most cases $0.05$ is a 'good' level.</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The $R^2$ and adjusted $R^2$ describe how much variance is accounted for by the model (the closer to 1 the better)</span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: reading the summary table"}</span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>The **p-value** (`Pr(&gt;|t|)`) is, roughly, the probability of seeing an estimate this large if the true coefficient were actually zero — so a small p-value means it is unlikely the variable has no effect, i.e. the variable matters. The **Std. Error** is how uncertain we are about the estimate, and the **t value** is just the estimate divided by its standard error (a bigger t value gives a smaller p-value).</span>
+<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>The <span class="in">`broom`</span> package turns messy model output into tidy data frames you can sort, filter or plot. <span class="in">`tidy()`</span> gives one row per coefficient (estimate, std. error, p-value) and <span class="in">`glance()`</span> gives a one-row model summary ($R^2$, AIC, etc.).</span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1)    <span class="co"># coefficient table as a tidy data frame</span></span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(m1)  <span class="co"># one-row model-fit summary</span></span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a>We can also get information using 'anova()'.</span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a><span class="do">###| Anova output</span></span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1)</span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a>This no longer gives the $R^2$ values. However, it will perform consecutive hypothesis tests.</span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a><span class="fu"># Using 'anova()'</span></span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a>To explore anova further, let us fit a different linear model: $$</span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a>y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}}+ \epsilon_i.$$</span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-142"><a href="#cb16-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-143"><a href="#cb16-143" aria-hidden="true" tabindex="-1"></a><span class="do">###| lburn ~ Nitrogen + Chlorine</span></span>
+<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen <span class="sc">+</span> Chlorine, <span class="at">data =</span> leaf)</span>
+<span id="cb16-145"><a href="#cb16-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-146"><a href="#cb16-146" aria-hidden="true" tabindex="-1"></a><span class="do">###| anova on larger model</span></span>
+<span id="cb16-147"><a href="#cb16-147" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2)</span>
+<span id="cb16-148"><a href="#cb16-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-149"><a href="#cb16-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-150"><a href="#cb16-150" aria-hidden="true" tabindex="-1"></a>The first row of the anova output is: $$ Nitrogen \quad  1 \quad 3.4460 \quad 3.4460 \quad 38.9352 \quad 1.127e-06 \text{***}.$$</span>
+<span id="cb16-151"><a href="#cb16-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-152"><a href="#cb16-152" aria-hidden="true" tabindex="-1"></a>The p-value $1.127e-06$ comes from a hypothesis test with null hypothesis $\beta = 0$. That is to say, we compare the following 2 models, one where $\beta =0$ and one where $\beta \neq 0$: </span>
+<span id="cb16-153"><a href="#cb16-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-154"><a href="#cb16-154" aria-hidden="true" tabindex="-1"></a>:::{} </span>
+<span id="cb16-155"><a href="#cb16-155" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$y_i = \alpha + \epsilon_i$ </span>
+<span id="cb16-156"><a href="#cb16-156" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>$y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i$ </span>
+<span id="cb16-157"><a href="#cb16-157" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a>As the p-value is $&lt;0.05$, we say that there is sufficient evidence to reject the null hypothesis.</span>
+<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a>The second row of the anova output is: $$Chlorine \quad  1 \quad 0.8538 \quad 0.8538 \quad 9.6473 \quad 0.004424 \text{**}.$$</span>
+<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a>The p-value $0.004424$ comes from a hypothesis test with null hypothesis $\gamma = 0$. That is to say, we compare the following 2 models, one where $\gamma =0$ and one where $\gamma \neq 0$:</span>
+<span id="cb16-164"><a href="#cb16-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-165"><a href="#cb16-165" aria-hidden="true" tabindex="-1"></a>:::{} </span>
+<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i$ </span>
+<span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>$y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}} + \epsilon_i$ </span>
+<span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a>As the p-value is $&lt;0.05$, we say that there is sufficient evidence to reject the null hypothesis.</span>
+<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-172"><a href="#cb16-172" aria-hidden="true" tabindex="-1"></a>More information about interpreting anova can be found <span class="co">[</span><span class="ot">here</span><span class="co">](https://bookdown.org/steve_midway/DAR/understanding-anova-in-r.html)</span>.</span>
+<span id="cb16-173"><a href="#cb16-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fitting a model with all 3 explanatory variables</span></span>
+<span id="cb16-175"><a href="#cb16-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-176"><a href="#cb16-176" aria-hidden="true" tabindex="-1"></a>Now that we have some familiarity with the outputs, let us fit the model with all possible terms (i.e. the fully saturated model). That is, we fit</span>
+<span id="cb16-177"><a href="#cb16-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-178"><a href="#cb16-178" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-179"><a href="#cb16-179" aria-hidden="true" tabindex="-1"></a>y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \gamma x_{i,\text{Chlorine}} + \delta x_{i,\text{Potassium}} + \epsilon_i.</span>
+<span id="cb16-180"><a href="#cb16-180" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-181"><a href="#cb16-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-184"><a href="#cb16-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-185"><a href="#cb16-185" aria-hidden="true" tabindex="-1"></a><span class="do">###| Saturated model</span></span>
+<span id="cb16-186"><a href="#cb16-186" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lburn <span class="sc">~</span> Nitrogen <span class="sc">+</span> Chlorine <span class="sc">+</span> Potassium, <span class="at">data =</span> leaf)</span>
+<span id="cb16-187"><a href="#cb16-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-188"><a href="#cb16-188" aria-hidden="true" tabindex="-1"></a><span class="do">###| Output</span></span>
+<span id="cb16-189"><a href="#cb16-189" aria-hidden="true" tabindex="-1"></a>m3</span>
+<span id="cb16-190"><a href="#cb16-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-191"><a href="#cb16-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a>From fitting this model, we obtain estimates for $\alpha$,$\beta$,$\gamma$ and $\delta$. We interpret these as follows: </span>
+<span id="cb16-193"><a href="#cb16-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-194"><a href="#cb16-194" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For a leaf with no Nitrogen, Chlorine and Potassium in the soil, we expect the log burning time to be $1.8$. Thus, the burning time is $\exp(1.8)\approx 6$. </span>
+<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Holding all other element concentrations, an increase of $1\%$ in Nitrogen concentration corresponds to a decrease of 0.5 in the log burning time. </span>
+<span id="cb16-196"><a href="#cb16-196" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Holding all other element concentrations, an increase of $1\%$ in Chlorine concentration corresponds to a decrease of 0.4 in the log burning time. </span>
+<span id="cb16-197"><a href="#cb16-197" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Holding all other element concentrations, an increase of $1\%$ in Potassium concentration corresponds to an increase of 0.2 in the log burning time.</span>
+<span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-199"><a href="#cb16-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-200"><a href="#cb16-200" aria-hidden="true" tabindex="-1"></a>:::{.callout-important}</span>
+<span id="cb16-201"><a href="#cb16-201" aria-hidden="true" tabindex="-1"></a>It is very important that we state that the other explanatory variables are held constant when interpreting the estimates! The estimate only explains the relationship when that specific explanatory variable is altered.</span>
+<span id="cb16-202"><a href="#cb16-202" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb16-203"><a href="#cb16-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-204"><a href="#cb16-204" aria-hidden="true" tabindex="-1"></a>Now, we can consider if we need all of these variables in our model. We do this by using 'anova()'.</span>
+<span id="cb16-205"><a href="#cb16-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a><span class="do">###| Saturated model anova</span></span>
+<span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m3)</span>
+<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a>In all 3 consecutive tests ($\beta=0$,$\gamma=0$ and $\delta=0$), we observe evidence to reject the null hypothesis. Thus, we keep all 3 variables and propose the following linear model to the scientists: </span>
+<span id="cb16-214"><a href="#cb16-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-215"><a href="#cb16-215" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-216"><a href="#cb16-216" aria-hidden="true" tabindex="-1"></a>y_i = 1.8 -0.5 \; x_{i,\text{Nitrogen}} -0.4 \; x_{i,\text{Chlorine}} + 0.2 \; x_{i,\text{Potassium}} + \epsilon_i.</span>
+<span id="cb16-217"><a href="#cb16-217" aria-hidden="true" tabindex="-1"></a>$$</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

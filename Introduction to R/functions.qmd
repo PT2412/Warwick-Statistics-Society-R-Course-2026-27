@@ -54,6 +54,28 @@ square <- function(x){
 square(7)
 ```
 
+::: {.callout-tip title="Going further 🚀"}
+Functions can do a lot more than take fixed inputs. Arguments can have **defaults**, a function can return **several values** at once by bundling them in a list, `...` lets you **pass extra arguments straight through** to another function, and `\(x)` is a shorthand for a quick **anonymous function**.
+
+```{r}
+###| Default argument: base defaults to 10 unless given
+logBase <- function(x, base = 10) log(x, base = base)
+logBase(1000)          # uses base 10
+logBase(8, base = 2)   # override it
+
+###| Return multiple values via a named list
+stats <- function(x) list(mean = mean(x), sd = sd(x))
+stats(c(1, 2, 3, 4))
+
+###| ... passes extra arguments through to mean()
+trimmedMean <- function(x, ...) mean(x, ...)
+trimmedMean(c(1, 2, 3, 100), trim = 0.25)
+
+###| Anonymous function: handy with sapply()
+sapply(1:4, \(x) x^2)
+```
+:::
+
 # Check your understanding
 
 Write functions that do the following things:
@@ -99,18 +121,18 @@ circle(5)
 
 factorial <- function(x) {
   
-  if (x%%1 == 0) {
-    
+  if (x >= 0 && x%%1 == 0) {
+
     factorial <- 1
-    
+
     while (x >= 1) {
       factorial <- factorial * x
       x <- x - 1
     }
-    
+
     print(factorial)
   } else {
-    print(paste(x," is not a positive integer"))
+    print(paste(x," is not a non-negative integer"))
   }
 }
 

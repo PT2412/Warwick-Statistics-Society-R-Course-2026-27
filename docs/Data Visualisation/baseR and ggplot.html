@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to ggplot2: The Grammar of Graphics – Warwick Statistics Society R Course 2025-2026</title>
+<title>Introduction to ggplot2: The Grammar of Graphics – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,6 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -115,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -143,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -208,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -246,12 +250,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -282,17 +339,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -303,6 +366,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -333,13 +402,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -352,17 +562,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -396,25 +612,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -427,13 +643,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -454,6 +670,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -461,7 +683,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -518,7 +816,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This section offers a primer on how the <code>ggplot2</code> package operates. Unlike many other plotting systems, <code>ggplot2</code> is based on the “Grammar of Graphics,” which allows you to build graphs layer by layer. We will construct a complex visualization starting from a blank canvas and adding elements—like data points, trend lines, and labels—one step at a time.</p>
+<p>This section offers a primer on how the <code>ggplot2</code> package operates. Unlike many other plotting systems, <code>ggplot2</code> is based on the “Grammar of Graphics,” which allows you to build graphs layer by layer. We will construct a complex visualisation starting from a blank canvas and adding elements—like data points, trend lines, and labels—one step at a time.</p>
 <p>Let’s start with an example.</p>
 <section id="getting-the-data" class="level1">
 <h1>1. Getting the Data</h1>
@@ -526,13 +824,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
@@ -552,10 +850,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a weight category variable</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">$</span>weight_class <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(penguins<span class="sc">$</span>body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>, <span class="st">"Heavy"</span>, <span class="st">"Light"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -571,12 +869,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify dataset and mapping</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -594,11 +892,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometric points</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -609,15 +907,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The plot above shows a strong positive correlation: as flipper length increases, body mass tends to increase.</p>
-<p>We can customize the appearance of these geoms. Parameters like <code>color</code>, <code>size</code>, and <code>alpha</code> (transparency) can be set directly inside the geom function. Transparency is particularly useful when you have many points overlapping each other.</p>
+<p>We can customise the appearance of these geoms. Parameters like <code>color</code>, <code>size</code>, and <code>alpha</code> (transparency) can be set directly inside the geom function. Transparency is particularly useful when you have many points overlapping each other.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Make points blue, larger, and semi-transparent</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkcyan"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -630,14 +928,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="smoothers-trend-lines" class="level2">
 <h2 class="anchored" data-anchor-id="smoothers-trend-lines">2.2 Smoothers (Trend Lines)</h2>
-<p>To visualize the trend more clearly, we can add a smoothing layer using <code>geom_smooth()</code>. We can control the method (linear vs.&nbsp;curved), the color, and whether to show the confidence interval. Here, we’ll use a linear model (<code>method = "lm"</code>).</p>
+<p>To visualise the trend more clearly, we can add a smoothing layer using <code>geom_smooth()</code>. We can control the method (linear vs.&nbsp;curved), the colour, and whether to show the confidence interval. Here, we’ll use a linear model (<code>method = "lm"</code>).</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a line of best fit</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a line of best fit</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkcyan"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -651,14 +949,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="grouping-with-aesthetics" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-with-aesthetics">2.3 Grouping with Aesthetics</h2>
 <p>While the plot above is informative, it treats all penguins as one homogeneous group. We know our dataset contains different <strong>Species</strong>.</p>
-<p>We can map variables to visual characteristics like <strong>color</strong> or <strong>shape</strong> inside the <code>aes()</code> function. This allows us to superimpose groups on a single graph. Let’s map <code>species</code> to color.</p>
+<p>We can map variables to visual characteristics like <strong>colour</strong> or <strong>shape</strong> inside the <code>aes()</code> function. This allows us to superimpose groups on a single graph. Let’s map <code>species</code> to colour.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map species to color</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map species to color</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -677,18 +975,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="scales" class="level2">
 <h2 class="anchored" data-anchor-id="scales">2.4 Scales</h2>
-<p>“Scales” control how the data values are translated into visual properties (like specific colors or axis ticks). Scale functions always start with <code>scale_</code>.</p>
-<p>Let’s modify the X-axis breaks and manually define the colors for our species to be more distinct.</p>
+<p>“Scales” control how the data values are translated into visual properties (like specific colours or axis ticks). Scale functions always start with <code>scale_</code>.</p>
+<p>Let’s modify the X-axis breaks and manually define the colours for our species to be more distinct.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize axes and color palette</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize axes and color palette</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">230</span>, <span class="dv">10</span>)) <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">230</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">1000</span>)) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"coral4"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"coral4"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -706,12 +1004,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the plot by weight class</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the plot by weight class</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span> </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>weight_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>weight_class)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -725,11 +1023,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="labels" class="level2">
 <h2 class="anchored" data-anchor-id="labels">2.6 Labels</h2>
-<p>Good data visualization requires clear communication. The <code>labs()</code> function allows you to customize the title, subtitle, captions, and axis labels so the viewer doesn’t have to guess what “flipper_length_mm” means.</p>
+<p>Good data visualisation requires clear communication. The <code>labs()</code> function allows you to customise the title, subtitle, captions, and axis labels so the viewer doesn’t have to guess what “flipper_length_mm” means.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add infomative labels</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
@@ -744,7 +1042,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Penguin Species"</span></span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -760,11 +1058,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="themes" class="level2">
 <h2 class="anchored" data-anchor-id="themes">2.7 Themes</h2>
-<p>Finally, we can polish the overall look using <strong>Themes</strong>. Theme functions (starting with <code>theme_</code>) control non-data elements like background colors, fonts, and grid lines. <code>theme_minimal()</code> is a popular choice for a clean, modern look.</p>
+<p>Finally, we can polish the overall look using <strong>Themes</strong>. Theme functions (starting with <code>theme_</code>) control non-data elements like background colours, fonts, and grid lines. <code>theme_minimal()</code> is a popular choice for a clean, modern look.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply a minimal theme</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply a minimal theme</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
@@ -778,7 +1076,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Penguin Species"</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -813,12 +1111,12 @@ Tip
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping color LOCALLY in geom_point only</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -839,25 +1137,48 @@ Tip
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create the base plot object</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>my_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species))</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Add a theme and labels to the object</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>final_plot <span class="ot">&lt;-</span> my_plot <span class="sc">+</span> </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>pFinal <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Saved Graph Object"</span>)</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Print the final result</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>final_plot</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>pFinal</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="baseR-and-ggplot_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you have saved a plot to an object, the <code>plotly</code> package can turn it interactive in a single line, giving you tooltips, zooming and panning for free.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(pFinal)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 </div>
 </div>
@@ -868,7 +1189,7 @@ Tip
 <p>To deepen your understanding of <code>ggplot2</code>, consider these resources:</p>
 <ul>
 <li><a href="https://ggplot2.tidyverse.org">ggplot2 documentation</a></li>
-<li><a href="https://r4ds.had.co.nz/">R for Data Science</a> - In particular the Data Visualisation chapter</li>
+<li><a href="https://r4ds.hadley.nz/">R for Data Science</a> - In particular the Data Visualisation chapter</li>
 <li><a href="https://r-graph-gallery.com/">The R Graph Gallery</a></li>
 </ul>
 
@@ -929,13 +1250,14 @@ Tip
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1328,283 +1650,293 @@ Tip
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Introduction to ggplot2: The Grammar of Graphics"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>This section offers a primer on how the <span class="in">`ggplot2`</span> package operates. Unlike many other plotting systems, <span class="in">`ggplot2`</span> is based on the "Grammar of Graphics," which allows you to build graphs layer by layer. We will construct a complex visualization starting from a blank canvas and adding elements—like data points, trend lines, and labels—one step at a time.</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>Let’s start with an example.</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. Getting the Data</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>The first step is always importing your data. For this page, we will use the **Palmer Penguins** dataset, which contains size measurements for three penguin species living on islands in the Palmer Archipelago, Antarctica.</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>Using <span class="in">`head()`</span> allows you to peek at the first few rows. This is an important habit to develop, as seeing the raw structure of your dataframe helps you spot potential relationships between variables like <span class="in">`flipper_length_mm`</span> and <span class="in">`body_mass_g`</span> before you even start plotting.</span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>Next, let's create a new categorical variable to use later. We will classify penguins as "Heavy" or "Light" based on whether they weigh more than 4000 grams.</span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a weight category variable</span></span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">$</span>weight_class <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(penguins<span class="sc">$</span>body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>, <span class="st">"Heavy"</span>, <span class="st">"Light"</span>)</span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Building the Graph</span></span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>To build a plot in <span class="in">`ggplot2`</span>, you only *strictly* need the first two functions we will discuss. Every other function is an optional layer to enhance the visual.</span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>The foundation is the <span class="in">`ggplot()`</span> function. This initializes the graph by defining:</span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>The **Dataset** to use.</span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>The **Mapping** of variables to visual properties (aesthetics).</span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>These mappings go inside the <span class="in">`aes()`</span> function. Let's prepare to look at the relationship between **Flipper Length** (x-axis) and **Body Mass** (y-axis).</span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify dataset and mapping</span></span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) </span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>**Why is the graph empty?** We told R *what* data to use and *where* to put it (the axes), but we haven't told it *how* to represent that data yet. We need a geometric object.</span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.1 Geoms</span></span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>"Geoms" (geometric objects) represent the actual marks on the plot: points, bars, lines, etc. We add these using functions starting with <span class="in">`geom_`</span>. To create a scatterplot, we use <span class="in">`geom_point()`</span>.</span>
-<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a>In <span class="in">`ggplot2`</span>, we chain these layers together using the <span class="in">`+`</span> operator.</span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometric points</span></span>
-<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a>The plot above shows a strong positive correlation: as flipper length increases, body mass tends to increase.</span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a>We can customize the appearance of these geoms. Parameters like <span class="in">`color`</span>, <span class="in">`size`</span>, and <span class="in">`alpha`</span> (transparency) can be set directly inside the geom function. Transparency is particularly useful when you have many points overlapping each other.</span>
-<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Make points blue, larger, and semi-transparent</span></span>
-<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkcyan"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>)</span>
-<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.2 Smoothers (Trend Lines)</span></span>
-<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a>To visualize the trend more clearly, we can add a smoothing layer using <span class="in">`geom_smooth()`</span>. We can control the method (linear vs. curved), the color, and whether to show the confidence interval. Here, we'll use a linear model (<span class="in">`method = "lm"`</span>).</span>
-<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a line of best fit</span></span>
-<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkcyan"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.3 Grouping with Aesthetics</span></span>
-<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>While the plot above is informative, it treats all penguins as one homogeneous group. We know our dataset contains different **Species**.</span>
-<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>We can map variables to visual characteristics like **color** or **shape** inside the <span class="in">`aes()`</span> function. This allows us to superimpose groups on a single graph. Let's map <span class="in">`species`</span> to color.</span>
-<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Map species to color</span></span>
-<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
-<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>)</span>
-<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>Notice the difference:</span>
-<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`color = species`</span> is inside <span class="in">`aes()`</span> because it maps data to a visual.</span>
-<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="in">`se = FALSE`</span> was added to <span class="in">`geom_smooth`</span> to remove the shaded confidence intervals for a cleaner look.</span>
-<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>We can now see that Gentoo penguins are generally larger than Adelie or Chinstrap penguins.</span>
-<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.4 Scales</span></span>
-<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>"Scales" control how the data values are translated into visual properties (like specific colors or axis ticks). Scale functions always start with <span class="in">`scale_`</span>.</span>
-<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a>Let's modify the X-axis breaks and manually define the colors for our species to be more distinct.</span>
-<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize axes and color palette</span></span>
-<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
-<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">230</span>, <span class="dv">10</span>)) <span class="sc">+</span> </span>
-<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">1000</span>)) <span class="sc">+</span></span>
-<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"coral4"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>))</span>
-<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.5 Facets</span></span>
-<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a>Sometimes a plot becomes too cluttered with multiple groups. **Faceting** solves this by splitting the plot into sub-plots based on a categorical variable.</span>
-<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a>Let's see if the relationship holds true across the different "Weight Classes" we defined earlier.</span>
-<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the plot by weight class</span></span>
-<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
-<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
-<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span> </span>
-<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>weight_class)</span>
-<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a>Faceting allows us to simultaneously view the data cut by different dimensions without overlapping points obscuring the view.</span>
-<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.6 Labels</span></span>
-<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a>Good data visualization requires clear communication. The <span class="in">`labs()`</span> function allows you to customize the title, subtitle, captions, and axis labels so the viewer doesn't have to guess what "flipper_length_mm" means.</span>
-<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a><span class="co"># Add infomative labels</span></span>
-<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
-<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
-<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span> </span>
-<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>weight_class) <span class="sc">+</span> </span>
-<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Penguin Size Characteristics"</span>,</span>
-<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Comparison of Flipper Length vs Body Mass by Species"</span>,</span>
-<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Palmer Station LTER / palmerpenguins package"</span>,</span>
-<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Penguin Species"</span></span>
-<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.7 Themes</span></span>
-<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a>Finally, we can polish the overall look using **Themes**. Theme functions (starting with <span class="in">`theme_`</span>) control non-data elements like background colors, fonts, and grid lines. <span class="in">`theme_minimal()`</span> is a popular choice for a clean, modern look.</span>
-<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply a minimal theme</span></span>
-<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
-<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
-<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span> </span>
-<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>weight_class) <span class="sc">+</span> </span>
-<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Penguin Size Characteristics"</span>,</span>
-<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Comparison of Flipper Length vs Body Mass by Species"</span>,</span>
-<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Palmer Station LTER / palmerpenguins package"</span>,</span>
-<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Penguin Species"</span></span>
-<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
-<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a>You can manipulate the legend of your graph with the <span class="in">`theme`</span> function. This can be added with <span class="in">`+`</span> and is different from the <span class="in">`theme_minimal()`</span> in the code above. For example if you want to adjust its' position, use <span class="in">`theme(legend.position = )`</span></span>
-<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a>Options for <span class="in">`legend.position`</span>: </span>
-<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a><span class="ss">*  </span><span class="in">`"top"`</span>, <span class="in">`"bottom"`</span>, <span class="in">`"left"`</span>, <span class="in">`"right"`</span> </span>
-<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`c(x, y)`</span> for exact placement (e.g., <span class="in">`c(0.9, 0.2)`</span> for bottom-right inside plot) </span>
-<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`"none"`</span> to remove the legend</span>
-<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a><span class="fu"># 3. Placing Mappings and Storing Objects</span></span>
-<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.1 Global vs Local Mapping</span></span>
-<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a>In the previous examples, we defined our mapping <span class="in">`aes(...)`</span> inside the main <span class="in">`ggplot()`</span> function. This is a **Global** mapping, as in it applies to every layer (both points and lines).</span>
-<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a>However, you can also place mappings inside a specific Geom. This creates a **Local** mapping that applies *only* to that layer.</span>
-<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a>Observe the difference when we move <span class="in">`color = species`</span> into the <span class="in">`geom_point()`</span> function only:</span>
-<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping color LOCALLY in geom_point only</span></span>
-<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span>
-<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a>Because the color mapping was only inside <span class="in">`geom_point`</span>, the <span class="in">`geom_smooth`</span> did not "know" about the species groups. Consequently, it drew a single black trend line for the entire dataset, rather than one line per species.</span>
-<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.2 Graphs as Objects</span></span>
-<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a>In R, a graph is just an object. You can save it to a variable, modify it later, and print it when you want to. This is great for keeping your code clean or generating multiple versions of a plot programmatically.</span>
-<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create the base plot object</span></span>
-<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a>my_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
-<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species))</span>
-<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-286"><a href="#cb17-286" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Add a theme and labels to the object</span></span>
-<span id="cb17-287"><a href="#cb17-287" aria-hidden="true" tabindex="-1"></a>final_plot <span class="ot">&lt;-</span> my_plot <span class="sc">+</span> </span>
-<span id="cb17-288"><a href="#cb17-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span> </span>
-<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Saved Graph Object"</span>)</span>
-<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Print the final result</span></span>
-<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a>final_plot</span>
-<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-296"><a href="#cb17-296" aria-hidden="true" tabindex="-1"></a><span class="fu"># Further Resources</span></span>
-<span id="cb17-297"><a href="#cb17-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-298"><a href="#cb17-298" aria-hidden="true" tabindex="-1"></a>To deepen your understanding of <span class="in">`ggplot2`</span>, consider these resources:</span>
-<span id="cb17-299"><a href="#cb17-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-300"><a href="#cb17-300" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ggplot2 documentation</span><span class="co">](https://ggplot2.tidyverse.org)</span></span>
-<span id="cb17-301"><a href="#cb17-301" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R for Data Science</span><span class="co">](https://r4ds.had.co.nz/)</span> - In particular the Data Visualisation chapter</span>
-<span id="cb17-302"><a href="#cb17-302" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The R Graph Gallery</span><span class="co">](https://r-graph-gallery.com/)</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Introduction to ggplot2: The Grammar of Graphics"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>This section offers a primer on how the <span class="in">`ggplot2`</span> package operates. Unlike many other plotting systems, <span class="in">`ggplot2`</span> is based on the "Grammar of Graphics," which allows you to build graphs layer by layer. We will construct a complex visualisation starting from a blank canvas and adding elements—like data points, trend lines, and labels—one step at a time.</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>Let’s start with an example.</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. Getting the Data</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>The first step is always importing your data. For this page, we will use the **Palmer Penguins** dataset, which contains size measurements for three penguin species living on islands in the Palmer Archipelago, Antarctica.</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>Using <span class="in">`head()`</span> allows you to peek at the first few rows. This is an important habit to develop, as seeing the raw structure of your dataframe helps you spot potential relationships between variables like <span class="in">`flipper_length_mm`</span> and <span class="in">`body_mass_g`</span> before you even start plotting.</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>Next, let's create a new categorical variable to use later. We will classify penguins as "Heavy" or "Light" based on whether they weigh more than 4000 grams.</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a weight category variable</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">$</span>weight_class <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(penguins<span class="sc">$</span>body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>, <span class="st">"Heavy"</span>, <span class="st">"Light"</span>)</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Building the Graph</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>To build a plot in <span class="in">`ggplot2`</span>, you only *strictly* need the first two functions we will discuss. Every other function is an optional layer to enhance the visual.</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>The foundation is the <span class="in">`ggplot()`</span> function. This initializes the graph by defining:</span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>The **Dataset** to use.</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>The **Mapping** of variables to visual properties (aesthetics).</span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>These mappings go inside the <span class="in">`aes()`</span> function. Let's prepare to look at the relationship between **Flipper Length** (x-axis) and **Body Mass** (y-axis).</span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify dataset and mapping</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) </span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>**Why is the graph empty?** We told R *what* data to use and *where* to put it (the axes), but we haven't told it *how* to represent that data yet. We need a geometric object.</span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.1 Geoms</span></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>"Geoms" (geometric objects) represent the actual marks on the plot: points, bars, lines, etc. We add these using functions starting with <span class="in">`geom_`</span>. To create a scatterplot, we use <span class="in">`geom_point()`</span>.</span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>In <span class="in">`ggplot2`</span>, we chain these layers together using the <span class="in">`+`</span> operator.</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Add geometric points</span></span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>The plot above shows a strong positive correlation: as flipper length increases, body mass tends to increase.</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a>We can customise the appearance of these geoms. Parameters like <span class="in">`color`</span>, <span class="in">`size`</span>, and <span class="in">`alpha`</span> (transparency) can be set directly inside the geom function. Transparency is particularly useful when you have many points overlapping each other.</span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Make points blue, larger, and semi-transparent</span></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkcyan"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.2 Smoothers (Trend Lines)</span></span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a>To visualise the trend more clearly, we can add a smoothing layer using <span class="in">`geom_smooth()`</span>. We can control the method (linear vs. curved), the colour, and whether to show the confidence interval. Here, we'll use a linear model (<span class="in">`method = "lm"`</span>).</span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a line of best fit</span></span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkcyan"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.3 Grouping with Aesthetics</span></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a>While the plot above is informative, it treats all penguins as one homogeneous group. We know our dataset contains different **Species**.</span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>We can map variables to visual characteristics like **colour** or **shape** inside the <span class="in">`aes()`</span> function. This allows us to superimpose groups on a single graph. Let's map <span class="in">`species`</span> to colour.</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Map species to color</span></span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>)</span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>Notice the difference:</span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`color = species`</span> is inside <span class="in">`aes()`</span> because it maps data to a visual.</span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="in">`se = FALSE`</span> was added to <span class="in">`geom_smooth`</span> to remove the shaded confidence intervals for a cleaner look.</span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>We can now see that Gentoo penguins are generally larger than Adelie or Chinstrap penguins.</span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.4 Scales</span></span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>"Scales" control how the data values are translated into visual properties (like specific colours or axis ticks). Scale functions always start with <span class="in">`scale_`</span>.</span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a>Let's modify the X-axis breaks and manually define the colours for our species to be more distinct.</span>
+<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize axes and color palette</span></span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">230</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"coral4"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>))</span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.5 Facets</span></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a>Sometimes a plot becomes too cluttered with multiple groups. **Faceting** solves this by splitting the plot into sub-plots based on a categorical variable.</span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a>Let's see if the relationship holds true across the different "Weight Classes" we defined earlier.</span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the plot by weight class</span></span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span> </span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>weight_class)</span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a>Faceting allows us to simultaneously view the data cut by different dimensions without overlapping points obscuring the view.</span>
+<span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.6 Labels</span></span>
+<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a>Good data visualisation requires clear communication. The <span class="in">`labs()`</span> function allows you to customise the title, subtitle, captions, and axis labels so the viewer doesn't have to guess what "flipper_length_mm" means.</span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a><span class="co"># Add infomative labels</span></span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span> </span>
+<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>weight_class) <span class="sc">+</span> </span>
+<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Penguin Size Characteristics"</span>,</span>
+<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Comparison of Flipper Length vs Body Mass by Species"</span>,</span>
+<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Palmer Station LTER / palmerpenguins package"</span>,</span>
+<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
+<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Penguin Species"</span></span>
+<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2.7 Themes</span></span>
+<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-218"><a href="#cb18-218" aria-hidden="true" tabindex="-1"></a>Finally, we can polish the overall look using **Themes**. Theme functions (starting with <span class="in">`theme_`</span>) control non-data elements like background colours, fonts, and grid lines. <span class="in">`theme_minimal()`</span> is a popular choice for a clean, modern look.</span>
+<span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-222"><a href="#cb18-222" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply a minimal theme</span></span>
+<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span> </span>
+<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span> </span>
+<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>weight_class) <span class="sc">+</span> </span>
+<span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Penguin Size Characteristics"</span>,</span>
+<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Comparison of Flipper Length vs Body Mass by Species"</span>,</span>
+<span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Palmer Station LTER / palmerpenguins package"</span>,</span>
+<span id="cb18-236"><a href="#cb18-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
+<span id="cb18-237"><a href="#cb18-237" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb18-238"><a href="#cb18-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Penguin Species"</span></span>
+<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
+<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a>You can manipulate the legend of your graph with the <span class="in">`theme`</span> function. This can be added with <span class="in">`+`</span> and is different from the <span class="in">`theme_minimal()`</span> in the code above. For example if you want to adjust its' position, use <span class="in">`theme(legend.position = )`</span></span>
+<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a>Options for <span class="in">`legend.position`</span>: </span>
+<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a><span class="ss">*  </span><span class="in">`"top"`</span>, <span class="in">`"bottom"`</span>, <span class="in">`"left"`</span>, <span class="in">`"right"`</span> </span>
+<span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`c(x, y)`</span> for exact placement (e.g., <span class="in">`c(0.9, 0.2)`</span> for bottom-right inside plot) </span>
+<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`"none"`</span> to remove the legend</span>
+<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a><span class="fu"># 3. Placing Mappings and Storing Objects</span></span>
+<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.1 Global vs Local Mapping</span></span>
+<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a>In the previous examples, we defined our mapping <span class="in">`aes(...)`</span> inside the main <span class="in">`ggplot()`</span> function. This is a **Global** mapping, as in it applies to every layer (both points and lines).</span>
+<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a>However, you can also place mappings inside a specific Geom. This creates a **Local** mapping that applies *only* to that layer.</span>
+<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a>Observe the difference when we move <span class="in">`color = species`</span> into the <span class="in">`geom_point()`</span> function only:</span>
+<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping color LOCALLY in geom_point only</span></span>
+<span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span> </span>
+<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span>
+<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a>Because the color mapping was only inside <span class="in">`geom_point`</span>, the <span class="in">`geom_smooth`</span> did not "know" about the species groups. Consequently, it drew a single black trend line for the entire dataset, rather than one line per species.</span>
+<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.2 Graphs as Objects</span></span>
+<span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a>In R, a graph is just an object. You can save it to a variable, modify it later, and print it when you want to. This is great for keeping your code clean or generating multiple versions of a plot programmatically.</span>
+<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create the base plot object</span></span>
+<span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species))</span>
+<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Add a theme and labels to the object</span></span>
+<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a>pFinal <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Saved Graph Object"</span>)</span>
+<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Print the final result</span></span>
+<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a>pFinal</span>
+<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a>Once you have saved a plot to an object, the <span class="in">`plotly`</span> package can turn it interactive in a single line, giving you tooltips, zooming and panning for free.</span>
+<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(pFinal)</span>
+<span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a><span class="fu"># Further Resources</span></span>
+<span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a>To deepen your understanding of <span class="in">`ggplot2`</span>, consider these resources:</span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ggplot2 documentation</span><span class="co">](https://ggplot2.tidyverse.org)</span></span>
+<span id="cb18-313"><a href="#cb18-313" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R for Data Science</span><span class="co">](https://r4ds.hadley.nz/)</span> - In particular the Data Visualisation chapter</span>
+<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The R Graph Gallery</span><span class="co">](https://r-graph-gallery.com/)</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

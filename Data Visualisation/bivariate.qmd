@@ -1,5 +1,5 @@
 ---
-title: "Visualizing Bivariate Data"
+title: "Visualising Bivariate Data"
 format: 
   html:
     fig-width: 12
@@ -28,7 +28,7 @@ For this section, we will use the `penguins` dataset to explore the relationship
 
 ## Stacked Bar Charts
 
-The default behavior of a bar chart in `ggplot2` is to stack categories on top of one another. This gives you a sense of the total count while showing the breakdown of subgroups.
+The default behaviour of a bar chart in `ggplot2` is to stack categories on top of one another. This gives you a sense of the total count while showing the breakdown of subgroups.
 
 ```{r Data Penguins}
 #| echo: true 
@@ -52,7 +52,7 @@ From this chart, we can quickly see that Biscoe island has the most penguins ove
 
 ## Grouped Bar Charts
 
-If you want to compare the specific counts of species side-by-side, the "grouped bar chart is preferred. It un-stacks the bars and places them next to each other.
+If you want to compare the specific counts of species side-by-side, the "grouped bar chart" is preferred. It un-stacks the bars and places them next to each other.
 
 ```{r Penguins 1}
 #| echo: true 
@@ -104,14 +104,14 @@ A segmented bar chart is most effective when the actual percentages are written 
 library(dplyr)
 
 # 1. Create a summary table with labels
-plotdata <- penguins %>%
+pdat <- penguins %>%
   group_by(island, species) %>%
   summarize(n = n()) %>% 
   mutate(pct = n / sum(n),
          lbl = scales::percent(pct, accuracy = 1))
 
 # 2. Plot using the summary data
-ggplot(plotdata, aes(x = island, y = pct, fill = species)) + 
+ggplot(pdat, aes(x = island, y = pct, fill = species)) + 
   # Use geom_col for pre-calculated data
   geom_col(position = "fill") + 
   geom_text(aes(label = lbl), 
@@ -157,11 +157,11 @@ If one of your quantitative variables is **Time**, a line plot is the standard c
 
 library(gapminder)
 # Filter for US data
-us_data <- filter(gapminder, country == "United States")
+us <- filter(gapminder, country == "United States")
 
 # Line plot with points
-ggplot(us_data, aes(x = year, y = lifeExp)) + 
-  geom_line(size = 1.2, color = "grey") + 
+ggplot(us, aes(x = year, y = lifeExp)) + 
+  geom_line(linewidth = 1.2, color = "grey") +
   geom_point(size = 3, color = "steelblue") + 
   labs(title = "US Life Expectancy (1952-2007)",
        y = "Life Expectancy (years)") +
@@ -185,12 +185,12 @@ We can plot the **Mean** of a variable for each group. Here, we calculate the av
 #| warning: false
 
 # Calculate means
-mean_data <- penguins %>%
+means <- penguins %>%
   group_by(species) %>%
   summarize(mean_mass = mean(body_mass_g))
 
 # Plot means
-ggplot(mean_data, aes(x = species, y = mean_mass)) + 
+ggplot(means, aes(x = species, y = mean_mass)) + 
   geom_col(fill = "steelblue", width = 0.7) + 
   geom_text(aes(label = round(mean_mass, 0)), vjust = -0.5) +
   scale_y_continuous(limits = c(0, 6000)) +
@@ -274,7 +274,7 @@ Scientific publications often require plots showing the Mean +/- the Standard Er
 #| warning: false
 
 # Calculate stats
-summary_stats <- penguins %>%
+summ <- penguins %>%
   group_by(species, sex) %>%
   summarize(
     n = n(),
@@ -286,9 +286,9 @@ summary_stats <- penguins %>%
 # Plot Mean +/- SE
 pd <- position_dodge(0.2) # To separate overlapping bars
 
-ggplot(summary_stats, aes(x = species, y = mean, color = sex, group = sex)) + 
+ggplot(summ, aes(x = species, y = mean, color = sex, group = sex)) + 
   geom_point(position = pd, size = 4) + 
-  geom_errorbar(aes(ymin = mean - se, ymax = mean + se), width = 0.2, position = pd, size = 1) +
+  geom_errorbar(aes(ymin = mean - se, ymax = mean + se), width = 0.2, position = pd, linewidth = 1) +
   labs(title = "Mean Body Mass by Species and Sex",
        subtitle = "Error bars represent Standard Error",
        y = "Body Mass (g)") +

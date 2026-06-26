@@ -13,13 +13,13 @@ format:
 
 # Introduction
 
-Before you can visualize or analyze data, you need to get it into R and prepare it properly. This step is crucial, even the most sophisticated analysis will fail if your data isn't prepared correctly. Think of it like preparing ingredients before cooking: skipping or rushing this step will affect everything that follows.
+Before you can visualise or analyse data, you need to get it into R and prepare it properly. This step is crucial, even the most sophisticated analysis will fail if your data isn't prepared correctly. Think of it like preparing ingredients before cooking: skipping or rushing this step will affect everything that follows.
 
 In this guide, we'll learn how to import data from various file formats and clean it for analysis. We'll use the `palmerpenguins` dataset for most examples, which contains measurements of penguins from Antarctica.
 
 # Importing Data into R
 
-R can read data from almost any file format: text files, CSV files, Excel spreadsheets, and even specialized statistical software formats.
+R can read data from almost any file format: text files, CSV files, Excel spreadsheets, and even specialised statistical software formats.
 
 ## CSV and Text Files
 
@@ -32,10 +32,10 @@ The `readr` package provides efficient functions for importing text-based data:
 library(readr)
 
 # Import from a CSV file (comma-separated values)
-penguins_data <- read_csv("penguins.csv")
+peng <- read_csv("penguins.csv")
 
 # Import from a tab-delimited text file
-penguins_data <- read_tsv("penguins.txt")
+peng <- read_tsv("penguins.txt")
 ```
 
 These functions assume that:
@@ -72,10 +72,10 @@ The `readxl` package handles Excel workbooks (both .xls and .xlsx):
 library(readxl)
 
 # Import from an Excel file
-penguins_data <- read_excel("penguins.xlsx", sheet = 1)
+peng <- read_excel("penguins.xlsx", sheet = 1)
 
 # Import from a specific worksheet by name
-penguins_data <- read_excel("penguins.xlsx", sheet = "Measurements")
+peng <- read_excel("penguins.xlsx", sheet = "Measurements")
 ```
 
 Since Excel files can have multiple worksheets, use the `sheet` option to specify which one you want. The default is the first sheet.
@@ -91,13 +91,13 @@ The `haven` package lets you import data from other statistical programs without
 library(haven)
 
 # Import from Stata
-data_stata <- read_dta("data.dta")
+dStata <- read_dta("data.dta")
 
 # Import from SPSS
-data_spss <- read_sav("data.sav")
+dSpss <- read_sav("data.sav")
 
 # Import from SAS
-data_sas <- read_sas("data.sas7bdat")
+dSas <- read_sas("data.sas7bdat")
 ```
 
 # Cleaning and Transforming Data
@@ -127,25 +127,25 @@ Use `select()` to keep only the columns you need:
 ```{r}
 #| echo: true
 # Keep just species, island, and body mass
-penguin_subset <- select(penguins, species, island, body_mass_g)
+sub <- select(penguins, species, island, body_mass_g)
 
-head(penguin_subset)
+head(sub)
 ```
 
 ```{r}
 #| echo: true
 # Keep species and all columns from bill_length_mm through body_mass_g
-penguin_subset <- select(penguins, species, bill_length_mm:body_mass_g)
+sub <- select(penguins, species, bill_length_mm:body_mass_g)
 
-head(penguin_subset)
+head(sub)
 ```
 
 ```{r}
 #| echo: true
 # Keep everything except year and sex
-penguin_subset <- select(penguins, -year, -sex)
+sub <- select(penguins, -year, -sex)
 
-head(penguin_subset)
+head(sub)
 ```
 
 ## Filtering Observations (Rows)
@@ -155,34 +155,34 @@ Use `filter()` to keep only rows that meet certain conditions. You can combine c
 ```{r}
 #| echo: true
 # Select only Adelie penguins
-adelie_only <- filter(penguins, species == "Adelie")
+adelie <- filter(penguins, species == "Adelie")
 
-head(adelie_only)
+head(adelie)
 ```
 
 ```{r}
 #| echo: true
 # Select Adelie penguins from Torgersen island
-adelie_torgersen <- filter(penguins, 
-                            species == "Adelie" & 
+adelieTorg <- filter(penguins,
+                            species == "Adelie" &
                             island == "Torgersen")
 
-head(adelie_torgersen)
+head(adelieTorg)
 ```
 
 ```{r}
 #| echo: true
 # Select penguins from Biscoe, Dream, OR Torgersen islands
-three_islands <- filter(penguins, 
-                        island == "Biscoe" | 
-                        island == "Dream" | 
+threeIsl <- filter(penguins,
+                        island == "Biscoe" |
+                        island == "Dream" |
                         island == "Torgersen")
 
 # A more concise way to write the same thing:
-three_islands <- filter(penguins, 
+threeIsl <- filter(penguins,
                         island %in% c("Biscoe", "Dream", "Torgersen"))
 
-head(three_islands)
+head(threeIsl)
 ```
 
 **Common comparison operators:**
@@ -206,11 +206,11 @@ Use `mutate()` to create new columns or modify existing ones:
 #| echo: true
 # Convert body mass from grams to kilograms
 # Convert flipper length from mm to cm
-penguins_converted <- mutate(penguins,
+pengConv <- mutate(penguins,
                               body_mass_kg = body_mass_g / 1000,
                               flipper_length_cm = flipper_length_mm / 10)
 
-select(penguins_converted, species, body_mass_g, body_mass_kg, 
+select(pengConv, species, body_mass_g, body_mass_kg,
        flipper_length_mm, flipper_length_cm) %>%
   head()
 ```
@@ -222,49 +222,49 @@ The `ifelse()` function helps you create categorical variables based on conditio
 ```{r}
 #| echo: true
 # Create a size category based on body mass
-penguins_sized <- mutate(penguins,
+pengSized <- mutate(penguins,
                          size = ifelse(body_mass_g > 4500,
                                       "large",
                                       "small"))
 
-select(penguins_sized, species, body_mass_g, size) %>%
+select(pengSized, species, body_mass_g, size) %>%
   head()
 ```
 
 ```{r}
 #| echo: true
 # Create a new island variable with simplified names
-penguins_recoded <- mutate(penguins,
+pengRecoded <- mutate(penguins,
                            island_short = ifelse(island %in% c("Biscoe", "Dream"),
                                                 island,
                                                 "Other"))
 
-select(penguins_recoded, island, island_short) %>%
+select(pengRecoded, island, island_short) %>%
   head()
 ```
 
 ```{r}
 #| echo: true
 # Set extreme values to missing (NA)
-penguins_cleaned <- mutate(penguins,
-                           bill_length_mm = ifelse(bill_length_mm < 30 | 
+pengClean <- mutate(penguins,
+                           bill_length_mm = ifelse(bill_length_mm < 30 |
                                                    bill_length_mm > 60,
                                                    NA,
                                                    bill_length_mm))
 ```
 
-## Summarizing Data
+## Summarising Data
 
 Use `summarize()` to calculate summary statistics. Combine it with `group_by()` to get statistics for each group:
 
 ```{r}
 #| echo: true
 # Calculate overall mean flipper length and body mass
-summary_stats <- summarize(penguins,
+summ <- summarize(penguins,
                           mean_flipper = mean(flipper_length_mm, na.rm = TRUE),
                           mean_mass = mean(body_mass_g, na.rm = TRUE))
 
-summary_stats
+summ
 ```
 
 :::{.callout-note} 
@@ -276,29 +276,29 @@ The `na.rm = TRUE` option tells R to ignore missing values when calculating mean
 ```{r}
 #| echo: true
 # Calculate mean flipper length and body mass by species
-species_summary <- penguins %>%
+spSumm <- penguins %>%
   group_by(species) %>%
   summarize(mean_flipper = mean(flipper_length_mm, na.rm = TRUE),
             mean_mass = mean(body_mass_g, na.rm = TRUE),
             count = n())
 
-species_summary
+spSumm
 ```
 
 ```{r}
 #| echo: true
 # Calculate statistics by species AND island
-detailed_summary <- penguins %>%
+detSumm <- penguins %>%
   group_by(species, island) %>%
   summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE),
             sd_bill_length = sd(bill_length_mm, na.rm = TRUE),
             count = n(),
             .groups = "drop")
 
-detailed_summary
+detSumm
 ```
 
-Many visualizations work best with summarized data rather than raw observations.
+Many visualisations work best with summarised data rather than raw observations.
 
 ## Using the Pipe Operator
 
@@ -307,9 +307,9 @@ The pipe operator `%>%` (or `|>` in newer R versions) lets you chain operations 
 ```{r}
 #| echo: true
 # Without pipes - harder to read
-temp1 <- filter(penguins, species == "Adelie")
-temp2 <- group_by(temp1, island)
-result <- summarize(temp2, mean_mass = mean(body_mass_g, na.rm = TRUE))
+t1 <- filter(penguins, species == "Adelie")
+t2 <- group_by(t1, island)
+result <- summarize(t2, mean_mass = mean(body_mass_g, na.rm = TRUE))
 
 result
 ```
@@ -338,22 +338,22 @@ Dates often come into R as text. The `lubridate` package makes it easy to conver
 library(lubridate)
 
 # Create a sample dataset with dates in various formats
-sample_dates <- data.frame(
+dates <- data.frame(
   person = c("Alice", "Bob", "Charlie"),
-  birth_date = c("03/15/1995", "Jul-22-98", "1:10:2000")
+  birth_date = c("03/15/1995", "07/22/1998", "01/10/2000")
 )
 
 # View the structure - dates are currently characters
-str(sample_dates)
+str(dates)
 ```
 
 ```{r}
 #| echo: true
 # Convert to proper date format
-sample_dates$birth_date <- mdy(sample_dates$birth_date)
+dates$birth_date <- mdy(dates$birth_date)
 
 # Now they're proper dates
-str(sample_dates)
+str(dates)
 ```
 
 Common date conversion functions:
@@ -370,11 +370,11 @@ Once converted, you can do date arithmetic and extract components:
 ```{r}
 #| echo: true
 # Calculate age in years
-sample_dates$age <- as.numeric(difftime(Sys.Date(), 
-                                        sample_dates$birth_date, 
-                                        units = "weeks")) / 52.25
+dates$age <- as.numeric(difftime(Sys.Date(),
+                                        dates$birth_date,
+                                        units = "days")) / 365.25
 
-sample_dates
+dates
 ```
 
 ## Reshaping Data: Wide vs. Long Format
@@ -386,14 +386,14 @@ Some analyses require data in "wide" format, others need "long" format.
 ```{r}
 #| echo: true
 # Create example wide data
-wide_data <- data.frame(
+wide <- data.frame(
   id = c("P01", "P02", "P03"),
   name = c("Alice", "Bob", "Charlie"),
   height_cm = c(165, 178, 172),
   weight_kg = c(62, 75, 70)
 )
 
-wide_data
+wide
 ```
 
 **Long format** (all measurements in one column):
@@ -404,12 +404,12 @@ wide_data
 library(tidyr)
 
 # Convert wide to long
-long_data <- pivot_longer(wide_data,
+long <- pivot_longer(wide,
                           cols = c(height_cm, weight_kg),
                           names_to = "measurement",
                           values_to = "value")
 
-long_data
+long
 ```
 
 **Converting back to wide:**
@@ -417,11 +417,11 @@ long_data
 ```{r}
 #| echo: true
 # Convert long to wide
-back_to_wide <- pivot_wider(long_data,
+backWide <- pivot_wider(long,
                             names_from = measurement,
                             values_from = value)
 
-back_to_wide
+backWide
 ```
 
 Long format is often required for ggplot2, while wide format is easier for humans to read.
@@ -443,8 +443,8 @@ colSums(is.na(penguins))
 ```{r}
 #| echo: true
 # Calculate percentage missing
-missing_pct <- colSums(is.na(penguins)) / nrow(penguins) * 100
-round(missing_pct, 1)
+missPct <- colSums(is.na(penguins)) / nrow(penguins) * 100
+round(missPct, 1)
 ```
 
 ## Approach 1: Remove Variables with Too Many Missing Values
@@ -454,14 +454,14 @@ If a variable has too many missing values, it might not be useful. But in small 
 ```{r}
 #| echo: true
 # Remove columns with more than 1% missing data
-threshold <- 0.01
-missing_prop <- colSums(is.na(penguins)) / nrow(penguins)
+thresh <- 0.01
+missProp <- colSums(is.na(penguins)) / nrow(penguins)
 
-penguins_cleaned <- penguins %>%
-  select(where(~mean(is.na(.)) < threshold))
+pengClean <- penguins %>%
+  select(where(~mean(is.na(.)) < thresh))
 
 ncol(penguins)  # original number of columns
-ncol(penguins_cleaned)  # after removal
+ncol(pengClean)  # after removal
 ```
 
 As we can see, one column was removed as it had more NA values than the threshold of 1%. This threshold was arbitrarily selected by me for demonstrative purposes. In real analyses, you must justify this step and threshold you set.
@@ -473,12 +473,12 @@ Remove any rows that contain missing values:
 ```{r}
 #| echo: true
 # Create dataset with only complete cases
-penguins_complete <- penguins %>%
+pengComplete <- penguins %>%
   select(species, bill_length_mm, bill_depth_mm, body_mass_g) %>%
   na.omit()
 
 nrow(penguins)  # original rows
-nrow(penguins_complete)  # after deletion
+nrow(pengComplete)  # after deletion
 ```
 
 :::{.callout-warning}
@@ -495,7 +495,7 @@ Imputation means replacing missing values with educated guesses. The `VIM` packa
 library(VIM)
 
 # Impute missing values using k-nearest neighbors
-penguins_imputed <- kNN(penguins, k = 5)
+pengImputed <- kNN(penguins, k = 5)
 ```
 
 This method finds the 5 most similar complete cases and uses their median (for numeric variables) or most common value (for categorical variables) to fill in the missing data.
@@ -523,7 +523,7 @@ Here's a complete workflow combining multiple operations:
 library(dplyr)
 library(palmerpenguins)
 
-analysis_data <- penguins %>%
+analysis <- penguins %>%
   # 1. Remove year column
   select(-year) %>%
   # 2. Keep only complete cases
@@ -544,10 +544,10 @@ analysis_data <- penguins %>%
     .groups = "drop"
   )
 
-analysis_data
+analysis
 ```
 
-These data preparation skills form the foundation for all data analysis and visualization work in R, so keep them in mind for your projects!
+These data preparation skills form the foundation for all data analysis and visualisation work in R, so keep them in mind for your projects!
 
 # Practice Exercises
 
@@ -561,7 +561,7 @@ Try these exercises to reinforce your learning:
 
 # Further Resources
 
-- [R for Data Science](https://r4ds.had.co.nz/) - Comprehensive guide to data manipulation
+- [R for Data Science](https://r4ds.hadley.nz/) - Comprehensive guide to data manipulation
 - [dplyr documentation](https://dplyr.tidyverse.org/)
 - [tidyr documentation](https://tidyr.tidyverse.org/)
 - [Data Cleaning with R](https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf)

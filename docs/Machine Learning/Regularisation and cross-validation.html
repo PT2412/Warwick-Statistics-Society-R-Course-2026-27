@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Regularisation and Cross-Validation – Warwick Statistics Society R Course 2026-2027</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Using R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cheatsheets.html"> 
+<span class="menu-text">Cheatsheets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data/Raw data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Machine Learning/Introduction ML.html">Machine Learning (R and Python)</a></li><li class="breadcrumb-item"><a href="../Machine Learning/Regularisation and cross-validation.html">Regularisation and Cross-Validation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/introduction to r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/control structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/Random numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Theory of Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intuit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mathematical intuition behind coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code Euclidean Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Euclidean Algorithm — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MonteCarlo Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo Approximation of π — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code NewtonRaph Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Continuous data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with continuous data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Categorical data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with categorical data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check your understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cars dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/summary tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr: summary tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualisation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/importing data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Import and Preparation in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/baseR and ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to ggplot2: The Grammar of Graphics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/customising graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Customisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/univariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Univariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Bivariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Multiple Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Best Practices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Report Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Report Writing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportstructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Report Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Report Statistical Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English and Style</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-problem-overfitting-and-the-biasvariance-trade-off" id="toc-the-problem-overfitting-and-the-biasvariance-trade-off" class="nav-link active" data-scroll-target="#the-problem-overfitting-and-the-biasvariance-trade-off">The problem: overfitting and the bias–variance trade-off</a></li>
+  <li><a href="#ridge-regression-the-l2-penalty" id="toc-ridge-regression-the-l2-penalty" class="nav-link" data-scroll-target="#ridge-regression-the-l2-penalty">Ridge regression (the L2 penalty)</a></li>
+  <li><a href="#lasso-the-l1-penalty" id="toc-lasso-the-l1-penalty" class="nav-link" data-scroll-target="#lasso-the-l1-penalty">Lasso (the L1 penalty)</a></li>
+  <li><a href="#cross-validation-choosing-the-penalty-strength" id="toc-cross-validation-choosing-the-penalty-strength" class="nav-link" data-scroll-target="#cross-validation-choosing-the-penalty-strength">Cross-validation: choosing the penalty strength</a></li>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going further</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Machine Learning/Introduction ML.html">Machine Learning (R and Python)</a></li><li class="breadcrumb-item"><a href="../Machine Learning/Regularisation and cross-validation.html">Regularisation and Cross-Validation</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Regularisation and Cross-Validation</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the Modelling section we fitted linear models and worried about which variables to keep. This page picks up exactly where that left off, but from a machine-learning angle: instead of adding or removing whole variables by hand, we let the data <em>automatically</em> shrink the coefficients of unhelpful variables. This is called <strong>regularisation</strong>, and we use <strong>cross-validation</strong> to decide how much shrinking to do.</p>
+<p>We will work entirely with the built-in <code>mtcars</code> dataset, predicting fuel economy <code>mpg</code> from the other 10 predictors. Many of these predictors (weight, displacement, number of cylinders, horsepower…) measure closely related aspects of “how big and powerful is the engine”, so they are heavily correlated. That correlation is precisely what makes ordinary least squares struggle and regularisation shine.</p>
+<p>We show every idea twice: once in <strong>R</strong> (which you can run) and once in <strong>Python</strong> (shown for comparison, not executed here). The two snippets always solve the same task.</p>
+<section id="the-problem-overfitting-and-the-biasvariance-trade-off" class="level1">
+<h1>The problem: overfitting and the bias–variance trade-off</h1>
+<p>Recall the <em>principle of parsimony</em> from the Linear modelling section: given two models that behave similarly, prefer the simpler one. There is a deep statistical reason for this. With 10 predictors and only 32 rows, ordinary least squares (OLS) has so much freedom that it starts fitting the random <strong>noise</strong> in our particular sample rather than the true underlying signal. The model looks fantastic on the data it was trained on, then performs poorly on new cars it has never seen. That gap is <strong>overfitting</strong>.</p>
+<p>The formal way to think about this is the <strong>bias–variance trade-off</strong>. The expected prediction error of a model can be decomposed as</p>
+<p><span class="math display">\[
+\mathbb{E}\big[(y - \hat{f}(x))^2\big] = \underbrace{\big(\text{Bias}[\hat{f}(x)]\big)^2}_{\text{too simple}} + \underbrace{\text{Var}[\hat{f}(x)]}_{\text{too flexible}} + \underbrace{\sigma^2}_{\text{irreducible noise}}.
+\]</span></p>
+<p>A model that is too simple has high <strong>bias</strong> (it systematically misses the pattern). A model that is too flexible has high <strong>variance</strong> (it lurches around as the training data changes). Regularisation deliberately adds a little bias in exchange for a large reduction in variance, which lowers the <em>total</em> error.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: what overfitting really means">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: what overfitting really means
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Imagine revising for an exam by <strong>memorising the answers to last year’s paper</strong> word-for-word. You will score 100% on last year’s paper, but you have learnt nothing transferable, so you do badly on this year’s. Overfitting is the model equivalent: it memorises the quirks of the training data instead of learning the general rule. We want a model that <em>generalises</em> to new cars, not one that recites the 32 cars it has already seen. Adding more predictors than the data can support is one of the easiest ways to overfit.</p>
+</div>
+</div>
+<p>Let us first fit a plain OLS model so we have a baseline. This connects directly to the GLM and AIC-based model selection you saw in Modelling: AIC penalises complexity to avoid exactly this trap, and regularisation is a smooth, automatic version of the same idea.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ols-baseline</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plain ordinary least squares with all 10 predictors</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>olsModel <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(olsModel)<span class="sc">$</span>coefficients</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient of determination on the TRAINING data (optimistic!)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(olsModel)<span class="sc">$</span>r.squared</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Estimate  Std. Error    t value   Pr(&gt;|t|)
+(Intercept) 12.30337416 18.71788443  0.6573058 0.51812440
+cyl         -0.11144048  1.04502336 -0.1066392 0.91608738
+disp         0.01333524  0.01785750  0.7467585 0.46348865
+hp          -0.02148212  0.02176858 -0.9868407 0.33495531
+drat         0.78711097  1.63537307  0.4813036 0.63527790
+wt          -3.71530393  1.89441430 -1.9611887 0.06325215
+qsec         0.82104075  0.73084480  1.1234133 0.27394127
+vs           0.31776281  2.10450861  0.1509915 0.88142347
+am           2.52022689  2.05665055  1.2254035 0.23398971
+gear         0.65541302  1.49325996  0.4389142 0.66520643
+carb        -0.19941925  0.82875250 -0.2406258 0.81217871
+[1] 0.8690158</code></pre>
+</div>
+</div>
+<p>Notice how high the training <span class="math inline">\(R^2\)</span> is, yet several coefficients have large standard errors and non-significant <span class="math inline">\(p\)</span>-values. That instability is the symptom of correlated predictors and too little data — a textbook case for regularisation.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mtcars ships with statsmodels' R datasets; or load your own X, y.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>).data</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>olsModel <span class="op">=</span> smf.ols(<span class="st">"mpg ~ cyl + disp + hp + drat + wt + qsec + vs + am + gear + carb"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                   data<span class="op">=</span>mtcars).fit()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(olsModel.params)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(olsModel.rsquared)   <span class="co"># optimistic training R^2</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="ridge-regression-the-l2-penalty" class="level1">
+<h1>Ridge regression (the L2 penalty)</h1>
+<p><strong>Ridge regression</strong> keeps all the predictors but discourages large coefficients. Instead of minimising just the residual sum of squares, it minimises</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n}\big(y_i - x_i^\top \beta\big)^2 \;+\; \lambda \sum_{j=1}^{p} \beta_j^2,
+\]</span></p>
+<p>where the second term is the <strong>L2 penalty</strong> (the squared length of the coefficient vector). The tuning parameter <span class="math inline">\(\lambda \ge 0\)</span> controls the strength of shrinkage: at <span class="math inline">\(\lambda = 0\)</span> we recover OLS, and as <span class="math inline">\(\lambda \to \infty\)</span> all coefficients are pulled toward zero. Ridge never sets a coefficient <em>exactly</em> to zero, but it tames the wild, correlated coefficients that cause high variance.</p>
+<p>Ridge is available in the <strong>MASS</strong> package, which ships with R (it is a “recommended” package), so the chunk below runs.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ridge-massridge</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'MASS' was built under R version 4.4.3</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ridge-massridge</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Try a grid of lambda values</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>lambdaGrid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">length.out =</span> <span class="dv">200</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ridgeFit <span class="ot">&lt;-</span> <span class="fu">lm.ridge</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars, <span class="at">lambda =</span> lambdaGrid)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The generalised cross-validation (GCV) criterion suggests a good lambda</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>bestLambda <span class="ot">&lt;-</span> lambdaGrid[<span class="fu">which.min</span>(ridgeFit<span class="sc">$</span>GCV)]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>bestLambda</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients at the chosen lambda (note they are shrunk toward zero)</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm.ridge</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars, <span class="at">lambda =</span> bestLambda))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14.82412
+                      cyl         disp           hp         drat           wt 
+21.139824078 -0.372836295 -0.005268045 -0.011605202  1.053366369 -1.232246130 
+        qsec           vs           am         gear         carb 
+ 0.161806048  0.770115556  1.622054175  0.544416420 -0.547553289 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ridge-pathplot</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualise how each coefficient shrinks as lambda grows</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(lambdaGrid, <span class="fu">t</span>(ridgeFit<span class="sc">$</span>coef), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lty =</span> <span class="dv">1</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(lambda), <span class="at">ylab =</span> <span class="st">"Standardised coefficient"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Ridge coefficient paths for mtcars"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"grey60"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> bestLambda, <span class="at">col =</span> <span class="st">"#31BAE9"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Regularisation-and-cross-validation_files/figure-html/ridge-pathplot-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The matching Python code uses <code>scikit-learn</code>’s <code>Ridge</code>. Scikit-learn calls the penalty strength <code>alpha</code> rather than <code>lambda</code>, and it is good practice to standardise the predictors first (ridge is not scale-invariant).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>).data</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> mtcars.drop(columns<span class="op">=</span><span class="st">"mpg"</span>).values</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mtcars[<span class="st">"mpg"</span>].values</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>Xstd <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> Ridge(alpha<span class="op">=</span><span class="fl">10.0</span>)          <span class="co"># alpha is sklearn's name for lambda</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ridge.fit(Xstd, y)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ridge.coef_)                 <span class="co"># shrunk coefficients</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="lasso-the-l1-penalty" class="level1">
+<h1>Lasso (the L1 penalty)</h1>
+<p>The <strong>lasso</strong> (least absolute shrinkage and selection operator) swaps the squared penalty for the <strong>L1 penalty</strong> — the sum of the <em>absolute</em> values of the coefficients:</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n}\big(y_i - x_i^\top \beta\big)^2 \;+\; \lambda \sum_{j=1}^{p} |\beta_j|.
+\]</span></p>
+<p>This small change has a big consequence: as <span class="math inline">\(\lambda\)</span> grows, the lasso pushes some coefficients <strong>exactly to zero</strong>, effectively dropping those predictors from the model. So the lasso does shrinkage <em>and</em> automatic variable selection at the same time — a data-driven version of the parsimony principle. For correlated predictors like <code>disp</code>, <code>wt</code> and <code>hp</code>, the lasso will often keep one and discard the others.</p>
+<p>The most popular lasso implementation in R is <strong>glmnet</strong>. It is not a recommended package (you would install it with <code>install.packages("glmnet")</code>), so we mark the chunk as not evaluated, but this is exactly what you would run.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: lasso-glmnet</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># glmnet wants a numeric predictor matrix x and response vector y</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)[, <span class="sc">-</span><span class="dv">1</span>]   <span class="co"># drop the intercept column</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 1 selects the LASSO (alpha = 0 would be ridge)</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>lassoFit <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients at a particular lambda; some are forced to exactly zero</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(lassoFit, <span class="at">s =</span> <span class="fl">1.0</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the coefficient paths against the L1 norm</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lassoFit, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The Python equivalent is <code>scikit-learn</code>’s <code>Lasso</code>. Again <code>alpha</code> plays the role of <span class="math inline">\(\lambda\)</span>, and standardising first is recommended.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>).data</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> mtcars.drop(columns<span class="op">=</span><span class="st">"mpg"</span>).values</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mtcars[<span class="st">"mpg"</span>].values</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>Xstd <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>lasso <span class="op">=</span> Lasso(alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>lasso.fit(Xstd, y)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lasso.coef_)                  <span class="co"># several entries will be exactly 0.0</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="cross-validation-choosing-the-penalty-strength" class="level1">
+<h1>Cross-validation: choosing the penalty strength</h1>
+<p>We have been waving our hands at “pick a good <span class="math inline">\(\lambda\)</span>”. How do we actually do it? We cannot use the training error, because that always prefers <span class="math inline">\(\lambda = 0\)</span> (OLS), which overfits. We need to estimate how the model performs on <strong>unseen</strong> data, and the standard tool for that is <strong>k-fold cross-validation (CV)</strong>.</p>
+<p>The recipe is:</p>
+<ol type="1">
+<li>Split the data into <span class="math inline">\(k\)</span> roughly equal parts (“folds”), say <span class="math inline">\(k = 10\)</span>.</li>
+<li>Hold out fold 1, train the model on the other <span class="math inline">\(k-1\)</span> folds, and measure the prediction error on the held-out fold 1.</li>
+<li>Repeat, holding out fold 2, then fold 3, and so on, until every fold has been the test set exactly once.</li>
+<li>Average the <span class="math inline">\(k\)</span> test errors. This average is an honest estimate of out-of-sample error.</li>
+</ol>
+<p>We run this whole procedure for each candidate <span class="math inline">\(\lambda\)</span> and pick the <span class="math inline">\(\lambda\)</span> with the lowest cross-validated error (a common refinement is the “one-standard-error rule”, which picks the simplest model within one standard error of the best).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: what cross-validation buys you">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: what cross-validation buys you
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cross-validation lets you <strong>test the model on data it has not seen, without needing a separate fresh dataset</strong>. By rotating which slice is held out, every observation gets used for both training and testing — just never at the same time. The pay-off is an honest estimate of how well the model will generalise, which is exactly what we need to choose <span class="math inline">\(\lambda\)</span> without fooling ourselves with optimistic training-set numbers.</p>
+</div>
+</div>
+<p>In R, <code>glmnet</code> provides <code>cv.glmnet</code>, which runs the entire k-fold search for you. As with the lasso chunk above, glmnet is not a recommended package, so this is shown but not run.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: cv-glmnet</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 10-fold cross-validated lasso</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>cvFit <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">nfolds =</span> <span class="dv">10</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># The lambda with the lowest CV error, and the parsimonious "1-SE" choice</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>cvFit<span class="sc">$</span>lambda.min</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>cvFit<span class="sc">$</span>lambda<span class="fl">.1</span>se</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot CV error against log(lambda)</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cvFit)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients at the cross-validated best lambda</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(cvFit, <span class="at">s =</span> <span class="st">"lambda.min"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The Python equivalent is <code>LassoCV</code>, which bakes the cross-validation directly into the fit. Alternatively <code>cross_val_score</code> cross-validates any estimator you hand it.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>).data</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> mtcars.drop(columns<span class="op">=</span><span class="st">"mpg"</span>).values</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mtcars[<span class="st">"mpg"</span>].values</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>Xstd <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># LassoCV searches a grid of alphas with 10-fold CV</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>lassoCv <span class="op">=</span> LassoCV(cv<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">2026</span>).fit(Xstd, y)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best alpha:"</span>, lassoCv.alpha_)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lassoCv.coef_)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Or cross-validate any model explicitly:</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># from sklearn.model_selection import cross_val_score</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># scores = cross_val_score(lassoCv, Xstd, y, cv=10, scoring="r2")</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="going-further" class="level1">
+<h1>Going further</h1>
+<p>We have met the two classic penalties. In practice you rarely stop there, and the tooling is richer than the individual function calls above.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Elastic net</strong> blends the L1 and L2 penalties, minimising <span class="math display">\[
+\sum_i (y_i - x_i^\top\beta)^2 + \lambda\Big[\alpha\textstyle\sum_j |\beta_j| + (1-\alpha)\textstyle\sum_j \beta_j^2\Big].
+\]</span> It enjoys the variable selection of the lasso while handling groups of correlated predictors more gracefully (the lasso tends to pick one and drop the rest arbitrarily). In <code>glmnet</code> you simply set <code>alpha</code> between 0 and 1; in scikit-learn you use <code>ElasticNet</code>.</p>
+<p>Once you have several models and tuning parameters to juggle, you will want a <strong>unified workflow</strong> that handles preprocessing, resampling and tuning consistently:</p>
+<ul>
+<li><strong>R:</strong> <a href="https://www.tidymodels.org/"><code>tidymodels</code></a> (the modern, tidyverse-friendly framework) or the older <a href="https://topepo.github.io/caret/"><code>caret</code></a> package wrap fitting, cross-validation and grid search behind one tidy interface.</li>
+<li><strong>Python:</strong> combine a <a href="https://scikit-learn.org/stable/modules/compose.html"><code>Pipeline</code></a> (so scaling is refitted inside every CV fold, avoiding data leakage) with <a href="https://scikit-learn.org/stable/modules/grid_search.html"><code>GridSearchCV</code></a> to search over <code>alpha</code> and the L1/L2 mix automatically.</li>
+</ul>
+<p>These tools turn the manual steps on this page into a few clean, reproducible lines.</p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Regularisation and Cross-Validation"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">    mathjax: true</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>In the Modelling section we fitted linear models and worried about which variables to keep. This page picks up exactly where that left off, but from a machine-learning angle: instead of adding or removing whole variables by hand, we let the data *automatically* shrink the coefficients of unhelpful variables. This is called **regularisation**, and we use **cross-validation** to decide how much shrinking to do.</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>We will work entirely with the built-in <span class="in">`mtcars`</span> dataset, predicting fuel economy <span class="in">`mpg`</span> from the other 10 predictors. Many of these predictors (weight, displacement, number of cylinders, horsepower...) measure closely related aspects of "how big and powerful is the engine", so they are heavily correlated. That correlation is precisely what makes ordinary least squares struggle and regularisation shine.</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>We show every idea twice: once in **R** (which you can run) and once in **Python** (shown for comparison, not executed here). The two snippets always solve the same task.</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># The problem: overfitting and the bias–variance trade-off</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>Recall the *principle of parsimony* from the Linear modelling section: given two models that behave similarly, prefer the simpler one. There is a deep statistical reason for this. With 10 predictors and only 32 rows, ordinary least squares (OLS) has so much freedom that it starts fitting the random **noise** in our particular sample rather than the true underlying signal. The model looks fantastic on the data it was trained on, then performs poorly on new cars it has never seen. That gap is **overfitting**.</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>The formal way to think about this is the **bias–variance trade-off**. The expected prediction error of a model can be decomposed as</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>\mathbb{E}\big<span class="co">[</span><span class="ot">(y - \hat{f}(x))^2\big</span><span class="co">]</span> = \underbrace{\big(\text{Bias}<span class="co">[</span><span class="ot">\hat{f}(x)</span><span class="co">]</span>\big)^2}_{\text{too simple}} + \underbrace{\text{Var}[\hat{f}(x)]}_{\text{too flexible}} + \underbrace{\sigma^2}_{\text{irreducible noise}}.</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>A model that is too simple has high **bias** (it systematically misses the pattern). A model that is too flexible has high **variance** (it lurches around as the training data changes). Regularisation deliberately adds a little bias in exchange for a large reduction in variance, which lowers the *total* error.</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: what overfitting really means"}</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>Imagine revising for an exam by **memorising the answers to last year's paper** word-for-word. You will score 100% on last year's paper, but you have learnt nothing transferable, so you do badly on this year's. Overfitting is the model equivalent: it memorises the quirks of the training data instead of learning the general rule. We want a model that *generalises* to new cars, not one that recites the 32 cars it has already seen. Adding more predictors than the data can support is one of the easiest ways to overfit.</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>Let us first fit a plain OLS model so we have a baseline. This connects directly to the GLM and AIC-based model selection you saw in Modelling: AIC penalises complexity to avoid exactly this trap, and regularisation is a smooth, automatic version of the same idea.</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ols-baseline</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Plain ordinary least squares with all 10 predictors</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>olsModel <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(olsModel)<span class="sc">$</span>coefficients</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient of determination on the TRAINING data (optimistic!)</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(olsModel)<span class="sc">$</span>r.squared</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>Notice how high the training $R^2$ is, yet several coefficients have large standard errors and non-significant $p$-values. That instability is the symptom of correlated predictors and too little data — a textbook case for regularisation.</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a><span class="co"># mtcars ships with statsmodels' R datasets; or load your own X, y.</span></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>).data</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>olsModel <span class="op">=</span> smf.ols(<span class="st">"mpg ~ cyl + disp + hp + drat + wt + qsec + vs + am + gear + carb"</span>,</span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>                   data<span class="op">=</span>mtcars).fit()</span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(olsModel.params)</span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(olsModel.rsquared)   <span class="co"># optimistic training R^2</span></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a><span class="fu"># Ridge regression (the L2 penalty)</span></span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>**Ridge regression** keeps all the predictors but discourages large coefficients. Instead of minimising just the residual sum of squares, it minimises</span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>\sum_{i=1}^{n}\big(y_i - x_i^\top \beta\big)^2 \;+\; \lambda \sum_{j=1}^{p} \beta_j^2,</span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>where the second term is the **L2 penalty** (the squared length of the coefficient vector). The tuning parameter $\lambda \ge 0$ controls the strength of shrinkage: at $\lambda = 0$ we recover OLS, and as $\lambda \to \infty$ all coefficients are pulled toward zero. Ridge never sets a coefficient *exactly* to zero, but it tames the wild, correlated coefficients that cause high variance.</span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>Ridge is available in the **MASS** package, which ships with R (it is a "recommended" package), so the chunk below runs.</span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ridge-massridge</span></span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Try a grid of lambda values</span></span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>lambdaGrid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="at">length.out =</span> <span class="dv">200</span>)</span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>ridgeFit <span class="ot">&lt;-</span> <span class="fu">lm.ridge</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars, <span class="at">lambda =</span> lambdaGrid)</span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a><span class="co"># The generalised cross-validation (GCV) criterion suggests a good lambda</span></span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>bestLambda <span class="ot">&lt;-</span> lambdaGrid[<span class="fu">which.min</span>(ridgeFit<span class="sc">$</span>GCV)]</span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a>bestLambda</span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients at the chosen lambda (note they are shrunk toward zero)</span></span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm.ridge</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars, <span class="at">lambda =</span> bestLambda))</span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: ridge-pathplot</span></span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualise how each coefficient shrinks as lambda grows</span></span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(lambdaGrid, <span class="fu">t</span>(ridgeFit<span class="sc">$</span>coef), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lty =</span> <span class="dv">1</span>,</span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(lambda), <span class="at">ylab =</span> <span class="st">"Standardised coefficient"</span>,</span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Ridge coefficient paths for mtcars"</span>)</span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"grey60"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> bestLambda, <span class="at">col =</span> <span class="st">"#31BAE9"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>The matching Python code uses <span class="in">`scikit-learn`</span>'s <span class="in">`Ridge`</span>. Scikit-learn calls the penalty strength <span class="in">`alpha`</span> rather than <span class="in">`lambda`</span>, and it is good practice to standardise the predictors first (ridge is not scale-invariant).</span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>).data</span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> mtcars.drop(columns<span class="op">=</span><span class="st">"mpg"</span>).values</span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mtcars[<span class="st">"mpg"</span>].values</span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a>Xstd <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> Ridge(alpha<span class="op">=</span><span class="fl">10.0</span>)          <span class="co"># alpha is sklearn's name for lambda</span></span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a>ridge.fit(Xstd, y)</span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ridge.coef_)                 <span class="co"># shrunk coefficients</span></span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a><span class="fu"># Lasso (the L1 penalty)</span></span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a>The **lasso** (least absolute shrinkage and selection operator) swaps the squared penalty for the **L1 penalty** — the sum of the *absolute* values of the coefficients:</span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a>\sum_{i=1}^{n}\big(y_i - x_i^\top \beta\big)^2 \;+\; \lambda \sum_{j=1}^{p} |\beta_j|.</span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a>This small change has a big consequence: as $\lambda$ grows, the lasso pushes some coefficients **exactly to zero**, effectively dropping those predictors from the model. So the lasso does shrinkage *and* automatic variable selection at the same time — a data-driven version of the parsimony principle. For correlated predictors like <span class="in">`disp`</span>, <span class="in">`wt`</span> and <span class="in">`hp`</span>, the lasso will often keep one and discard the others.</span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a>The most popular lasso implementation in R is **glmnet**. It is not a recommended package (you would install it with <span class="in">`install.packages("glmnet")`</span>), so we mark the chunk as not evaluated, but this is exactly what you would run.</span>
+<span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: lasso-glmnet</span></span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a><span class="co"># glmnet wants a numeric predictor matrix x and response vector y</span></span>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)[, <span class="sc">-</span><span class="dv">1</span>]   <span class="co"># drop the intercept column</span></span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha = 1 selects the LASSO (alpha = 0 would be ridge)</span></span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a>lassoFit <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients at a particular lambda; some are forced to exactly zero</span></span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(lassoFit, <span class="at">s =</span> <span class="fl">1.0</span>)</span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the coefficient paths against the L1 norm</span></span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lassoFit, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a>The Python equivalent is <span class="in">`scikit-learn`</span>'s <span class="in">`Lasso`</span>. Again <span class="in">`alpha`</span> plays the role of $\lambda$, and standardising first is recommended.</span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>).data</span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> mtcars.drop(columns<span class="op">=</span><span class="st">"mpg"</span>).values</span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mtcars[<span class="st">"mpg"</span>].values</span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a>Xstd <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a>lasso <span class="op">=</span> Lasso(alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a>lasso.fit(Xstd, y)</span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lasso.coef_)                  <span class="co"># several entries will be exactly 0.0</span></span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cross-validation: choosing the penalty strength</span></span>
+<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a>We have been waving our hands at "pick a good $\lambda$". How do we actually do it? We cannot use the training error, because that always prefers $\lambda = 0$ (OLS), which overfits. We need to estimate how the model performs on **unseen** data, and the standard tool for that is **k-fold cross-validation (CV)**.</span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a>The recipe is:</span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Split the data into $k$ roughly equal parts ("folds"), say $k = 10$.</span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Hold out fold 1, train the model on the other $k-1$ folds, and measure the prediction error on the held-out fold 1.</span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Repeat, holding out fold 2, then fold 3, and so on, until every fold has been the test set exactly once.</span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Average the $k$ test errors. This average is an honest estimate of out-of-sample error.</span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a>We run this whole procedure for each candidate $\lambda$ and pick the $\lambda$ with the lowest cross-validated error (a common refinement is the "one-standard-error rule", which picks the simplest model within one standard error of the best).</span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: what cross-validation buys you"}</span>
+<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a>Cross-validation lets you **test the model on data it has not seen, without needing a separate fresh dataset**. By rotating which slice is held out, every observation gets used for both training and testing — just never at the same time. The pay-off is an honest estimate of how well the model will generalise, which is exactly what we need to choose $\lambda$ without fooling ourselves with optimistic training-set numbers.</span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a>In R, <span class="in">`glmnet`</span> provides <span class="in">`cv.glmnet`</span>, which runs the entire k-fold search for you. As with the lasso chunk above, glmnet is not a recommended package, so this is shown but not run.</span>
+<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-217"><a href="#cb14-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: cv-glmnet</span></span>
+<span id="cb14-218"><a href="#cb14-218" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
+<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a><span class="co"># 10-fold cross-validated lasso</span></span>
+<span id="cb14-225"><a href="#cb14-225" aria-hidden="true" tabindex="-1"></a>cvFit <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">nfolds =</span> <span class="dv">10</span>)</span>
+<span id="cb14-226"><a href="#cb14-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a><span class="co"># The lambda with the lowest CV error, and the parsimonious "1-SE" choice</span></span>
+<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a>cvFit<span class="sc">$</span>lambda.min</span>
+<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a>cvFit<span class="sc">$</span>lambda<span class="fl">.1</span>se</span>
+<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot CV error against log(lambda)</span></span>
+<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cvFit)</span>
+<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients at the cross-validated best lambda</span></span>
+<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(cvFit, <span class="at">s =</span> <span class="st">"lambda.min"</span>)</span>
+<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a>The Python equivalent is <span class="in">`LassoCV`</span>, which bakes the cross-validation directly into the fit. Alternatively <span class="in">`cross_val_score`</span> cross-validates any estimator you hand it.</span>
+<span id="cb14-239"><a href="#cb14-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-244"><a href="#cb14-244" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
+<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>).data</span>
+<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> mtcars.drop(columns<span class="op">=</span><span class="st">"mpg"</span>).values</span>
+<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mtcars[<span class="st">"mpg"</span>].values</span>
+<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a>Xstd <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a><span class="co"># LassoCV searches a grid of alphas with 10-fold CV</span></span>
+<span id="cb14-254"><a href="#cb14-254" aria-hidden="true" tabindex="-1"></a>lassoCv <span class="op">=</span> LassoCV(cv<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">2026</span>).fit(Xstd, y)</span>
+<span id="cb14-255"><a href="#cb14-255" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best alpha:"</span>, lassoCv.alpha_)</span>
+<span id="cb14-256"><a href="#cb14-256" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lassoCv.coef_)</span>
+<span id="cb14-257"><a href="#cb14-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-258"><a href="#cb14-258" aria-hidden="true" tabindex="-1"></a><span class="co"># Or cross-validate any model explicitly:</span></span>
+<span id="cb14-259"><a href="#cb14-259" aria-hidden="true" tabindex="-1"></a><span class="co"># from sklearn.model_selection import cross_val_score</span></span>
+<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a><span class="co"># scores = cross_val_score(lassoCv, Xstd, y, cv=10, scoring="r2")</span></span>
+<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a><span class="fu"># Going further</span></span>
+<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a>We have met the two classic penalties. In practice you rarely stop there, and the tooling is richer than the individual function calls above.</span>
+<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb14-268"><a href="#cb14-268" aria-hidden="true" tabindex="-1"></a>**Elastic net** blends the L1 and L2 penalties, minimising</span>
+<span id="cb14-269"><a href="#cb14-269" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a>\sum_i (y_i - x_i^\top\beta)^2 + \lambda\Big<span class="co">[</span><span class="ot">\alpha\textstyle\sum_j |\beta_j| + (1-\alpha)\textstyle\sum_j \beta_j^2\Big</span><span class="co">]</span>.</span>
+<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb14-272"><a href="#cb14-272" aria-hidden="true" tabindex="-1"></a>It enjoys the variable selection of the lasso while handling groups of correlated predictors more gracefully (the lasso tends to pick one and drop the rest arbitrarily). In <span class="in">`glmnet`</span> you simply set <span class="in">`alpha`</span> between 0 and 1; in scikit-learn you use <span class="in">`ElasticNet`</span>.</span>
+<span id="cb14-273"><a href="#cb14-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-274"><a href="#cb14-274" aria-hidden="true" tabindex="-1"></a>Once you have several models and tuning parameters to juggle, you will want a **unified workflow** that handles preprocessing, resampling and tuning consistently:</span>
+<span id="cb14-275"><a href="#cb14-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-276"><a href="#cb14-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**R:** <span class="co">[</span><span class="ot">`tidymodels`</span><span class="co">](https://www.tidymodels.org/)</span> (the modern, tidyverse-friendly framework) or the older <span class="co">[</span><span class="ot">`caret`</span><span class="co">](https://topepo.github.io/caret/)</span> package wrap fitting, cross-validation and grid search behind one tidy interface.</span>
+<span id="cb14-277"><a href="#cb14-277" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Python:** combine a <span class="co">[</span><span class="ot">`Pipeline`</span><span class="co">](https://scikit-learn.org/stable/modules/compose.html)</span> (so scaling is refitted inside every CV fold, avoiding data leakage) with <span class="co">[</span><span class="ot">`GridSearchCV`</span><span class="co">](https://scikit-learn.org/stable/modules/grid_search.html)</span> to search over <span class="in">`alpha`</span> and the L1/L2 mix automatically.</span>
+<span id="cb14-278"><a href="#cb14-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-279"><a href="#cb14-279" aria-hidden="true" tabindex="-1"></a>These tools turn the manual steps on this page into a few clean, reproducible lines.</span>
+<span id="cb14-280"><a href="#cb14-280" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -14,4 +14,173 @@ format:
     echo: fenced
 ---
 
-NEED TO WRITE UP HOW TO DO THIS.
+## Why loading data matters for modelling
+
+Before you fit a model, you must make sure the data is loaded correctly and is in the right format. If the input data is wrong, any model you fit may give misleading results.
+
+For modelling, the key checks are:
+
+- the dataset has the expected rows and columns,
+- each column is the right type (numeric, factor, character),
+- missing values are handled appropriately,
+- categorical variables are encoded correctly,
+- any transformations needed for the model are prepared beforehand.
+
+---
+
+## Loading data in R
+
+### Base R: `read.csv()`
+
+You can load a CSV file using the base R function `read.csv()`.
+
+```{r}
+# Load data from a local file in the Data folder
+df <- read.csv("../Data/agriculture.csv", stringsAsFactors = FALSE)
+
+# Look at the first few rows
+head(df)
+
+# Check the structure
+str(df)
+```
+
+### Tidyverse: `readr::read_csv()`
+
+If you prefer the tidyverse style, use `read_csv()` from the `readr` package.
+
+```{r}
+library(readr)
+df <- read_csv("../Data/agriculture.csv")
+
+# Inspect the dataset
+str(df)
+```
+
+:::{.callout-note}
+Using `read_csv()` often gives cleaner default column types and better handling of missing values than `read.csv()`.
+:::
+
+---
+
+## Inspecting the dataset before modelling
+
+Once the file is loaded, perform a few simple checks.
+
+```{r}
+# Number of observations and variables
+dim(df)
+
+# Column names and sample values
+names(df)
+summary(df)
+
+# Check for missing values
+colSums(is.na(df))
+```
+
+### Identify variable types
+
+For modelling, it is important to distinguish between numeric and categorical variables.
+
+```{r}
+# Example of converting a column to a factor
+if ("Variety" %in% names(df)) {
+  df$Variety <- as.factor(df$Variety)
+}
+
+# Confirm column types again
+sapply(df, class)
+```
+
+If a variable contains categories such as group labels, season names, or treatment types, convert it to a factor before fitting a model.
+
+---
+
+## Preparing data for a linear model
+
+### Remove or flag missing values
+
+Different modelling functions handle missing values differently. For a simple model, remove rows with missing values or use explicit imputation.
+
+```{r}
+# Remove rows that contain any missing values
+dfClean <- na.omit(df)
+
+# Confirm no missing values remain
+colSums(is.na(dfClean))
+```
+
+### Create model-ready variables
+
+Some variables need transformation before modelling.
+
+```{r}
+# Example: if a numeric variable is stored as text, convert it explicitly
+if ("Yield" %in% names(dfClean)) {
+  dfClean$Yield <- as.numeric(dfClean$Yield)
+}
+
+# Example: create a new variable for a model
+if ("SoilQuality" %in% names(dfClean)) {
+  dfClean$highQuality <- dfClean$SoilQuality > 7
+}
+```
+
+:::{.callout-warning}
+Always check the output of conversions such as `as.numeric()` because invalid text values can become `NA` silently.
+:::
+
+---
+
+## Quick modelling check
+
+A final modelling check should confirm the data is ready for `lm()` or similar functions.
+
+```{r}
+# Example using a simple linear model if the variables exist
+if (all(c("Yield", "Nitrogen") %in% names(dfClean))) {
+  mod <- lm(Yield ~ Nitrogen, data = dfClean)
+  summary(mod)
+}
+```
+
+This is a useful way to verify that the data types and values are appropriate for the model.
+
+---
+
+## Check your understanding
+
+1. Load a dataset from the `Data` folder and inspect the first 10 rows.
+2. Convert one categorical variable to a factor and one numeric variable to numeric type.
+3. Remove rows with missing values and report how many observations remain.
+4. Fit a simple linear model using one numeric predictor and one numeric response.
+
+```{r}
+#| code-fold: true
+###| Answer example
+library(readr)
+dfEx <- read_csv("../Data/agriculture.csv")
+
+# Inspect the data
+head(dfEx, 10)
+
+# Convert variables if needed
+if ("Variety" %in% names(dfEx)) {
+  dfEx$Variety <- as.factor(dfEx$Variety)
+}
+
+if ("Yield" %in% names(dfEx)) {
+  dfEx$Yield <- as.numeric(dfEx$Yield)
+}
+
+# Clean missing values
+dfExClean <- na.omit(dfEx)
+print(dim(dfExClean))
+
+# Fit a model if the columns exist
+if (all(c("Yield", "Nitrogen") %in% names(dfExClean))) {
+  modEx <- lm(Yield ~ Nitrogen, data = dfExClean)
+  summary(modEx)
+}
+```

@@ -1,0 +1,245 @@
+---
+title: "Data Structures and Algorithms"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+## Why data structures matter
+
+A data structure is a way of organising and storing information so a computer can use it efficiently. In statistics and data science, choosing the right structure makes your code easier to write, easier to read, and often much faster.
+
+For example, a vector is perfect for a list of numbers, while a data frame is better for a table with many variables. The right structure also helps you choose the right algorithm for the task.
+
+---
+
+## Common data structures for statistics
+
+### Vectors and arrays
+
+A vector is an ordered collection of values of the same type. In R, vectors are the simplest data structure; in Python, the closest equivalent is a `numpy` array.
+
+- Use a vector for a single numeric or character sequence.
+- Use vector operations when the same calculation applies to every element.
+
+Example in R:
+```{r}
+x <- c(2, 4, 6, 8)
+mean(x)
+```
+
+Example in Python:
+```python
+#| eval: false
+import numpy as np
+x = np.array([2, 4, 6, 8])
+print(x.mean())
+```
+
+### Lists
+
+A list can hold values of different types and structures. In R, lists are flexible containers for numbers, strings, vectors, or even other lists. In Python, dictionaries and lists serve a similar purpose.
+
+Use a list when the items are not all the same shape or type.
+
+### Data frames and tables
+
+A data frame is a table where each column is a variable and each row is an observation. This is the standard structure for statistical datasets.
+
+In R, `data.frame` and `tibble` are common. In Python, `pandas.DataFrame` is the usual choice.
+
+A data frame is ideal for:
+
+- storing raw data,
+- joining tables,
+- grouping and summarising by variable,
+- fitting models.
+
+### Dictionaries and maps
+
+A dictionary (Python) or named list (R) stores values by key. This is useful when you need to look up values by name rather than by position.
+
+Example in Python:
+```python
+person = {'name': 'Alice', 'age': 24, 'score': 82}
+print(person['score'])
+```
+
+Example in R:
+```{r}
+person <- list(name = 'Alice', age = 24, score = 82)
+print(person$score)
+```
+
+---
+
+## Algorithms in statistics
+
+An algorithm is a step-by-step procedure for solving a problem. In statistics, algorithms manage tasks such as:
+
+- searching and filtering data,
+- summarising observations,
+- sorting and ranking values,
+- sampling and simulation,
+- fitting models.
+
+A good algorithm is:
+
+- correct,
+- simple enough to understand,
+- efficient enough for the dataset you are using.
+
+---
+
+## A simple algorithm example
+
+Suppose you want to count how many values in a dataset are greater than 100. The algorithm is:
+
+1. start a counter at zero,
+2. look at each value in the dataset,
+3. if the value is greater than 100, add one to the counter,
+4. return the counter.
+
+In R:
+```{r}
+values <- c(70, 105, 98, 121, 115)
+countOver100 <- 0
+for (val in values) {
+  if (val > 100) {
+    countOver100 <- countOver100 + 1
+  }
+}
+print(countOver100)
+```
+
+In Python:
+```python
+#| eval: false
+values = [70, 105, 98, 121, 115]
+count_over_100 = sum(1 for val in values if val > 100)
+print(count_over_100)
+```
+
+Both versions follow the same algorithm, but the Python example uses a more compact expression.
+
+---
+
+## Algorithm cost: Big O at a glance
+
+Big O notation describes how the runtime grows as the dataset gets larger. A few important ideas:
+
+- **O(1)**: constant time. The cost does not depend on the dataset size.
+- **O(n)**: linear time. The cost grows directly with the number of items.
+- **O(n^2)**: quadratic time. The cost grows with the square of the number of items.
+
+### Common operations
+
+- Access one element in a vector: **O(1)**
+- Scan all rows in a table: **O(n)**
+- Nested loops over two lists: **O(n^2)**
+- Sorting a list: typically **O(n log n)**
+
+In statistics, many useful operations are O(n), such as computing means, sums, and simple counts. Nested loops can be expensive for large datasets.
+
+---
+
+## A statistical example: duplicates
+
+Finding duplicates is a common operation. A simple nested loop is easy to write, but it can be slow for large datasets.
+
+In R:
+```{r}
+findDuplicates <- function(x) {
+  n <- length(x)
+  res <- logical(n)
+  for (i in seq_len(n - 1)) {
+    for (j in (i + 1):n) {
+      if (x[i] == x[j]) {
+        res[i] <- TRUE
+        res[j] <- TRUE
+      }
+    }
+  }
+  res
+}
+
+findDuplicates(c(1, 3, 3, 2, 1))
+```
+
+This approach is roughly **O(n^2)** because it compares every pair.
+
+A more efficient strategy uses a hash-like lookup:
+
+::: {.callout-note title="In a nutshell: a named list as a poor-man's hash map"}
+There is no separate "dictionary" here — `seen` is just a named list being used as a lookup table. The **names** act as keys (the value we have already seen) and the stored entry is where we first saw it. The check `x[i] %in% names(seen)` is the lookup: "have I met this value before?" Because looking a name up is far cheaper than re-scanning the whole vector, we replace the nested loop with a single pass.
+:::
+
+```{r}
+findDuplicatesFast <- function(x) {
+  seen <- list()
+  dups <- rep(FALSE, length(x))
+  for (i in seq_along(x)) {
+    if (x[i] %in% names(seen)) {
+      dups[i] <- TRUE
+      dups[seen[[as.character(x[i])]]] <- TRUE
+    } else {
+      seen[[as.character(x[i])]] <- i
+    }
+  }
+  dups
+}
+findDuplicatesFast(c(1, 3, 3, 2, 1))
+```
+
+This version is closer to **O(n)** because it avoids repeated comparisons.
+
+::: {.callout-tip title="Going further 🚀"}
+A named list is a *convincing* hash map but not a true one — name lookups in a growing list are not guaranteed O(1). For real hashed keys, R gives you environments, which are backed by an actual hash table:
+
+```{r}
+#| eval: false
+seen <- new.env(hash = TRUE)   # genuine hashed key-value store
+assign("3", 1L, envir = seen)
+exists("3", envir = seen)      # fast O(1) lookup
+```
+
+The `fastmap` package offers an even faster, purpose-built map (`fastmap::fastmap()`) for heavy use. But the real lesson is: base R already solves duplicate detection in compiled C — prefer the built-in.
+
+```{r}
+duplicated(c(1, 3, 3, 2, 1))   # vectorised, C-level, O(n) on average
+```
+:::
+
+---
+
+## Why this matters for modelling and machine learning
+
+Data structures and algorithms are the foundation of statistical computing. When you fit a model, the software is using algorithms to:
+
+- prepare features,
+- compute coefficients,
+- search for the best parameters,
+- validate predictions.
+
+Choosing the right structure makes every step faster and more reliable.
+
+For example, a data frame is usually the best structure for a dataset, but a vector or array can be faster for numeric calculations once the dataset is prepared.
+
+---
+
+## Try it yourself
+
+1. Load a vector of numbers in R.
+2. Write a function that returns the number of values greater than the mean.
+3. Change the function to return the number of values between the 25th and 75th percentiles.
+
+This helps you practise the two key skills in this section: choosing a structure and writing a clear algorithm.

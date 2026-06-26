@@ -1,5 +1,5 @@
 ---
-title: "Operations"
+title: "Operators"
 format: 
   html:
     fig-width: 12
@@ -20,7 +20,7 @@ We will begin by familiarising ourselves with the operations in R, where
 
 according to the [BBC Bitesize website](https://www.bbc.co.uk/bitesize/guides/znh6pbk/revision/9). These will form the base building blocks of everything we will do in the future. 
 
-We will start with arithmetic operators ($+$,$-$,$\times$,$\div$), then go to comparison operators ($=$,$\ne$,$\geq$,$\leq$) and finally logical operators (and, or).
+We will start with arithmetic operators ($+$,$-$,$\times$,$\div$), then go to comparison operators ($==$,$\ne$,$\geq$,$\leq$) and finally logical operators (and, or).
 
 # Arithmetic operators
 
@@ -41,11 +41,11 @@ The 4 base arithmetic operators are addition (`+`), subtraction (`-`), multiplic
 ```
 
 :::{.callout-note}
-It is important to note that R follows the traditional [BODMASS](https://thirdspacelearning.com/blog/what-is-bodmas/#:~:text=BODMAS%20is%20an%20acronym%20to,%2DAddition%2C%20S%2DSubtraction.) order of operations. As such, we can use brackets to control the order in which operations are performed. 
+It is important to note that R follows the traditional [BODMAS](https://thirdspacelearning.com/blog/what-is-bodmas/#:~:text=BODMAS%20is%20an%20acronym%20to,%2DAddition%2C%20S%2DSubtraction.) order of operations. As such, we can use brackets to control the order in which operations are performed. 
 :::
 
 ```{r}
-###| BODMASS
+###| BODMAS
 (1+7)/2
 1 + 7/2
 3*5+2/3
@@ -88,7 +88,7 @@ We can also compare two numbers using less than `<`, less than or equal to `<=`,
 7 == 5
 5 == 5
 
-###| Not wqual to
+###| Not equal to
 "a banana" != "a banana"
 "a banana" != "a fruit"
 
@@ -170,7 +170,7 @@ TRUE | FALSE
 
 # Check your understanding
 
-The following are some extercises to test your understanding about operations.
+The following are some exercises to test your understanding about operations.
 
 :::{}
 *   Use R to determine the area of a circle with diameter of 20cm.

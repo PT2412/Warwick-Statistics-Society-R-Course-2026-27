@@ -16,11 +16,11 @@ engine: knitr
 editor: visual
 ---
 
-In this section, we go through what makes a good data visualization. These come from the lecture material for ST231, ST237, ST346, and ST404.
+In this section, we go through what makes a good data visualisation. These come from the lecture material for ST231, ST237, ST346, and ST404.
 
-## Labeling
+## Labelling
 
-Everything on your graph should be clearly labeled. In general, a graph contains:
+Everything on your graph should be clearly labelled. In general, a graph contains:
 
 -   **title** — a clear short title letting the reader know what they’re looking at\
     *Example:* Relationship between experience and wages by gender
@@ -33,21 +33,21 @@ Everything on your graph should be clearly labeled. In general, a graph contains
     -   short but descriptive
     -   include units of measurement\
         *Examples:*
-        -   Tree diameter (meters)
+        -   Tree diameter (metres)
         -   Survival time (days)
         -   Patient age (years)
 
 -   **legend** — short informative title and labels
 
-    *Example:* You can do this with the `legend()` function in R before or after the `plot()` you with to add a legend to
+    *Example:* In `ggplot2`, legends are controlled with `labs()`, `guides()` and `theme()` rather than a separate `legend()` call. Use these to set the legend title, adjust its labels and appearance, and position the legend on the `plot()` you wish to add a legend to
 
 -   **lines and bars** — label any trend lines, annotation lines, and error bars
 
-Essentially, the reader should be able to understand your graph without having to wade through paragraphs of text. When in doubt, show your data visualization to someone unfamiliar with your assignment and ask them if anything is unclear.
+Essentially, the reader should be able to understand your graph without having to wade through paragraphs of text. When in doubt, show your data visualisation to someone unfamiliar with your assignment and ask them if anything is unclear.
 
 ## Keep it Simple!
 
-In data science, the goal of data visualization is to communicate information. Anything that doesn’t support this goal should be reduced or eliminated entirely.
+In data science, the goal of data visualisation is to communicate information. Anything that doesn’t support this goal should be reduced or eliminated entirely.
 
 -   **Chart Junk** — visual elements of charts that aren’t necessary to comprehend the information represented by the chart or that distract from this information.
 
@@ -65,7 +65,7 @@ library(ggplot2)
 library(dplyr)
 
 # Setup of the dataframe for plotting use
-mpg_summary <- mtcars |>
+mpgSumm <- mtcars |>
 mutate(cyl = factor(cyl)) |>
 group_by(cyl) |>
 summarise(mean_mpg = mean(mpg))
@@ -77,7 +77,7 @@ summarise(mean_mpg = mean(mpg))
 #| warning: false
 
 # LOTS of plotting elements from ggplot2, see the page about ggplot2 for more background on these
-ggplot(mpg_summary, aes(x = cyl, y = mean_mpg, fill = cyl)) +
+ggplot(mpgSumm, aes(x = cyl, y = mean_mpg, fill = cyl)) +
 geom_col(color = "black", width = 0.8) +
 labs(
 title = "Different Mean Miles Per Gallon for Cars with Different Numbers of Cylinders",
@@ -94,11 +94,13 @@ plot.title = element_text(size = 16, face = "bold")
 )
 ```
 
-If the goal is to compare the fuel efficiency of cars with different numbers of cylinders, much of this visualization is unnecessary and distracts from the task: :::
+If the goal is to compare the fuel efficiency of cars with different numbers of cylinders, much of this visualisation is unnecessary and distracts from the task:
 
--   Colored background and thick border draw attention away from the bars
+:::
+
+-   Coloured background and thick border draw attention away from the bars
 -   Heavy black grid lines dominate the data
--   Color fill adds a legend but **doesn’t encode new information**
+-   Colour fill adds a legend but **doesn’t encode new information**
 -   Wordy title (“different”, “numbers of”) adds clutter
 -   The reader must constantly look back and forth between the bars and y-axis
 
@@ -116,10 +118,10 @@ Let's now try to clean up. But before we do, how would **YOU** clean this up?
 #| warning: false
 
 # A better plot using ggplot2 again
-ggplot(mpg_summary, aes(x = cyl, y = mean_mpg)) +
+ggplot(mpgSumm, aes(x = cyl, y = mean_mpg)) +
 geom_col(fill = "grey70", width = 0.6) +
 geom_col(
-data = filter(mpg_summary, cyl == "8"),
+data = filter(mpgSumm, cyl == "8"),
 fill = "#D55E00",
 width = 0.6
 ) +
@@ -153,13 +155,13 @@ I may or may not have gone a bit far leaving out the x-axis label. It’s a fine
 
 In general, you want to reduce chart junk to a minimum. In other words, more signal, less noise. At the end of the day, the data visualisation is an art specific to every data scientist, but there is good and bad art!
 
-## Color choice
+## Colour choice
 
-Color choice is about more than aesthetics. Choose colors that help convey the information contained in the plot.
+Colour choice is about more than aesthetics. Choose colours that help convey the information contained in the plot.
 
 The article *How to Choose Colors for Data Visualizations* by Mike Yi ([link](https://chartio.com/learn/charts/how-to-choose-colors-data-visualization)) is a great place to start.
 
-Basically, think about selecting among sequential, diverging, and qualitative color schemes:
+Basically, think about selecting among sequential, diverging, and qualitative colour schemes:
 
 :::
 
@@ -175,8 +177,8 @@ Other things to keep in mind:
 
 :::
 
--   Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colors that clash in a discordant fashion (i.e., they hurt to look at!)
--   Avoid combinations of red and green — it can be difficult for a colorblind audience to distinguish these colors
+-   Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colours that clash in a discordant fashion (i.e., they hurt to look at!)
+-   Avoid combinations of red and green — it can be difficult for a colourblind audience to distinguish these colours
 
 :::
 
@@ -262,7 +264,7 @@ There now appears to be a very large gender difference! Now let us try to plot w
 p + scale_y_continuous(limits = c(0, 125000))
 ```
 
-There doesn’t appear to be any gender difference! The goal of ethical data visualization is to represent findings with as little distortion as possible. This means choosing an appropriate range for the y-axis. Bar charts should almost always start at y = 0. For other charts, the limits really depend on subject matter knowledge of the expected range of values.
+There doesn’t appear to be any gender difference! The goal of ethical data visualisation is to represent findings with as little distortion as possible. This means choosing an appropriate range for the y-axis. Bar charts should almost always start at y = 0. For other charts, the limits really depend on subject matter knowledge of the expected range of values.
 
 ### Plots with other scales
 
@@ -274,7 +276,7 @@ Some data might look better if we plot them on a different y-axis scale! Let us 
 #| warning: false
 
 # Setup of the new dataset we will be using
-ozone_summary <- airquality |>
+ozone <- airquality |>
 filter(!is.na(Ozone)) |>
 group_by(Month) |>
 summarise(
@@ -293,7 +295,7 @@ ci = qt(0.975, df = n - 1) * se
 #| warning: false
 
 # Using ggplot for the linear and log scale plots
-p_linear <- ggplot(ozone_summary, aes(x = factor(Month), y = mean)) +
+pLin <- ggplot(ozone, aes(x = factor(Month), y = mean)) +
 geom_col(fill = "grey70", width = 0.6) +
 geom_errorbar(
 aes(ymin = mean - ci, ymax = mean + ci),
@@ -307,7 +309,7 @@ y = "Ozone concentration"
 ) +
 theme_minimal()
 
-p_log <- ggplot(ozone_summary, aes(x = factor(Month), y = mean)) +
+pLog <- ggplot(ozone, aes(x = factor(Month), y = mean)) +
 geom_col(fill = "grey70", width = 0.6) +
 geom_errorbar(
 aes(ymin = mean - ci, ymax = mean + ci),
@@ -322,16 +324,32 @@ y = "Ozone concentration (log scale)"
 theme_minimal()
 
 # Combining the two plots into one through the patchwork package
-p_linear / p_log
+pLin / pLog
 ```
 
 The upper panel uses a linear scale, where visual differences correspond to absolute changes in ozone concentration. The lower panel uses a logarithmic scale, where equal distances represent equal ratios rather than equal differences. For this right-skewed data, the log scale facilitates comparison in relative terms and reduces the dominance of large values.
+
+::: {.callout-tip title="Going further 🚀"}
+A few packages help you emphasise honestly. `ggbreak::scale_y_break()` inserts a clearly marked gap in an axis (better than silently truncating it), and `ggforce::facet_zoom()` shows a zoomed-in inset alongside the full view. If you prefer building plots by clicking, `esquisse` provides a drag-and-drop GUI that writes the `ggplot2` code for you.
+
+```{r}
+#| eval: false
+library(ggbreak)
+pLin + scale_y_break(c(50, 100))
+
+library(ggforce)
+pLin + facet_zoom(ylim = c(0, 50))
+
+library(esquisse)
+esquisser(airquality)
+```
+:::
 
 ## Further Resources
 
 If you would like to learn more about `ggplot2` there are several good sources included in the ggplot2 page!
 
-If you would like to learn more about data visualization in general, here are some useful resources:
+If you would like to learn more about data visualisation in general, here are some useful resources:
 
 -   Scott Berinato’s Harvard Business Review article *Visualizations that really work* <https://hbr.org/2016/06/visualizations-that-really-work>
 -   Wall Street Journal’s guide to information graphics: *The dos and don’ts of presenting data, facts and figures* (Wong 2010)
@@ -340,4 +358,4 @@ If you would like to learn more about data visualization in general, here are so
 -   *The Truthful Art: Data, charts, and maps for communication* (Cairo 2016)
 -   The Information is Beautiful website: <https://informationisbeautiful.net>
 
-The best graphs are rarely created on the first attempt. Experiment until you have a visualization that clarifies the data and helps communicate a meaningful story. And have fun!
+The best graphs are rarely created on the first attempt. Experiment until you have a visualisation that clarifies the data and helps communicate a meaningful story. And have fun!

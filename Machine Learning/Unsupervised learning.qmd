@@ -1,0 +1,251 @@
+---
+title: "Unsupervised Learning: Clustering and PCA"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+# What is unsupervised learning?
+
+So far in this course, most of the modelling we have done has been *supervised*: we had an outcome variable $y$ (a response) and a set of explanatory variables $X$, and we tried to learn the relationship between them. **Unsupervised learning** throws away the labels. We are handed only the features $X$ and asked a far more open-ended question: *is there any interesting structure in here?*
+
+That structure usually takes one of two forms. We might look for **groups** of observations that resemble one another (clustering), or we might look for a **lower-dimensional summary** that captures most of what is going on (dimensionality reduction). Throughout this page we use the famous `iris` dataset, but we will deliberately pretend we do **not** know the species. We will work only with the four numeric measurements, discover structure from those alone, and then — right at the end — peek at the true species to see how well we did.
+
+```{r}
+#| label: load-iris
+# Pretend we have no labels: keep only the four numeric measurement columns.
+measurements <- iris[, 1:4]
+head(measurements)
+summary(measurements)
+```
+
+Here is the same setup in Python, loading the iris features from `scikit-learn`:
+
+```{python}
+#| eval: false
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+X = iris.data            # the four numeric measurements
+feature_names = iris.feature_names
+print(pd.DataFrame(X, columns=feature_names).head())
+```
+
+::: {.callout-note title="In a nutshell: no y to predict"}
+Supervised learning has a target column and asks *"predict y from X"*. Unsupervised learning has **no target** — only the features. Instead of measuring accuracy against known answers, we hunt for hidden structure: clusters of similar observations, or directions along which the data vary most. There is no single "right answer", which is exactly what makes it both powerful and a little subjective.
+:::
+
+# k-means clustering
+
+The most popular clustering method is **k-means**. We pick a number of clusters $k$ in advance. The algorithm then places $k$ centres in the feature space and repeatedly (i) assigns each point to its nearest centre and (ii) moves each centre to the average of the points assigned to it, until nothing changes. It is essentially trying to minimise the total squared distance from each point to its cluster centre.
+
+One subtlety matters enormously: k-means uses Euclidean distance, so variables measured on larger scales dominate. We therefore **scale** the data first so each measurement contributes comparably.
+
+```{r}
+#| label: kmeans-fit
+set.seed(2026)
+
+# Scale so every measurement has mean 0 and standard deviation 1.
+scaledData <- scale(measurements)
+
+# Ask for 3 clusters. nstart tries several random starts and keeps the best.
+kmeansFit <- kmeans(scaledData, centers = 3, nstart = 25)
+
+# How many points landed in each cluster?
+table(kmeansFit$cluster)
+```
+
+Now for the moment of truth. We never told the algorithm about species, but let us cross-tabulate the discovered clusters against the true species:
+
+```{r}
+#| label: kmeans-vs-species
+table(cluster = kmeansFit$cluster, species = iris$Species)
+```
+
+Each row is dominated by a single species. *Setosa* is recovered perfectly; *versicolor* and *virginica* overlap a little (they genuinely are more similar to one another), but the structure k-means found from the raw numbers alone lines up remarkably well with the real biology.
+
+Let us visualise the clusters. We will colour points by their assigned cluster and use plotting symbols for the (secretly known) species:
+
+```{r}
+#| label: kmeans-plot
+#| fig-cap: "k-means clusters (colour) versus true species (symbol), shown on two of the measurements."
+plot(measurements$Petal.Length, measurements$Petal.Width,
+     col = kmeansFit$cluster,
+     pch = as.integer(iris$Species),
+     xlab = "Petal length (cm)", ylab = "Petal width (cm)",
+     main = "k-means clusters vs true species")
+legend("topleft",
+       legend = c("Cluster 1", "Cluster 2", "Cluster 3"),
+       col = 1:3, pch = 19, bty = "n")
+```
+
+The equivalent in Python uses `KMeans` from `scikit-learn`:
+
+```{python}
+#| eval: false
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+scaled = StandardScaler().fit_transform(X)
+
+kmeans = KMeans(n_clusters=3, n_init=25, random_state=2026)
+clusters = kmeans.fit_predict(scaled)
+
+# Compare discovered clusters with the true species.
+print(pd.crosstab(clusters, iris.target))
+```
+
+# Choosing k: the elbow method
+
+In the example above we *knew* there were three species, so $k = 3$ was an easy choice. In real unsupervised problems we have no such luxury. A common heuristic is the **elbow method**. We fit k-means for a range of $k$ values and record the total within-cluster sum of squares (`tot.withinss`) — a measure of how tight the clusters are. This always falls as $k$ grows (more clusters can hug the data more closely), but we look for the "elbow": the point after which adding clusters buys us little.
+
+```{r}
+#| label: elbow
+#| fig-cap: "Elbow plot: total within-cluster sum of squares against the number of clusters."
+set.seed(2026)
+
+kValues <- 1:8
+wss <- sapply(kValues, function(k) {
+  kmeans(scaledData, centers = k, nstart = 25)$tot.withinss
+})
+
+plot(kValues, wss, type = "b", pch = 19,
+     xlab = "Number of clusters k",
+     ylab = "Total within-cluster sum of squares",
+     main = "Elbow method")
+abline(v = 3, lty = 2, col = "red")
+```
+
+The curve bends sharply at $k = 3$ and flattens thereafter — encouraging support for three clusters, even without knowing the species count in advance.
+
+The elbow is convenient but a touch subjective. A more principled companion is the **silhouette** score, which measures, for each point, how much closer it sits to its own cluster than to the next nearest one. Averaged over all points, it gives a number in $[-1, 1]$ (higher is better), and we can pick the $k$ that maximises it. In R this lives in `cluster::silhouette()`; in Python it is `sklearn.metrics.silhouette_score`.
+
+```{python}
+#| eval: false
+from sklearn.metrics import silhouette_score
+
+wss = []
+for k in range(1, 9):
+    km = KMeans(n_clusters=k, n_init=25, random_state=2026).fit(scaled)
+    wss.append(km.inertia_)        # inertia_ is the within-cluster sum of squares
+
+# Silhouette needs at least 2 clusters.
+sil = silhouette_score(scaled, KMeans(n_clusters=3, n_init=25,
+                                      random_state=2026).fit_predict(scaled))
+print("Silhouette for k=3:", sil)
+```
+
+# Principal Component Analysis (PCA)
+
+Clustering finds groups; **Principal Component Analysis** instead finds a better *coordinate system*. Our data live in four dimensions (four measurements), which is awkward to visualise. PCA re-expresses the data along new axes — the **principal components** — ordered so that the first captures the greatest possible spread (variance), the second the most of what remains, and so on. Keeping just the first couple of components often retains almost all the information in far fewer dimensions.
+
+```{r}
+#| label: pca-fit
+pcaFit <- prcomp(iris[, 1:4], scale. = TRUE)
+summary(pcaFit)
+```
+
+Read the `Proportion of Variance` row: the first principal component alone captures the large majority of the variation, and the first two together account for the overwhelming bulk of it. In other words, we can compress 4D down to 2D while throwing away very little. Let us plot those first two components, colouring by the (secretly known) species:
+
+```{r}
+#| label: pca-plot
+#| fig-cap: "The first two principal components, coloured by true species. 4D collapses neatly to 2D."
+scores <- pcaFit$x   # coordinates of each observation in the new PC space
+
+plot(scores[, 1], scores[, 2],
+     col = as.integer(iris$Species),
+     pch = 19,
+     xlab = "Principal component 1",
+     ylab = "Principal component 2",
+     main = "Iris in PCA space")
+legend("topright",
+       legend = levels(iris$Species),
+       col = 1:3, pch = 19, bty = "n")
+```
+
+The three species separate cleanly along just two axes — *setosa* sits well apart, with *versicolor* and *virginica* adjacent but distinguishable. Crucially, PCA produced this picture using only the measurements; the colours were added afterwards purely to check.
+
+In Python, PCA lives in `scikit-learn`:
+
+```{python}
+#| eval: false
+from sklearn.decomposition import PCA
+
+scaled = StandardScaler().fit_transform(X)
+pca = PCA(n_components=2)
+scores = pca.fit_transform(scaled)
+
+print("Variance explained:", pca.explained_variance_ratio_)
+
+import matplotlib.pyplot as plt
+plt.scatter(scores[:, 0], scores[:, 1], c=iris.target)
+plt.xlabel("Principal component 1")
+plt.ylabel("Principal component 2")
+plt.title("Iris in PCA space")
+plt.show()
+```
+
+::: {.callout-note title="In a nutshell: PCA re-expresses, it does not discard"}
+PCA does **not** throw columns away. It rotates the data onto new axes pointing in the directions of greatest spread, ranks those axes by how much variance they explain, and lets you keep only the top few. The result is a faithful low-dimensional summary: most of the signal, a fraction of the dimensions, and a picture you can actually plot.
+:::
+
+# Going further 🚀
+
+::: {.callout-tip title="Going further 🚀"}
+**Hierarchical clustering** needs no $k$ chosen in advance. It starts with every point as its own cluster and repeatedly merges the two closest, building a tree (*dendrogram*) you can cut at any height. Both `dist` and `hclust` are base R, so this runs out of the box:
+
+```{r}
+#| label: hclust
+#| fig-cap: "Dendrogram from hierarchical clustering of the scaled iris measurements."
+distMatrix <- dist(scaledData)              # pairwise distances
+hclustFit <- hclust(distMatrix, method = "ward.D2")
+plot(hclustFit, labels = FALSE, hang = -1,
+     main = "Hierarchical clustering of iris",
+     xlab = "", sub = "")
+rect.hclust(hclustFit, k = 3, border = "red")  # cut into 3 groups
+```
+
+Cutting the tree into three groups (the red boxes) gives clusters comparable to k-means.
+
+**Non-linear embeddings.** When structure is curved rather than flat, linear PCA can struggle. Modern methods such as **t-SNE** and **UMAP** learn a 2D map that preserves local neighbourhoods, often producing strikingly well-separated blobs. In R use `Rtsne::Rtsne()` or `uwot::umap()`; in Python use `sklearn.manifold.TSNE` or the `umap-learn` package. These are powerful for visualisation but are *not* distance-preserving globally, so treat the gaps between clusters with care.
+
+```{r}
+#| eval: false
+# install.packages(c("Rtsne", "uwot"))
+library(Rtsne)
+library(uwot)
+
+set.seed(2026)
+tsneFit <- Rtsne(scaledData, dims = 2, perplexity = 30)
+umapFit <- umap(scaledData, n_neighbors = 15, n_components = 2)
+
+plot(tsneFit$Y, col = as.integer(iris$Species), pch = 19,
+     main = "t-SNE embedding of iris")
+```
+
+```{python}
+#| eval: false
+# pip install umap-learn scikit-learn
+from sklearn.manifold import TSNE
+import umap
+
+tsne = TSNE(n_components=2, perplexity=30, random_state=2026)
+emb_tsne = tsne.fit_transform(scaled)
+
+reducer = umap.UMAP(n_neighbors=15, n_components=2, random_state=2026)
+emb_umap = reducer.fit_transform(scaled)
+```
+:::

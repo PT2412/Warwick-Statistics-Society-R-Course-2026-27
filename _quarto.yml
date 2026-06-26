@@ -3,14 +3,13 @@ project:
   output-dir: docs
 
 website:
-  title: "Warwick Statistics Society R Course 2025-2026"
+  title: "Warwick Statistics Society R Course 2026-2027"
   sidebar:
     style: "docked"
     search: true
     contents:
       - text: Welcome
         href: index.qmd
-
       - section: "Introduction to R"
         contents: 
           - Introduction to R/introduction to r.qmd
@@ -22,6 +21,15 @@ website:
           - Introduction to R/functions.qmd
           - Introduction to R/Random numbers.qmd
           - Introduction to R/figures.qmd
+      - section: "Theory of Programming"
+        contents:
+          - Theory of Programming/Purpose of Programming.qmd
+          - Theory of Programming/Control Structures and Abstraction.qmd
+          - Theory of Programming/Programming Best Practices.qmd
+          - Theory of Programming/Time and Space Efficiency.qmd
+          - Theory of Programming/Interpreter vs Compilers.qmd
+          - Theory of Programming/Efficiency in R.qmd
+          - Theory of Programming/Data Structures and Algorithms.qmd
       - section: Mathematics to R
         contents:
           - Mathematics to Code/Mathematics to Code intro.qmd
@@ -29,18 +37,45 @@ website:
           - Mathematics to Code/Mathematics to Code Euclidean Example.qmd
           - Mathematics to Code/Mathematics to Code MonteCarlo Example.qmd
           - Mathematics to Code/Mathematics to Code NewtonRaph Example.qmd
+          - Mathematics to Code/Mathematics to Code MarkovChain Example.qmd
       - section: "Linear modelling"
         contents: 
           - Modelling/Linear modelling intro.qmd
           - Modelling/What is a linear model.qmd
+          - Modelling/Loading in data.qmd
           - Modelling/Continuous data.qmd
           - Modelling/Categorical data.qmd
           - Modelling/Diagnostics.qmd
           - Modelling/Check your understanding.qmd
+      - section: "Generalised Linear Models"
+        contents:
+          - GLMs/Introduction GLMs.qmd
+          - GLMs/Logistic regression.qmd
+          - GLMs/Poisson regression.qmd
+          - GLMs/Diagnostics GLMs.qmd
+          - GLMs/Check your understanding.qmd
+      - section: "Frequentist Statistics (Parametric Models)"
+        contents:
+          - Frequentist Statistics/Introduction Statistics.qmd
+          - Frequentist Statistics/likelihood.qmd
+          - Frequentist Statistics/asymptotics.qmd
+          - Frequentist Statistics/simulation.qmd
+          - Frequentist Statistics/hypothesis testing.qmd
+          - Frequentist Statistics/worked examples.qmd
+      - section: "Bayesian Statistics (Parametric Models)"
+        contents:
+          - Bayesian Statistics/Introduction Bayesian.qmd
+          - Bayesian Statistics/posterior.qmd
+          - Bayesian Statistics/priors.qmd
+          - Bayesian Statistics/computation.qmd
+          - Bayesian Statistics/model comparison.qmd
+          - Bayesian Statistics/worked examples bayesian.qmd
+          - Bayesian Statistics/forecasting.qmd
       - section: "Exploratory data analysis"
         contents: 
           - EDA/Cars dataset.qmd
           - EDA/summary tables.qmd
+          - EDA/tidyverse.qmd
       - section: "Data Visualisation"
         contents:
           - Data Visualisation/introvisualisation.qmd
@@ -52,14 +87,28 @@ website:
           - Data Visualisation/timegraph.qmd
           - Data Visualisation/multivar.qmd
           - Data Visualisation/othergraphs.qmd
-          - Data Visualisation/advice.qmd
+          - Data Visualisation/advice.qmd 
       - section: "Report Writing"
         contents:
           - Report Writing/reportintro.qmd
           - Report Writing/reportstructure.qmd
           - Report Writing/reportreporting.qmd
+          - Report Writing/reportreproducibility.qmd
           - Report Writing/reportenglish.qmd
           - Report Writing/reportai.qmd
+      - section: "Python for R Users"
+        contents:
+          - Python/Introduction Python.qmd
+          - Python/numpy.qmd
+          - Python/pandas.qmd
+          - Python/R vs Python.qmd
+      - section: "Machine Learning (R and Python)"
+        contents:
+          - Machine Learning/Introduction ML.qmd
+          - Machine Learning/Supervised learning.qmd
+          - Machine Learning/Regularisation and cross-validation.qmd
+          - Machine Learning/Unsupervised learning.qmd
+          - Machine Learning/Deep learning.qmd
 
   navbar:
       left:
@@ -73,13 +122,14 @@ website:
           text: Data
       tools:
          - icon: github
-           href: https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26
+           href: https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27
         
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    include-in-header: analytics.html
 
 server:
   shiny: true

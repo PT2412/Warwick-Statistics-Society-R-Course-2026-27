@@ -1,0 +1,193 @@
+---
+title: "Introduction to Statistics"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+::: {.callout-quote title="Sir Ronald Fisher"}
+*"To call in the statistician after the experiment is done may be no more than asking him to perform a post-mortem examination: he may be able to say what the experiment died of."* — R. A. Fisher
+:::
+
+This section introduces **parametric statistical inference** from the *frequentist* point of view. Before we develop any machinery, it is worth being very clear about what statistics actually *is*, and how it differs from the closely related — but logically opposite — subject of **probability**.
+
+# Probability and statistics are inverses of each other
+
+It is tempting to treat "probability" and "statistics" as synonyms. They are not. They run in **opposite directions**.
+
+- In **probability**, we are *given* a model — an object with known rules and known parameters — and we ask what kind of data it is likely to produce. We reason **forwards**, from cause to effect.
+- In **statistics**, we are *given* the data — the output we actually observed — and we ask what model could have produced it. We reason **backwards**, from effect to cause.
+
+The diagram below makes this symmetry explicit.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart LR
+  subgraph P["Probability — reasoning forwards"]
+    direction LR
+    M1["The object<br/>(model + known parameters θ)"] -->|"generates"| D1["Unknown output<br/>(data we have not seen yet)"]
+  end
+
+  subgraph S["Statistics — reasoning backwards"]
+    direction LR
+    D2["Observed output<br/>(the data we actually collected)"] -->|"infer"| M2["The object<br/>(model + unknown parameters θ)"]
+  end
+
+  P -.->|"the inverse problem"| S
+```
+
+A concrete example makes the contrast vivid.
+
+| | **Probability** | **Statistics** |
+|---|---|---|
+| **What is known?** | The coin's bias $\theta$ | The sequence of flips |
+| **What is unknown?** | The flips it will produce | The coin's bias $\theta$ |
+| **Typical question** | "If $\theta = 0.5$, what is the chance of 8 heads in 10 flips?" | "We saw 8 heads in 10 flips — what is $\theta$?" |
+| **Direction** | model $\Rightarrow$ data | data $\Rightarrow$ model |
+
+So probability is the **engine** and statistics is the **inverse problem**: we run the engine in reverse to recover the settings that produced what we saw. This is why every statistical method quietly relies on a probability model underneath — you cannot work backwards through a machine you have not described.
+
+# What "frequentist" actually means
+
+Once we accept that statistics is the inverse problem, a deeper question appears: **what is the unknown parameter $\theta$?**
+
+The frequentist answer is that $\theta$ is a **fixed but unknown constant**. The coin really does have one true bias; we just do not know it. Because $\theta$ is fixed, it has no probability distribution — it does not make sense to say "the probability that $\theta = 0.5$." What *is* random is the **data**: if we repeated the experiment many times, we would get different samples each time.
+
+::: {.callout-note title="In a nutshell: why a fixed constant has no distribution"}
+Think of the exact length of your desk. You do not know it, but it does not *vary* — measure it a hundred times and the desk is the same desk. A probability distribution describes spread, and a number that never wobbles has no spread to describe. For a frequentist, $\theta$ is exactly like that length: unknown, but not random.
+:::
+
+This leads to the defining idea of frequentism:
+
+::: {.callout-note title="The frequentist worldview"}
+Probability is the **long-run frequency** of an event over many hypothetical repetitions of an experiment. A statement like "this 95% confidence interval contains $\theta$" is a statement about the *procedure*: if we repeated the whole experiment forever, 95% of the intervals we construct would cover the true $\theta$.
+:::
+
+Everything in this section — likelihoods, estimators, standard errors, confidence intervals, hypothesis tests — is built on this single commitment: **the parameter is fixed, the data is random, and probability lives in the repetition of the experiment.**
+
+# Frequentist vs Bayesian
+
+The main alternative is the **Bayesian** approach. The disagreement is not about arithmetic — both camps use the same probability axioms — but about *what is allowed to be random*.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart TD
+  Q["What is the unknown parameter θ?"]
+  Q --> F["Frequentist:<br/>θ is a fixed constant<br/>the data is random"]
+  Q --> B["Bayesian:<br/>θ is itself random<br/>described by a probability distribution"]
+
+  F --> F2["Inference via the<br/>likelihood alone"]
+  B --> B2["Inference via the likelihood<br/>combined with a prior →<br/>a posterior distribution"]
+```
+
+| | **Frequentist** | **Bayesian** |
+|---|---|---|
+| **Is $\theta$ random?** | No — fixed but unknown | Yes — has a distribution |
+| **Role of prior beliefs** | None (not used) | Encoded explicitly as a *prior* |
+| **Core object** | The likelihood $L(\theta)$ | The posterior $p(\theta \mid \text{data})$ |
+| **Meaning of probability** | Long-run frequency | Degree of belief |
+| **Typical output** | Point estimate + confidence interval | Posterior distribution + credible interval |
+| **Interpretation of "95%"** | 95% of intervals cover $\theta$ on repetition | 95% probability $\theta$ lies in *this* interval |
+
+## Why use the frequentist approach?
+
+- **No prior required.** You do not have to invent or justify a prior distribution, which can feel arbitrary and can be hard to defend to a sceptical audience.
+- **Objectivity and reproducibility.** Two analysts with the same data and the same model get the same answer; there is no subjective input to argue about.
+- **Well-understood guarantees.** Confidence intervals and p-values come with clean long-run frequency properties, and many estimators have known optimality results.
+- **Computational simplicity.** Maximum likelihood estimates are often available in closed form or via fast optimisation, with no need for the heavy sampling machinery Bayesian methods sometimes require.
+- **It is the lingua franca.** Most introductory courses, regulatory frameworks, and scientific journals are built around frequentist tools, so fluency in them is essential.
+
+## Why someone might prefer Bayesian instead
+
+For balance: Bayesian methods let you incorporate genuine prior knowledge, give intuitively interpretable probability statements about $\theta$, handle small samples and complex hierarchical models gracefully, and update naturally as new data arrives. The "right" choice depends on the problem — but **this section is firmly frequentist**, and that choice shapes every method that follows.
+
+# Two strategies for the inverse problem: method of moments and maximum likelihood
+
+We have decided that statistics is the **inverse problem** and that $\theta$ is a fixed unknown. But how do we actually produce a *number* — a best guess $\hat\theta$ — from the data? A recipe that turns a data set into an estimate is called an **estimator**, and two classic recipes dominate frequentist practice. It is worth meeting both now, before we commit to one.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart TD
+  D["Observed data<br/>x₁, …, xₙ"] --> Q["How do we turn data<br/>into an estimate θ̂?"]
+  Q --> MOM["<b>Method of moments</b><br/>Match the data's moments<br/>to the model's moments<br/>and solve for θ"]
+  Q --> MLE["<b>Maximum likelihood</b><br/>Pick the θ that makes<br/>the observed data<br/>most probable"]
+```
+
+## Method of moments (MoM)
+
+This is the older and more elementary idea. Every distribution's **theoretical moments** — its mean, variance, and so on — are functions of the unknown parameter $\theta$. For example, a Poisson($\lambda$) has mean $\lambda$; an Exponential($\lambda$) has mean $1/\lambda$; a Normal has mean $\mu$ and variance $\sigma^2$.
+
+::: {.callout-note title="In a nutshell: what is a 'moment'?"}
+A moment is just an average of a power of the data — nothing more exotic than that. The **1st moment** is the average of the values themselves, i.e. the **mean**. The **2nd moment** is the average of the squared values, and once you centre it you get the **variance**. So whenever you read "match the moments," read "match the averages."
+:::
+
+The method of moments simply says: **compute the same moments from the data and set them equal to the theoretical ones, then solve for $\theta$.** If the model's mean is $1/\lambda$ and the sample mean is $\bar x$, we set $1/\lambda = \bar x$ and read off $\hat\lambda = 1/\bar x$. With $p$ unknown parameters we match the first $p$ moments to get $p$ equations.
+
+**Why it is useful:** it is fast, requires no calculus, and almost always gives a tidy closed-form answer. That makes it an excellent source of **starting values** for the numerical optimisers we meet later (you will see exactly this on the *Simulation* page, where method-of-moments estimates seed a Gamma fit). **Its weakness:** it ignores the full shape of the distribution — it only looks at a few summary moments — so it is generally *less efficient* (noisier) than the next method.
+
+## Maximum likelihood (MLE)
+
+The second recipe asks a more demanding question: of all the candidate values of $\theta$, **which one makes the data we actually observed most probable?** That value is the **maximum likelihood estimate**. Rather than matching a couple of moments, it uses the entire probability model and every data point at once.
+
+This extra effort is rewarded. As later pages show, the MLE comes with strong guarantees — it converges to the truth as data accumulates, it is asymptotically the *most precise* estimator possible, and its uncertainty falls straight out of the curvature of the likelihood. These properties are why maximum likelihood, not the method of moments, is the backbone of this section.
+
+| | **Method of moments** | **Maximum likelihood** |
+|---|---|---|
+| **Core idea** | Match sample moments to model moments | Maximise the probability of the observed data |
+| **Uses** | A few summary moments | The whole distribution, every data point |
+| **Closed form?** | Usually yes — quick algebra | Sometimes; often needs a numerical search |
+| **Efficiency** | Lower (noisier estimates) | Highest possible (asymptotically) |
+| **Typical role** | Quick estimate / starting values | The main workhorse of the section |
+
+::: {.callout-tip title="Going further 🚀"}
+The two recipes usually land near each other, but they can flatly **disagree**. Try the Uniform$(0,\theta)$ model: the method of moments gives $\hat\theta_{\text{MoM}} = 2\bar x$ (the mean of a Uniform$(0,\theta)$ is $\theta/2$), whereas the MLE is $\hat\theta_{\text{MLE}} = \max_i x_i$ — the largest value seen. Simulate it and see for yourself:
+
+```{r}
+set.seed(1)
+x <- runif(50, min = 0, max = 10)   # true theta = 10
+c(MoM = 2 * mean(x), MLE = max(x))
+```
+
+The MoM can even produce an estimate *below* the largest observation — an "impossible" value the data has already ruled out. Which estimator would you trust here, and why?
+:::
+
+::: {.callout-note title="The plan"}
+We will use **maximum likelihood** as our primary tool because of its optimality, and keep **method of moments** in our back pocket for quick estimates and for seeding numerical optimisers. The next page builds the maximum-likelihood machinery from the ground up.
+:::
+
+# Where this section is going
+
+Having committed to the frequentist worldview, we now need a tool to actually *do* the backwards reasoning — to take observed data and point us toward the parameter that most plausibly produced it. That tool is the **likelihood function**, and it is the subject of the next page.
+
+Specifically, the pages cover the following:
+
+:::{}
+* **Likelihood, score and Fisher information** — the central object of this section
+  + The likelihood and log-likelihood functions
+  + The score function and the maximum likelihood estimate (MLE)
+  + Observed and expected (Fisher) information, and how information becomes a standard error
+* **Asymptotics and confidence intervals** — what the MLE looks like for large samples
+  + Consistency, asymptotic normality and efficiency
+  + The Wald and likelihood-ratio confidence intervals, and the duality between tests and intervals
+* **Simulation in R** — what to do when the formulas run out
+  + The parametric and nonparametric bootstrap
+  + Fitting multi-parameter models with `optim`, and checking the asymptotics by Monte Carlo
+* **Hypothesis testing** — turning estimation around to ask "is $\theta = \theta_0$ believable?"
+  + The logic of a test, p-values, errors and power
+  + The Wald, score and likelihood-ratio "trinity"
+* **Worked examples** — the whole pipeline, end to end, on real data
+:::

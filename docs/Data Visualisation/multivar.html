@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Visualizing Multiple Variables – Warwick Statistics Society R Course 2025-2026</title>
+<title>Visualising Multiple Variables – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-89a4c75c28f39d544352a2d30bce53fa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ff0631ae66c640f7beec88805fcb678e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,6 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -115,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -143,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -152,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/multivar.html">Visualizing Multiple Variables</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/multivar.html">Visualising Multiple Variables</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -246,12 +250,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -282,17 +339,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -303,6 +366,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -333,13 +402,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -352,17 +562,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -396,25 +612,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -427,13 +643,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -454,6 +670,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -461,7 +683,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -480,7 +778,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#grouping-multiple-variables-in-one-plot" id="toc-grouping-multiple-variables-in-one-plot" class="nav-link" data-scroll-target="#grouping-multiple-variables-in-one-plot">Grouping: Multiple Variables in One Plot</a>
   <ul class="collapse">
   <li><a href="#starting-simple" id="toc-starting-simple" class="nav-link" data-scroll-target="#starting-simple">Starting Simple</a></li>
-  <li><a href="#adding-color-to-show-groups" id="toc-adding-color-to-show-groups" class="nav-link" data-scroll-target="#adding-color-to-show-groups">Adding Color to Show Groups</a></li>
+  <li><a href="#adding-colour-to-show-groups" id="toc-adding-colour-to-show-groups" class="nav-link" data-scroll-target="#adding-colour-to-show-groups">Adding Colour to Show Groups</a></li>
   <li><a href="#adding-shape-for-another-variable" id="toc-adding-shape-for-another-variable" class="nav-link" data-scroll-target="#adding-shape-for-another-variable">Adding Shape for Another Variable</a></li>
   <li><a href="#creating-bubble-plots-with-size" id="toc-creating-bubble-plots-with-size" class="nav-link" data-scroll-target="#creating-bubble-plots-with-size">Creating Bubble Plots with Size</a></li>
   <li><a href="#adding-trend-lines-by-group" id="toc-adding-trend-lines-by-group" class="nav-link" data-scroll-target="#adding-trend-lines-by-group">Adding Trend Lines by Group</a></li>
@@ -506,9 +804,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/multivar.html">Visualizing Multiple Variables</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/multivar.html">Visualising Multiple Variables</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Visualizing Multiple Variables</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Visualising Multiple Variables</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -527,22 +825,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>So far, you’ve learned to visualize single variables (like histograms) and relationships between two variables (like scatterplots). But real-world questions often involve multiple variables at once. For example: “How do penguin body characteristics vary by species, island, AND sex?”</p>
+<p>So far, you’ve learned to visualise single variables (like histograms) and relationships between two variables (like scatterplots). But real-world questions often involve multiple variables at once. For example: “How do penguin body characteristics vary by species, island, AND sex?”</p>
 <p>This chapter covers two techniques for displaying multiple variables:</p>
 <ol type="1">
-<li><strong>Grouping</strong>: Using colors, shapes, and sizes to distinguish groups within a single plot</li>
+<li><strong>Grouping</strong>: Using colours, shapes, and sizes to distinguish groups within a single plot</li>
 <li><strong>Faceting</strong>: Creating separate mini-plots for different groups</li>
 </ol>
 <p>Let’s get started with our packages and data:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># View our data</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 344
@@ -560,18 +858,18 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </section>
 <section id="grouping-multiple-variables-in-one-plot" class="level1">
 <h1>Grouping: Multiple Variables in One Plot</h1>
-<p>Grouping lets you add more variables to a plot by mapping them to visual properties like color, shape, size, or transparency.</p>
+<p>Grouping lets you add more variables to a plot by mapping them to visual properties like colour, shape, size, or transparency.</p>
 <section id="starting-simple" class="level2">
 <h2 class="anchored" data-anchor-id="starting-simple">Starting Simple</h2>
 <p>Let’s begin with a basic relationship: flipper length vs.&nbsp;body mass.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Penguin Body Measurements"</span>,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -582,20 +880,20 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </div>
 </div>
 </section>
-<section id="adding-color-to-show-groups" class="level2">
-<h2 class="anchored" data-anchor-id="adding-color-to-show-groups">Adding Color to Show Groups</h2>
-<p>Now let’s add species as a third variable using color:</p>
+<section id="adding-colour-to-show-groups" class="level2">
+<h2 class="anchored" data-anchor-id="adding-colour-to-show-groups">Adding Colour to Show Groups</h2>
+<p>Now let’s add species as a third variable using colour:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Penguin Measurements by Species"</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -605,7 +903,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </div>
 </div>
 </div>
-<p>Each species now has its own color, making patterns much clearer!</p>
+<p>Each species now has its own colour, making patterns much clearer!</p>
 </section>
 <section id="adding-shape-for-another-variable" class="level2">
 <h2 class="anchored" data-anchor-id="adding-shape-for-another-variable">Adding Shape for Another Variable</h2>
@@ -613,7 +911,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">shape =</span> sex)) <span class="sc">+</span></span>
@@ -622,7 +920,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">"Sex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">"Sex"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -655,7 +953,7 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species,</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">size =</span> bill_length_mm)) <span class="sc">+</span></span>
@@ -665,7 +963,7 @@ Important
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">size =</span> <span class="st">"Bill Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">size =</span> <span class="st">"Bill Length (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -683,7 +981,7 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> bill_depth_mm,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
@@ -692,7 +990,7 @@ Important
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>,</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -702,15 +1000,15 @@ Important
 </div>
 </div>
 </div>
-<p>The <code>geom_smooth()</code> automatically creates separate lines for each color group.</p>
+<p>The <code>geom_smooth()</code> automatically creates separate lines for each colour group.</p>
 </section>
 <section id="a-polished-example" class="level2">
 <h2 class="anchored" data-anchor-id="a-polished-example">A Polished Example</h2>
-<p>Here’s a well-formatted plot using multiple customization techniques:</p>
+<p>Here’s a well-formatted plot using multiple customisation techniques:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> sex)) <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
@@ -725,7 +1023,7 @@ Important
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Sex"</span>) <span class="sc">+</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -739,19 +1037,19 @@ Important
 </section>
 <section id="faceting-small-multiples" class="level1">
 <h1>Faceting: Small Multiples</h1>
-<p>Instead of cramming everything into one plot, faceting creates separate subplots for each group. This is often clearer than using many colors and shapes.</p>
+<p>Instead of cramming everything into one plot, faceting creates separate subplots for each group. This is often clearer than using many colours and shapes.</p>
 <section id="basic-faceting-with-facet_wrap" class="level2">
 <h2 class="anchored" data-anchor-id="basic-faceting-with-facet_wrap">Basic Faceting with <code>facet_wrap()</code></h2>
 <p>Let’s compare body mass distributions across species:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Body Mass Distribution by Species"</span>,</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -769,12 +1067,12 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g <span class="sc">/</span> <span class="dv">1000</span>)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g <span class="sc">/</span> <span class="dv">1000</span>)) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"coral"</span>, <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(sex <span class="sc">~</span> species) <span class="sc">+</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Body Mass by Species and Sex"</span>,</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Body Mass (kg)"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -792,7 +1090,7 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> bill_depth_mm,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> sex)) <span class="sc">+</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
@@ -801,7 +1099,7 @@ Important
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Dimensions by Species and Sex"</span>,</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Sex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Sex"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -819,7 +1117,7 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm,</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> bill_depth_mm,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> sex)) <span class="sc">+</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
@@ -833,7 +1131,7 @@ Important
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>,</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Sex"</span>) <span class="sc">+</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -850,31 +1148,31 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for multiple time series</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>econ_data <span class="ot">&lt;-</span> economics <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for multiple time series</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>econ <span class="ot">&lt;-</span> economics <span class="sc">%&gt;%</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, unemploy, psavert, pop) <span class="sc">%&gt;%</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>date,</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create labels for facets</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>econ_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>econLabels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"unemploy"</span> <span class="ot">=</span> <span class="st">"Unemployment (thousands)"</span>,</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"psavert"</span> <span class="ot">=</span> <span class="st">"Personal Savings Rate (%)"</span>,</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pop"</span> <span class="ot">=</span> <span class="st">"Population (thousands)"</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(econ_data, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(econ, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable, </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable,</span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">1</span>,</span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">variable =</span> econ_labels)) <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">variable =</span> econLabels)) <span class="sc">+</span></span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Economic Indicators Over Time"</span>,</span>
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -892,7 +1190,7 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare trends across islands</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare trends across islands</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island) <span class="sc">+</span></span>
@@ -901,7 +1199,7 @@ Important
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Dimensions Across Different Islands"</span>,</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -922,7 +1220,7 @@ Important
 <section id="common-mistakes-to-avoid" class="level1">
 <h1>Common Mistakes to Avoid</h1>
 <ol type="1">
-<li><strong>Too many groups</strong>: More than 5 colors becomes hard to distinguish</li>
+<li><strong>Too many groups</strong>: More than 5 colours becomes hard to distinguish</li>
 <li><strong>Unclear legends</strong>: Always label your aesthetic mappings clearly</li>
 <li><strong>Overcrowding</strong>: If your plot looks messy, try faceting instead</li>
 <li><strong>Inconsistent scales</strong>: Be careful with <code>scales = "free"</code> in facets, it can mislead</li>
@@ -935,7 +1233,7 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a multi-variable visualization</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a multi-variable visualization</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species,</span>
@@ -957,7 +1255,7 @@ Important
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
 <span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>,</span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">"Sex"</span>,</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data: Palmer Station LTER"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data: Palmer Station LTER"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -967,15 +1265,28 @@ Important
 </div>
 </div>
 </div>
-<p>This plot shows FIVE variables: flipper length, body mass, species (color + trend lines), sex (shape), and island (facets)!</p>
+<p>This plot shows FIVE variables: flipper length, body mass, species (colour + trend lines), sex (shape), and island (facets)!</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When one of your variables is time, the <code>gganimate</code> package can turn it into motion instead of yet another aesthetic. Adding <code>transition_states()</code> makes the plot step through each value (for example each year), animating how the relationship changes.</p>
+</div>
+</div>
 </section>
 <section id="practice-exercises" class="level1">
 <h1>Practice Exercises</h1>
-<p>Try creating these visualizations yourself:</p>
+<p>Try creating these visualisations yourself:</p>
 <ol type="1">
-<li>Create a scatterplot of bill length vs.&nbsp;depth, colored by island, faceted by species</li>
+<li>Create a scatterplot of bill length vs.&nbsp;depth, coloured by island, faceted by species</li>
 <li>Make a histogram of body mass, faceted by both species and sex using <code>facet_grid()</code></li>
-<li>Plot flipper length over time (year), with different colors for species</li>
+<li>Plot flipper length over time (year), with different colours for species</li>
 <li>Create a grouped boxplot showing body mass by species, with separate boxes for each sex (Hint: use <code>interaction()</code> or <code>facet_wrap()</code>)</li>
 <li>Challenge: Recreate the final “putting it all together” example with different variables (make it look nice and informative!).</li>
 </ol>
@@ -1045,13 +1356,14 @@ Important
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1444,8 +1756,8 @@ Important
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visualizing Multiple Variables"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visualising Multiple Variables"</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 10</span></span>
@@ -1459,11 +1771,11 @@ Important
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>So far, you've learned to visualize single variables (like histograms) and relationships between two variables (like scatterplots). But real-world questions often involve multiple variables at once. For example: "How do penguin body characteristics vary by species, island, AND sex?"</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>So far, you've learned to visualise single variables (like histograms) and relationships between two variables (like scatterplots). But real-world questions often involve multiple variables at once. For example: "How do penguin body characteristics vary by species, island, AND sex?"</span>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>This chapter covers two techniques for displaying multiple variables:</span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Grouping**: Using colors, shapes, and sizes to distinguish groups within a single plot</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Grouping**: Using colours, shapes, and sizes to distinguish groups within a single plot</span>
 <span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Faceting**: Creating separate mini-plots for different groups</span>
 <span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>Let's get started with our packages and data:</span>
@@ -1483,7 +1795,7 @@ Important
 <span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="fu"># Grouping: Multiple Variables in One Plot</span></span>
 <span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>Grouping lets you add more variables to a plot by mapping them to visual properties like color, shape, size, or transparency.</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>Grouping lets you add more variables to a plot by mapping them to visual properties like colour, shape, size, or transparency.</span>
 <span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Starting Simple</span></span>
 <span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
@@ -1501,9 +1813,9 @@ Important
 <span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>)</span>
 <span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Adding Color to Show Groups</span></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Adding Colour to Show Groups</span></span>
 <span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>Now let's add species as a third variable using color:</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>Now let's add species as a third variable using colour:</span>
 <span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
@@ -1520,7 +1832,7 @@ Important
 <span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Species"</span>)</span>
 <span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>Each species now has its own color, making patterns much clearer!</span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>Each species now has its own colour, making patterns much clearer!</span>
 <span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Adding Shape for Another Variable</span></span>
 <span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a></span>
@@ -1593,11 +1905,11 @@ Important
 <span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a>The <span class="in">`geom_smooth()`</span> automatically creates separate lines for each color group.</span>
+<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a>The <span class="in">`geom_smooth()`</span> automatically creates separate lines for each colour group.</span>
 <span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-164"><a href="#cb16-164" aria-hidden="true" tabindex="-1"></a><span class="fu">## A Polished Example</span></span>
 <span id="cb16-165"><a href="#cb16-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a>Here's a well-formatted plot using multiple customization techniques:</span>
+<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a>Here's a well-formatted plot using multiple customisation techniques:</span>
 <span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
@@ -1624,7 +1936,7 @@ Important
 <span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-193"><a href="#cb16-193" aria-hidden="true" tabindex="-1"></a><span class="fu"># Faceting: Small Multiples</span></span>
 <span id="cb16-194"><a href="#cb16-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a>Instead of cramming everything into one plot, faceting creates separate subplots for each group. This is often clearer than using many colors and shapes.</span>
+<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a>Instead of cramming everything into one plot, faceting creates separate subplots for each group. This is often clearer than using many colours and shapes.</span>
 <span id="cb16-196"><a href="#cb16-196" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-197"><a href="#cb16-197" aria-hidden="true" tabindex="-1"></a><span class="fu">## Basic Faceting with `facet_wrap()`</span></span>
 <span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a></span>
@@ -1723,25 +2035,25 @@ Important
 <span id="cb16-301"><a href="#cb16-301" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
 <span id="cb16-302"><a href="#cb16-302" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-303"><a href="#cb16-303" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for multiple time series</span></span>
-<span id="cb16-304"><a href="#cb16-304" aria-hidden="true" tabindex="-1"></a>econ_data <span class="ot">&lt;-</span> economics <span class="sc">%&gt;%</span></span>
+<span id="cb16-304"><a href="#cb16-304" aria-hidden="true" tabindex="-1"></a>econ <span class="ot">&lt;-</span> economics <span class="sc">%&gt;%</span></span>
 <span id="cb16-305"><a href="#cb16-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, unemploy, psavert, pop) <span class="sc">%&gt;%</span></span>
 <span id="cb16-306"><a href="#cb16-306" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>date,</span>
 <span id="cb16-307"><a href="#cb16-307" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
 <span id="cb16-308"><a href="#cb16-308" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
 <span id="cb16-309"><a href="#cb16-309" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-310"><a href="#cb16-310" aria-hidden="true" tabindex="-1"></a><span class="co"># Create labels for facets</span></span>
-<span id="cb16-311"><a href="#cb16-311" aria-hidden="true" tabindex="-1"></a>econ_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb16-311"><a href="#cb16-311" aria-hidden="true" tabindex="-1"></a>econLabels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb16-312"><a href="#cb16-312" aria-hidden="true" tabindex="-1"></a>  <span class="st">"unemploy"</span> <span class="ot">=</span> <span class="st">"Unemployment (thousands)"</span>,</span>
 <span id="cb16-313"><a href="#cb16-313" aria-hidden="true" tabindex="-1"></a>  <span class="st">"psavert"</span> <span class="ot">=</span> <span class="st">"Personal Savings Rate (%)"</span>,</span>
 <span id="cb16-314"><a href="#cb16-314" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pop"</span> <span class="ot">=</span> <span class="st">"Population (thousands)"</span></span>
 <span id="cb16-315"><a href="#cb16-315" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb16-316"><a href="#cb16-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-317"><a href="#cb16-317" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(econ_data, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb16-317"><a href="#cb16-317" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(econ, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
 <span id="cb16-318"><a href="#cb16-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span></span>
-<span id="cb16-319"><a href="#cb16-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable, </span>
+<span id="cb16-319"><a href="#cb16-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable,</span>
 <span id="cb16-320"><a href="#cb16-320" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">1</span>,</span>
 <span id="cb16-321"><a href="#cb16-321" aria-hidden="true" tabindex="-1"></a>             <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
-<span id="cb16-322"><a href="#cb16-322" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">variable =</span> econ_labels)) <span class="sc">+</span></span>
+<span id="cb16-322"><a href="#cb16-322" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">variable =</span> econLabels)) <span class="sc">+</span></span>
 <span id="cb16-323"><a href="#cb16-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb16-324"><a href="#cb16-324" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Economic Indicators Over Time"</span>,</span>
 <span id="cb16-325"><a href="#cb16-325" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
@@ -1792,7 +2104,7 @@ Important
 <span id="cb16-372"><a href="#cb16-372" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-373"><a href="#cb16-373" aria-hidden="true" tabindex="-1"></a><span class="fu"># Common Mistakes to Avoid</span></span>
 <span id="cb16-374"><a href="#cb16-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-375"><a href="#cb16-375" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Too many groups**: More than 5 colors becomes hard to distinguish</span>
+<span id="cb16-375"><a href="#cb16-375" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Too many groups**: More than 5 colours becomes hard to distinguish</span>
 <span id="cb16-376"><a href="#cb16-376" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Unclear legends**: Always label your aesthetic mappings clearly</span>
 <span id="cb16-377"><a href="#cb16-377" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Overcrowding**: If your plot looks messy, try faceting instead</span>
 <span id="cb16-378"><a href="#cb16-378" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Inconsistent scales**: Be careful with <span class="in">`scales = "free"`</span> in facets, it can mislead</span>
@@ -1832,24 +2144,36 @@ Important
 <span id="cb16-414"><a href="#cb16-414" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data: Palmer Station LTER"</span>)</span>
 <span id="cb16-415"><a href="#cb16-415" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-416"><a href="#cb16-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-417"><a href="#cb16-417" aria-hidden="true" tabindex="-1"></a>This plot shows FIVE variables: flipper length, body mass, species (color + trend lines), sex (shape), and island (facets)!</span>
+<span id="cb16-417"><a href="#cb16-417" aria-hidden="true" tabindex="-1"></a>This plot shows FIVE variables: flipper length, body mass, species (colour + trend lines), sex (shape), and island (facets)!</span>
 <span id="cb16-418"><a href="#cb16-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-419"><a href="#cb16-419" aria-hidden="true" tabindex="-1"></a><span class="fu"># Practice Exercises</span></span>
-<span id="cb16-420"><a href="#cb16-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-421"><a href="#cb16-421" aria-hidden="true" tabindex="-1"></a>Try creating these visualizations yourself:</span>
-<span id="cb16-422"><a href="#cb16-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-423"><a href="#cb16-423" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create a scatterplot of bill length vs. depth, colored by island, faceted by species</span>
-<span id="cb16-424"><a href="#cb16-424" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a histogram of body mass, faceted by both species and sex using <span class="in">`facet_grid()`</span></span>
-<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Plot flipper length over time (year), with different colors for species</span>
-<span id="cb16-426"><a href="#cb16-426" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Create a grouped boxplot showing body mass by species, with separate boxes for each sex (Hint: use <span class="in">`interaction()`</span> or <span class="in">`facet_wrap()`</span>)</span>
-<span id="cb16-427"><a href="#cb16-427" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Challenge: Recreate the final "putting it all together" example with different variables (make it look nice and informative!).</span>
-<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-429"><a href="#cb16-429" aria-hidden="true" tabindex="-1"></a><span class="fu"># Further Resources</span></span>
-<span id="cb16-430"><a href="#cb16-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-431"><a href="#cb16-431" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ggplot2 Book - Faceting</span><span class="co">](https://ggplot2-book.org/facet.html)</span></span>
-<span id="cb16-432"><a href="#cb16-432" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R Graphics Cookbook - Multiple Groups</span><span class="co">](https://r-graphics.org/)</span></span>
-<span id="cb16-433"><a href="#cb16-433" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Data Visualization: A Practical Introduction</span><span class="co">](https://socviz.co/)</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb16-419"><a href="#cb16-419" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb16-420"><a href="#cb16-420" aria-hidden="true" tabindex="-1"></a>When one of your variables is time, the <span class="in">`gganimate`</span> package can turn it into motion instead of yet another aesthetic. Adding <span class="in">`transition_states()`</span> makes the plot step through each value (for example each year), animating how the relationship changes.</span>
+<span id="cb16-421"><a href="#cb16-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-424"><a href="#cb16-424" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb16-426"><a href="#cb16-426" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb16-427"><a href="#cb16-427" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
+<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-429"><a href="#cb16-429" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(year)</span>
+<span id="cb16-430"><a href="#cb16-430" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-431"><a href="#cb16-431" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb16-432"><a href="#cb16-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-433"><a href="#cb16-433" aria-hidden="true" tabindex="-1"></a><span class="fu"># Practice Exercises</span></span>
+<span id="cb16-434"><a href="#cb16-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-435"><a href="#cb16-435" aria-hidden="true" tabindex="-1"></a>Try creating these visualisations yourself:</span>
+<span id="cb16-436"><a href="#cb16-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-437"><a href="#cb16-437" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create a scatterplot of bill length vs. depth, coloured by island, faceted by species</span>
+<span id="cb16-438"><a href="#cb16-438" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a histogram of body mass, faceted by both species and sex using <span class="in">`facet_grid()`</span></span>
+<span id="cb16-439"><a href="#cb16-439" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Plot flipper length over time (year), with different colours for species</span>
+<span id="cb16-440"><a href="#cb16-440" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Create a grouped boxplot showing body mass by species, with separate boxes for each sex (Hint: use <span class="in">`interaction()`</span> or <span class="in">`facet_wrap()`</span>)</span>
+<span id="cb16-441"><a href="#cb16-441" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Challenge: Recreate the final "putting it all together" example with different variables (make it look nice and informative!).</span>
+<span id="cb16-442"><a href="#cb16-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-443"><a href="#cb16-443" aria-hidden="true" tabindex="-1"></a><span class="fu"># Further Resources</span></span>
+<span id="cb16-444"><a href="#cb16-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-445"><a href="#cb16-445" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">ggplot2 Book - Faceting</span><span class="co">](https://ggplot2-book.org/facet.html)</span></span>
+<span id="cb16-446"><a href="#cb16-446" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R Graphics Cookbook - Multiple Groups</span><span class="co">](https://r-graphics.org/)</span></span>
+<span id="cb16-447"><a href="#cb16-447" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Data Visualization: A Practical Introduction</span><span class="co">](https://socviz.co/)</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

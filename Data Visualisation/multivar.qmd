@@ -1,5 +1,5 @@
 ---
-title: "Visualizing Multiple Variables"
+title: "Visualising Multiple Variables"
 format: 
   html:
     fig-width: 10
@@ -13,11 +13,11 @@ format:
 
 # Introduction
 
-So far, you've learned to visualize single variables (like histograms) and relationships between two variables (like scatterplots). But real-world questions often involve multiple variables at once. For example: "How do penguin body characteristics vary by species, island, AND sex?"
+So far, you've learned to visualise single variables (like histograms) and relationships between two variables (like scatterplots). But real-world questions often involve multiple variables at once. For example: "How do penguin body characteristics vary by species, island, AND sex?"
 
 This chapter covers two techniques for displaying multiple variables:
 
-1. **Grouping**: Using colors, shapes, and sizes to distinguish groups within a single plot
+1. **Grouping**: Using colours, shapes, and sizes to distinguish groups within a single plot
 2. **Faceting**: Creating separate mini-plots for different groups
 
 Let's get started with our packages and data:
@@ -37,7 +37,7 @@ glimpse(penguins)
 
 # Grouping: Multiple Variables in One Plot
 
-Grouping lets you add more variables to a plot by mapping them to visual properties like color, shape, size, or transparency.
+Grouping lets you add more variables to a plot by mapping them to visual properties like colour, shape, size, or transparency.
 
 ## Starting Simple
 
@@ -55,9 +55,9 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
        y = "Body Mass (g)")
 ```
 
-## Adding Color to Show Groups
+## Adding Colour to Show Groups
 
-Now let's add species as a third variable using color:
+Now let's add species as a third variable using colour:
 
 ```{r}
 #| echo: true 
@@ -74,7 +74,7 @@ ggplot(penguins, aes(x = flipper_length_mm,
        color = "Species")
 ```
 
-Each species now has its own color, making patterns much clearer!
+Each species now has its own colour, making patterns much clearer!
 
 ## Adding Shape for Another Variable
 
@@ -147,11 +147,11 @@ ggplot(penguins, aes(x = bill_length_mm,
   theme_minimal()
 ```
 
-The `geom_smooth()` automatically creates separate lines for each color group.
+The `geom_smooth()` automatically creates separate lines for each colour group.
 
 ## A Polished Example
 
-Here's a well-formatted plot using multiple customization techniques:
+Here's a well-formatted plot using multiple customisation techniques:
 
 ```{r}
 #| echo: true 
@@ -178,7 +178,7 @@ ggplot(penguins, aes(x = flipper_length_mm,
 
 # Faceting: Small Multiples
 
-Instead of cramming everything into one plot, faceting creates separate subplots for each group. This is often clearer than using many colors and shapes.
+Instead of cramming everything into one plot, faceting creates separate subplots for each group. This is often clearer than using many colours and shapes.
 
 ## Basic Faceting with `facet_wrap()`
 
@@ -277,25 +277,25 @@ Faceting works great for comparing trends over time. Let's use the `economics` d
 #| warning: false
 
 # Prepare data for multiple time series
-econ_data <- economics %>%
+econ <- economics %>%
   select(date, unemploy, psavert, pop) %>%
   tidyr::pivot_longer(cols = -date,
                       names_to = "variable",
                       values_to = "value")
 
 # Create labels for facets
-econ_labels <- c(
+econLabels <- c(
   "unemploy" = "Unemployment (thousands)",
   "psavert" = "Personal Savings Rate (%)",
   "pop" = "Population (thousands)"
 )
 
-ggplot(econ_data, aes(x = date, y = value)) +
+ggplot(econ, aes(x = date, y = value)) +
   geom_line(color = "darkblue") +
-  facet_wrap(~variable, 
+  facet_wrap(~variable,
              ncol = 1,
              scales = "free_y",
-             labeller = labeller(variable = econ_labels)) +
+             labeller = labeller(variable = econLabels)) +
   theme_minimal() +
   labs(title = "US Economic Indicators Over Time",
        x = "Year",
@@ -346,7 +346,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 # Common Mistakes to Avoid
 
-1. **Too many groups**: More than 5 colors becomes hard to distinguish
+1. **Too many groups**: More than 5 colours becomes hard to distinguish
 2. **Unclear legends**: Always label your aesthetic mappings clearly
 3. **Overcrowding**: If your plot looks messy, try faceting instead
 4. **Inconsistent scales**: Be careful with `scales = "free"` in facets, it can mislead
@@ -386,15 +386,27 @@ ggplot(penguins, aes(x = flipper_length_mm,
        caption = "Data: Palmer Station LTER")
 ```
 
-This plot shows FIVE variables: flipper length, body mass, species (color + trend lines), sex (shape), and island (facets)!
+This plot shows FIVE variables: flipper length, body mass, species (colour + trend lines), sex (shape), and island (facets)!
+
+::: {.callout-tip title="Going further 🚀"}
+When one of your variables is time, the `gganimate` package can turn it into motion instead of yet another aesthetic. Adding `transition_states()` makes the plot step through each value (for example each year), animating how the relationship changes.
+
+```{r}
+#| eval: false
+library(gganimate)
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point() +
+  transition_states(year)
+```
+:::
 
 # Practice Exercises
 
-Try creating these visualizations yourself:
+Try creating these visualisations yourself:
 
-1. Create a scatterplot of bill length vs. depth, colored by island, faceted by species
+1. Create a scatterplot of bill length vs. depth, coloured by island, faceted by species
 2. Make a histogram of body mass, faceted by both species and sex using `facet_grid()`
-3. Plot flipper length over time (year), with different colors for species
+3. Plot flipper length over time (year), with different colours for species
 4. Create a grouped boxplot showing body mass by species, with separate boxes for each sex (Hint: use `interaction()` or `facet_wrap()`)
 5. Challenge: Recreate the final "putting it all together" example with different variables (make it look nice and informative!).
 

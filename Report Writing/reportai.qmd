@@ -1,5 +1,5 @@
 ---
-title: "How to Use AI/LLMs for your studiesS"
+title: "How to Use AI/LLMs for your studies"
 format: 
   html:
     fig-width: 12
@@ -24,13 +24,13 @@ Large language models (LLMs) and other generative AI tools are increasingly avai
 Generative AI tools may be used **as assistive aids**, rather than as substitutes for intellectual work. Appropriate uses include:
 
 1. **Language and Presentation Support**
-   AI tools can be used to improve the grammar and readability of text you have already written. This is acceptable, provided the underlying ideas, structure, and arguments come form you.
+   AI tools can be used to improve the grammar and readability of text you have already written. This is acceptable, provided the underlying ideas, structure, and arguments come from you.
 
 2. **Clarification of Concepts**
-   AI tools are really useful for explaining mathematical concepts, especially for understanding the logic behind trikcy proofs and definitions. Note that this should be used to support, not replace, lecture material and independent understanding.
+   AI tools are really useful for explaining mathematical concepts, especially for understanding the logic behind tricky proofs and definitions. Note that this should be used to support, not replace, lecture material and independent understanding.
 
 3. **Code Debugging and Syntax Assistance**
-   Generative AI can be used to help identify syntax errors and suggest alternative ways of sovling problem. This probably the best use of AI. The debugging stage of writing code *used* to take the longest amount of time, especially when doing it independently. But now, you can use AI tools to quickly identify issues, and more importantly, learn why they happened in the first place!
+   Generative AI can be used to help identify syntax errors and suggest alternative ways of solving problems. This is probably the best use of AI. The debugging stage of writing code *used* to take the longest amount of time, especially when doing it independently. But now, you can use AI tools to quickly identify issues, and more importantly, learn why they happened in the first place!
 
 In all such cases, the AI tool functions as a **supporting instrument**, similar to a spell-checker, reference book, or programming forum.
 
@@ -44,10 +44,10 @@ Certain uses of generative AI are **not appropriate** in academic work:
    It is not acceptable to use AI tools to generate analyses, interpret results, or draw conclusions that you do not fully understand or cannot independently justify. 
 
 2. **Writing Large Sections of the Report**
-   Submitting large portions of AI-generated text as original work, including constitutes academic misconduct if not explicitly permitted and acknowledged. This applies even if the text is edited afterwards. 
+   Submitting large portions of AI-generated text as original work constitutes academic misconduct if not explicitly permitted and acknowledged. This applies even if the text is edited afterwards. 
 
 3. **Producing Code Without Understanding**
-   Using AI to generate entire code blocks without understanding how they work is inappropriate. Statistical programming is part of the assessed intellectual work and thus constitutes to academic dishonesty.
+   Using AI to generate entire code blocks without understanding how they work is inappropriate. Statistical programming is part of the assessed intellectual work and thus constitutes academic dishonesty.
 
 4. **Fabrication of References, Data, or Methods**
    AI tools may produce plausible-sounding but incorrect citations, datasets, or methodological claims. Be very careful when trusting AI outputs and be sure to fact check them!

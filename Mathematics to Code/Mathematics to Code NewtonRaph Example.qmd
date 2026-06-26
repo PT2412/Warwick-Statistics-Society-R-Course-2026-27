@@ -18,12 +18,16 @@ engine: knitr
 
 # Mathematical Intuition
 
-We want to find a root of ($f(x)=0$).\
-We use the tangent line at ($x_n$) to estimate a better guess:
+We want to find a root of $f(x)=0$.\
+We use the tangent line at $x_n$ to estimate a better guess:
 
 $x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$. 
 
-Repeat until ( $\|x_{n+1} - x_n\|$ ) is small.
+Repeat until ( $|x_{n+1} - x_n|$ ) is small.
+
+::: {.callout-note title="In a nutshell: why the derivative?"}
+The tangent line at our current guess points towards the root and its slope (the derivative) tells us how big a step to take to get there — a steep slope means a small, careful step, a shallow slope means a larger leap.
+:::
 
 ```{r}
 #| echo: false
@@ -57,20 +61,20 @@ abline(h = 0, col = "gray")
 
 # Plot Newton steps
 for (i in 1:5) {
-  x_n <- iters[i]
-  y_n <- f(x_n)
-  slope <- df(x_n)
-  
+  xN <- iters[i]
+  yN <- f(xN)
+  slope <- df(xN)
+
   # Tangent line
-  abline(a = y_n - slope * x_n, b = slope,
+  abline(a = yN - slope * xN, b = slope,
          col = "steelblue", lty = 2)
-  
+
   # Vertical drop to x-axis
-  segments(x_n, y_n, iters[i + 1], 0,
+  segments(xN, yN, iters[i + 1], 0,
            col = "firebrick")
-  
+
   # Points
-  points(x_n, y_n, pch = 16)
+  points(xN, yN, pch = 16)
 }
 
 # Final root estimate
@@ -84,9 +88,9 @@ points(iters[6], 0, pch = 19, col = "firebrick")
 
 | Math concept | R translation             |
 |--------------|---------------------------|
-| update rule  | `x_new <- x - f(x)/df(x)` |
+| update rule  | `xNew <- x - f(x)/df(x)`  |
 | derivative   | function `df(x)`          |
-| convergence  | `abs(x_new - x) < tol`    |
+| convergence  | `abs(xNew - x) < tol`     |
 
 ------------------------------------------------------------------------
 
@@ -97,7 +101,7 @@ points(iters[6], 0, pch = 19, col = "firebrick")
 flowchart TD
   Start([Start: choose x0, tol, max_iter])
   Compute["x_next with the algorithm"]
-  Check{Is the absolute difference between <br/> the next guess x_next and <br/> the true root x less than the tolerance}
+  Check{Is the absolute difference between <br/> the next guess x_next and <br/> the current guess x less than the tolerance}
   Accept([Return x_next])
   Update["x <- x_next"]
 
@@ -111,15 +115,15 @@ flowchart TD
 # Implementation in R
 
 ```{r}
-newton <- function(f, df, x0, tol = 1e-10, max_iter = 100) {
+newton <- function(f, df, x0, tol = 1e-10, maxIter = 100) {
   x <- x0
-  for (i in 1:max_iter) {
+  for (i in 1:maxIter) {
     fx <- f(x)
     dfx <- df(x)
     if (dfx == 0) stop("Derivative is zero; choose a new x0")
-    x_new <- x - fx / dfx
-    if (abs(x_new - x) < tol) return(x_new)
-    x <- x_new
+    xNew <- x - fx / dfx
+    if (abs(xNew - x) < tol) return(xNew)
+    x <- xNew
   }
   stop("Did not converge")
 }
@@ -135,3 +139,26 @@ newton(f1, df1, x0 = 1)
 # Reflection
 
 The Newton–Raphson method shows how an **iterative analytic idea** (tangent approximation) translates into a **computational fixed-point loop**.
+
+::: {.callout-tip title="Going further 🚀"}
+Writing your own solver is great for understanding, but R already has robust, well-tested tools. `uniroot()` finds a root within a bracketing interval, and `optim()` minimises (or, by negating, maximises) functions of one or more variables.
+
+```{r}
+###| Built-in root finder over an interval
+uniroot(function(x) x^3 - 2*x - 5, interval = c(1, 3))$root
+```
+
+You also do not have to supply the derivative by hand. Base R's `D()` differentiates simple expressions **symbolically**, while the `numDeriv` package estimates gradients **numerically** for any function:
+
+```{r}
+###| Symbolic derivative with base D()
+D(expression(x^3 - 2*x - 5), "x")
+```
+
+```{r}
+#| eval: false
+###| Numerical gradient (numDeriv package)
+library(numDeriv)
+grad(function(x) x^3 - 2*x - 5, x = 2)
+```
+:::

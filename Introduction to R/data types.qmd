@@ -21,14 +21,14 @@ Before we start coding in R, we need to be familiar with how R stores data - i.e
 | Logical or Boolean  | TRUE or FALSE    |
 | Numeric   | a real number, including decimal values    |
 | Integer | an integer number (i.e. no decimal values)    |
-| Complex | an imaginary value |
+| Complex | a complex number with both a real and an imaginary part, e.g. 3+2i |
 | Character | character or string values, for example a letter 'A', typically surrounded by `''` or `""`  |
-| Raw | raw bytes (0 or 1s) |
+| Raw | raw bytes, stored in hexadecimal |
 
 : Data types {.hover}
 
 :::{.callout-note}
-Numeric and integer are different data types! When inputting data, any integer value will be stored as a numeric data type unless we add an `L` to the end. For example, `5` will be stored as a numeric data type but `5L` will be stored as a integer. 
+Numeric and integer are different data types! When inputting data, any integer value will be stored as a numeric data type unless we add an `L` to the end. For example, `5` will be stored as a numeric data type but `5L` will be stored as an integer. 
 :::
 
 # What data type is this variable?
@@ -77,7 +77,7 @@ as.character(FALSE)
 
 ```{r}
 ###| Coercing a character variable
-as.numeric("a") # this will produce an error!
+as.numeric("a") # this will produce NA with a warning, not an error!
 ```
 
 ```{r}

@@ -45,7 +45,7 @@ Figures, plots, and diagrams should:
 * be referred to explicitly in the text,
 * be placed close to the point where they are discussed.
 
-Axes must be clearly labelled, units indicated, and scales chosen sensibly. Furhtermore, a statistical report should be easy to navigate. Section headings, numbering, and figure references act as **signposts** that guide the reader through the argument.
+Axes must be clearly labelled, units indicated, and scales chosen sensibly. Furthermore, a statistical report should be easy to navigate. Section headings, numbering, and figure references act as **signposts** that guide the reader through the argument.
 
 For more details on data visualisation, refer to the pages dedicated to it through the navigation menu to the left of the webpage.
 
@@ -97,7 +97,7 @@ We construct a **Table 1–style summary**, stratified by species.
 #| message: false
 #| warning: false
 
-summary_table <- penguins %>%
+summ <- penguins %>%
   filter(!is.na(bill_length_mm),
          !is.na(body_mass_g)) %>%
   group_by(species) %>%
@@ -109,7 +109,7 @@ summary_table <- penguins %>%
     sd_body_mass = sd(body_mass_g)
   )
 
-glimpse(summary_table)
+summ
 ```
 
 This table contains only **descriptive statistics** and provides an overview of the dataset. No hypothesis tests or p-values are included.
@@ -128,7 +128,7 @@ The `kable()` function converts a data frame into a clean, professional table.
 library(knitr)
 
 kable(
-  summary_table,
+  summ,
   caption = "Table 1: Descriptive statistics of penguin characteristics by species",
   digits = 2,
   col.names = c(
@@ -163,7 +163,7 @@ For more polished presentation, `kableExtra` provides tools for alignment, group
 library(kableExtra)
 
 kable(
-  summary_table,
+  summ,
   caption = "Table 1: Descriptive statistics of penguin characteristics by species",
   digits = 2,
   col.names = c(
@@ -194,7 +194,7 @@ This formatting:
 * improves readability,
 * remains suitable for black-and-white printing.
 
-You can find more options to make your tables more interesting and imformative in the documentation of kableExtra.
+You can find more options to make your tables more interesting and informative in the documentation of kableExtra.
 
 ---
 
@@ -252,7 +252,7 @@ Unedited output dumps obscure key findings and signal a lack of engagement with 
 You can choose to place all of your code at the end of your RMarkdown report in an Appendix using the two following chunks:
 
 ```{r}
-##| Place this one at the start of your RMarkdown, after the YAML block
+##| Place this one at the start of your RMarkdown file, after the YAML block
 
 # knitr::opts_chunk$set(echo = FALSE,
 #                      message=FALSE,
@@ -270,14 +270,14 @@ You can choose to place all of your code at the end of your RMarkdown report in 
 Now for a code chunk that will print all of the code in your RMD file into one continuous code block:
 
 ```{r all-code, echo=TRUE, eval=FALSE}
-##| Place this one at the end of your RMarkdown and include the following in your chunk options for this R chunk:
+##| Place this one at the end of your RMarkdown file and include the following in your chunk options for this R chunk:
 
 # ref.label=knitr::all_labels(),
 
 # I haven't included it since it would re-print all of the code above here.
 ```
 
-While these two chunks will not explicitly create and appendix, they will place all of the code present in the respective RMarkdown (RMD) file at the end of the knitted output. You can then insert markdown text above the last block to create an appendix.
+While these two chunks will not explicitly create an appendix, they will place all of the code present in the respective RMarkdown (`.Rmd`) file at the end of the knitted output. You can then insert markdown text above the last block to create an appendix.
 
 
 

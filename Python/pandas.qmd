@@ -1,0 +1,230 @@
+---
+title: "pandas: DataFrames for Data Wrangling"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+If you have spent any time with R, you have spent time with `data.frame`s and tibbles, and almost certainly with **dplyr** and **tidyr** for wrangling them. Python's answer to all of this is a single library: **pandas**. The idea of this page is simple — almost everything you already know how to do in the tidyverse has a direct pandas counterpart. We will lean on that knowledge throughout, so think of this as a translation exercise rather than learning something from scratch.
+
+One small but important habit to flag up front: Python uses **snake_case** for names (`mean_speed`), whereas in this course we tend to write R in **camelCase** (`meanSpeed`). Keep an eye on that as you read.
+
+## The DataFrame: pandas' tibble
+
+::: {.callout-note title="In a nutshell: the DataFrame is pandas' data.frame, and pandas is dplyr + tidyr"}
+A pandas `DataFrame` is a rectangular table of columns, exactly like an R `data.frame` or tibble. The **pandas** library provides the verbs to wrangle it — filtering, selecting, mutating, arranging, grouping and summarising — playing the combined role of **dplyr** and **tidyr**. By convention you import it as `pd`.
+:::
+
+Let us build a small DataFrame inline. We will use a handful of cars, with a numeric `speed` column and a categorical `brand` column to group by.
+
+```{python}
+import pandas as pd
+import numpy as np
+
+cars = pd.DataFrame({
+    "name": ["Mini", "Golf", "Polo", "Civic", "Jazz", "Corolla"],
+    "brand": ["BMW", "VW", "VW", "Honda", "Honda", "Toyota"],
+    "speed": [110, 130, 105, 125, 100, 120],
+    "doors": [3, 5, 5, 5, 5, 4],
+})
+
+cars
+```
+
+For contrast, here is the same table built in base R. It should feel very familiar:
+
+```{r}
+cars <- data.frame(
+  name  = c("Mini", "Golf", "Polo", "Civic", "Jazz", "Corolla"),
+  brand = c("BMW", "VW", "VW", "Honda", "Honda", "Toyota"),
+  speed = c(110, 130, 105, 125, 100, 120),
+  doors = c(3, 5, 5, 5, 5, 4)
+)
+
+cars
+```
+
+The two are conceptually identical: named columns of equal length, each with its own type.
+
+## Inspecting a DataFrame
+
+Before wrangling, you usually want to look at the shape and structure of your data. In R you reach for `head()`, `dim()`, `names()`, `str()` and `summary()`. pandas has a near one-to-one set of tools.
+
+```{python}
+cars.head()        # first few rows, like head() in R
+```
+
+```{python}
+cars.shape         # (rows, columns) — like dim()
+```
+
+```{python}
+cars.columns       # column names — like names()
+```
+
+```{python}
+cars.dtypes        # type of each column — like sapply(df, class)
+```
+
+```{python}
+cars.describe()    # numeric summary — like summary() on numeric columns
+```
+
+Note that `describe()` by default only summarises the numeric columns (`speed` and `doors`), which is usually what you want.
+
+## Selecting columns and rows
+
+This is the first place where Python's conventions differ a little, so it is worth slowing down.
+
+**Columns.** Selecting a single column with `df['col']` returns a **Series** (a one-dimensional labelled vector, like a single R column). Selecting a list of columns with `df[['a', 'b']]` returns a **DataFrame**.
+
+```{python}
+cars["speed"]              # a Series (one column)
+```
+
+```{python}
+cars[["name", "speed"]]    # a DataFrame (note the double brackets)
+```
+
+The double brackets `[[ ]]` are easy to remember if you think of the inner `[ ]` as building a Python *list* of column names.
+
+**Rows.** Here is the big one: pandas indexing is **0-based**, whereas R is 1-based. So the first row is at position `0`, not `1`. Use `.iloc[...]` to select by integer **position** and `.loc[...]` to select by **label** (the row's index).
+
+```{python}
+cars.iloc[0]               # FIRST row, by position (0-based!)
+```
+
+```{python}
+cars.loc[0, "name"]        # cell at label 0, column "name"
+```
+
+::: {.callout-note title="In a nutshell: iloc is positional, loc is by label, and counting starts at 0"}
+`df.iloc[...]` is integer-position based (think "i for integer"); `df.loc[...]` is label based. Because our DataFrame has the default integer index, the labels happen to be `0, 1, 2, ...`, so the two can look similar here — but they are different tools. And remember: the first row is position `0`, not `1`.
+:::
+
+## Filtering rows (dplyr `filter`)
+
+To keep rows matching a condition, you build a boolean mask and index with it — `df[df['x'] > 3]`. This is the pandas version of dplyr's `filter()`.
+
+```{python}
+cars[cars["speed"] > 115]
+```
+
+There is also a tidier, more readable alternative, `query()`, which lets you write the condition as a string and refer to columns by bare name — much like `filter()` does with non-standard evaluation:
+
+```{python}
+cars.query("speed > 115")
+```
+
+The dplyr equivalent for reference:
+
+```{r}
+# library(dplyr)
+# cars |> filter(speed > 115)
+subset(cars, speed > 115)   # base R version, no packages needed
+```
+
+## Creating new columns (dplyr `mutate`)
+
+Adding a column is as simple as assigning to it, `df['new'] = ...`. This mutates the DataFrame in place.
+
+```{python}
+cars["kph_to_mph"] = cars["speed"] * 0.621
+cars
+```
+
+If you prefer a non-mutating, pipe-friendly style (closer to dplyr's `mutate()`, which returns a new data frame), use `assign()`, which returns a **new** DataFrame:
+
+```{python}
+cars.assign(fast = cars["speed"] > 115)
+```
+
+In dplyr you would write `cars |> mutate(fast = speed > 115)`.
+
+## Sorting (dplyr `arrange`)
+
+Use `sort_values()` to order rows by one or more columns. The `ascending=False` argument is the analogue of wrapping a column in `desc()` in dplyr.
+
+```{python}
+cars.sort_values("speed", ascending=False)
+```
+
+The dplyr equivalent would be `cars |> arrange(desc(speed))`.
+
+## Grouping and summarising (dplyr `group_by |> summarise`)
+
+This is the heart of data wrangling, and pandas maps onto the dplyr workflow neatly. `df.groupby('group')` is `group_by()`, and you then apply an aggregation.
+
+```{python}
+cars.groupby("brand")["speed"].mean()
+```
+
+That gives the mean speed per brand — the equivalent of:
+
+```{r}
+# cars |> group_by(brand) |> summarise(mean_speed = mean(speed))
+aggregate(speed ~ brand, data = cars, FUN = mean)
+```
+
+For several summaries at once, use `.agg(...)`, just as you would list several expressions inside `summarise()`:
+
+```{python}
+cars.groupby("brand").agg(
+    mean_speed = ("speed", "mean"),
+    n_cars     = ("speed", "size"),
+)
+```
+
+The `("speed", "mean")` syntax names the output column `mean_speed` and says "take the `speed` column and apply `mean`" — closely mirroring `summarise(mean_speed = mean(speed), n_cars = n())`.
+
+## dplyr → pandas translation table
+
+Keep this handy. Once these patterns click, most wrangling tasks are a quick mental lookup.
+
+| Task                       | dplyr                                   | pandas                                         |
+|----------------------------|-----------------------------------------|------------------------------------------------|
+| Filter rows                | `filter(speed > 115)`                   | `df[df["speed"] > 115]` or `df.query("speed > 115")` |
+| Select columns             | `select(name, speed)`                   | `df[["name", "speed"]]`                        |
+| Create / modify a column   | `mutate(fast = speed > 115)`            | `df.assign(fast = df["speed"] > 115)` or `df["fast"] = ...` |
+| Arrange rows               | `arrange(desc(speed))`                  | `df.sort_values("speed", ascending=False)`     |
+| Group and summarise        | `group_by(brand) |> summarise(m = mean(speed))` | `df.groupby("brand").agg(m=("speed", "mean"))` |
+| The pipe                   | `df |> ... |> ...`                      | method chaining: `df.method().method()...`     |
+
+The last row is the key conceptual bridge: where R threads a data frame through a sequence of verbs with the pipe `|>`, pandas threads a DataFrame through a sequence of **methods** with the dot `.`.
+
+## Going further
+
+::: {.callout-tip title="Going further 🚀"}
+**Method chaining is the pipe.** Because each pandas verb returns a DataFrame, you can chain them just like a dplyr pipeline. The `reset_index()` at the end turns the grouping labels back into an ordinary column (otherwise `brand` would live in the index):
+
+```{python}
+(
+    cars
+    .groupby("brand")
+    .agg(mean_speed=("speed", "mean"))
+    .reset_index()
+    .sort_values("mean_speed", ascending=False)
+)
+```
+
+Reading top to bottom, this is `cars |> group_by(brand) |> summarise(...) |> arrange(desc(mean_speed))`.
+
+**Real data.** Instead of building tables by hand, you would normally load them with `pd.read_csv("file.csv")` — the analogue of `read.csv()` or `readr::read_csv()`.
+
+**Joins.** pandas has `df.merge(other, on="key", how="left")` (and `df.join(...)`), which correspond to dplyr's `left_join()`, `inner_join()` and friends.
+
+**reticulate interop.** This very document mixes R and Python via **reticulate**, and you can pass data between them. In an R chunk, `py$cars` reads the Python `cars` DataFrame as an R data frame; in a Python chunk, `r.some_r_dataframe` reads an R data frame as a pandas DataFrame. For example, an R chunk could run `head(py$cars)` to inspect the Python object we built above, and a Python chunk could run `r.cars` to pull in the base-R `cars` data frame. This lets you wrangle in whichever language fits the task best.
+:::
+
+You now have the core of pandas: it is the same mental model as the tidyverse, expressed with brackets and dots instead of verbs and pipes. When you get stuck, ask yourself "what would I write in dplyr?" and then translate — the table above will usually get you there.

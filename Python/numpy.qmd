@@ -1,0 +1,237 @@
+---
+title: "NumPy: Arrays and Vectorised Computing"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+You already think in terms of vectors: in R you write `c(1, 2, 3) * 2` and the whole thing scales at once, no loop required. Python's plain lists do **not** behave that way, but the **NumPy** library gives you back exactly the vectorised, fast, mathematical objects you are used to. This page is the translation guide: you know this in R, here is the NumPy version.
+
+Throughout, we import NumPy under its conventional alias `np`:
+
+```{python}
+import numpy as np
+np.__version__
+```
+
+# Why NumPy?
+
+In R, arithmetic on a vector is *element-wise* and instant. Python's built-in `list` does something quite different: multiplying a list by a number **repeats** the list rather than scaling its contents.
+
+```{python}
+plain_list = [1, 2, 3]
+plain_list * 2          # repetition, NOT element-wise maths!
+```
+
+Compare with R, where multiplication does what a statistician expects:
+
+```{r}
+plainVector <- c(1, 2, 3)
+plainVector * 2          # element-wise: 2 4 6
+```
+
+The fix is the NumPy **array** (`ndarray`). It is the direct analogue of R's atomic vector: element-wise arithmetic, vectorised maths functions, and fast C-level loops under the hood.
+
+```{python}
+arr = np.array([1, 2, 3])
+arr * 2                  # element-wise: array([2, 4, 6])
+```
+
+::: {.callout-note title="In a nutshell: a NumPy array is R's vector"}
+A Python `list` is just a container and does not do maths element-wise (`[1,2,3] * 2` repeats it). Whenever you would reach for an R vector, reach for a **NumPy array** instead: `np.array([...])`. Everything else on this page follows from that one idea.
+:::
+
+# Creating arrays
+
+There are a handful of constructors you will use constantly. Each one maps cleanly onto an R function you already know.
+
+```{python}
+np.array([1, 2, 3])      # like R's c(1, 2, 3)
+```
+
+`np.arange` is R's `seq` with the "by" argument: it generates a sequence with a fixed step. Note the **end is exclusive**, so this stops before 10.
+
+```{python}
+np.arange(0, 10, 2)      # like seq(0, 8, by = 2) -> 0 2 4 6 8
+```
+
+`np.linspace` is R's `seq` with `length.out`: give it a start, an end (this time **inclusive**), and how many points you want, evenly spaced.
+
+```{python}
+np.linspace(0, 1, 5)     # like seq(0, 1, length.out = 5)
+```
+
+`np.zeros` and `np.ones` build arrays filled with a constant, much like R's `rep`. For a 2-D shape you pass a tuple `(rows, cols)`.
+
+```{python}
+np.zeros(3)              # like rep(0, 3)
+```
+
+```{python}
+np.ones((2, 2))          # a 2x2 matrix of ones; like matrix(1, 2, 2)
+```
+
+Here is the R side of the same ideas for reference:
+
+```{r}
+seq(0, 8, by = 2)        # arange
+seq(0, 1, length.out = 5)# linspace
+rep(0, 3)                # zeros
+```
+
+# Vectorised arithmetic and broadcasting
+
+This is where NumPy feels like home. Operators and maths functions apply element-wise, exactly as in R, with no explicit loop.
+
+```{python}
+arr = np.array([1, 2, 3, 4])
+arr * 2                  # scale every element
+```
+
+```{python}
+arr + arr                # element-wise addition of two arrays
+```
+
+```{python}
+np.sqrt(arr)             # vectorised maths function, like sqrt() in R
+```
+
+When you combine an array with a single number, NumPy **broadcasts** the scalar across every element. This is precisely R's recycling of a length-1 vector.
+
+```{python}
+arr + 10                 # 10 is broadcast to every element
+```
+
+The R analogue is identical in spirit:
+
+```{r}
+x <- c(1, 2, 3, 4)
+sqrt(x)                  # vectorised
+x + 10                   # length-1 vector recycled
+```
+
+# Aggregations (summaries)
+
+Reducing an array to a single summary number works just like R's `mean`, `sum`, and friends, with one notable difference: in NumPy these are usually **methods** attached to the array (written `arr.mean()`), whereas in R they are **functions** that take the vector as an argument (`mean(x)`).
+
+```{python}
+arr = np.array([2, 4, 6, 8, 10])
+arr.mean()               # R: mean(x)
+```
+
+```{python}
+arr.sum(), arr.min(), arr.max()   # R: sum(x), min(x), max(x)
+```
+
+```{python}
+arr.std()                # population standard deviation by default
+```
+
+The R equivalents read left-to-right as function calls:
+
+```{r}
+x <- c(2, 4, 6, 8, 10)
+mean(x); sum(x); min(x); max(x); sd(x)
+```
+
+::: {.callout-tip title="Going further 🚀"}
+A subtle gotcha: `arr.std()` divides by `n` (the population formula), whereas R's `sd(x)` divides by `n - 1` (the sample formula). To match R, use `arr.std(ddof=1)`, where `ddof` is the "delta degrees of freedom" subtracted from `n`.
+:::
+
+# 2-D arrays (matrices)
+
+A nested list becomes a 2-D array, the analogue of R's `matrix`. The `.shape` attribute reports the dimensions as a `(rows, cols)` tuple, much like R's `dim()`.
+
+```{python}
+m = np.array([[1, 2],
+              [3, 4]])
+m.shape                  # (2, 2); like dim() in R
+```
+
+Element access uses square brackets with a comma, and here is the single biggest trap for an R user: **NumPy indices start at 0**, not 1. So the top-left element is `m[0, 0]`, and `m[0, 1]` is the first row, second column.
+
+```{python}
+m[0, 1]                  # row 0, column 1 -> 2 (R's m[1, 2])
+```
+
+Matrix multiplication uses the `@` operator, which plays the role of R's `%*%`. (Plain `*` would multiply element-wise instead.)
+
+```{python}
+m @ m                    # matrix product; R: m %*% m
+```
+
+::: {.callout-note title="In a nutshell: counting starts at 0, and slice ends are exclusive"}
+NumPy is **0-indexed**: the first element is `arr[0]`, so an R index `i` becomes a NumPy index `i - 1`. Slices are also **half-open** (the end is excluded): `arr[1:3]` returns the elements at positions 1 and 2 only, *not* position 3. R's `x[2:3]` (inclusive) is NumPy's `arr[1:3]`.
+:::
+
+```{python}
+a = np.array([10, 20, 30, 40, 50])
+a[1:3]                   # indices 1 and 2 -> array([20, 30]); 3 is excluded
+```
+
+# Boolean masking
+
+Filtering with a logical condition is one of R's most loved features (`x[x > 2]`), and NumPy does the same thing with the same syntax. A comparison produces a boolean array, which you then use as an index.
+
+```{python}
+arr = np.array([1, 2, 3, 4, 5])
+arr > 2                  # a boolean mask: array([False, False, True, True, True])
+```
+
+```{python}
+arr[arr > 2]             # keep only the elements where the mask is True
+```
+
+`np.where` is the vectorised "if-else": choose between two values per element based on a condition, much like R's `ifelse`.
+
+```{python}
+np.where(arr > 2, arr, 0)   # keep values > 2, replace the rest with 0
+```
+
+The R version is reassuringly familiar:
+
+```{r}
+x <- c(1, 2, 3, 4, 5)
+x[x > 2]                 # logical indexing
+ifelse(x > 2, x, 0)      # vectorised if-else
+```
+
+# Going further: speed and the wider ecosystem
+
+::: {.callout-tip title="Going further 🚀"}
+Just as in R, the golden rule is **vectorise instead of looping**. A Python `for` loop over millions of elements is slow because each step runs in the Python interpreter; a NumPy expression like `arr * 2` runs the loop in compiled C, exactly as R's vectorised operations drop into C/Fortran. So prefer `arr.sum()` over a hand-written loop, and prefer boolean masks over filtering one element at a time.
+
+NumPy is also the **foundation of the scientific Python stack**. The `scipy` library builds on it for optimisation, integration, and statistics; **pandas** data frames store their columns as NumPy arrays; and **scikit-learn** expects NumPy arrays as the inputs and outputs of its models. Learn NumPy well and the rest of the ecosystem falls into place.
+:::
+
+# Summary: R to NumPy cheat sheet
+
+| Task | R | NumPy |
+|------|------|-------|
+| Create a vector/array | `c(1, 2, 3)` | `np.array([1, 2, 3])` |
+| Sequence by step | `seq(0, 8, by = 2)` | `np.arange(0, 10, 2)` |
+| Sequence by length | `seq(0, 1, length.out = 5)` | `np.linspace(0, 1, 5)` |
+| Repeat a constant | `rep(0, 3)` | `np.zeros(3)` |
+| Scale element-wise | `x * 2` | `arr * 2` |
+| Vectorised maths | `sqrt(x)` | `np.sqrt(arr)` |
+| Mean / sum | `mean(x)` / `sum(x)` | `arr.mean()` / `arr.sum()` |
+| Standard deviation | `sd(x)` | `arr.std(ddof=1)` |
+| Matrix | `matrix(...)` | `np.array([[...], [...]])` |
+| Dimensions | `dim(m)` | `m.shape` |
+| Element (1- vs 0-indexed) | `m[1, 2]` | `m[0, 1]` |
+| Matrix multiply | `m %*% m` | `m @ m` |
+| Logical filter | `x[x > 2]` | `arr[arr > 2]` |
+| Vectorised if-else | `ifelse(c, a, b)` | `np.where(c, a, b)` |
+
+You now have the core translation: a NumPy array is R's vector, arithmetic is element-wise, summaries are methods, and indexing starts at 0. With that mental model, most NumPy code reads like the R you already know.

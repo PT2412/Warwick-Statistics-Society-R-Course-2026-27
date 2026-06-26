@@ -114,7 +114,7 @@ plot(sample1, type = "l")
 lines(sample2)
 ```
 
-We have something, but it appears the top is cut off the graph (this is beacuse we are adding sample 2 onto sample 1 and sample 2 has a larger range). We can change the y axis limits.
+We have something, but it appears the top is cut off the graph (this is because we are adding sample 2 onto sample 1 and sample 2 has a larger range). We can change the y axis limits.
 
 ```{r}
 ###| Line plot with multiple lines with limits
@@ -192,25 +192,37 @@ We can then add the normal distribution curve on top to allow comparison.
 ```{r}
 ###| Normal
 seq <- seq(from = -3, to = 3, length = 1000)
-norm_seq <- dnorm(seq(from = -3, to = 3, length = 1000), mean = 0, sd = 1)
+normSeq <- dnorm(seq(from = -3, to = 3, length = 1000), mean = 0, sd = 1)
 
 ###| Density curve
-hist(sample, prob = TRUE, ylim = c(0,max(norm_seq)))
+hist(sample, prob = TRUE, ylim = c(0,max(normSeq)))
 lines(density(sample))
-lines(seq,norm_seq, col = "red",lwd = 2)
+lines(seq,normSeq, col = "red",lwd = 2)
 ```
 
-The sample distribution is very similar to the normal distribution curve (although the sample has 2 peaks rather than 1). However, it is confusing to have 2 lines without any labels. So, let us add a legend. Additional details appear [here](https://r-coder.com/add-legend-r/?utm_content=cmp-true).
+::: {.callout-tip title="Going further 🚀"}
+Rather than building the sequence and density by hand, `curve()` can draw any function over a range in a single line. Adding `add = TRUE` overlays it onto the existing plot.
+
+```{r}
+###| One-line normal overlay
+hist(sample, prob = TRUE, ylim = c(0, 0.5))
+curve(dnorm(x, mean = 0, sd = 1), col = "red", lwd = 2, add = TRUE)
+```
+
+For more polished and flexible figures, the `ggplot2` package (covered in the Data Visualisation section) is the usual next step.
+:::
+
+The sample distribution is very similar to the normal distribution curve (although the sample may show small bumps or extra peaks rather than a single smooth one, since it is random). However, it is confusing to have 2 lines without any labels. So, let us add a legend. Additional details appear [here](https://r-coder.com/add-legend-r/?utm_content=cmp-true).
 
 ```{r}
 ###| Normal
 seq <- seq(from = -3, to = 3, length = 1000)
-norm_seq <- dnorm(seq(from = -3, to = 3, length = 1000), mean = 0, sd = 1)
+normSeq <- dnorm(seq(from = -3, to = 3, length = 1000), mean = 0, sd = 1)
 
 ###| Density curve
-hist(sample, prob = TRUE, ylim = c(0,max(norm_seq)))
+hist(sample, prob = TRUE, ylim = c(0,max(normSeq)))
 lines(density(sample))
-lines(seq,norm_seq, col = "red",lwd = 2)
+lines(seq,normSeq, col = "red",lwd = 2)
 legend(x = "topright", # position
        legend = c("Sample curve","Normal curve"),
        col = c("black","red"),

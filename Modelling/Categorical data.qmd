@@ -35,7 +35,7 @@ In this dataset, there are 4 variables: Variety, Block, SIZE and YIELD. From the
 summary(agriculture)
 ```
 
-From this, we see that SIZE is a continuous variable from 19 to 261 and YIELD is a continuous variable from 19 to 261. (Exploring this further, we note that the size and yield observations are the same for every entry.) We also see that Block takes values from 1 to 8 and Variety is always a character. However, we do not know what values Variety takes.
+From this, we see that SIZE and YIELD are both continuous variables (the summary reports their minimum, median, mean and maximum). We also see that Block takes values from 1 to 8 and Variety is always a character. However, we do not know what values Variety takes.
 
 To fix this, we will alter the data using the `factor()` command.
 
@@ -57,10 +57,14 @@ Now, the Variety column is treated as a categorical variable, rather than as cha
 Now, let's fit a model that uses Variety and Block to predict SIZE. That is, we fit a model of the following from: 
 
 \begin{align}
-SIZE_i = & \alpha \times \mathbb{I}{(\text{oberservation i has Variety A})} + \beta \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + \gamma \times \mathbb{I}{(\text{oberservation i has Variety C})} + \delta \times \mathbb{I}{(\text{oberservation i has Variety D})} \\ & + \epsilon \times \mathbb{I}{(\text{oberservation i has Variety E})} + \zeta \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + \eta \times Block_i + \hat{\epsilon}_i,
-\end{align} 
+SIZE_i = & \alpha \times \mathbb{I}{(\text{observation i has Variety A})} + \beta \times \mathbb{I}{(\text{observation i has Variety B})} \\ & + \gamma \times \mathbb{I}{(\text{observation i has Variety C})} + \delta \times \mathbb{I}{(\text{observation i has Variety D})} \\ & + \theta \times \mathbb{I}{(\text{observation i has Variety E})} + \zeta \times \mathbb{I}{(\text{observation i has Variety F})} \\ & + \eta \times Block_i + \hat{\epsilon}_i,
+\end{align}
 
 where $\hat{\epsilon}_i$ is the error of the ith observation.
+
+::: {.callout-note title="In a nutshell: indicator functions and 0 +"}
+An **indicator function** $\mathbb{I}(\text{Variety A})$ is just a switch: it equals 1 if that row really is Variety A, and 0 otherwise. So for any single row, only one of the six Variety switches is "on", and that turns its coefficient into the estimate for that variety. Writing `0 +` in the formula **removes the intercept**, so instead of comparing every variety to a baseline, R gives each variety its own outright mean — that is what makes the heavy-looking algebra below work.
+:::
 
 ```{r}
 ###| SIZE ~ Variety + Block
@@ -73,7 +77,7 @@ m1
 Reading off of the output, we obtain the following model:
 
 \begin{align}
-SIZE_i = &57.6 \times \mathbb{I}{(\text{oberservation i has Variety A})} + 62.9 \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + 69.6 \times \mathbb{I}{(\text{oberservation i has Variety C})} + 89.5 \times \mathbb{I}{(\text{oberservation i has Variety D})} \\ & + 73.5 \times \mathbb{I}{(\text{oberservation i has Variety E})} + 79.9 \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + 9.1 \times Block_i + \hat{\epsilon}_i.
+SIZE_i = &57.6 \times \mathbb{I}{(\text{observation i has Variety A})} + 62.9 \times \mathbb{I}{(\text{observation i has Variety B})} \\ & + 69.6 \times \mathbb{I}{(\text{observation i has Variety C})} + 89.5 \times \mathbb{I}{(\text{observation i has Variety D})} \\ & + 73.5 \times \mathbb{I}{(\text{observation i has Variety E})} + 79.9 \times \mathbb{I}{(\text{observation i has Variety F})} \\ & + 9.1 \times Block_i + \hat{\epsilon}_i.
 \end{align}
 
 We interpret the Block variable as before: holding every other variable constant, a 1 unit increase in the Block is expected to result in a 9.1 unit increase in SIZE.
@@ -91,7 +95,7 @@ For example,
 
 </div>
 
-# Refrence categories
+# Reference categories
 
 Using no intercept (by adding the 0 term in the `lm()` command), we can compare across categories easily. However, suppose we want to **compare everything to category A**. Instead of finding the estimates and then subtracting them, we can ask R to do this directly by setting up reference categories using `relevel()`. 
 
@@ -99,25 +103,27 @@ Now, our model looks like:
 
 ```{=tex}
 \begin{align}
-SIZE_i = & \tilde{\alpha} + \tilde{\beta} \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + \tilde{\gamma} \times \mathbb{I}{(\text{oberservation i has Variety C})} + \tilde{\delta} \times \mathbb{I}{(\text{oberservation i has Variety D})} \\ & + \tilde{\epsilon} \times \mathbb{I}{(\text{oberservation i has Variety E})} + \tilde{\zeta} \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + \tilde{\eta} \times Block_i + \hat{\epsilon}_i,
+SIZE_i = & \tilde{\alpha} + \tilde{\beta} \times \mathbb{I}{(\text{observation i has Variety B})} \\ & + \tilde{\gamma} \times \mathbb{I}{(\text{observation i has Variety C})} + \tilde{\delta} \times \mathbb{I}{(\text{observation i has Variety D})} \\ & + \tilde{\epsilon} \times \mathbb{I}{(\text{observation i has Variety E})} + \tilde{\zeta} \times \mathbb{I}{(\text{observation i has Variety F})} \\ & + \tilde{\eta} \times Block_i + \hat{\epsilon}_i,
 \end{align}
 ```
 
 We code this up as follows: 
+
+Note that Variety A is already the first (default) reference level, so the `relevel()` call below does not actually change anything here; it simply demonstrates the syntax. To make a different category the reference, you would change `ref` to that category (for example, `ref = "C"`).
 
 ```{r}
 ###| Setting Category A as the reference category
 agriculture$Variety <- relevel(agriculture$Variety, ref = "A")
 
 ###| New model
-m2 <- lm(SIZE ~ Variety + Block, data = agriculture) # no specified intercept!
+m2 <- lm(SIZE ~ Variety + Block, data = agriculture) # includes an intercept (Variety A is the reference category)
 
 ###| Output
 m2
 ```
 
 Now, our model is: \begin{align}
-SIZE_i = &57.6 + 5.3 \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + 12 \times \mathbb{I}{(\text{oberservation i has Variety C})} + 31.9 \times \mathbb{I}{(\text{oberservation i has Variety D})} \\ & + 15.7 \times \mathbb{I}{(\text{oberservation i has Variety E})} + 22.3 \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + 9.1 \times Block_i + \hat{\epsilon}_i.
+SIZE_i = &57.6 + 5.3 \times \mathbb{I}{(\text{observation i has Variety B})} \\ & + 12 \times \mathbb{I}{(\text{observation i has Variety C})} + 31.9 \times \mathbb{I}{(\text{observation i has Variety D})} \\ & + 15.7 \times \mathbb{I}{(\text{observation i has Variety E})} + 22.3 \times \mathbb{I}{(\text{observation i has Variety F})} \\ & + 9.1 \times Block_i + \hat{\epsilon}_i.
 \end{align}
 
 Both of these models are equivalent! They are reparametrisations of each other, with $\alpha = \tilde{\alpha}$, $\beta = \tilde{\alpha} + \tilde{\beta}$, $\gamma = \tilde{\alpha} + \tilde{\gamma}$, ..., $\zeta = \tilde{\alpha} + \tilde{\zeta}$ and $\eta = \tilde{\eta}$. Based on the context, you should choose to include or not to include the intercept term. 
@@ -127,11 +133,11 @@ Both of these models are equivalent! They are reparametrisations of each other, 
 What effect does the Variety category have on the Block estimator? We explore this using interaction terms with a model of the form:
 
 \begin{align}
-SIZE_i = & \alpha + \beta \times \mathbb{I}{(\text{oberservation i has Variety B})} \\ & + ... + \zeta \times \mathbb{I}{(\text{oberservation i has Variety F})} \\ & + \eta \times Block_i + \\ & \tilde{\beta} \times \mathbb{I}{(\text{oberservation i has Variety B})} \times Block_i \\ & + ... + \tilde{\zeta} \times \mathbb{I}{(\text{oberservation i has Variety F})} \times Block_i \\ & \hat{\epsilon}_i,
+SIZE_i = & \alpha + \beta \times \mathbb{I}{(\text{observation i has Variety B})} \\ & + ... + \zeta \times \mathbb{I}{(\text{observation i has Variety F})} \\ & + \eta \times Block_i + \\ & \tilde{\beta} \times \mathbb{I}{(\text{observation i has Variety B})} \times Block_i \\ & + ... + \tilde{\zeta} \times \mathbb{I}{(\text{observation i has Variety F})} \times Block_i \\ & \hat{\epsilon}_i,
 \end{align} where $\hat{\epsilon}_i$ is the error of the ith observation.
 
 ```{r}
-###| Model with intercept terms
+###| Model with interaction terms
 m3 <- lm(SIZE ~ Variety + Block + Variety:Block, data = agriculture) 
 
 ###| Output
@@ -142,11 +148,11 @@ We interpret the model as follows:
 
 <div>
 
--   If the observation is Variety B and holding block constant, the SIZE will be 29.9 units smaller than if it was Variety A.\
--   If the observation is Variety C and holding block constant, the SIZE will be 24.4 units smaller than if it was Variety A.\
--   If the observation is Variety D and holding block constant, the SIZE will be 23.7 units smaller than if it was Variety A.\
--   If the observation is Variety E and holding block constant, the SIZE will be 20.3 units smaller than if it was Variety A.\
--   If the observation is Variety F and holding block constant, the SIZE will be 3.3 units larger than if it was Variety A.
+-   When Block = 0, the observation being Variety B rather than Variety A is associated with a SIZE that is 29.9 units smaller. Because of the interaction term, this gap changes with Block.\
+-   When Block = 0, the observation being Variety C rather than Variety A is associated with a SIZE that is 24.4 units smaller. Because of the interaction term, this gap changes with Block.\
+-   When Block = 0, the observation being Variety D rather than Variety A is associated with a SIZE that is 23.7 units smaller. Because of the interaction term, this gap changes with Block.\
+-   When Block = 0, the observation being Variety E rather than Variety A is associated with a SIZE that is 20.3 units smaller. Because of the interaction term, this gap changes with Block.\
+-   When Block = 0, the observation being Variety F rather than Variety A is associated with a SIZE that is 3.3 units larger. Because of the interaction term, this gap changes with Block.
 -   If the observation is Variety A, increasing block size by 1 will increase the SIZE by 2.3.
 -   If the observation is Variety B, increasing block size by 1 will increase the SIZE by 7.8.
 -   If the observation is Variety C, increasing block size by 1 will increase the SIZE by 8.1.
@@ -158,5 +164,18 @@ We interpret the model as follows:
 
 
 :::{.callout-important}
-When using interaction terms, it is important to remember the principle of parsimony. If we decide to model the interaction between variable A and variable B, we must include both variables in the model. 
+When using interaction terms, it is important to remember the principle of parsimony. If we decide to model the interaction between variable A and variable B, we must include both variables in the model.
+:::
+
+::: {.callout-tip title="Going further 🚀"}
+Reading effects straight off a table of coefficients is fiddly, especially with interactions. The `emmeans` package gives the estimated mean SIZE for each Variety directly, and `interactions::interact_plot()` draws how the Block slope changes by Variety. You can also just feed new rows to `predict()`.
+
+```{r}
+#| eval: false
+library(emmeans)
+emmeans(m3, ~ Variety)             # estimated mean SIZE per Variety
+
+library(interactions)
+interact_plot(m3, pred = Block, modx = Variety)  # visualise the interaction
+```
 :::

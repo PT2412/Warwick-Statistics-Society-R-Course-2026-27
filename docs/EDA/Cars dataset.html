@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>cars dataset – Warwick Statistics Society R Course 2025-2026</title>
+<title>cars dataset – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,9 +105,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -144,7 +148,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -172,7 +176,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -237,7 +241,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,12 +279,65 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -311,17 +368,23 @@ window.Quarto = {
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -332,6 +395,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,13 +431,154 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link active">
@@ -381,17 +591,23 @@ window.Quarto = {
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -425,25 +641,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -456,13 +672,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -483,6 +699,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -490,7 +712,83 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -513,7 +811,7 @@ window.Quarto = {
   <li><a href="#observation-names" id="toc-observation-names" class="nav-link" data-scroll-target="#observation-names">Observation names</a></li>
   <li><a href="#should-it-be-categorical-or-continuous" id="toc-should-it-be-categorical-or-continuous" class="nav-link" data-scroll-target="#should-it-be-categorical-or-continuous">Should it be categorical or continuous?</a></li>
   </ul></li>
-  <li><a href="#next-step---exploratory-data-analsysis" id="toc-next-step---exploratory-data-analsysis" class="nav-link" data-scroll-target="#next-step---exploratory-data-analsysis">Next step - Exploratory Data Analsysis</a></li>
+  <li><a href="#next-step---exploratory-data-analysis" id="toc-next-step---exploratory-data-analysis" class="nav-link" data-scroll-target="#next-step---exploratory-data-analysis">Next step - Exploratory Data Analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -548,13 +846,26 @@ window.Quarto = {
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| More information about the dataset</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>?mtcars</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>starting httpd help server ... done</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: where does ?mtcars go?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: where does ?mtcars go?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Running <code>?mtcars</code> opens the documentation in the <strong>Help pane</strong> of RStudio — it does not print the help text into a rendered document, so do not expect to see it appear in the output here.</p>
 </div>
 </div>
 <p>From the help box, we can learn the following:</p>
@@ -595,24 +906,28 @@ window.Quarto = {
 <td>Weight in 1000 lbs</td>
 </tr>
 <tr class="even">
-<td>sqec</td>
+<td>qsec</td>
 <td>1/4 mile time</td>
 </tr>
 <tr class="odd">
+<td>drat</td>
+<td>Rear axle ratio</td>
+</tr>
+<tr class="even">
 <td>vs</td>
 <td>Engine - 0 if V-shaped and 1 if straight</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>am</td>
 <td>Transmission - 0 if automatic and 1 if manual</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>gear</td>
 <td>Number of forward gears</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>carb</td>
-<td>Number of carburetors</td>
+<td>Number of carburettors</td>
 </tr>
 </tbody>
 </table>
@@ -623,16 +938,16 @@ window.Quarto = {
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Loading and saving data</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cars_data <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> mtcars</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| Dimension of the dataset</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(cars_data)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(cars)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">###| Names of variables</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cars_data)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cars)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 32 11
@@ -645,10 +960,10 @@ window.Quarto = {
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| summary function</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_data)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mpg             cyl             disp             hp       
@@ -675,6 +990,32 @@ window.Quarto = {
 </div>
 </div>
 <p>While it is very useful to have the minimum, first quantile, median, third quantile, maximum and mean, it does not always make sense given the variables.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a richer one-call overview, <code>skimr::skim()</code> adds missingness counts and tiny inline histograms, while <code>GGally::ggpairs()</code> draws a whole grid of pairwise scatter plots and correlations at once.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(cars)        <span class="co"># summary with missingness and mini-histograms</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(cars)     <span class="co"># pairwise scatter/correlation matrix</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+</div>
 </section>
 <section id="step-3---cleaning-data" class="level1">
 <h1>Step 3 - Cleaning data</h1>
@@ -686,14 +1027,14 @@ window.Quarto = {
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Factoring using base R</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars_data<span class="sc">$</span>am)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars_data<span class="sc">$</span>vs)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_data)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Factoring using base R</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars<span class="sc">$</span>am)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars<span class="sc">$</span>vs)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mpg             cyl             disp             hp       
@@ -722,15 +1063,12 @@ window.Quarto = {
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package requirement</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package requirement</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.4.3</code></pre>
-</div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -747,18 +1085,18 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Save the dataset</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>cars_dplyr <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>carsDplyr <span class="ot">&lt;-</span> mtcars</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| Factoring variables</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>cars_dplyr <span class="ot">&lt;-</span> cars_dplyr <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>carsDplyr <span class="ot">&lt;-</span> carsDplyr <span class="sc">%&gt;%</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vs =</span> <span class="fu">factor</span>(vs),</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">am =</span> <span class="fu">factor</span>(am))</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary of only vs and am columns</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_data[,<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">9</span>)])</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(carsDplyr[, <span class="fu">c</span>(<span class="st">"vs"</span>,<span class="st">"am"</span>)])</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> vs     am    
@@ -773,10 +1111,10 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Row/observation names</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cars_data)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cars)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Mazda RX4"           "Mazda RX4 Wag"       "Datsun 710"         
@@ -796,15 +1134,15 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| New variable</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>manufacturer <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(cars_data))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>manufacturer <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(cars))</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="do">###| Grouping the manufacturers</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars_data<span class="sc">$</span>manufacturer) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">AMC =</span> <span class="st">"AMC Javelin"</span>, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars<span class="sc">$</span>manufacturer) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">AMC =</span> <span class="st">"AMC Javelin"</span>,</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Cadillac =</span> <span class="st">"Cadillac Fleetwood"</span> ,</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Camaro =</span> <span class="st">"Camaro Z28"</span>, </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Datsum =</span> <span class="st">"Datsun 710"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Datsun =</span> <span class="st">"Datsun 710"</span>,</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Dodge =</span> <span class="st">"Dodge Challenger"</span>,</span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Duster =</span> <span class="st">"Duster 360"</span>,</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ferrari =</span> <span class="st">"Ferrari Dino"</span>,</span>
@@ -827,28 +1165,41 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Volvo =</span> <span class="st">"Volvo 142E"</span>)</span>
 <span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="do">###| Checking output</span></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>manufacturer</span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>manufacturer</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] Mazda    Mazda    Datsum   Hornet   Hornet   Valiant  Duster   Merc    
+<pre><code> [1] Mazda    Mazda    Datsun   Hornet   Hornet   Valiant  Duster   Merc    
  [9] Merc     Merc     Merc     Merc     Merc     Merc     Cadillac Lincoln 
 [17] Chrysler Fiat     Honda    Toyota   Toyota   Dodge    AMC      Camaro  
 [25] Pontiac  Fiat     Porsche  Lotus    Ford     Ferrari  Maserati Volvo   
-22 Levels: AMC Cadillac Camaro Datsum Dodge Duster Ferrari Fiat Ford ... Volvo</code></pre>
+22 Levels: AMC Cadillac Camaro Datsun Dodge Duster Ferrari Fiat Ford ... Volvo</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: relabelling factor levels">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: relabelling factor levels
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Assigning to <code>levels(cars$manufacturer)</code> with a <code>list()</code> <strong>regroups and relabels</strong> the factor: every old level on the right-hand side is renamed to the new label on the left (and several old levels can be merged into one, as we do for <code>Merc</code>). Be careful — any level you forget to include in the list is <strong>silently turned into <code>NA</code></strong>, so always make sure every original level appears somewhere.</p>
 </div>
 </div>
 <p>Now we have a variable that lists manufacturers. We can check the categories using the <code>levels()</code> command.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Levels()</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars_data<span class="sc">$</span>manufacturer)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars<span class="sc">$</span>manufacturer)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "AMC"      "Cadillac" "Camaro"   "Datsum"   "Dodge"    "Duster"  
+<pre><code> [1] "AMC"      "Cadillac" "Camaro"   "Datsun"   "Dodge"    "Duster"  
  [7] "Ferrari"  "Fiat"     "Ford"     "Honda"    "Hornet"   "Lincoln" 
 [13] "Chrysler" "Lotus"    "Maserati" "Mazda"    "Merc"     "Pontiac" 
 [19] "Porsche"  "Toyota"   "Valiant"  "Volvo"   </code></pre>
@@ -857,15 +1208,15 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="should-it-be-categorical-or-continuous" class="level2">
 <h2 class="anchored" data-anchor-id="should-it-be-categorical-or-continuous">Should it be categorical or continuous?</h2>
-<p>There a few clear cut instances in the cars dataset where the variables should be categorical. We have addressed these: <code>vm</code>, <code>am</code> and <code>manufacturer</code>. However, there are instances where it is less clear.</p>
+<p>There a few clear cut instances in the cars dataset where the variables should be categorical. We have addressed these: <code>vs</code>, <code>am</code> and <code>manufacturer</code>. However, there are instances where it is less clear.</p>
 <p>For example, consider the cylinders variable. In our data, we have observations with 3 distinct categories: 4, 6 and 8. (We can find this with <code>unique()</code> function.)</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Cylinders</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(cars_data<span class="sc">$</span>cyl)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(cars<span class="sc">$</span>cyl)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6 4 8</code></pre>
@@ -875,9 +1226,9 @@ Attaching package: 'dplyr'</code></pre>
 <p>When we come to modelling, we should test models with cylinders treated as a continuous and a categorical variable.</p>
 </section>
 </section>
-<section id="next-step---exploratory-data-analsysis" class="level1">
-<h1>Next step - Exploratory Data Analsysis</h1>
-<p>Now that we know about our dataset and have done an initial check of the data, we can move on to the next step - Explanatory Data Analysis (EDA).</p>
+<section id="next-step---exploratory-data-analysis" class="level1">
+<h1>Next step - Exploratory Data Analysis</h1>
+<p>Now that we know about our dataset and have done an initial check of the data, we can move on to the next step - Exploratory Data Analysis (EDA).</p>
 <p>An exact definition of EDA is hard to pin down. However, the <a href="https://www.ibm.com/topics/exploratory-data-analysis">IBM</a> gives an idea of what EDA is:</p>
 <blockquote class="blockquote">
 <p>Exploratory data analysis (EDA) is used by data scientists to analyze and investigate data sets and summarize their main characteristics, often employing data visualization methods.</p>
@@ -941,13 +1292,14 @@ Attaching package: 'dplyr'</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1340,7 +1692,7 @@ Attaching package: 'dplyr'</code></pre>
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "cars dataset"</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
@@ -1371,168 +1723,190 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>?mtcars</span>
 <span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>From the help box, we can learn the following:</span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>:::{}</span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The data originates from the 1974 Motor Trend US Magazine and comprises fuel consumption and 10 aspects of automobile design and the performance for 32 automobiles. All models are from 1973 and 1974. </span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>There are 32 observations and each has 11 numeric variables. </span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>The 11 variables are:</span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable name  <span class="pp">|</span> Meaning and units  <span class="pp">|</span></span>
-<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|--------|</span></span>
-<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> mpg  <span class="pp">|</span> Miles per US gallon <span class="pp">|</span></span>
-<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cyl <span class="pp">|</span> Number of cylinders <span class="pp">|</span></span>
-<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> Displacement in cubic inches <span class="pp">|</span></span>
-<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> hp <span class="pp">|</span> Gross horsepower <span class="pp">|</span> </span>
-<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> wt <span class="pp">|</span> Weight in 1000 lbs <span class="pp">|</span></span>
-<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> sqec <span class="pp">|</span> 1/4 mile time <span class="pp">|</span></span>
-<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> vs <span class="pp">|</span> Engine - 0 if V-shaped and 1 if straight <span class="pp">|</span></span>
-<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> am <span class="pp">|</span> Transmission - 0 if automatic and 1 if manual <span class="pp">|</span></span>
-<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> gear <span class="pp">|</span> Number of forward gears <span class="pp">|</span></span>
-<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> carb <span class="pp">|</span> Number of carburetors <span class="pp">|</span></span>
-<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>: Variable names {.hover}</span>
-<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a><span class="fu"># Step 2 - Investigating the dataset</span></span>
-<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>Let us load in the data, find the dimensions and the names of the variables. </span>
-<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a><span class="do">###| Loading and saving data</span></span>
-<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a>cars_data <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a><span class="do">###| Dimension of the dataset</span></span>
-<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(cars_data)</span>
-<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a><span class="do">###| Names of variables</span></span>
-<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cars_data)</span>
-<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a>From the <span class="in">`dim()`</span> function, we learn there are 32 rows (observations) and 11 columns. From the <span class="in">`names()`</span> function, we learn the columns are named: "mpg", "cyl", "disp", "hp", "drat", "wt", "qsec", "vs",   "am", "gear" and "carb".</span>
-<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a>We can get important statistics about each column using the <span class="in">`summary()`</span> function.</span>
-<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a><span class="do">###| summary function</span></span>
-<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_data)</span>
-<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>While it is very useful to have the minimum, first quantile, median, third quantile, maximum and mean, it does not always make sense given the variables. </span>
-<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a><span class="fu"># Step 3 - Cleaning data </span></span>
-<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a>It is important that the data is appropriately treated.</span>
-<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## `vs` and `am` variables</span></span>
-<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a>In the above summary output, we observe that a mean is given for the <span class="in">`vs`</span> and <span class="in">`am`</span> variables. However, from the history about the dataset, we know that these variables can only take values $0$ and $1$. Thus, it would be better for these values to be treated as factors. </span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>:::{.callout-note title="In a nutshell: where does ?mtcars go?"}</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>Running <span class="in">`?mtcars`</span> opens the documentation in the **Help pane** of RStudio — it does not print the help text into a rendered document, so do not expect to see it appear in the output here.</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>From the help box, we can learn the following:</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>:::{}</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The data originates from the 1974 Motor Trend US Magazine and comprises fuel consumption and 10 aspects of automobile design and the performance for 32 automobiles. All models are from 1973 and 1974. </span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>There are 32 observations and each has 11 numeric variables. </span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>The 11 variables are:</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Variable name  <span class="pp">|</span> Meaning and units  <span class="pp">|</span></span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|--------|</span></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> mpg  <span class="pp">|</span> Miles per US gallon <span class="pp">|</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> cyl <span class="pp">|</span> Number of cylinders <span class="pp">|</span></span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> disp <span class="pp">|</span> Displacement in cubic inches <span class="pp">|</span></span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> hp <span class="pp">|</span> Gross horsepower <span class="pp">|</span> </span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> wt <span class="pp">|</span> Weight in 1000 lbs <span class="pp">|</span></span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> qsec <span class="pp">|</span> 1/4 mile time <span class="pp">|</span></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> drat <span class="pp">|</span> Rear axle ratio <span class="pp">|</span></span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> vs <span class="pp">|</span> Engine - 0 if V-shaped and 1 if straight <span class="pp">|</span></span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> am <span class="pp">|</span> Transmission - 0 if automatic and 1 if manual <span class="pp">|</span></span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> gear <span class="pp">|</span> Number of forward gears <span class="pp">|</span></span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> carb <span class="pp">|</span> Number of carburettors <span class="pp">|</span></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>: Variable names {.hover}</span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># Step 2 - Investigating the dataset</span></span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a>Let us load in the data, find the dimensions and the names of the variables. </span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a><span class="do">###| Loading and saving data</span></span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a><span class="do">###| Dimension of the dataset</span></span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(cars)</span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a><span class="do">###| Names of variables</span></span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cars)</span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>From the <span class="in">`dim()`</span> function, we learn there are 32 rows (observations) and 11 columns. From the <span class="in">`names()`</span> function, we learn the columns are named: "mpg", "cyl", "disp", "hp", "drat", "wt", "qsec", "vs",   "am", "gear" and "carb".</span>
+<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a>We can get important statistics about each column using the <span class="in">`summary()`</span> function.</span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a><span class="do">###| summary function</span></span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a>While it is very useful to have the minimum, first quantile, median, third quantile, maximum and mean, it does not always make sense given the variables.</span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a>For a richer one-call overview, <span class="in">`skimr::skim()`</span> adds missingness counts and tiny inline histograms, while <span class="in">`GGally::ggpairs()`</span> draws a whole grid of pairwise scatter plots and correlations at once.</span>
 <span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a>There are several ways to do this. I give the first example using base R. The second uses the <span class="in">`dplyr`</span> package, a very handy package for data manipulation. </span>
-<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a><span class="do">###| Factoring using base R</span></span>
-<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars_data<span class="sc">$</span>am)</span>
-<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars_data<span class="sc">$</span>vs)</span>
-<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary</span></span>
-<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_data)</span>
-<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package requirement</span></span>
-<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
-<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(cars)        <span class="co"># summary with missingness and mini-histograms</span></span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(cars)     <span class="co"># pairwise scatter/correlation matrix</span></span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a><span class="fu"># Step 3 - Cleaning data </span></span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a>It is important that the data is appropriately treated.</span>
+<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a><span class="fu">## `vs` and `am` variables</span></span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>In the above summary output, we observe that a mean is given for the <span class="in">`vs`</span> and <span class="in">`am`</span> variables. However, from the history about the dataset, we know that these variables can only take values $0$ and $1$. Thus, it would be better for these values to be treated as factors. </span>
 <span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a><span class="do">###| Save the dataset</span></span>
-<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a>cars_dplyr <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a><span class="do">###| Factoring variables</span></span>
-<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a>cars_dplyr <span class="ot">&lt;-</span> cars_dplyr <span class="sc">%&gt;%</span></span>
-<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vs =</span> <span class="fu">factor</span>(vs),</span>
-<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a>         <span class="at">am =</span> <span class="fu">factor</span>(am))</span>
-<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary of only vs and am columns</span></span>
-<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_data[,<span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">9</span>)])</span>
-<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a>There are several ways to do this. I give the first example using base R. The second uses the <span class="in">`dplyr`</span> package, a very handy package for data manipulation. </span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a><span class="do">###| Factoring using base R</span></span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars<span class="sc">$</span>am)</span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars<span class="sc">$</span>vs)</span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary</span></span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## Observation names</span></span>
-<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a>We can find the names of each row using the <span class="in">`rownames()`</span> command. </span>
-<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a><span class="do">###| Row/observation names</span></span>
-<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cars_data)</span>
-<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a>Looking at the list, we can see some cars are made by the same manufacturer. It may be important to consider this in future analysis. So, let us create a new variable, <span class="in">`manufacturer`</span>, that will account for this.</span>
-<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a><span class="do">###| New variable</span></span>
-<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>manufacturer <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(cars_data))</span>
-<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a><span class="do">###| Grouping the manufacturers</span></span>
-<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars_data<span class="sc">$</span>manufacturer) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">AMC =</span> <span class="st">"AMC Javelin"</span>, </span>
-<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Cadillac =</span> <span class="st">"Cadillac Fleetwood"</span> ,</span>
-<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Camaro =</span> <span class="st">"Camaro Z28"</span>, </span>
-<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Datsum =</span> <span class="st">"Datsun 710"</span>,</span>
-<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Dodge =</span> <span class="st">"Dodge Challenger"</span>,</span>
-<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Duster =</span> <span class="st">"Duster 360"</span>,</span>
-<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ferrari =</span> <span class="st">"Ferrari Dino"</span>,</span>
-<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Fiat =</span> <span class="fu">c</span>(<span class="st">"Fiat 128"</span>,<span class="st">"Fiat X1-9"</span>),</span>
-<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ford =</span> <span class="st">"Ford Pantera L"</span>,</span>
-<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Honda =</span> <span class="st">"Honda Civic"</span>,</span>
-<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Hornet =</span> <span class="fu">c</span>(<span class="st">"Hornet 4 Drive"</span>,<span class="st">"Hornet Sportabout"</span>),</span>
-<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Lincoln =</span> <span class="st">"Lincoln Continental"</span>,</span>
-<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Chrysler =</span> <span class="st">"Chrysler Imperial"</span>,</span>
-<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Lotus =</span> <span class="st">"Lotus Europa"</span>,</span>
-<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Maserati =</span> <span class="st">"Maserati Bora"</span>,</span>
-<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Mazda =</span> <span class="fu">c</span>(<span class="st">"Mazda RX4"</span>,<span class="st">"Mazda RX4 Wag"</span>),</span>
-<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Merc =</span> <span class="fu">c</span>(<span class="st">"Merc 230"</span>,<span class="st">"Merc 240D"</span>,<span class="st">"Merc 280"</span>,</span>
-<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Merc 280C"</span>,<span class="st">"Merc 450SE"</span>,<span class="st">"Merc 450SL"</span>,</span>
-<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Merc 450SLC"</span>),</span>
-<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Pontiac =</span> <span class="st">"Pontiac Firebird"</span>,</span>
-<span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Porsche =</span> <span class="st">"Porsche 914-2"</span>,</span>
-<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Toyota =</span> <span class="fu">c</span>(<span class="st">"Toyota Corolla"</span>,<span class="st">"Toyota Corona"</span>),</span>
-<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Valiant =</span> <span class="st">"Valiant"</span>,</span>
-<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Volvo =</span> <span class="st">"Volvo 142E"</span>)</span>
-<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a><span class="do">###| Checking output</span></span>
-<span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>manufacturer</span>
-<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a>Now we have a variable that lists manufacturers. We can check the categories using the <span class="in">`levels()`</span> command. </span>
-<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a><span class="do">###| Levels()</span></span>
-<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars_data<span class="sc">$</span>manufacturer)</span>
-<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a><span class="fu">## Should it be categorical or continuous?</span></span>
-<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>There a few clear cut instances in the cars dataset where the variables should be categorical. We have addressed these: <span class="in">`vm`</span>, <span class="in">`am`</span> and <span class="in">`manufacturer`</span>. However, there are instances where it is less clear. </span>
-<span id="cb24-188"><a href="#cb24-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-189"><a href="#cb24-189" aria-hidden="true" tabindex="-1"></a>For example, consider the cylinders variable. In our data, we have observations with 3 distinct categories: 4, 6 and 8. (We can find this with <span class="in">`unique()`</span> function.)</span>
-<span id="cb24-190"><a href="#cb24-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a><span class="do">###| Cylinders</span></span>
-<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(cars_data<span class="sc">$</span>cyl)</span>
-<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-198"><a href="#cb24-198" aria-hidden="true" tabindex="-1"></a>Thus, we could argue we should treat cylinders as categorical data. However, treating cylinders as categorical removes the ability to treat this as a single variable. As one variable, we could test how increasing the number of cylinders impacts performance.</span>
-<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a>When we come to modelling, we should test models with cylinders treated as a continuous and a categorical variable. </span>
-<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a><span class="fu"># Next step - Exploratory Data Analsysis</span></span>
-<span id="cb24-203"><a href="#cb24-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-204"><a href="#cb24-204" aria-hidden="true" tabindex="-1"></a>Now that we know about our dataset and have done an initial check of the data, we can move on to the next step - Explanatory Data Analysis (EDA).</span>
-<span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a>An exact definition of EDA is hard to pin down. However, the <span class="co">[</span><span class="ot">IBM</span><span class="co">](https://www.ibm.com/topics/exploratory-data-analysis)</span> gives an idea of what EDA is: </span>
-<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Exploratory data analysis (EDA) is used by data scientists to analyze and investigate data sets and summarize their main characteristics, often employing data visualization methods.</span></span>
-<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a>In the rest of this section, I will cover some examples of EDA. Namely, we will review addressing missing data, creating summary tables and graphics. </span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package requirement</span></span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a><span class="do">###| Save the dataset</span></span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>carsDplyr <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a><span class="do">###| Factoring variables</span></span>
+<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a>carsDplyr <span class="ot">&lt;-</span> carsDplyr <span class="sc">%&gt;%</span></span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vs =</span> <span class="fu">factor</span>(vs),</span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a>         <span class="at">am =</span> <span class="fu">factor</span>(am))</span>
+<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a><span class="do">###| Summary of only vs and am columns</span></span>
+<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(carsDplyr[, <span class="fu">c</span>(<span class="st">"vs"</span>,<span class="st">"am"</span>)])</span>
+<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a><span class="fu">## Observation names</span></span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>We can find the names of each row using the <span class="in">`rownames()`</span> command. </span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a><span class="do">###| Row/observation names</span></span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cars)</span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a>Looking at the list, we can see some cars are made by the same manufacturer. It may be important to consider this in future analysis. So, let us create a new variable, <span class="in">`manufacturer`</span>, that will account for this.</span>
+<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a><span class="do">###| New variable</span></span>
+<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>manufacturer <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(cars))</span>
+<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a><span class="do">###| Grouping the manufacturers</span></span>
+<span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars<span class="sc">$</span>manufacturer) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">AMC =</span> <span class="st">"AMC Javelin"</span>,</span>
+<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Cadillac =</span> <span class="st">"Cadillac Fleetwood"</span> ,</span>
+<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Camaro =</span> <span class="st">"Camaro Z28"</span>, </span>
+<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Datsun =</span> <span class="st">"Datsun 710"</span>,</span>
+<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Dodge =</span> <span class="st">"Dodge Challenger"</span>,</span>
+<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Duster =</span> <span class="st">"Duster 360"</span>,</span>
+<span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ferrari =</span> <span class="st">"Ferrari Dino"</span>,</span>
+<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Fiat =</span> <span class="fu">c</span>(<span class="st">"Fiat 128"</span>,<span class="st">"Fiat X1-9"</span>),</span>
+<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ford =</span> <span class="st">"Ford Pantera L"</span>,</span>
+<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Honda =</span> <span class="st">"Honda Civic"</span>,</span>
+<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Hornet =</span> <span class="fu">c</span>(<span class="st">"Hornet 4 Drive"</span>,<span class="st">"Hornet Sportabout"</span>),</span>
+<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Lincoln =</span> <span class="st">"Lincoln Continental"</span>,</span>
+<span id="cb24-180"><a href="#cb24-180" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Chrysler =</span> <span class="st">"Chrysler Imperial"</span>,</span>
+<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Lotus =</span> <span class="st">"Lotus Europa"</span>,</span>
+<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Maserati =</span> <span class="st">"Maserati Bora"</span>,</span>
+<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Mazda =</span> <span class="fu">c</span>(<span class="st">"Mazda RX4"</span>,<span class="st">"Mazda RX4 Wag"</span>),</span>
+<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Merc =</span> <span class="fu">c</span>(<span class="st">"Merc 230"</span>,<span class="st">"Merc 240D"</span>,<span class="st">"Merc 280"</span>,</span>
+<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Merc 280C"</span>,<span class="st">"Merc 450SE"</span>,<span class="st">"Merc 450SL"</span>,</span>
+<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Merc 450SLC"</span>),</span>
+<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Pontiac =</span> <span class="st">"Pontiac Firebird"</span>,</span>
+<span id="cb24-188"><a href="#cb24-188" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Porsche =</span> <span class="st">"Porsche 914-2"</span>,</span>
+<span id="cb24-189"><a href="#cb24-189" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Toyota =</span> <span class="fu">c</span>(<span class="st">"Toyota Corolla"</span>,<span class="st">"Toyota Corona"</span>),</span>
+<span id="cb24-190"><a href="#cb24-190" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Valiant =</span> <span class="st">"Valiant"</span>,</span>
+<span id="cb24-191"><a href="#cb24-191" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Volvo =</span> <span class="st">"Volvo 142E"</span>)</span>
+<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a><span class="do">###| Checking output</span></span>
+<span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>manufacturer</span>
+<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a>:::{.callout-note title="In a nutshell: relabelling factor levels"}</span>
+<span id="cb24-198"><a href="#cb24-198" aria-hidden="true" tabindex="-1"></a>Assigning to <span class="in">`levels(cars$manufacturer)`</span> with a <span class="in">`list()`</span> **regroups and relabels** the factor: every old level on the right-hand side is renamed to the new label on the left (and several old levels can be merged into one, as we do for `Merc`). Be careful — any level you forget to include in the list is **silently turned into `NA`**, so always make sure every original level appears somewhere.</span>
+<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a>Now we have a variable that lists manufacturers. We can check the categories using the <span class="in">`levels()`</span> command.</span>
+<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a><span class="do">###| Levels()</span></span>
+<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars<span class="sc">$</span>manufacturer)</span>
+<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a><span class="fu">## Should it be categorical or continuous?</span></span>
+<span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-211"><a href="#cb24-211" aria-hidden="true" tabindex="-1"></a>There a few clear cut instances in the cars dataset where the variables should be categorical. We have addressed these: <span class="in">`vs`</span>, <span class="in">`am`</span> and <span class="in">`manufacturer`</span>. However, there are instances where it is less clear. </span>
+<span id="cb24-212"><a href="#cb24-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-213"><a href="#cb24-213" aria-hidden="true" tabindex="-1"></a>For example, consider the cylinders variable. In our data, we have observations with 3 distinct categories: 4, 6 and 8. (We can find this with <span class="in">`unique()`</span> function.)</span>
+<span id="cb24-214"><a href="#cb24-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-217"><a href="#cb24-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-218"><a href="#cb24-218" aria-hidden="true" tabindex="-1"></a><span class="do">###| Cylinders</span></span>
+<span id="cb24-219"><a href="#cb24-219" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(cars<span class="sc">$</span>cyl)</span>
+<span id="cb24-220"><a href="#cb24-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-221"><a href="#cb24-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-222"><a href="#cb24-222" aria-hidden="true" tabindex="-1"></a>Thus, we could argue we should treat cylinders as categorical data. However, treating cylinders as categorical removes the ability to treat this as a single variable. As one variable, we could test how increasing the number of cylinders impacts performance.</span>
+<span id="cb24-223"><a href="#cb24-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-224"><a href="#cb24-224" aria-hidden="true" tabindex="-1"></a>When we come to modelling, we should test models with cylinders treated as a continuous and a categorical variable. </span>
+<span id="cb24-225"><a href="#cb24-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-226"><a href="#cb24-226" aria-hidden="true" tabindex="-1"></a><span class="fu"># Next step - Exploratory Data Analysis</span></span>
+<span id="cb24-227"><a href="#cb24-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-228"><a href="#cb24-228" aria-hidden="true" tabindex="-1"></a>Now that we know about our dataset and have done an initial check of the data, we can move on to the next step - Exploratory Data Analysis (EDA).</span>
+<span id="cb24-229"><a href="#cb24-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-230"><a href="#cb24-230" aria-hidden="true" tabindex="-1"></a>An exact definition of EDA is hard to pin down. However, the <span class="co">[</span><span class="ot">IBM</span><span class="co">](https://www.ibm.com/topics/exploratory-data-analysis)</span> gives an idea of what EDA is: </span>
+<span id="cb24-231"><a href="#cb24-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-232"><a href="#cb24-232" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Exploratory data analysis (EDA) is used by data scientists to analyze and investigate data sets and summarize their main characteristics, often employing data visualization methods.</span></span>
+<span id="cb24-233"><a href="#cb24-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-234"><a href="#cb24-234" aria-hidden="true" tabindex="-1"></a>In the rest of this section, I will cover some examples of EDA. Namely, we will review addressing missing data, creating summary tables and graphics. </span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

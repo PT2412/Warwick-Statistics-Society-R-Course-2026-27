@@ -16,7 +16,7 @@ format:
 
 Suppose we are contacted by a group of scientists who are conducting experiments on leaf burn times. They have provided us with the leaf dataset and want to know what the relationship between the elements in the soil and burn time.
 
-They tell us that the 'lburn' variable is the log of the leaf burn time. They also tell us that the 'Nitrogen', 'Chlorine' and 'Potassium' variables are the percentage of prevalant in soil.
+They tell us that the 'lburn' variable is the log of the leaf burn time. They also tell us that the 'Nitrogen', 'Chlorine' and 'Potassium' variables are the percentage present in the soil.
 
 To answer their question, and find the relationship between the elements and burn time, we are going to fit a linear model on the leaf dataset. However, before we fit the model, it is important to review the dataset carefully.
 
@@ -25,7 +25,7 @@ To answer their question, and find the relationship between the elements and bur
 We can load in the data and inspect the first 6 rows as follows. 
 
 :::{.callout-note}
-The data can be found on the associated github [here](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025/tree/main/Data). Please download this to your computer and save it to your documents. 
+The data can be found on the associated GitHub [here](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27/tree/main/Data). Please download this to your computer and save it to your documents.
 
 You will need to change the location of the file path. You can find this by clicking the file and reading the pop up window. 
 :::
@@ -75,8 +75,8 @@ From the output, we obtain an estimate for $\alpha = 2.6257$ and an estimate for
 <div>
 
 * If there is no Nitrogen in the soil, the expected log leaf burn time is 2.6.
-* For every increase of 1% of Nitrogren in the soil, we expect a 0.6 decrease in the log leaf burn time. 
-  + (Alternatively, we expect the leaf burn time to decrease by $\exp(0.6)\approx 1.82.)
+* For every increase of 1% of Nitrogen in the soil, we expect a 0.6 decrease in the log leaf burn time.
+  + (Alternatively, since the response is logged, a 1-unit (1%) increase in Nitrogen multiplies the leaf burn time by $\exp(-0.59)\approx 0.55$, i.e. about a 45% reduction.)
 
 </div>
 
@@ -92,10 +92,25 @@ Now, the estimates of $\alpha$ and $\beta$ are reported in the Estimate column. 
 <div>
 
 * Pr(\>\|t\|) is the p-value after performing a hypothesis test. 
-  + The asterics (\*) indicate the significance. Depending on the context, different significance levels are suitable. In most cases $0.05$ is a 'good' level.
+  + The asterisks (\*) indicate the significance. Depending on the context, different significance levels are suitable. In most cases $0.05$ is a 'good' level.
 * The $R^2$ and adjusted $R^2$ describe how much variance is accounted for by the model (the closer to 1 the better)
 
 </div>
+
+::: {.callout-note title="In a nutshell: reading the summary table"}
+The **p-value** (`Pr(>|t|)`) is, roughly, the probability of seeing an estimate this large if the true coefficient were actually zero — so a small p-value means it is unlikely the variable has no effect, i.e. the variable matters. The **Std. Error** is how uncertain we are about the estimate, and the **t value** is just the estimate divided by its standard error (a bigger t value gives a smaller p-value).
+:::
+
+::: {.callout-tip title="Going further 🚀"}
+The `broom` package turns messy model output into tidy data frames you can sort, filter or plot. `tidy()` gives one row per coefficient (estimate, std. error, p-value) and `glance()` gives a one-row model summary ($R^2$, AIC, etc.).
+
+```{r}
+#| eval: false
+library(broom)
+tidy(m1)    # coefficient table as a tidy data frame
+glance(m1)  # one-row model-fit summary
+```
+:::
 
 We can also get information using 'anova()'.
 
@@ -122,7 +137,7 @@ anova(m2)
 
 The first row of the anova output is: $$ Nitrogen \quad  1 \quad 3.4460 \quad 3.4460 \quad 38.9352 \quad 1.127e-06 \text{***}.$$
 
-The p-value $1.127e-06$ comes from a hypothesis test with null hypothsis $\beta = 0$. That is to say, we compare the following 2 models, one where $\beta =0$ and one where $\beta \neq 0$: 
+The p-value $1.127e-06$ comes from a hypothesis test with null hypothesis $\beta = 0$. That is to say, we compare the following 2 models, one where $\beta =0$ and one where $\beta \neq 0$: 
 
 :::{} 
 1. $y_i = \alpha + \epsilon_i$ 
@@ -133,7 +148,7 @@ As the p-value is $<0.05$, we say that there is sufficient evidence to reject th
 
 The second row of the anova output is: $$Chlorine \quad  1 \quad 0.8538 \quad 0.8538 \quad 9.6473 \quad 0.004424 \text{**}.$$
 
-The p-value $0.004424$ comes from a hypothesis test with null hypothesis $\gamma = 0$. That is to say, we compare the following 2 models, one where $\beta =0$ and one where $\beta \neq 0$: 
+The p-value $0.004424$ comes from a hypothesis test with null hypothesis $\gamma = 0$. That is to say, we compare the following 2 models, one where $\gamma =0$ and one where $\gamma \neq 0$:
 
 :::{} 
 1. $y_i = \alpha + \beta x_{i,\text{Nitrogen}} + \epsilon_i$ 

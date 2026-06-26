@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Priors and the Large-Sample Bridge – Warwick Statistics Society R Course 2026-2027</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Using R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cheatsheets.html"> 
+<span class="menu-text">Cheatsheets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data/Raw data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Bayesian Statistics/Introduction Bayesian.html">Bayesian Statistics (Parametric Models)</a></li><li class="breadcrumb-item"><a href="../Bayesian Statistics/priors.html">Priors and the Large-Sample Bridge</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/introduction to r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/control structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/Random numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Theory of Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intuit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mathematical intuition behind coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code Euclidean Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Euclidean Algorithm — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MonteCarlo Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo Approximation of π — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code NewtonRaph Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Continuous data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with continuous data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Categorical data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with categorical data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check your understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cars dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/summary tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr: summary tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualisation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/importing data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Import and Preparation in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/baseR and ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to ggplot2: The Grammar of Graphics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/customising graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Customisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/univariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Univariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Bivariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Multiple Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Best Practices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Report Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Report Writing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportstructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Report Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Report Statistical Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English and Style</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#kinds-of-prior" id="toc-kinds-of-prior" class="nav-link active" data-scroll-target="#kinds-of-prior">Kinds of prior</a></li>
+  <li><a href="#conjugate-priors-beyond-the-coin" id="toc-conjugate-priors-beyond-the-coin" class="nav-link" data-scroll-target="#conjugate-priors-beyond-the-coin">Conjugate priors beyond the coin</a></li>
+  <li><a href="#prior-sensitivity-does-the-prior-drive-the-answer" id="toc-prior-sensitivity-does-the-prior-drive-the-answer" class="nav-link" data-scroll-target="#prior-sensitivity-does-the-prior-drive-the-answer">Prior sensitivity: does the prior drive the answer?</a></li>
+  <li><a href="#the-prior-washes-out-as-n-grows" id="toc-the-prior-washes-out-as-n-grows" class="nav-link" data-scroll-target="#the-prior-washes-out-as-n-grows">The prior washes out as n grows</a></li>
+  <li><a href="#the-bernsteinvon-mises-theorem-the-bridge-to-frequentism" id="toc-the-bernsteinvon-mises-theorem-the-bridge-to-frequentism" class="nav-link" data-scroll-target="#the-bernsteinvon-mises-theorem-the-bridge-to-frequentism">The Bernstein–von Mises theorem: the bridge to frequentism</a></li>
+  <li><a href="#good-and-bad-practice-in-choosing-a-prior" id="toc-good-and-bad-practice-in-choosing-a-prior" class="nav-link" data-scroll-target="#good-and-bad-practice-in-choosing-a-prior">Good and bad practice in choosing a prior</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Bayesian Statistics/Introduction Bayesian.html">Bayesian Statistics (Parametric Models)</a></li><li class="breadcrumb-item"><a href="../Bayesian Statistics/priors.html">Priors and the Large-Sample Bridge</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Priors and the Large-Sample Bridge</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The previous page took the prior as given — a tidy <span class="math inline">\(\text{Beta}(2,2)\)</span> pulled from the air. But the prior is the one ingredient frequentists do not use, and the most common objection to Bayesian methods: <em>“isn’t the answer just whatever you assume going in?”</em> This page answers that charge. It explains <strong>where priors come from</strong>, shows how to check whether your prior is steering the result, and then proves the reassuring punchline: as data accumulates, the prior <strong>washes out</strong> and the Bayesian posterior converges on the very same answer the frequentist would give. That convergence — the <strong>Bernstein–von Mises theorem</strong> — is the bridge between the two sections.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  P["Choose a prior&lt;br/&gt;informative / weak / flat"] --&gt; U["Update with data"]
+  U --&gt; S{"Is n large?"}
+  S --&gt;|"small n"| A["Prior still matters —&lt;br/&gt;do a sensitivity check"]
+  S --&gt;|"large n"| B["Prior washes out;&lt;br/&gt;posterior ≈ N(MLE, 1/I)&lt;br/&gt;→ agrees with frequentist"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="kinds-of-prior" class="level1">
+<h1>Kinds of prior</h1>
+<p>A prior encodes what you know before the data. How much it should say depends on how much you actually know.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  Q["How much do I know about θ&lt;br/&gt;before seeing the data?"]
+  Q --&gt;|"a lot — past studies,&lt;br/&gt;physical limits"| I["Informative prior&lt;br/&gt;narrow, opinionated"]
+  Q --&gt;|"a little — just&lt;br/&gt;plausible ranges"| W["Weakly-informative prior&lt;br/&gt;gentle, regularising"]
+  Q --&gt;|"claim to know nothing"| F["Flat / non-informative prior&lt;br/&gt;let the data speak"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Informative prior.</strong> A narrow distribution carrying genuine prior knowledge — e.g.&nbsp;<span class="math inline">\(\text{Beta}(70,30)\)</span> for a coin a previous experiment already suggested was biased toward heads. Powerful when the knowledge is real, dangerous when it is wishful.</li>
+<li><strong>Weakly-informative prior.</strong> A deliberately gentle distribution that rules out the absurd (a coin bias of exactly 0, a negative variance) without pushing hard toward any value — e.g.&nbsp;<span class="math inline">\(\text{Beta}(2,2)\)</span>. The modern default: it <em>regularises</em> the estimate (pulling extreme small-sample answers toward something sensible) while being easily overruled by data.</li>
+<li><strong>Flat / non-informative prior.</strong> An attempt to “assume nothing,” e.g.&nbsp;the uniform <span class="math inline">\(\text{Beta}(1,1)\)</span>. With a flat prior the posterior is proportional to the <em>likelihood alone</em>, so the MAP estimate equals the frequentist MLE. Genuine non-informativeness is subtler than it looks (a prior flat in <span class="math inline">\(\theta\)</span> is not flat in, say, <span class="math inline">\(\log\theta\)</span>); the <strong>Jeffreys prior</strong>, for the coin <span class="math inline">\(\text{Beta}(\tfrac12,\tfrac12)\)</span>, is the principled construction that is invariant to such reparametrisations.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: skippable on a first read">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: skippable on a first read
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Jeffreys-prior sentence above — “flat in <span class="math inline">\(\theta\)</span> isn’t flat in <span class="math inline">\(\log\theta\)</span>” — is a subtlety you can safely skip the first time through. The only takeaway you need is: <strong>“flat” is trickier than it sounds</strong>, because a prior that looks even-handed on one scale can be lopsided on another. Come back to the Jeffreys construction once the rest of the page feels comfortable.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="The prior as pseudo-data">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The prior as pseudo-data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Conjugacy gives the prior a wonderfully concrete reading. A <span class="math inline">\(\text{Beta}(a,b)\)</span> prior contributes exactly like having already seen <span class="math inline">\(a-1\)</span> heads and <span class="math inline">\(b-1\)</span> tails before the experiment began. An informative <span class="math inline">\(\text{Beta}(70,30)\)</span> is “100 prior flips”; a weak <span class="math inline">\(\text{Beta}(2,2)\)</span> is “two prior flips.” Seen this way it is obvious why a handful of pseudo-observations cannot survive contact with 200 real ones.</p>
+</div>
+</div>
+</section>
+<section id="conjugate-priors-beyond-the-coin" class="level1">
+<h1>Conjugate priors beyond the coin</h1>
+<p>The Beta–Binomial pairing from the last page is one of a small family of <strong>conjugate</strong> prior–likelihood combinations where the posterior stays in the prior’s family and updating is pure arithmetic. The three you will actually use:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Likelihood (data model)</th>
+<th>Conjugate prior</th>
+<th>Posterior</th>
+<th>Update rule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binomial / Bernoulli, prob. <span class="math inline">\(\theta\)</span></td>
+<td><span class="math inline">\(\text{Beta}(a,b)\)</span></td>
+<td><span class="math inline">\(\text{Beta}(a+k,\, b+n-k)\)</span></td>
+<td>add heads to <span class="math inline">\(a\)</span>, tails to <span class="math inline">\(b\)</span></td>
+</tr>
+<tr class="even">
+<td>Poisson, rate <span class="math inline">\(\lambda\)</span></td>
+<td><span class="math inline">\(\text{Gamma}(a,b)\)</span></td>
+<td><span class="math inline">\(\text{Gamma}(a+\sum y_i,\, b+n)\)</span></td>
+<td>add total count to <span class="math inline">\(a\)</span>, sample size to <span class="math inline">\(b\)</span></td>
+</tr>
+<tr class="odd">
+<td>Normal (known <span class="math inline">\(\sigma^2\)</span>), mean <span class="math inline">\(\mu\)</span></td>
+<td><span class="math inline">\(\mathcal N(\mu_0, \tau_0^2)\)</span></td>
+<td><span class="math inline">\(\mathcal N(\cdot, \cdot)\)</span></td>
+<td>precision-weighted average of <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(\bar x\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: &quot;precision-weighted average&quot;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: “precision-weighted average”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Precision</strong> is just <span class="math inline">\(1/\text{variance}\)</span> — a measure of how <em>certain</em> a source is. The Normal–Normal posterior mean is a precision-weighted average of the prior mean <span class="math inline">\(\mu_0\)</span> and the data mean <span class="math inline">\(\bar x\)</span>: each is weighted by its own precision, so <strong>the more certain source pulls harder</strong>. A sharp prior (high precision) or a large, tight sample (high precision) gets more say; a vague one gets less.</p>
+</div>
+</div>
+<p>We use the Gamma–Poisson row in the worked examples to put a Bayesian treatment on R’s <code>discoveries</code> data — the same dataset the frequentist worked-examples page modelled.</p>
+</section>
+<section id="prior-sensitivity-does-the-prior-drive-the-answer" class="level1">
+<h1>Prior sensitivity: does the prior drive the answer?</h1>
+<p>The honest way to address the subjectivity worry is not to argue about it but to <strong>measure</strong> it: refit under several priors and see whether the posterior actually moves. If reasonable priors give materially the same posterior, the prior is not driving the result and the analysis is robust. We do exactly this on the coin data, comparing a flat, a weak, and a (deliberately wrong) strongly-informative prior.</p>
+<div class="cell" data-layout-align="center">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>trueTheta <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rbinom</span>(n, <span class="dv">1</span>, trueTheta))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Three priors: flat, weak, and a strong WRONG belief that the coin favours tails</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>priors <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"flat  Beta(1,1)"</span>        <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"weak  Beta(2,2)"</span>        <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"strong wrong Beta(30,70)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">70</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>cols  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"steelblue"</span>, <span class="st">"firebrick"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">14</span>),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"posterior density"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Posterior under three different priors (n = 200)"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(priors)) {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> priors[[i]][<span class="dv">1</span>]; b <span class="ot">&lt;-</span> priors[[i]][<span class="dv">2</span>]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(theta, <span class="fu">dbeta</span>(theta, a <span class="sc">+</span> k, b <span class="sc">+</span> n <span class="sc">-</span> k), <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">col =</span> cols[i])</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> trueTheta, <span class="at">col =</span> <span class="st">"grey40"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">col =</span> cols, <span class="at">legend =</span> <span class="fu">names</span>(priors))</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="priors_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Even the <strong>strong wrong</strong> prior — a confident belief, worth 100 pseudo-flips, that the coin favours <em>tails</em> — is dragged almost all the way to the truth by 200 real flips. The flat and weak priors are visually indistinguishable. With this much data the choice of (reasonable) prior barely matters; the data is in charge.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In real models you set priors per parameter with <code>brms::set_prior()</code>, and you should <em>check what they imply</em> before seeing data via a <strong>prior predictive check</strong> — fit with <code>sample_prior = "only"</code> and simulate, to confirm the priors generate plausible datasets rather than nonsense.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>priors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">set_prior</span>(<span class="st">"normal(0, 1)"</span>, <span class="at">class =</span> <span class="st">"b"</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">set_prior</span>(<span class="st">"normal(0, 5)"</span>, <span class="at">class =</span> <span class="st">"Intercept"</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">brm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df, <span class="at">prior =</span> priors,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">sample_prior =</span> <span class="st">"only"</span>)   <span class="co"># ignore the data; draw from the prior</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(fit)                        <span class="co"># do the prior-implied datasets look sane?</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="the-prior-washes-out-as-n-grows" class="level1">
+<h1>The prior washes out as n grows</h1>
+<p>The sensitivity check above was at a single sample size. The deeper phenomenon is what happens <em>as <span class="math inline">\(n\)</span> increases</em>: any fixed prior is progressively drowned out, because the likelihood’s contribution grows with every data point while the prior’s stays fixed. We can watch it happen by feeding the <em>same wrong prior</em> increasing amounts of data.</p>
+<div class="cell" data-layout-align="center">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>aPri <span class="ot">&lt;-</span> <span class="dv">30</span>; bPri <span class="ot">&lt;-</span> <span class="dv">70</span>             <span class="co"># the same stubborn "favours tails" prior</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">100</span>, <span class="dv">500</span>)       <span class="co"># n = 0 shows the prior itself</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>cols  <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(<span class="fu">length</span>(ns), <span class="st">"Viridis"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"density"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"The same prior, washed out by more and more data"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(ns)) {</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  nn <span class="ot">&lt;-</span> ns[i]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  kk <span class="ot">&lt;-</span> <span class="cf">if</span> (nn <span class="sc">==</span> <span class="dv">0</span>) <span class="dv">0</span> <span class="cf">else</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, nn, trueTheta)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(theta, <span class="fu">dbeta</span>(theta, aPri <span class="sc">+</span> kk, bPri <span class="sc">+</span> nn <span class="sc">-</span> kk), <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">col =</span> cols[i])</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> trueTheta, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">col =</span> cols,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, ns))</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="priors_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>At <span class="math inline">\(n = 0\)</span> the posterior <em>is</em> the prior, peaked stubbornly around 0.3. As data arrives the whole distribution marches rightward and narrows, until by <span class="math inline">\(n = 500\)</span> it is a tight spike on the true 0.7 — the prior’s early opinion has been completely forgotten. This is the formal answer to “isn’t it just what you assumed?”: <strong>only when you have very little data, and exactly when you <em>should</em> lean on prior knowledge.</strong></p>
+</section>
+<section id="the-bernsteinvon-mises-theorem-the-bridge-to-frequentism" class="level1">
+<h1>The Bernstein–von Mises theorem: the bridge to frequentism</h1>
+<p>There is a precise theorem behind that picture, and it is the Bayesian mirror of the frequentist <em>asymptotic normality</em> result. The <strong>Bernstein–von Mises theorem</strong> says that, under the same regularity conditions, for large <span class="math inline">\(n\)</span> the posterior is approximately normal, centred at the MLE, with variance the inverse Fisher information:</p>
+<p><span class="math display">\[
+\boxed{\,p(\theta \mid \text{data}) \;\overset{\text{approx.}}{\sim}\; \mathcal N\!\left(\hat\theta_{\text{MLE}},\; \tfrac{1}{I(\hat\theta)}\right)\,}
+\]</span></p>
+<p>Compare this with the frequentist statement that <span class="math inline">\(\hat\theta \sim \mathcal N(\theta, 1/I(\theta))\)</span>. They are the <em>same normal distribution</em>, read from opposite directions — one describing the spread of the estimator over hypothetical datasets, the other describing the spread of belief about <span class="math inline">\(\theta\)</span> given one dataset. The consequence is striking:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="For large samples the two sections converge">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>For large samples the two sections converge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Because the posterior becomes <span class="math inline">\(\mathcal N(\hat\theta, 1/I)\)</span>, the Bayesian 95% <strong>credible</strong> interval <span class="math inline">\(\hat\theta \pm 1.96/\sqrt{I}\)</span> coincides with the frequentist 95% <strong>Wald confidence</strong> interval from the asymptotics page. The prior is forgotten, and the two philosophies — which <em>mean</em> completely different things by “95%” — hand you the <em>same numbers</em>. Disagreement between Bayesian and frequentist answers is therefore a small-sample, strong-prior phenomenon; in the data-rich limit they reconcile.</p>
+</div>
+</div>
+<p>We can see the normal approximation appear in our own coin posterior, which is an exact Beta but becomes ever more Gaussian as <span class="math inline">\(n\)</span> grows.</p>
+<div class="cell" data-layout-align="center">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span>; k <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rbinom</span>(n, <span class="dv">1</span>, trueTheta))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>aPost <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> k; bPost <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> n <span class="sc">-</span> k            <span class="co"># flat prior → posterior ∝ likelihood</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.55</span>, <span class="fl">0.85</span>, <span class="at">length.out =</span> <span class="dv">600</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Exact Beta posterior vs the Bernstein–von Mises normal approximation</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>mle <span class="ot">&lt;-</span> k <span class="sc">/</span> n</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>iHat <span class="ot">&lt;-</span> n <span class="sc">/</span> (mle <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> mle))                 <span class="co"># Fisher information at the MLE</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>bvm   <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(theta, <span class="at">mean =</span> mle, <span class="at">sd =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(iHat))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(theta, <span class="fu">dbeta</span>(theta, aPost, bPost), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"density"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Exact Beta posterior vs the Bernstein–von Mises normal"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(theta, bvm, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"firebrick"</span>, <span class="st">"steelblue"</span>),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"exact Beta posterior"</span>, <span class="fu">expression</span>(<span class="fu">N</span>(<span class="fu">hat</span>(theta), <span class="dv">1</span><span class="sc">/</span>I))))</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="priors_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The exact posterior (red) and the asymptotic normal (blue) sit almost on top of one another — and, as on the frequentist asymptotics page, the agreement would be even tighter for larger <span class="math inline">\(n\)</span> and looser for small <span class="math inline">\(n\)</span> or skewed likelihoods. This is the same caveat as before: <strong>asymptotic means approximate.</strong> When <span class="math inline">\(n\)</span> is small the prior genuinely matters and the posterior can be far from normal — which is precisely when the Bayesian machinery earns its keep, and when we may have no formula at all and must compute the posterior numerically. That is the next page.</p>
+</section>
+<section id="good-and-bad-practice-in-choosing-a-prior" class="level1">
+<h1>Good and bad practice in choosing a prior</h1>
+<p>The prior is the one place a Bayesian analysis can be quietly steered toward a desired conclusion, so honesty about it is what separates a credible analysis from a suspect one. Especially with small samples — exactly where the prior still has bite — the <em>choice</em> of prior is a methodological decision you must be able to defend.</p>
+<p><strong>Good practice:</strong></p>
+<ul>
+<li><strong>Default to weakly-informative priors</strong> that rule out the absurd but let the data lead — they regularise small-sample estimates without imposing a strong opinion.</li>
+<li><strong>Choose the prior before seeing the data.</strong> A prior is a statement of what you knew <em>beforehand</em>; picking it after looking at the likelihood is the Bayesian cousin of p-hacking.</li>
+<li><strong>Report the prior, and run a sensitivity analysis</strong> (as we did above): show that reasonable alternative priors give materially the same posterior, so readers can see the conclusion is not an artefact of your assumptions.</li>
+<li><strong>Use a prior predictive check</strong> — simulate fake data <em>from the prior alone</em> and ask whether it looks remotely plausible. A prior that predicts impossible data is a bad prior, however innocent it looks.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="Bad practice: how priors go wrong">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Bad practice: how priors go wrong
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Cherry-picking a prior to get the answer you want</strong> — the cardinal sin; the prior must be justifiable independently of the result.</li>
+<li><strong>Double-dipping</strong> — using the data to build the prior and then analysing the <em>same</em> data, which counts the evidence twice and produces falsely confident posteriors.</li>
+<li><strong>Accidentally informative “flat” priors</strong> — a prior that is flat in <span class="math inline">\(\theta\)</span> is <em>not</em> flat in <span class="math inline">\(\log\theta\)</span> or in odds, so a “non-informative” choice can secretly push hard on a transformed scale.</li>
+<li><strong>Over-confident priors</strong> — a needlessly narrow prior can dominate the likelihood and bias the result, particularly when data is scarce and you can least afford it.</li>
+</ul>
+</div>
+</div>
+<p>The throughline of this whole page: a prior is a <strong>transparent, declared, checkable assumption</strong>. Stated up front, justified, and stress-tested, it is a strength; chosen to flatter the conclusion or smuggled in unexamined, it is the fastest way to make a Bayesian analysis untrustworthy.</p>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Idea</th>
+<th>What it says</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Informative prior</td>
+<td>Encodes real prior knowledge; narrow</td>
+</tr>
+<tr class="even">
+<td>Weakly-informative prior</td>
+<td>Gentle regulariser; modern default</td>
+</tr>
+<tr class="odd">
+<td>Flat / Jeffreys prior</td>
+<td>“Assume little”; flat-prior MAP = MLE</td>
+</tr>
+<tr class="even">
+<td>Conjugate prior</td>
+<td>Posterior stays in the prior’s family; update by arithmetic</td>
+</tr>
+<tr class="odd">
+<td>Prior sensitivity check</td>
+<td>Refit under several priors to confirm robustness</td>
+</tr>
+<tr class="even">
+<td>Prior washout</td>
+<td>Fixed prior is drowned out as <span class="math inline">\(n\to\infty\)</span></td>
+</tr>
+<tr class="odd">
+<td>Bernstein–von Mises</td>
+<td>Posterior <span class="math inline">\(\to \mathcal N(\hat\theta, 1/I)\)</span>; Bayesian and frequentist intervals converge</td>
+</tr>
+</tbody>
+</table>
+<p>The headline: a prior is a transparent, checkable assumption, not a thumb on the scale — and with enough data it disappears, leaving Bayesian and frequentist inference shaking hands. The remaining obstacle is purely computational: the evidence integral. We tackle it next.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Priors and the Large-Sample Bridge"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">    mathjax: true</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>The previous page took the prior as given — a tidy $\text{Beta}(2,2)$ pulled from the air. But the prior is the one ingredient frequentists do not use, and the most common objection to Bayesian methods: *"isn't the answer just whatever you assume going in?"* This page answers that charge. It explains **where priors come from**, shows how to check whether your prior is steering the result, and then proves the reassuring punchline: as data accumulates, the prior **washes out** and the Bayesian posterior converges on the very same answer the frequentist would give. That convergence — the **Bernstein–von Mises theorem** — is the bridge between the two sections.</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>%%| fig-align: center</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  P[<span class="ot">"</span><span class="st">Choose a prior&lt;br/&gt;informative / weak / flat</span><span class="ot">"</span>] --&gt; U[<span class="ot">"</span><span class="st">Update with data</span><span class="ot">"</span>]</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  U --&gt; S{<span class="ot">"</span><span class="st">Is n large?</span><span class="ot">"</span>}</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  S --&gt;|<span class="ot">"</span><span class="st">small n</span><span class="ot">"</span>| A[<span class="ot">"</span><span class="st">Prior still matters —&lt;br/&gt;do a sensitivity check</span><span class="ot">"</span>]</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  S --&gt;|<span class="ot">"</span><span class="st">large n</span><span class="ot">"</span>| B[<span class="ot">"</span><span class="st">Prior washes out;&lt;br/&gt;posterior ≈ N(MLE, 1/I)&lt;br/&gt;→ agrees with frequentist</span><span class="ot">"</span>]</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="fu"># Kinds of prior</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>A prior encodes what you know before the data. How much it should say depends on how much you actually know.</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>%%| fig-align: center</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  Q[<span class="ot">"</span><span class="st">How much do I know about θ&lt;br/&gt;before seeing the data?</span><span class="ot">"</span>]</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  Q --&gt;|<span class="ot">"</span><span class="st">a lot — past studies,&lt;br/&gt;physical limits</span><span class="ot">"</span>| I[<span class="ot">"</span><span class="st">Informative prior&lt;br/&gt;narrow, opinionated</span><span class="ot">"</span>]</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  Q --&gt;|<span class="ot">"</span><span class="st">a little — just&lt;br/&gt;plausible ranges</span><span class="ot">"</span>| W[<span class="ot">"</span><span class="st">Weakly-informative prior&lt;br/&gt;gentle, regularising</span><span class="ot">"</span>]</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  Q --&gt;|<span class="ot">"</span><span class="st">claim to know nothing</span><span class="ot">"</span>| F[<span class="ot">"</span><span class="st">Flat / non-informative prior&lt;br/&gt;let the data speak</span><span class="ot">"</span>]</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Informative prior.** A narrow distribution carrying genuine prior knowledge — e.g. $\text{Beta}(70,30)$ for a coin a previous experiment already suggested was biased toward heads. Powerful when the knowledge is real, dangerous when it is wishful.</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Weakly-informative prior.** A deliberately gentle distribution that rules out the absurd (a coin bias of exactly 0, a negative variance) without pushing hard toward any value — e.g. $\text{Beta}(2,2)$. The modern default: it *regularises* the estimate (pulling extreme small-sample answers toward something sensible) while being easily overruled by data.</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Flat / non-informative prior.** An attempt to "assume nothing," e.g. the uniform $\text{Beta}(1,1)$. With a flat prior the posterior is proportional to the *likelihood alone*, so the MAP estimate equals the frequentist MLE. Genuine non-informativeness is subtler than it looks (a prior flat in $\theta$ is not flat in, say, $\log\theta$); the **Jeffreys prior**, for the coin $\text{Beta}(\tfrac12,\tfrac12)$, is the principled construction that is invariant to such reparametrisations.</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: skippable on a first read"}</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>The Jeffreys-prior sentence above — "flat in $\theta$ isn't flat in $\log\theta$" — is a subtlety you can safely skip the first time through. The only takeaway you need is: **"flat" is trickier than it sounds**, because a prior that looks even-handed on one scale can be lopsided on another. Come back to the Jeffreys construction once the rest of the page feels comfortable.</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="The prior as pseudo-data"}</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>Conjugacy gives the prior a wonderfully concrete reading. A $\text{Beta}(a,b)$ prior contributes exactly like having already seen $a-1$ heads and $b-1$ tails before the experiment began. An informative $\text{Beta}(70,30)$ is "100 prior flips"; a weak $\text{Beta}(2,2)$ is "two prior flips." Seen this way it is obvious why a handful of pseudo-observations cannot survive contact with 200 real ones.</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conjugate priors beyond the coin</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>The Beta–Binomial pairing from the last page is one of a small family of **conjugate** prior–likelihood combinations where the posterior stays in the prior's family and updating is pure arithmetic. The three you will actually use:</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Likelihood (data model) <span class="pp">|</span> Conjugate prior <span class="pp">|</span> Posterior <span class="pp">|</span> Update rule <span class="pp">|</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Binomial / Bernoulli, prob. $\theta$ <span class="pp">|</span> $\text{Beta}(a,b)$ <span class="pp">|</span> $\text{Beta}(a+k,\, b+n-k)$ <span class="pp">|</span> add heads to $a$, tails to $b$ <span class="pp">|</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Poisson, rate $\lambda$ <span class="pp">|</span> $\text{Gamma}(a,b)$ <span class="pp">|</span> $\text{Gamma}(a+\sum y_i,\, b+n)$ <span class="pp">|</span> add total count to $a$, sample size to $b$ <span class="pp">|</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Normal (known $\sigma^2$), mean $\mu$ <span class="pp">|</span> $\mathcal N(\mu_0, \tau_0^2)$ <span class="pp">|</span> $\mathcal N(\cdot, \cdot)$ <span class="pp">|</span> precision-weighted average of $\mu_0$ and $\bar x$ <span class="pp">|</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: \"precision-weighted average\""}</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>**Precision** is just $1/\text{variance}$ — a measure of how *certain* a source is. The Normal–Normal posterior mean is a precision-weighted average of the prior mean $\mu_0$ and the data mean $\bar x$: each is weighted by its own precision, so **the more certain source pulls harder**. A sharp prior (high precision) or a large, tight sample (high precision) gets more say; a vague one gets less.</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>We use the Gamma–Poisson row in the worked examples to put a Bayesian treatment on R's <span class="in">`discoveries`</span> data — the same dataset the frequentist worked-examples page modelled.</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="fu"># Prior sensitivity: does the prior drive the answer?</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>The honest way to address the subjectivity worry is not to argue about it but to **measure** it: refit under several priors and see whether the posterior actually moves. If reasonable priors give materially the same posterior, the prior is not driving the result and the analysis is robust. We do exactly this on the coin data, comparing a flat, a weak, and a (deliberately wrong) strongly-informative prior.</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>trueTheta <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rbinom</span>(n, <span class="dv">1</span>, trueTheta))</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Three priors: flat, weak, and a strong WRONG belief that the coin favours tails</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>priors <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  <span class="st">"flat  Beta(1,1)"</span>        <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>  <span class="st">"weak  Beta(2,2)"</span>        <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="st">"strong wrong Beta(30,70)"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">70</span>)</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>cols  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"steelblue"</span>, <span class="st">"firebrick"</span>)</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.9</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">14</span>),</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"posterior density"</span>,</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Posterior under three different priors (n = 200)"</span>)</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(priors)) {</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> priors[[i]][<span class="dv">1</span>]; b <span class="ot">&lt;-</span> priors[[i]][<span class="dv">2</span>]</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(theta, <span class="fu">dbeta</span>(theta, a <span class="sc">+</span> k, b <span class="sc">+</span> n <span class="sc">-</span> k), <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">col =</span> cols[i])</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> trueTheta, <span class="at">col =</span> <span class="st">"grey40"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">col =</span> cols, <span class="at">legend =</span> <span class="fu">names</span>(priors))</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>Even the **strong wrong** prior — a confident belief, worth 100 pseudo-flips, that the coin favours *tails* — is dragged almost all the way to the truth by 200 real flips. The flat and weak priors are visually indistinguishable. With this much data the choice of (reasonable) prior barely matters; the data is in charge.</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>In real models you set priors per parameter with <span class="in">`brms::set_prior()`</span>, and you should *check what they imply* before seeing data via a **prior predictive check** — fit with <span class="in">`sample_prior = "only"`</span> and simulate, to confirm the priors generate plausible datasets rather than nonsense.</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>priors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">set_prior</span>(<span class="st">"normal(0, 1)"</span>, <span class="at">class =</span> <span class="st">"b"</span>),</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>            <span class="fu">set_prior</span>(<span class="st">"normal(0, 5)"</span>, <span class="at">class =</span> <span class="st">"Intercept"</span>))</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">brm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df, <span class="at">prior =</span> priors,</span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>           <span class="at">sample_prior =</span> <span class="st">"only"</span>)   <span class="co"># ignore the data; draw from the prior</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(fit)                        <span class="co"># do the prior-implied datasets look sane?</span></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a><span class="fu"># The prior washes out as n grows</span></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>The sensitivity check above was at a single sample size. The deeper phenomenon is what happens *as $n$ increases*: any fixed prior is progressively drowned out, because the likelihood's contribution grows with every data point while the prior's stays fixed. We can watch it happen by feeding the *same wrong prior* increasing amounts of data.</span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>aPri <span class="ot">&lt;-</span> <span class="dv">30</span>; bPri <span class="ot">&lt;-</span> <span class="dv">70</span>             <span class="co"># the same stubborn "favours tails" prior</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>ns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">100</span>, <span class="dv">500</span>)       <span class="co"># n = 0 shows the prior itself</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>cols  <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(<span class="fu">length</span>(ns), <span class="st">"Viridis"</span>)</span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">25</span>),</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"density"</span>,</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"The same prior, washed out by more and more data"</span>)</span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(ns)) {</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>  nn <span class="ot">&lt;-</span> ns[i]</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>  kk <span class="ot">&lt;-</span> <span class="cf">if</span> (nn <span class="sc">==</span> <span class="dv">0</span>) <span class="dv">0</span> <span class="cf">else</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, nn, trueTheta)</span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(theta, <span class="fu">dbeta</span>(theta, aPri <span class="sc">+</span> kk, bPri <span class="sc">+</span> nn <span class="sc">-</span> kk), <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">col =</span> cols[i])</span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> trueTheta, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">col =</span> cols,</span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">paste0</span>(<span class="st">"n = "</span>, ns))</span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>At $n = 0$ the posterior *is* the prior, peaked stubbornly around 0.3. As data arrives the whole distribution marches rightward and narrows, until by $n = 500$ it is a tight spike on the true 0.7 — the prior's early opinion has been completely forgotten. This is the formal answer to "isn't it just what you assumed?": **only when you have very little data, and exactly when you *should* lean on prior knowledge.**</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="fu"># The Bernstein–von Mises theorem: the bridge to frequentism</span></span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>There is a precise theorem behind that picture, and it is the Bayesian mirror of the frequentist *asymptotic normality* result. The **Bernstein–von Mises theorem** says that, under the same regularity conditions, for large $n$ the posterior is approximately normal, centred at the MLE, with variance the inverse Fisher information:</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>\boxed{\,p(\theta \mid \text{data}) \;\overset{\text{approx.}}{\sim}\; \mathcal N<span class="sc">\!</span>\left(\hat\theta_{\text{MLE}},\; \tfrac{1}{I(\hat\theta)}\right)\,}</span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>Compare this with the frequentist statement that $\hat\theta \sim \mathcal N(\theta, 1/I(\theta))$. They are the *same normal distribution*, read from opposite directions — one describing the spread of the estimator over hypothetical datasets, the other describing the spread of belief about $\theta$ given one dataset. The consequence is striking:</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="For large samples the two sections converge"}</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>Because the posterior becomes $\mathcal N(\hat\theta, 1/I)$, the Bayesian 95% **credible** interval $\hat\theta \pm 1.96/\sqrt{I}$ coincides with the frequentist 95% **Wald confidence** interval from the asymptotics page. The prior is forgotten, and the two philosophies — which *mean* completely different things by "95%" — hand you the *same numbers*. Disagreement between Bayesian and frequentist answers is therefore a small-sample, strong-prior phenomenon; in the data-rich limit they reconcile.</span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>We can see the normal approximation appear in our own coin posterior, which is an exact Beta but becomes ever more Gaussian as $n$ grows.</span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span>; k <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rbinom</span>(n, <span class="dv">1</span>, trueTheta))</span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>aPost <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> k; bPost <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> n <span class="sc">-</span> k            <span class="co"># flat prior → posterior ∝ likelihood</span></span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.55</span>, <span class="fl">0.85</span>, <span class="at">length.out =</span> <span class="dv">600</span>)</span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a><span class="co"># Exact Beta posterior vs the Bernstein–von Mises normal approximation</span></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>mle <span class="ot">&lt;-</span> k <span class="sc">/</span> n</span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a>iHat <span class="ot">&lt;-</span> n <span class="sc">/</span> (mle <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> mle))                 <span class="co"># Fisher information at the MLE</span></span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>bvm   <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(theta, <span class="at">mean =</span> mle, <span class="at">sd =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(iHat))</span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(theta, <span class="fu">dbeta</span>(theta, aPost, bPost), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>,</span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"density"</span>,</span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Exact Beta posterior vs the Bernstein–von Mises normal"</span>)</span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(theta, bvm, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"firebrick"</span>, <span class="st">"steelblue"</span>),</span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"exact Beta posterior"</span>, <span class="fu">expression</span>(<span class="fu">N</span>(<span class="fu">hat</span>(theta), <span class="dv">1</span><span class="sc">/</span>I))))</span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>The exact posterior (red) and the asymptotic normal (blue) sit almost on top of one another — and, as on the frequentist asymptotics page, the agreement would be even tighter for larger $n$ and looser for small $n$ or skewed likelihoods. This is the same caveat as before: **asymptotic means approximate.** When $n$ is small the prior genuinely matters and the posterior can be far from normal — which is precisely when the Bayesian machinery earns its keep, and when we may have no formula at all and must compute the posterior numerically. That is the next page.</span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a><span class="fu"># Good and bad practice in choosing a prior</span></span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>The prior is the one place a Bayesian analysis can be quietly steered toward a desired conclusion, so honesty about it is what separates a credible analysis from a suspect one. Especially with small samples — exactly where the prior still has bite — the *choice* of prior is a methodological decision you must be able to defend.</span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>**Good practice:**</span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Default to weakly-informative priors** that rule out the absurd but let the data lead — they regularise small-sample estimates without imposing a strong opinion.</span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Choose the prior before seeing the data.** A prior is a statement of what you knew *beforehand*; picking it after looking at the likelihood is the Bayesian cousin of p-hacking.</span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Report the prior, and run a sensitivity analysis** (as we did above): show that reasonable alternative priors give materially the same posterior, so readers can see the conclusion is not an artefact of your assumptions.</span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Use a prior predictive check** — simulate fake data *from the prior alone* and ask whether it looks remotely plausible. A prior that predicts impossible data is a bad prior, however innocent it looks.</span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning title="Bad practice: how priors go wrong"}</span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cherry-picking a prior to get the answer you want** — the cardinal sin; the prior must be justifiable independently of the result.</span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Double-dipping** — using the data to build the prior and then analysing the *same* data, which counts the evidence twice and produces falsely confident posteriors.</span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Accidentally informative "flat" priors** — a prior that is flat in $\theta$ is *not* flat in $\log\theta$ or in odds, so a "non-informative" choice can secretly push hard on a transformed scale.</span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Over-confident priors** — a needlessly narrow prior can dominate the likelihood and bias the result, particularly when data is scarce and you can least afford it.</span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>The throughline of this whole page: a prior is a **transparent, declared, checkable assumption**. Stated up front, justified, and stress-tested, it is a strength; chosen to flatter the conclusion or smuggled in unexamined, it is the fastest way to make a Bayesian analysis untrustworthy.</span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary</span></span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Idea <span class="pp">|</span> What it says <span class="pp">|</span></span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Informative prior <span class="pp">|</span> Encodes real prior knowledge; narrow <span class="pp">|</span></span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Weakly-informative prior <span class="pp">|</span> Gentle regulariser; modern default <span class="pp">|</span></span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Flat / Jeffreys prior <span class="pp">|</span> "Assume little"; flat-prior MAP = MLE <span class="pp">|</span></span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Conjugate prior <span class="pp">|</span> Posterior stays in the prior's family; update by arithmetic <span class="pp">|</span></span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Prior sensitivity check <span class="pp">|</span> Refit under several priors to confirm robustness <span class="pp">|</span></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Prior washout <span class="pp">|</span> Fixed prior is drowned out as $n\to\infty$ <span class="pp">|</span></span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bernstein–von Mises <span class="pp">|</span> Posterior $\to \mathcal N(\hat\theta, 1/I)$; Bayesian and frequentist intervals converge <span class="pp">|</span></span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>The headline: a prior is a transparent, checkable assumption, not a thumb on the scale — and with enough data it disappears, leaving Bayesian and frequentist inference shaking hands. The remaining obstacle is purely computational: the evidence integral. We tackle it next.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

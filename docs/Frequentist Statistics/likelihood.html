@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Likelihood, Score and Fisher Information – Warwick Statistics Society R Course 2026-2027</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Using R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cheatsheets.html"> 
+<span class="menu-text">Cheatsheets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data/Raw data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Frequentist Statistics/Introduction Statistics.html">Frequentist Statistics (Parametric Models)</a></li><li class="breadcrumb-item"><a href="../Frequentist Statistics/likelihood.html">Likelihood, Score and Fisher Information</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/introduction to r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/control structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/Random numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Theory of Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intuit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mathematical intuition behind coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code Euclidean Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Euclidean Algorithm — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MonteCarlo Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo Approximation of π — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code NewtonRaph Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Continuous data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with continuous data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Categorical data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with categorical data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check your understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cars dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/summary tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr: summary tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualisation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/importing data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Import and Preparation in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/baseR and ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to ggplot2: The Grammar of Graphics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/customising graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Customisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/univariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Univariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Bivariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Multiple Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Best Practices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Report Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Report Writing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportstructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Report Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Report Statistical Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English and Style</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-likelihood-function" id="toc-the-likelihood-function" class="nav-link active" data-scroll-target="#the-likelihood-function">The likelihood function</a></li>
+  <li><a href="#the-log-likelihood" id="toc-the-log-likelihood" class="nav-link" data-scroll-target="#the-log-likelihood">The log-likelihood</a></li>
+  <li><a href="#the-score-function" id="toc-the-score-function" class="nav-link" data-scroll-target="#the-score-function">The score function</a></li>
+  <li><a href="#the-maximum-likelihood-estimate-mle" id="toc-the-maximum-likelihood-estimate-mle" class="nav-link" data-scroll-target="#the-maximum-likelihood-estimate-mle">The maximum likelihood estimate (MLE)</a></li>
+  <li><a href="#fisher-information" id="toc-fisher-information" class="nav-link" data-scroll-target="#fisher-information">Fisher information</a>
+  <ul class="collapse">
+  <li><a href="#observed-information" id="toc-observed-information" class="nav-link" data-scroll-target="#observed-information">Observed information</a></li>
+  <li><a href="#expected-fisher-information" id="toc-expected-fisher-information" class="nav-link" data-scroll-target="#expected-fisher-information">Expected (Fisher) information</a></li>
+  </ul></li>
+  <li><a href="#putting-it-together-from-information-to-a-standard-error" id="toc-putting-it-together-from-information-to-a-standard-error" class="nav-link" data-scroll-target="#putting-it-together-from-information-to-a-standard-error">Putting it together: from information to a standard error</a></li>
+  <li><a href="#more-than-one-parameter-the-vector-case" id="toc-more-than-one-parameter-the-vector-case" class="nav-link" data-scroll-target="#more-than-one-parameter-the-vector-case">More than one parameter: the vector case</a>
+  <ul class="collapse">
+  <li><a href="#the-score-becomes-a-gradient-vector" id="toc-the-score-becomes-a-gradient-vector" class="nav-link" data-scroll-target="#the-score-becomes-a-gradient-vector">The score becomes a gradient vector</a></li>
+  <li><a href="#the-information-becomes-a-matrix" id="toc-the-information-becomes-a-matrix" class="nav-link" data-scroll-target="#the-information-becomes-a-matrix">The information becomes a matrix</a></li>
+  <li><a href="#standard-errors-come-from-the-inverse-matrix" id="toc-standard-errors-come-from-the-inverse-matrix" class="nav-link" data-scroll-target="#standard-errors-come-from-the-inverse-matrix">Standard errors come from the inverse matrix</a></li>
+  </ul></li>
+  <li><a href="#a-worked-example-in-r" id="toc-a-worked-example-in-r" class="nav-link" data-scroll-target="#a-worked-example-in-r">A worked example in R</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Frequentist Statistics/Introduction Statistics.html">Frequentist Statistics (Parametric Models)</a></li><li class="breadcrumb-item"><a href="../Frequentist Statistics/likelihood.html">Likelihood, Score and Fisher Information</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Likelihood, Score and Fisher Information</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>On the previous page we said statistics is the <strong>inverse problem</strong>: given data, recover the model. The <strong>likelihood function</strong> is the precise mathematical tool that lets us do this. Everything in frequentist parametric inference — estimates, standard errors, confidence intervals, tests — flows from it.</p>
+<p>This page builds the chain of ideas step by step:</p>
+<p><span class="math display">\[
+\text{likelihood} \;\to\; \text{log-likelihood} \;\to\; \text{score} \;\to\; \text{MLE} \;\to\; \text{Fisher information} \;\to\; \text{standard error}.
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  L["Likelihood&lt;br/&gt;L(θ)"] --&gt; LL["Log-likelihood&lt;br/&gt;ℓ(θ)"]
+  LL --&gt;|"differentiate"| S["Score&lt;br/&gt;U(θ) = ℓ'(θ)"]
+  S --&gt;|"set = 0 and solve"| MLE["MLE&lt;br/&gt;θ̂"]
+  LL --&gt;|"second derivative"| I["Information&lt;br/&gt;curvature of ℓ"]
+  I --&gt;|"1 / √I"| SE["Standard error&lt;br/&gt;of θ̂"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="the-likelihood-function" class="level1">
+<h1>The likelihood function</h1>
+<p>Suppose our data <span class="math inline">\(x_1, \dots, x_n\)</span> are modelled as coming from a distribution with probability (mass or density) function <span class="math inline">\(f(x \mid \theta)\)</span>, where <span class="math inline">\(\theta\)</span> is the unknown parameter we want to recover. Another way of looking at this is that we have a <strong>family of distributions</strong> <span class="math inline">\(\{f(x \mid \theta) : \theta \in \Theta\}\)</span>, and we want to find the member of that family that best explains the data we actually observed. (Throughout, we assume the observations are independent and identically distributed, written <span class="math inline">\(X_1, \dots, X_n \sim^{iid} f(\cdot \mid \theta)\)</span> — drawn separately from the same distribution.)</p>
+<p>For a <em>fixed</em> value of <span class="math inline">\(\theta\)</span>, the probability of seeing this particular data set (assuming the observations are independent) is</p>
+<p><span class="math display">\[
+f(x_1, \dots, x_n \mid \theta) = \prod_{i=1}^{n} f(x_i \mid \theta).
+\]</span></p>
+<p>The key move is to <strong>flip what we treat as variable</strong>. The data is already observed and fixed; the parameter is what we do not know. So we read the same expression as a function of <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math display">\[
+\boxed{\,L(\theta) = \prod_{i=1}^{n} f(x_i \mid \theta)\,}
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Likelihood is not probability">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Likelihood is not probability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(L(\theta)\)</span> has the same formula as a probability, but it is <strong>not</strong> a probability distribution over <span class="math inline">\(\theta\)</span>. We are not saying “<span class="math inline">\(\theta\)</span> is random.” We are asking: <em>for each candidate value of <span class="math inline">\(\theta\)</span>, how plausibly would it have produced the data we actually saw?</em> It does <strong>not</strong> integrate to 1 over <span class="math inline">\(\theta\)</span>, and <span class="math inline">\(\theta\)</span> is still a fixed unknown — exactly the frequentist stance from the previous page.</p>
+</div>
+</div>
+<p><strong>What it represents:</strong> <span class="math inline">\(L(\theta)\)</span> measures how well each candidate parameter value <em>explains the observed data</em>. A large <span class="math inline">\(L(\theta)\)</span> means “this <span class="math inline">\(\theta\)</span> makes the data we saw look unsurprising.” This is precisely the backwards reasoning we wanted: high likelihood points to plausible models.</p>
+</section>
+<section id="the-log-likelihood" class="level1">
+<h1>The log-likelihood</h1>
+<p>In practice we almost never work with <span class="math inline">\(L(\theta)\)</span> directly. Instead we take its logarithm:</p>
+<p><span class="math display">\[
+\boxed{\,\ell(\theta) = \log L(\theta) = \sum_{i=1}^{n} \log f(x_i \mid \theta)\,}
+\]</span></p>
+<p>We do this for three reasons:</p>
+<ol type="1">
+<li><strong>Products become sums.</strong> The <span class="math inline">\(\prod\)</span> turns into a <span class="math inline">\(\sum\)</span>, which is far easier to differentiate.</li>
+<li><strong>Numerical stability.</strong> Multiplying many small probabilities together underflows to zero on a computer; adding their logs does not.</li>
+<li><strong>The maximiser is unchanged.</strong> Because <span class="math inline">\(\log\)</span> is strictly increasing, the <span class="math inline">\(\theta\)</span> that maximises <span class="math inline">\(\ell(\theta)\)</span> is exactly the <span class="math inline">\(\theta\)</span> that maximises <span class="math inline">\(L(\theta)\)</span>. We lose nothing by switching.</li>
+</ol>
+<p><strong>What it represents:</strong> the same information as the likelihood — how well each <span class="math inline">\(\theta\)</span> explains the data — but on an additive, well-behaved scale.</p>
+</section>
+<section id="the-score-function" class="level1">
+<h1>The score function</h1>
+<p>To find the <span class="math inline">\(\theta\)</span> that best explains the data, we look for the peak of <span class="math inline">\(\ell(\theta)\)</span>. As with any optimisation, we differentiate. The derivative of the log-likelihood with respect to <span class="math inline">\(\theta\)</span> is called the <strong>score function</strong>:</p>
+<p><span class="math display">\[
+\boxed{\,U(\theta) = \frac{\partial \ell(\theta)}{\partial \theta}\,}
+\]</span></p>
+<p><strong>What it represents:</strong> the score is the <strong>slope</strong> of the log-likelihood. It tells us, at any candidate <span class="math inline">\(\theta\)</span>:</p>
+<ul>
+<li>a <strong>positive</strong> score means <span class="math inline">\(\ell\)</span> is still rising — larger <span class="math inline">\(\theta\)</span> would explain the data better;</li>
+<li>a <strong>negative</strong> score means we have gone too far — smaller <span class="math inline">\(\theta\)</span> is better;</li>
+<li>a <strong>zero</strong> score means we are at a turning point — a candidate for the best explanation.</li>
+</ul>
+<p>A useful and important fact is that, when evaluated at the <em>true</em> parameter, the score has mean zero: <span class="math display">\[
+\mathbb{E}[\,U(\theta)\,] = 0.
+\]</span> On average the data does not pull the estimate in any particular direction away from the truth — a property we will lean on shortly.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: why the score averages to zero">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: why the score averages to zero
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At the <em>true</em> <span class="math inline">\(\theta\)</span> you are already standing on the peak of the curve, on average. A given data set might nudge the slope a little uphill (pushing your estimate higher) or a little downhill (pushing it lower), but it is <strong>equally likely to nudge either way</strong>. Average over all the data sets the truth could produce and those nudges cancel — so the expected slope is exactly zero.</p>
+</div>
+</div>
+</section>
+<section id="the-maximum-likelihood-estimate-mle" class="level1">
+<h1>The maximum likelihood estimate (MLE)</h1>
+<p>The <strong>maximum likelihood estimate</strong>, written <span class="math inline">\(\hat{\theta}\)</span>, is the value of <span class="math inline">\(\theta\)</span> that maximises the likelihood — equivalently, where the score is zero:</p>
+<p><span class="math display">\[
+\boxed{\,U(\hat{\theta}) = 0\,} \qquad \text{(and } \ell''(\hat{\theta}) &lt; 0 \text{, confirming a maximum).}
+\]</span></p>
+<p><strong>What it represents:</strong> <span class="math inline">\(\hat{\theta}\)</span> is our single best point estimate — the parameter value that makes the observed data <em>most plausible</em>. It is the frequentist’s answer to “what model produced this data?” Sometimes we can solve <span class="math inline">\(U(\hat{\theta}) = 0\)</span> by hand; when we cannot, we solve it numerically (for example with the Newton–Raphson method from the <em>Mathematics to Code</em> section).</p>
+</section>
+<section id="fisher-information" class="level1">
+<h1>Fisher information</h1>
+<p>A point estimate alone is not enough — we also need to know <strong>how trustworthy it is</strong>. This is where <em>information</em> comes in, and it is the deepest idea on this page.</p>
+<p>Look again at the shape of the log-likelihood near its peak:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A["Sharp, narrow peak&lt;br/&gt;large curvature"] --&gt; A2["the data strongly&lt;br/&gt;pins down θ →&lt;br/&gt;HIGH information,&lt;br/&gt;SMALL standard error"]
+  B["Flat, broad peak&lt;br/&gt;small curvature"] --&gt; B2["many θ explain the data&lt;br/&gt;almost equally well →&lt;br/&gt;LOW information,&lt;br/&gt;LARGE standard error"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The <strong>curvature</strong> of the log-likelihood at its peak — how sharply it bends — measures how much the data tells us about <span class="math inline">\(\theta\)</span>. Curvature is the <em>second</em> derivative, so we define:</p>
+<section id="observed-information" class="level2">
+<h2 class="anchored" data-anchor-id="observed-information">Observed information</h2>
+<p><span class="math display">\[
+\boxed{\,J(\theta) = -\frac{\partial^2 \ell(\theta)}{\partial \theta^2}\,}
+\]</span></p>
+<p>The minus sign makes <span class="math inline">\(J\)</span> positive at a maximum (where the second derivative is negative). Evaluated at the MLE, <span class="math inline">\(J(\hat{\theta})\)</span> is the <strong>observed information</strong>: the curvature of the log-likelihood for <em>this particular data set</em>.</p>
+</section>
+<section id="expected-fisher-information" class="level2">
+<h2 class="anchored" data-anchor-id="expected-fisher-information">Expected (Fisher) information</h2>
+<p>If instead we average the curvature over all data sets the model could produce, we get the <strong>expected</strong> or <strong>Fisher information</strong>:</p>
+<p><span class="math display">\[
+\boxed{\,I(\theta) = \mathbb{E}\!\left[-\frac{\partial^2 \ell(\theta)}{\partial \theta^2}\right] = \mathbb{E}\!\left[\,U(\theta)^2\,\right]\,}
+\]</span></p>
+<p>The second equality (the variance of the score, since the score has mean zero) is a remarkable identity: the <em>average curvature</em> equals the <em>variability of the slope</em>. Both capture the same thing.</p>
+<p><strong>What it represents:</strong> Fisher information quantifies <strong>how much the data tells us about <span class="math inline">\(\theta\)</span></strong>. High information ⇒ a sharp likelihood peak ⇒ the data strongly constrains <span class="math inline">\(\theta\)</span> ⇒ a precise estimate. Low information ⇒ a flat peak ⇒ many values of <span class="math inline">\(\theta\)</span> are nearly as plausible ⇒ an imprecise estimate. Information also <strong>adds up across independent observations</strong>: <span class="math inline">\(n\)</span> independent data points carry <span class="math inline">\(n\)</span> times the information of one, which is exactly why bigger samples give sharper estimates.</p>
+</section>
+</section>
+<section id="putting-it-together-from-information-to-a-standard-error" class="level1">
+<h1>Putting it together: from information to a standard error</h1>
+<p>The reason Fisher information matters so much is the central result of this whole section. For large samples, the MLE is approximately normally distributed:</p>
+<p><span class="math display">\[
+\hat{\theta} \;\overset{\text{approx.}}{\sim}\; \mathcal{N}\!\left(\theta,\; \frac{1}{I(\theta)}\right).
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: these are stated results, not skipped steps">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: these are stated results, not skipped steps
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Two facts on this page are presented as <em>results to use</em>, not derived here: the identity <span class="math inline">\(I(\theta) = \mathbb{E}[U(\theta)^2]\)</span> (curvature equals the variance of the score), and the normal approximation <span class="math inline">\(\hat\theta \sim \mathcal N(\theta, 1/I(\theta))\)</span>. If the proofs feel missing, you have not lost the plot — they are justified on the <strong>Asymptotics</strong> page (via the Central Limit Theorem). Take them on trust for now.</p>
+</div>
+</div>
+<p>In words: the MLE is approximately unbiased, and its <strong>variance is the reciprocal of the Fisher information</strong>. Therefore the <strong>standard error</strong> of the estimate is</p>
+<p><span class="math display">\[
+\boxed{\,\operatorname{se}(\hat{\theta}) \approx \frac{1}{\sqrt{I(\hat{\theta})}}\,}
+\]</span></p>
+<p>This closes the loop:</p>
+<ul>
+<li>more data, or a sharper likelihood, ⇒ <strong>more information</strong>;</li>
+<li>more information ⇒ <strong>smaller standard error</strong>;</li>
+<li>smaller standard error ⇒ a <strong>more precise estimate</strong> and a <strong>narrower confidence interval</strong>.</li>
+</ul>
+<p>An approximate 95% confidence interval follows immediately: <span class="math display">\[
+\hat{\theta} \pm 1.96 \times \operatorname{se}(\hat{\theta}).
+\]</span></p>
+</section>
+<section id="more-than-one-parameter-the-vector-case" class="level1">
+<h1>More than one parameter: the vector case</h1>
+<div class="callout callout-style-default callout-warning callout-titled" title="Prerequisites — and a safe exit">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Prerequisites — and a safe exit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This section uses <strong>vectors, matrices, and the matrix inverse</strong>. If you are comfortable with those, read on. If not, you can safely <strong>skip to the worked example below</strong> — everything in the rest of the course that you need follows from the single-parameter intuition (curvature ⇒ precision) you already have. The matrix version is the same idea wearing bigger clothes, not a new idea.</p>
+</div>
+</div>
+<p>So far <span class="math inline">\(\theta\)</span> has been a single number. Most real models have <strong>several</strong> parameters at once — a Normal has a mean <em>and</em> a variance, a Gamma has a shape <em>and</em> a rate, a regression has a whole vector of coefficients. The good news is that <em>nothing conceptual changes</em>: every object above simply gains a dimension. We now write the parameter as a vector <span class="math inline">\(\boldsymbol\theta = (\theta_1, \dots, \theta_p)\)</span>, and the scalars become vectors and matrices.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  S1["Score: a single derivative&lt;br/&gt;U(θ) = ℓ'(θ)"] --&gt; S2["Score vector (gradient):&lt;br/&gt;one partial derivative&lt;br/&gt;per parameter"]
+  I1["Information: a single number&lt;br/&gt;I(θ) = −ℓ''(θ)"] --&gt; I2["Information MATRIX:&lt;br/&gt;all second partials,&lt;br/&gt;p × p"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="the-score-becomes-a-gradient-vector" class="level2">
+<h2 class="anchored" data-anchor-id="the-score-becomes-a-gradient-vector">The score becomes a gradient vector</h2>
+<p>Instead of one derivative, we take a <strong>partial derivative with respect to each parameter</strong>. The score is now a <em>vector</em> — the gradient of the log-likelihood: <span class="math display">\[
+\mathbf{U}(\boldsymbol\theta) =
+\begin{pmatrix} \dfrac{\partial \ell}{\partial \theta_1} \\[2mm] \vdots \\[1mm] \dfrac{\partial \ell}{\partial \theta_p} \end{pmatrix}.
+\]</span> The MLE <span class="math inline">\(\hat{\boldsymbol\theta}\)</span> is the point where <strong>every</strong> component is zero simultaneously, <span class="math inline">\(\mathbf{U}(\hat{\boldsymbol\theta}) = \mathbf{0}\)</span> — a <em>system</em> of <span class="math inline">\(p\)</span> equations in <span class="math inline">\(p\)</span> unknowns. This is exactly why multi-parameter models usually need a numerical optimiser: you can rarely solve that system by hand.</p>
+</section>
+<section id="the-information-becomes-a-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="the-information-becomes-a-matrix">The information becomes a matrix</h2>
+<p>The curvature is no longer a single second derivative but a whole <strong>matrix</strong> of them — the <em>Hessian</em> of the log-likelihood, averaged: <span class="math display">\[
+\mathbf{I}(\boldsymbol\theta) = \mathbb{E}\!\left[-\frac{\partial^2 \ell}{\partial \theta_j\, \partial \theta_k}\right]_{j,k=1,\dots,p}.
+\]</span> The <strong>diagonal</strong> entries measure how sharply each parameter is pinned down on its own; the <strong>off-diagonal</strong> entries measure how the parameters’ estimates are <em>correlated</em> — something a one-parameter analysis cannot see. A large off-diagonal means the data struggles to tell two parameters apart (they trade off against each other).</p>
+</section>
+<section id="standard-errors-come-from-the-inverse-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="standard-errors-come-from-the-inverse-matrix">Standard errors come from the inverse matrix</h2>
+<p>The reciprocal <span class="math inline">\(1/I\)</span> becomes a <strong>matrix inverse</strong>. The asymptotic result generalises to a multivariate normal: <span class="math display">\[
+\hat{\boldsymbol\theta} \;\overset{\text{approx.}}{\sim}\; \mathcal{N}_p\!\left(\boldsymbol\theta,\; \mathbf{I}(\boldsymbol\theta)^{-1}\right).
+\]</span> The matrix <span class="math inline">\(\mathbf{V} = \mathbf{I}(\hat{\boldsymbol\theta})^{-1}\)</span> is the <strong>variance–covariance matrix</strong> of the estimates. Each parameter’s standard error is the square root of the corresponding diagonal entry: <span class="math display">\[
+\boxed{\,\operatorname{se}(\hat{\theta}_j) \approx \sqrt{\big[\mathbf{I}(\hat{\boldsymbol\theta})^{-1}\big]_{jj}}\,}
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Invert first, then take the diagonal">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Invert first, then take the diagonal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A common mistake is to take <span class="math inline">\(1/\sqrt{I_{jj}}\)</span> — inverting the diagonal entries directly. That is <strong>wrong</strong> unless the off-diagonals are zero. You must invert the <em>whole</em> matrix first and only then read off the diagonal, because each parameter’s uncertainty depends on how it is entangled with the others.</p>
+</div>
+</div>
+<p>In short: <strong>score → gradient vector, information → matrix, divide → matrix inverse.</strong> Every idea on this page carries over; it just wears bigger clothes. The <em>Simulation</em> page works a full two-parameter example end to end, fitting a Gamma distribution with <code>optim</code> and reading the standard errors off the inverse Hessian exactly as described here.</p>
+</section>
+</section>
+<section id="a-worked-example-in-r" class="level1">
+<h1>A worked example in R</h1>
+<p>Let us make all of this concrete with the simplest possible model: <strong>Bernoulli data</strong> (coin flips), where each observation is 1 (heads) with probability <span class="math inline">\(\theta\)</span> and 0 (tails) otherwise.</p>
+<p>For a sample with <span class="math inline">\(k\)</span> heads out of <span class="math inline">\(n\)</span> flips, the pieces work out neatly by hand:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Log-likelihood</td>
+<td><span class="math inline">\(\ell(\theta) = k\log\theta + (n-k)\log(1-\theta)\)</span></td>
+</tr>
+<tr class="even">
+<td>Score</td>
+<td><span class="math inline">\(U(\theta) = \dfrac{k}{\theta} - \dfrac{n-k}{1-\theta}\)</span></td>
+</tr>
+<tr class="odd">
+<td>MLE</td>
+<td><span class="math inline">\(\hat{\theta} = \dfrac{k}{n}\)</span> (the sample proportion)</td>
+</tr>
+<tr class="even">
+<td>Fisher information</td>
+<td><span class="math inline">\(I(\theta) = \dfrac{n}{\theta(1-\theta)}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Now let us verify this numerically. We will simulate some flips and find the MLE both algebraically and by optimising the log-likelihood directly.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate n coin flips with a true (but "unknown") bias</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>trueTheta <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>flips <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> trueTheta)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">sum</span>(flips)              <span class="co"># number of heads observed</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># The log-likelihood as a function of theta</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="cf">function</span>(theta) {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  k <span class="sc">*</span> <span class="fu">log</span>(theta) <span class="sc">+</span> (n <span class="sc">-</span> k) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> theta)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. MLE by formula: the sample proportion</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>mle <span class="ot">&lt;-</span> k <span class="sc">/</span> n</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. MLE by numerical optimisation of the log-likelihood</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>opt <span class="ot">&lt;-</span> <span class="fu">optimise</span>(ll, <span class="at">interval =</span> <span class="fu">c</span>(<span class="fl">0.001</span>, <span class="fl">0.999</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>mleNum <span class="ot">&lt;-</span> opt<span class="sc">$</span>maximum</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">trueTheta =</span> trueTheta,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">mle       =</span> mle,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">mleNum    =</span> mleNum)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>trueTheta       mle    mleNum 
+0.7000000 0.6900000 0.6900061 </code></pre>
+</div>
+</div>
+<p>The algebraic MLE and the numerical maximiser agree, and both land close to the true value of 0.7. Now the <strong>Fisher information</strong> and the <strong>standard error</strong>:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fisher information evaluated at the MLE</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>info <span class="ot">&lt;-</span> n <span class="sc">/</span> (mle <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> mle))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error = 1 / sqrt(information)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(info)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Approximate 95% confidence interval</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ci95 <span class="ot">&lt;-</span> mle <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">1.96</span> <span class="sc">*</span> se</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">fisherInfo =</span> info,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">se         =</span> se,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">ci95       =</span> ci95)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$fisherInfo
+[1] 935.0164
+
+$se
+[1] 0.03270321
+
+$ci95
+[1] 0.6259017 0.7540983</code></pre>
+</div>
+</div>
+<p>Finally, we can <em>see</em> the curvature idea by plotting the log-likelihood. The peak sits at the MLE, and the <strong>sharpness</strong> of that peak is exactly the Fisher information — the quantity that becomes our standard error.</p>
+<div class="cell" data-layout-align="center">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.4</span>, <span class="fl">0.95</span>, <span class="at">length.out =</span> <span class="dv">400</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(grid, <span class="fu">ll</span>(grid), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"steelblue"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"log-likelihood  "</span>, <span class="fu">ell</span>(theta))),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Log-likelihood for the coin-flip example"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mle,       <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> trueTheta, <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"log-likelihood"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"MLE  "</span>, <span class="fu">hat</span>(theta))),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"true  "</span>, theta))),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"firebrick"</span>, <span class="st">"darkgreen"</span>),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="likelihood_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Try increasing <code>n</code> in the simulation: the peak becomes <strong>sharper</strong>, the Fisher information <strong>grows</strong>, and the standard error <strong>shrinks</strong> — the data is telling us more and more about <span class="math inline">\(\theta\)</span>, exactly as the theory promises.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You rarely have to do the optimisation <em>and</em> the standard errors by hand. Hand a negative log-likelihood to <code>stats4::mle</code> (or the friendlier <code>bbmle::mle2</code>) and you get <code>coef()</code>, <code>vcov()</code>, <code>confint()</code> and a <code>summary()</code> for free:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats4)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>nll <span class="ot">&lt;-</span> <span class="cf">function</span>(theta) <span class="sc">-</span>(k <span class="sc">*</span> <span class="fu">log</span>(theta) <span class="sc">+</span> (n <span class="sc">-</span> k) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> theta))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">mle</span>(nll, <span class="at">start =</span> <span class="fu">list</span>(<span class="at">theta =</span> <span class="fl">0.5</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">vcov</span>(fit)      <span class="co"># variance = 1 / information</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit)   <span class="co"># profile-likelihood interval, not just Wald</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>And when differentiating the log-likelihood twice by hand is painful, let <code>numDeriv::hessian()</code> build the information matrix numerically — no calculus required:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(numDeriv)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> numDeriv<span class="sc">::</span><span class="fu">hessian</span>(nll, <span class="at">x =</span> mle)   <span class="co"># observed information</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(J)                               <span class="co"># variance-covariance matrix</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Symbol</th>
+<th>What it represents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Likelihood</strong></td>
+<td><span class="math inline">\(L(\theta)\)</span></td>
+<td>How well each <span class="math inline">\(\theta\)</span> explains the observed data</td>
+</tr>
+<tr class="even">
+<td><strong>Log-likelihood</strong></td>
+<td><span class="math inline">\(\ell(\theta)\)</span></td>
+<td>The same, on an additive, numerically stable scale</td>
+</tr>
+<tr class="odd">
+<td><strong>Score</strong></td>
+<td><span class="math inline">\(U(\theta) = \ell'(\theta)\)</span></td>
+<td>The slope of <span class="math inline">\(\ell\)</span>; points toward better <span class="math inline">\(\theta\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>MLE</strong></td>
+<td><span class="math inline">\(\hat{\theta}\)</span></td>
+<td>The <span class="math inline">\(\theta\)</span> that best explains the data (<span class="math inline">\(U(\hat\theta)=0\)</span>)</td>
+</tr>
+<tr class="odd">
+<td><strong>Observed information</strong></td>
+<td><span class="math inline">\(J(\hat{\theta}) = -\ell''(\hat{\theta})\)</span></td>
+<td>Curvature of <span class="math inline">\(\ell\)</span> for <em>this</em> data set</td>
+</tr>
+<tr class="even">
+<td><strong>Fisher information</strong></td>
+<td><span class="math inline">\(I(\theta) = \mathbb{E}[-\ell''(\theta)]\)</span></td>
+<td>Expected curvature — how much the data tells us about <span class="math inline">\(\theta\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Standard error</strong></td>
+<td><span class="math inline">\(1/\sqrt{I(\hat{\theta})}\)</span></td>
+<td>The precision of the estimate</td>
+</tr>
+</tbody>
+</table>
+<p>These six quantities are the engine of frequentist parametric inference. Every estimate, standard error, confidence interval and likelihood-ratio test you meet later is built from exactly this chain.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Likelihood, Score and Fisher Information"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">    mathjax: true</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>On the previous page we said statistics is the **inverse problem**: given data, recover the model. The **likelihood function** is the precise mathematical tool that lets us do this. Everything in frequentist parametric inference — estimates, standard errors, confidence intervals, tests — flows from it.</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>This page builds the chain of ideas step by step:</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>\text{likelihood} \;\to\; \text{log-likelihood} \;\to\; \text{score} \;\to\; \text{MLE} \;\to\; \text{Fisher information} \;\to\; \text{standard error}.</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>%%| fig-align: center</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  L[<span class="ot">"</span><span class="st">Likelihood&lt;br/&gt;L(θ)</span><span class="ot">"</span>] --&gt; LL[<span class="ot">"</span><span class="st">Log-likelihood&lt;br/&gt;ℓ(θ)</span><span class="ot">"</span>]</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  LL --&gt;|<span class="ot">"</span><span class="st">differentiate</span><span class="ot">"</span>| S[<span class="ot">"</span><span class="st">Score&lt;br/&gt;U(θ) = ℓ'(θ)</span><span class="ot">"</span>]</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  S --&gt;|<span class="ot">"</span><span class="st">set = 0 and solve</span><span class="ot">"</span>| MLE[<span class="ot">"</span><span class="st">MLE&lt;br/&gt;θ̂</span><span class="ot">"</span>]</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  LL --&gt;|<span class="ot">"</span><span class="st">second derivative</span><span class="ot">"</span>| I[<span class="ot">"</span><span class="st">Information&lt;br/&gt;curvature of ℓ</span><span class="ot">"</span>]</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  I --&gt;|<span class="ot">"</span><span class="st">1 / √I</span><span class="ot">"</span>| SE[<span class="ot">"</span><span class="st">Standard error&lt;br/&gt;of θ̂</span><span class="ot">"</span>]</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># The likelihood function</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>Suppose our data $x_1, \dots, x_n$ are modelled as coming from a distribution with probability (mass or density) function $f(x \mid \theta)$, where $\theta$ is the unknown parameter we want to recover. Another way of looking at this is that we have a **family of distributions** $<span class="sc">\{</span>f(x \mid \theta) : \theta \in \Theta<span class="sc">\}</span>$, and we want to find the member of that family that best explains the data we actually observed. (Throughout, we assume the observations are independent and identically distributed, written $X_1, \dots, X_n \sim^{iid} f(\cdot \mid \theta)$ — drawn separately from the same distribution.)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>For a *fixed* value of $\theta$, the probability of seeing this particular data set (assuming the observations are independent) is</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>f(x_1, \dots, x_n \mid \theta) = \prod_{i=1}^{n} f(x_i \mid \theta).</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>The key move is to **flip what we treat as variable**. The data is already observed and fixed; the parameter is what we do not know. So we read the same expression as a function of $\theta$:</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>\boxed{\,L(\theta) = \prod_{i=1}^{n} f(x_i \mid \theta)\,}</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title="Likelihood is not probability"}</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>$L(\theta)$ has the same formula as a probability, but it is **not** a probability distribution over $\theta$. We are not saying "$\theta$ is random." We are asking: *for each candidate value of $\theta$, how plausibly would it have produced the data we actually saw?* It does **not** integrate to 1 over $\theta$, and $\theta$ is still a fixed unknown — exactly the frequentist stance from the previous page.</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>**What it represents:** $L(\theta)$ measures how well each candidate parameter value *explains the observed data*. A large $L(\theta)$ means "this $\theta$ makes the data we saw look unsurprising." This is precisely the backwards reasoning we wanted: high likelihood points to plausible models.</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># The log-likelihood</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>In practice we almost never work with $L(\theta)$ directly. Instead we take its logarithm:</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>\boxed{\,\ell(\theta) = \log L(\theta) = \sum_{i=1}^{n} \log f(x_i \mid \theta)\,}</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>We do this for three reasons:</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Products become sums.** The $\prod$ turns into a $\sum$, which is far easier to differentiate.</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Numerical stability.** Multiplying many small probabilities together underflows to zero on a computer; adding their logs does not.</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**The maximiser is unchanged.** Because $\log$ is strictly increasing, the $\theta$ that maximises $\ell(\theta)$ is exactly the $\theta$ that maximises $L(\theta)$. We lose nothing by switching.</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>**What it represents:** the same information as the likelihood — how well each $\theta$ explains the data — but on an additive, well-behaved scale.</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a><span class="fu"># The score function</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>To find the $\theta$ that best explains the data, we look for the peak of $\ell(\theta)$. As with any optimisation, we differentiate. The derivative of the log-likelihood with respect to $\theta$ is called the **score function**:</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>\boxed{\,U(\theta) = \frac{\partial \ell(\theta)}{\partial \theta}\,}</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>**What it represents:** the score is the **slope** of the log-likelihood. It tells us, at any candidate $\theta$:</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **positive** score means $\ell$ is still rising — larger $\theta$ would explain the data better;</span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **negative** score means we have gone too far — smaller $\theta$ is better;</span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **zero** score means we are at a turning point — a candidate for the best explanation.</span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>A useful and important fact is that, when evaluated at the *true* parameter, the score has mean zero:</span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>\mathbb{E}<span class="co">[</span><span class="ot">\,U(\theta)\,</span><span class="co">]</span> = 0.</span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>On average the data does not pull the estimate in any particular direction away from the truth — a property we will lean on shortly.</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: why the score averages to zero"}</span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>At the *true* $\theta$ you are already standing on the peak of the curve, on average. A given data set might nudge the slope a little uphill (pushing your estimate higher) or a little downhill (pushing it lower), but it is **equally likely to nudge either way**. Average over all the data sets the truth could produce and those nudges cancel — so the expected slope is exactly zero.</span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a><span class="fu"># The maximum likelihood estimate (MLE)</span></span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a>The **maximum likelihood estimate**, written $\hat{\theta}$, is the value of $\theta$ that maximises the likelihood — equivalently, where the score is zero:</span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>\boxed{\,U(\hat{\theta}) = 0\,} \qquad \text{(and } \ell''(\hat{\theta}) &lt; 0 \text{, confirming a maximum).}</span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a>**What it represents:** $\hat{\theta}$ is our single best point estimate — the parameter value that makes the observed data *most plausible*. It is the frequentist's answer to "what model produced this data?" Sometimes we can solve $U(\hat{\theta}) = 0$ by hand; when we cannot, we solve it numerically (for example with the Newton–Raphson method from the *Mathematics to Code* section).</span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fisher information</span></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a>A point estimate alone is not enough — we also need to know **how trustworthy it is**. This is where *information* comes in, and it is the deepest idea on this page.</span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a>Look again at the shape of the log-likelihood near its peak:</span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a>%%| fig-align: center</span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a>  A[<span class="ot">"</span><span class="st">Sharp, narrow peak&lt;br/&gt;large curvature</span><span class="ot">"</span>] --&gt; A2[<span class="ot">"</span><span class="st">the data strongly&lt;br/&gt;pins down θ →&lt;br/&gt;HIGH information,&lt;br/&gt;SMALL standard error</span><span class="ot">"</span>]</span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a>  B[<span class="ot">"</span><span class="st">Flat, broad peak&lt;br/&gt;small curvature</span><span class="ot">"</span>] --&gt; B2[<span class="ot">"</span><span class="st">many θ explain the data&lt;br/&gt;almost equally well →&lt;br/&gt;LOW information,&lt;br/&gt;LARGE standard error</span><span class="ot">"</span>]</span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>The **curvature** of the log-likelihood at its peak — how sharply it bends — measures how much the data tells us about $\theta$. Curvature is the *second* derivative, so we define:</span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a><span class="fu">## Observed information</span></span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a>\boxed{\,J(\theta) = -\frac{\partial^2 \ell(\theta)}{\partial \theta^2}\,}</span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a>The minus sign makes $J$ positive at a maximum (where the second derivative is negative). Evaluated at the MLE, $J(\hat{\theta})$ is the **observed information**: the curvature of the log-likelihood for *this particular data set*.</span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a><span class="fu">## Expected (Fisher) information</span></span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a>If instead we average the curvature over all data sets the model could produce, we get the **expected** or **Fisher information**:</span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a>\boxed{\,I(\theta) = \mathbb{E}<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">-\frac{\partial^2 \ell(\theta)}{\partial \theta^2}\right</span><span class="co">]</span> = \mathbb{E}<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">\,U(\theta)^2\,\right</span><span class="co">]</span>\,}</span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a>The second equality (the variance of the score, since the score has mean zero) is a remarkable identity: the *average curvature* equals the *variability of the slope*. Both capture the same thing.</span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a>**What it represents:** Fisher information quantifies **how much the data tells us about $\theta$**. High information ⇒ a sharp likelihood peak ⇒ the data strongly constrains $\theta$ ⇒ a precise estimate. Low information ⇒ a flat peak ⇒ many values of $\theta$ are nearly as plausible ⇒ an imprecise estimate. Information also **adds up across independent observations**: $n$ independent data points carry $n$ times the information of one, which is exactly why bigger samples give sharper estimates.</span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a><span class="fu"># Putting it together: from information to a standard error</span></span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a>The reason Fisher information matters so much is the central result of this whole section. For large samples, the MLE is approximately normally distributed:</span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a>\hat{\theta} \;\overset{\text{approx.}}{\sim}\; \mathcal{N}<span class="sc">\!</span>\left(\theta,\; \frac{1}{I(\theta)}\right).</span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: these are stated results, not skipped steps"}</span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a>Two facts on this page are presented as *results to use*, not derived here: the identity $I(\theta) = \mathbb{E}[U(\theta)^2]$ (curvature equals the variance of the score), and the normal approximation $\hat\theta \sim \mathcal N(\theta, 1/I(\theta))$. If the proofs feel missing, you have not lost the plot — they are justified on the **Asymptotics** page (via the Central Limit Theorem). Take them on trust for now.</span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a>In words: the MLE is approximately unbiased, and its **variance is the reciprocal of the Fisher information**. Therefore the **standard error** of the estimate is</span>
+<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a>\boxed{\,\operatorname{se}(\hat{\theta}) \approx \frac{1}{\sqrt{I(\hat{\theta})}}\,}</span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a>This closes the loop:</span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>more data, or a sharper likelihood, ⇒ **more information**;</span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>more information ⇒ **smaller standard error**;</span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>smaller standard error ⇒ a **more precise estimate** and a **narrower confidence interval**.</span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>An approximate 95% confidence interval follows immediately:</span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>\hat{\theta} \pm 1.96 \times \operatorname{se}(\hat{\theta}).</span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a><span class="fu"># More than one parameter: the vector case</span></span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning title="Prerequisites — and a safe exit"}</span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>This section uses **vectors, matrices, and the matrix inverse**. If you are comfortable with those, read on. If not, you can safely **skip to the worked example below** — everything in the rest of the course that you need follows from the single-parameter intuition (curvature ⇒ precision) you already have. The matrix version is the same idea wearing bigger clothes, not a new idea.</span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a>So far $\theta$ has been a single number. Most real models have **several** parameters at once — a Normal has a mean *and* a variance, a Gamma has a shape *and* a rate, a regression has a whole vector of coefficients. The good news is that *nothing conceptual changes*: every object above simply gains a dimension. We now write the parameter as a vector $\boldsymbol\theta = (\theta_1, \dots, \theta_p)$, and the scalars become vectors and matrices.</span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a>%%| echo: false</span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a>%%| fig-align: center</span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a>  S1[<span class="ot">"</span><span class="st">Score: a single derivative&lt;br/&gt;U(θ) = ℓ'(θ)</span><span class="ot">"</span>] --&gt; S2[<span class="ot">"</span><span class="st">Score vector (gradient):&lt;br/&gt;one partial derivative&lt;br/&gt;per parameter</span><span class="ot">"</span>]</span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a>  I1[<span class="ot">"</span><span class="st">Information: a single number&lt;br/&gt;I(θ) = −ℓ''(θ)</span><span class="ot">"</span>] --&gt; I2[<span class="ot">"</span><span class="st">Information MATRIX:&lt;br/&gt;all second partials,&lt;br/&gt;p × p</span><span class="ot">"</span>]</span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## The score becomes a gradient vector</span></span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a>Instead of one derivative, we take a **partial derivative with respect to each parameter**. The score is now a *vector* — the gradient of the log-likelihood:</span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a>\mathbf{U}(\boldsymbol\theta) =</span>
+<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a>\begin{pmatrix} \dfrac{\partial \ell}{\partial \theta_1} <span class="sc">\\</span><span class="co">[</span><span class="ot">2mm</span><span class="co">]</span> \vdots <span class="sc">\\</span><span class="co">[</span><span class="ot">1mm</span><span class="co">]</span> \dfrac{\partial \ell}{\partial \theta_p} \end{pmatrix}.</span>
+<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a>The MLE $\hat{\boldsymbol\theta}$ is the point where **every** component is zero simultaneously, $\mathbf{U}(\hat{\boldsymbol\theta}) = \mathbf{0}$ — a *system* of $p$ equations in $p$ unknowns. This is exactly why multi-parameter models usually need a numerical optimiser: you can rarely solve that system by hand.</span>
+<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a><span class="fu">## The information becomes a matrix</span></span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a>The curvature is no longer a single second derivative but a whole **matrix** of them — the *Hessian* of the log-likelihood, averaged:</span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a>\mathbf{I}(\boldsymbol\theta) = \mathbb{E}<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">-\frac{\partial^2 \ell}{\partial \theta_j\, \partial \theta_k}\right</span><span class="co">]</span>_{j,k=1,\dots,p}.</span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a>The **diagonal** entries measure how sharply each parameter is pinned down on its own; the **off-diagonal** entries measure how the parameters' estimates are *correlated* — something a one-parameter analysis cannot see. A large off-diagonal means the data struggles to tell two parameters apart (they trade off against each other).</span>
+<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a><span class="fu">## Standard errors come from the inverse matrix</span></span>
+<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-219"><a href="#cb8-219" aria-hidden="true" tabindex="-1"></a>The reciprocal $1/I$ becomes a **matrix inverse**. The asymptotic result generalises to a multivariate normal:</span>
+<span id="cb8-220"><a href="#cb8-220" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a>\hat{\boldsymbol\theta} \;\overset{\text{approx.}}{\sim}\; \mathcal{N}_p<span class="sc">\!</span>\left(\boldsymbol\theta,\; \mathbf{I}(\boldsymbol\theta)^{-1}\right).</span>
+<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a>The matrix $\mathbf{V} = \mathbf{I}(\hat{\boldsymbol\theta})^{-1}$ is the **variance–covariance matrix** of the estimates. Each parameter's standard error is the square root of the corresponding diagonal entry:</span>
+<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a>\boxed{\,\operatorname{se}(\hat{\theta}_j) \approx \sqrt{\big[\mathbf{I}(\hat{\boldsymbol\theta})^{-1}\big]_{jj}}\,}</span>
+<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title="Invert first, then take the diagonal"}</span>
+<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a>A common mistake is to take $1/\sqrt{I_{jj}}$ — inverting the diagonal entries directly. That is **wrong** unless the off-diagonals are zero. You must invert the *whole* matrix first and only then read off the diagonal, because each parameter's uncertainty depends on how it is entangled with the others.</span>
+<span id="cb8-230"><a href="#cb8-230" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-232"><a href="#cb8-232" aria-hidden="true" tabindex="-1"></a>In short: **score → gradient vector, information → matrix, divide → matrix inverse.** Every idea on this page carries over; it just wears bigger clothes. The *Simulation* page works a full two-parameter example end to end, fitting a Gamma distribution with <span class="in">`optim`</span> and reading the standard errors off the inverse Hessian exactly as described here.</span>
+<span id="cb8-233"><a href="#cb8-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-234"><a href="#cb8-234" aria-hidden="true" tabindex="-1"></a><span class="fu"># A worked example in R</span></span>
+<span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a>Let us make all of this concrete with the simplest possible model: **Bernoulli data** (coin flips), where each observation is 1 (heads) with probability $\theta$ and 0 (tails) otherwise.</span>
+<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a>For a sample with $k$ heads out of $n$ flips, the pieces work out neatly by hand:</span>
+<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Quantity <span class="pp">|</span> Formula <span class="pp">|</span></span>
+<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Log-likelihood <span class="pp">|</span> $\ell(\theta) = k\log\theta + (n-k)\log(1-\theta)$ <span class="pp">|</span></span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Score <span class="pp">|</span> $U(\theta) = \dfrac{k}{\theta} - \dfrac{n-k}{1-\theta}$ <span class="pp">|</span></span>
+<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> MLE <span class="pp">|</span> $\hat{\theta} = \dfrac{k}{n}$ (the sample proportion) <span class="pp">|</span></span>
+<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fisher information <span class="pp">|</span> $I(\theta) = \dfrac{n}{\theta(1-\theta)}$ <span class="pp">|</span></span>
+<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a>Now let us verify this numerically. We will simulate some flips and find the MLE both algebraically and by optimising the log-likelihood directly.</span>
+<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-255"><a href="#cb8-255" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb8-256"><a href="#cb8-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate n coin flips with a true (but "unknown") bias</span></span>
+<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a>trueTheta <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb8-259"><a href="#cb8-259" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb8-260"><a href="#cb8-260" aria-hidden="true" tabindex="-1"></a>flips <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> trueTheta)</span>
+<span id="cb8-261"><a href="#cb8-261" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">sum</span>(flips)              <span class="co"># number of heads observed</span></span>
+<span id="cb8-262"><a href="#cb8-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-263"><a href="#cb8-263" aria-hidden="true" tabindex="-1"></a><span class="co"># The log-likelihood as a function of theta</span></span>
+<span id="cb8-264"><a href="#cb8-264" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="cf">function</span>(theta) {</span>
+<span id="cb8-265"><a href="#cb8-265" aria-hidden="true" tabindex="-1"></a>  k <span class="sc">*</span> <span class="fu">log</span>(theta) <span class="sc">+</span> (n <span class="sc">-</span> k) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> theta)</span>
+<span id="cb8-266"><a href="#cb8-266" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-267"><a href="#cb8-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-268"><a href="#cb8-268" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. MLE by formula: the sample proportion</span></span>
+<span id="cb8-269"><a href="#cb8-269" aria-hidden="true" tabindex="-1"></a>mle <span class="ot">&lt;-</span> k <span class="sc">/</span> n</span>
+<span id="cb8-270"><a href="#cb8-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-271"><a href="#cb8-271" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. MLE by numerical optimisation of the log-likelihood</span></span>
+<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a>opt <span class="ot">&lt;-</span> <span class="fu">optimise</span>(ll, <span class="at">interval =</span> <span class="fu">c</span>(<span class="fl">0.001</span>, <span class="fl">0.999</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a>mleNum <span class="ot">&lt;-</span> opt<span class="sc">$</span>maximum</span>
+<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">trueTheta =</span> trueTheta,</span>
+<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a>  <span class="at">mle       =</span> mle,</span>
+<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a>  <span class="at">mleNum    =</span> mleNum)</span>
+<span id="cb8-278"><a href="#cb8-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-279"><a href="#cb8-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a>The algebraic MLE and the numerical maximiser agree, and both land close to the true value of 0.7. Now the **Fisher information** and the **standard error**:</span>
+<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-284"><a href="#cb8-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-285"><a href="#cb8-285" aria-hidden="true" tabindex="-1"></a><span class="co"># Fisher information evaluated at the MLE</span></span>
+<span id="cb8-286"><a href="#cb8-286" aria-hidden="true" tabindex="-1"></a>info <span class="ot">&lt;-</span> n <span class="sc">/</span> (mle <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> mle))</span>
+<span id="cb8-287"><a href="#cb8-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-288"><a href="#cb8-288" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error = 1 / sqrt(information)</span></span>
+<span id="cb8-289"><a href="#cb8-289" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(info)</span>
+<span id="cb8-290"><a href="#cb8-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-291"><a href="#cb8-291" aria-hidden="true" tabindex="-1"></a><span class="co"># Approximate 95% confidence interval</span></span>
+<span id="cb8-292"><a href="#cb8-292" aria-hidden="true" tabindex="-1"></a>ci95 <span class="ot">&lt;-</span> mle <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">1.96</span> <span class="sc">*</span> se</span>
+<span id="cb8-293"><a href="#cb8-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-294"><a href="#cb8-294" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">fisherInfo =</span> info,</span>
+<span id="cb8-295"><a href="#cb8-295" aria-hidden="true" tabindex="-1"></a>     <span class="at">se         =</span> se,</span>
+<span id="cb8-296"><a href="#cb8-296" aria-hidden="true" tabindex="-1"></a>     <span class="at">ci95       =</span> ci95)</span>
+<span id="cb8-297"><a href="#cb8-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-298"><a href="#cb8-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-299"><a href="#cb8-299" aria-hidden="true" tabindex="-1"></a>Finally, we can *see* the curvature idea by plotting the log-likelihood. The peak sits at the MLE, and the **sharpness** of that peak is exactly the Fisher information — the quantity that becomes our standard error.</span>
+<span id="cb8-300"><a href="#cb8-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-303"><a href="#cb8-303" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-304"><a href="#cb8-304" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb8-305"><a href="#cb8-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-306"><a href="#cb8-306" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.4</span>, <span class="fl">0.95</span>, <span class="at">length.out =</span> <span class="dv">400</span>)</span>
+<span id="cb8-307"><a href="#cb8-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-308"><a href="#cb8-308" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(grid, <span class="fu">ll</span>(grid), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb8-309"><a href="#cb8-309" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"steelblue"</span>,</span>
+<span id="cb8-310"><a href="#cb8-310" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta),</span>
+<span id="cb8-311"><a href="#cb8-311" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"log-likelihood  "</span>, <span class="fu">ell</span>(theta))),</span>
+<span id="cb8-312"><a href="#cb8-312" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Log-likelihood for the coin-flip example"</span>)</span>
+<span id="cb8-313"><a href="#cb8-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-314"><a href="#cb8-314" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mle,       <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb8-315"><a href="#cb8-315" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> trueTheta, <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb8-316"><a href="#cb8-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-317"><a href="#cb8-317" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
+<span id="cb8-318"><a href="#cb8-318" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"log-likelihood"</span>,</span>
+<span id="cb8-319"><a href="#cb8-319" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"MLE  "</span>, <span class="fu">hat</span>(theta))),</span>
+<span id="cb8-320"><a href="#cb8-320" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"true  "</span>, theta))),</span>
+<span id="cb8-321"><a href="#cb8-321" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"firebrick"</span>, <span class="st">"darkgreen"</span>),</span>
+<span id="cb8-322"><a href="#cb8-322" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb8-323"><a href="#cb8-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-324"><a href="#cb8-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-325"><a href="#cb8-325" aria-hidden="true" tabindex="-1"></a>Try increasing <span class="in">`n`</span> in the simulation: the peak becomes **sharper**, the Fisher information **grows**, and the standard error **shrinks** — the data is telling us more and more about $\theta$, exactly as the theory promises.</span>
+<span id="cb8-326"><a href="#cb8-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-327"><a href="#cb8-327" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb8-328"><a href="#cb8-328" aria-hidden="true" tabindex="-1"></a>You rarely have to do the optimisation *and* the standard errors by hand. Hand a negative log-likelihood to <span class="in">`stats4::mle`</span> (or the friendlier <span class="in">`bbmle::mle2`</span>) and you get <span class="in">`coef()`</span>, <span class="in">`vcov()`</span>, <span class="in">`confint()`</span> and a <span class="in">`summary()`</span> for free:</span>
+<span id="cb8-329"><a href="#cb8-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-332"><a href="#cb8-332" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-333"><a href="#cb8-333" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb8-334"><a href="#cb8-334" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats4)</span>
+<span id="cb8-335"><a href="#cb8-335" aria-hidden="true" tabindex="-1"></a>nll <span class="ot">&lt;-</span> <span class="cf">function</span>(theta) <span class="sc">-</span>(k <span class="sc">*</span> <span class="fu">log</span>(theta) <span class="sc">+</span> (n <span class="sc">-</span> k) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> theta))</span>
+<span id="cb8-336"><a href="#cb8-336" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">mle</span>(nll, <span class="at">start =</span> <span class="fu">list</span>(<span class="at">theta =</span> <span class="fl">0.5</span>))</span>
+<span id="cb8-337"><a href="#cb8-337" aria-hidden="true" tabindex="-1"></a><span class="fu">vcov</span>(fit)      <span class="co"># variance = 1 / information</span></span>
+<span id="cb8-338"><a href="#cb8-338" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fit)   <span class="co"># profile-likelihood interval, not just Wald</span></span>
+<span id="cb8-339"><a href="#cb8-339" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-340"><a href="#cb8-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-341"><a href="#cb8-341" aria-hidden="true" tabindex="-1"></a>And when differentiating the log-likelihood twice by hand is painful, let <span class="in">`numDeriv::hessian()`</span> build the information matrix numerically — no calculus required:</span>
+<span id="cb8-342"><a href="#cb8-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(numDeriv)</span>
+<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> numDeriv<span class="sc">::</span><span class="fu">hessian</span>(nll, <span class="at">x =</span> mle)   <span class="co"># observed information</span></span>
+<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(J)                               <span class="co"># variance-covariance matrix</span></span>
+<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary</span></span>
+<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Object <span class="pp">|</span> Symbol <span class="pp">|</span> What it represents <span class="pp">|</span></span>
+<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Likelihood** <span class="pp">|</span> $L(\theta)$ <span class="pp">|</span> How well each $\theta$ explains the observed data <span class="pp">|</span></span>
+<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Log-likelihood** <span class="pp">|</span> $\ell(\theta)$ <span class="pp">|</span> The same, on an additive, numerically stable scale <span class="pp">|</span></span>
+<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Score** <span class="pp">|</span> $U(\theta) = \ell'(\theta)$ <span class="pp">|</span> The slope of $\ell$; points toward better $\theta$ <span class="pp">|</span></span>
+<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **MLE** <span class="pp">|</span> $\hat{\theta}$ <span class="pp">|</span> The $\theta$ that best explains the data ($U(\hat\theta)=0$) <span class="pp">|</span></span>
+<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Observed information** <span class="pp">|</span> $J(\hat{\theta}) = -\ell''(\hat{\theta})$ <span class="pp">|</span> Curvature of $\ell$ for *this* data set <span class="pp">|</span></span>
+<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Fisher information** <span class="pp">|</span> $I(\theta) = \mathbb{E}<span class="co">[</span><span class="ot">-\ell''(\theta)</span><span class="co">]</span>$ <span class="pp">|</span> Expected curvature — how much the data tells us about $\theta$ <span class="pp">|</span></span>
+<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Standard error** <span class="pp">|</span> $1/\sqrt{I(\hat{\theta})}$ <span class="pp">|</span> The precision of the estimate <span class="pp">|</span></span>
+<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a>These six quantities are the engine of frequentist parametric inference. Every estimate, standard error, confidence interval and likelihood-ratio test you meet later is built from exactly this chain.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

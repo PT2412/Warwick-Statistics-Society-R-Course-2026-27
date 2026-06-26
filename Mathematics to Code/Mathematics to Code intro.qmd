@@ -15,10 +15,23 @@ format:
 ---
 
 ::: {.callout-quote title="Henri Poincaré"}
-*"Mathematicians do not deal in objects, but in relations between objects; thus, they are free to replace some objects by others so lone as the relations remain unchanged. Content to them is irrelevant; they are interested in form only."* - Henri Poincaré
+*"Mathematicians do not deal in objects, but in relations between objects; thus, they are free to replace some objects by others so long as the relations remain unchanged. Content to them is irrelevant; they are interested in form only."* - Henri Poincaré
 :::
 
 This section goes through the process of transforming a mathematical problem into code. We will connect abstract ideas in mathematics to practical code, with focus on algorithmic thinking, problem decomposition, and structural clarity.
+
+This section helps you develop the thinking behind writing code for mathematical problems. Instead of relying on formulas alone, we will break problems into logical steps and then translate those steps into R.
+
+### What to expect
+
+Each page follows the same approach:
+
+- describe the mathematical idea,
+- explain the algorithm,
+- write the code,
+- check that the result matches the math.
+
+This makes it easier to handle both pure mathematics and applied data science problems.
 
 Specifically, the pages cover the following:
 
@@ -29,6 +42,6 @@ Specifically, the pages cover the following:
     -   Re-writing a mathematics problem into code
 -   Euclidean Algorithm Example (Algebra Example)
 -   Newton-Raphson Method (Numerics and Analysis Example)
--   Monte Carlo approximation of \pi (Probability and Simulation Example)
+-   Monte Carlo approximation of $\pi$ (Probability and Simulation Example)
 
 </div>

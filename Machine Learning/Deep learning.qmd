@@ -1,0 +1,188 @@
+---
+title: "Deep Learning: Neural Networks"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+**Deep learning** is the part of machine learning behind the headlines — image recognition, speech, self-driving cars, and the large language models that power tools like ChatGPT. At its core it is built from **neural networks**: flexible models, loosely inspired by the brain, that stack many simple computing units into something able to learn extraordinarily complex patterns. This page demystifies them, fits a small one in R, and shows the modern frameworks in both R and Python.
+
+::: {.callout-note title="In a nutshell: what makes it 'deep'"}
+A neural network is just a very flexible function fitted to data. "**Deep**" means it has **many layers** stacked between the input and the output. Each layer learns to transform the data a little, and stacking many layers lets the network build up from simple features (edges in an image) to complex ones (faces) — without you ever specifying those features by hand.
+:::
+
+# The building block: a neuron
+
+Everything starts with a single **neuron**. It takes some inputs $x_1, \dots, x_p$, forms a **weighted sum** plus a bias, and passes the result through a non-linear **activation function** $g$:
+$$
+\text{output} = g\!\left(w_1 x_1 + w_2 x_2 + \dots + w_p x_p + b\right).
+$$
+This should look familiar — the part inside the brackets is exactly a **linear predictor**, the same $X\beta$ from linear models and GLMs. A single neuron with a sigmoid activation *is* logistic regression. The power comes from the activation and from wiring many neurons together.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart LR
+  X1["x₁"] --> S(("Σ wᵢxᵢ + b"))
+  X2["x₂"] --> S
+  X3["x₃"] --> S
+  S --> A["activation g(·)"]
+  A --> O["output"]
+```
+
+The **activation function** is what lets a network bend and curve. Common choices: **ReLU** ($\max(0, z)$, the modern default for hidden layers), **sigmoid** (squashes to $[0,1]$, for probabilities), and **softmax** (turns a vector into class probabilities, for the output of a classifier).
+
+# From neurons to a network
+
+Stack neurons into **layers**, and connect the layers in sequence: an **input layer** (one node per feature), one or more **hidden layers**, and an **output layer** (one node per thing to predict). Information flows left to right — the *forward pass* — each layer feeding the next.
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart LR
+  subgraph In["Input layer"]
+    I1["x₁"]
+    I2["x₂"]
+  end
+  subgraph Hid["Hidden layer(s)"]
+    H1["○"]
+    H2["○"]
+    H3["○"]
+  end
+  subgraph Out["Output layer"]
+    O1["ŷ"]
+  end
+  I1 --> H1 & H2 & H3
+  I2 --> H1 & H2 & H3
+  H1 & H2 & H3 --> O1
+```
+
+A network with even one hidden layer is a **universal approximator** — given enough neurons it can represent essentially any function. Adding *depth* (more layers) lets it do so far more efficiently, learning a hierarchy of features.
+
+# How a network learns
+
+A freshly built network has random weights and predicts nonsense. Learning means **tuning the weights to reduce error**, and it is the same optimisation idea as everywhere else in the course — just at scale.
+
+1. **Loss function** — a number measuring how wrong the predictions are (squared error for regression, cross-entropy for classification). This is the negative log-likelihood in disguise.
+2. **Gradient descent** — nudge every weight a little in the direction that *decreases* the loss. The step size is the **learning rate**.
+3. **Backpropagation** — the chain rule applied cleverly to compute the loss's gradient with respect to *every* weight at once, even across many layers.
+4. **Epochs** — repeat over the whole dataset many times until the loss stops improving.
+
+::: {.callout-note title="In a nutshell: it's just 'guess, measure, adjust'"}
+The network **guesses**, a loss function **measures** how far off it is, and gradient descent **adjusts** the weights a touch to do better next time — millions of times over. Backpropagation is simply the bookkeeping that works out which weights to nudge and in which direction. No magic, just calculus and repetition.
+:::
+
+# A small neural network in R
+
+R ships with the `nnet` package (a *recommended* package, so no install needed), which fits a classic single-hidden-layer network. Let us classify the `iris` species — the same task as the supervised-learning page, now with a neural net.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(nnet)
+set.seed(1)
+
+# Train/test split
+trainIdx <- sample(nrow(iris), 0.7 * nrow(iris))
+trainSet <- iris[trainIdx, ]
+testSet  <- iris[-trainIdx, ]
+
+# A network with 5 hidden units; 'decay' is weight regularisation (curbs overfitting)
+net <- nnet(Species ~ ., data = trainSet,
+            size = 5, decay = 0.01, maxit = 200, trace = FALSE)
+
+# Accuracy on the held-out test set
+pred <- predict(net, testSet, type = "class")
+mean(pred == testSet$Species)
+```
+
+```{r}
+table(predicted = pred, actual = testSet$Species)
+```
+
+That single hidden layer already classifies the held-out flowers almost perfectly. `nnet` is tiny by modern standards, but the principles — hidden units, an activation, weight decay to fight overfitting, iterative training — are exactly those of the giant networks below.
+
+# The modern frameworks (R and Python)
+
+Real deep learning uses frameworks built for **many layers and GPU acceleration**. The two dominant engines are **TensorFlow/Keras** and **PyTorch**; both have first-class interfaces in R *and* Python. The same small network looks like this:
+
+```{r}
+#| eval: false
+
+# R, using keras3 (a friendly interface to TensorFlow)
+library(keras3)
+
+model <- keras_model_sequential() |>
+  layer_dense(units = 8, activation = "relu", input_shape = 4) |>
+  layer_dense(units = 3, activation = "softmax")        # 3 species
+
+model |> compile(optimizer = "adam",
+                 loss = "sparse_categorical_crossentropy",
+                 metrics = "accuracy")
+
+model |> fit(xTrain, yTrain, epochs = 50, validation_split = 0.2)
+```
+
+```{python}
+#| eval: false
+
+# Python, using Keras (TensorFlow) — the same network
+from tensorflow import keras
+
+model = keras.Sequential([
+    keras.layers.Dense(8, activation="relu", input_shape=(4,)),
+    keras.layers.Dense(3, activation="softmax"),
+])
+
+model.compile(optimizer="adam",
+              loss="sparse_categorical_crossentropy",
+              metrics=["accuracy"])
+
+model.fit(X_train, y_train, epochs=50, validation_split=0.2)
+```
+
+Read across: a `Dense` ("fully connected") layer, an activation, a loss, an optimiser, and `fit` over epochs — identical concepts in both languages.
+
+::: {.callout-warning title="Deep learning is not always the answer"}
+Neural networks are **data-hungry** and easy to over-engineer. For the **tabular data** most statisticians meet (rows and columns in a spreadsheet), a well-tuned **gradient-boosting** model (`xgboost`, `lightgbm`) or even a humble GLM usually matches or beats a neural net, trains in seconds, and is easier to interpret. Reach for deep learning when the data is **large and unstructured** — images, audio, text — where its feature-learning genuinely shines.
+:::
+
+# Where deep learning goes from here
+
+The feedforward network above is the foundation; specialised architectures handle specialised data:
+
+- **Convolutional neural networks (CNNs)** — exploit spatial structure for **images** (medical scans, object detection).
+- **Recurrent networks and Transformers** — handle **sequences**; the **Transformer** is the architecture behind modern **large language models** like ChatGPT.
+- **Transfer learning** — start from a giant pre-trained network and fine-tune it on your small dataset, getting state-of-the-art results without state-of-the-art data.
+
+::: {.callout-tip title="Going further 🚀"}
+To go hands-on: in **R**, `torch` (native, no Python needed) and `keras3` are the two routes; in **Python**, `PyTorch` and `keras`/`tensorflow` dominate, with `fastai` and `pytorch-lightning` as high-level wrappers and **Hugging Face `transformers`** for pre-trained language models. A **GPU** (free on Google Colab or Kaggle) turns hours of training into minutes. And before you build anything bespoke, remember the tabular-data lesson above: benchmark against `xgboost` first.
+:::
+
+# Summary
+
+| Concept | What it is |
+|---|---|
+| **Neuron** | A weighted sum of inputs through an activation — a linear predictor with a twist |
+| **Layer / depth** | Neurons stacked; many hidden layers = "deep" |
+| **Activation** | ReLU (hidden), sigmoid/softmax (output) — adds non-linearity |
+| **Loss** | How wrong the predictions are (cross-entropy, squared error) |
+| **Gradient descent + backprop** | Nudge weights to cut the loss, repeatedly |
+| **Frameworks** | `nnet` (small), `torch`/`keras` (R and Python) for real depth |
+| **When to use** | Large, unstructured data (images, text); not usually tabular |
+
+Deep learning is the modelling you already know — a linear predictor, a loss, and gradient-based fitting — scaled up with many layers and a great deal of data. It is the natural frontier beyond this course, and the concepts here are the foundation everything else is built on.

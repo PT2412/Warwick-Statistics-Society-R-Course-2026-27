@@ -1,0 +1,249 @@
+---
+title: "Time and Space Efficiency"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+## Why efficiency matters
+
+Efficiency is about solving problems with a sensible amount of time and memory. In data science, performance matters because datasets can be large and analysis pipelines can be repeated many times.
+
+A clear understanding of efficiency helps you choose the right approach before the code becomes too slow or too expensive in memory to use.
+
+## Algorithmic complexity
+
+Big O notation describes how an algorithm's running time grows as the size of the input increases. It captures the dominant cost for large inputs.
+
+Common complexity classes:
+
+- **O(1)** — constant time: the cost does not change when input size grows.
+- **O(n)** — linear time: the cost grows in proportion to the number of items.
+- **O(n log n)** — linearithmic time: common for efficient sorting.
+- **O(n^2)** — quadratic time: often caused by nested loops.
+- **O(2^n)** — exponential time: grows extremely fast with input size.
+
+::: {.callout-note title="In a nutshell: what these classes feel like"}
+The labels make more sense with a tangible task on `n` items:
+
+| Class | A tangible example |
+|-------|--------------------|
+| O(1) | Asking one student their name. |
+| O(n) | Reading every student's name once down the register. |
+| O(n log n) | Sorting the register into alphabetical order. |
+| O(n^2) | Comparing every student against every other student (every pair). |
+| O(2^n) | Listing every possible group (subset) the students could form. |
+
+The further down the table, the faster the cost explodes as the class grows.
+:::
+
+## Space efficiency
+
+Space efficiency describes how much memory an algorithm or operation needs as the input grows.
+
+Common space categories:
+
+- **O(1)** — constant space: uses a fixed amount of memory regardless of input size.
+- **O(n)** — linear space: memory grows in proportion to the input.
+- **O(n^2)** — quadratic space: memory grows with the square of the input size.
+
+Many data analysis operations are linear in space because they create vectors or tables that are proportional to the dataset.
+
+## Example: time and space in R
+
+### Loop vs vectorised squaring
+
+A direct loop computes squared values one element at a time:
+
+```{r}
+n <- 1000000
+x <- rnorm(n)
+y <- numeric(n)
+for (i in seq_len(n)) {
+  y[i] <- x[i] ^ 2
+}
+```
+
+This has:
+
+- time complexity roughly **O(n)**,
+- space complexity **O(n)** because the result vector `y` grows with the input size.
+
+The vectorised version does the same work more compactly:
+
+```{r}
+y <- x ^ 2
+```
+
+It still uses **O(n)** time and **O(n)** space, but the work is performed inside a compiled routine and avoids the overhead of the explicit R loop.
+
+### Time vs memory trade-off
+
+If you only need the squared values and not the original vector, you can overwrite `x`:
+
+```{r}
+x <- x ^ 2
+```
+
+This still uses **O(n)** time, but it avoids keeping both `x` and `y` in memory at the same time. If you need both, then memory usage is higher.
+
+## Example: quadratic time in R
+
+A naive way to find duplicate pairs uses nested loops:
+
+```{r}
+findDuplicates <- function(x) {
+  n <- length(x)
+  res <- logical(n)
+  for (i in seq_len(n - 1)) {
+    for (j in (i + 1):n) {
+      if (x[i] == x[j]) {
+        res[i] <- TRUE
+        res[j] <- TRUE
+      }
+    }
+  }
+  return(res)
+}
+```
+
+This is roughly **O(n^2)** in time and also uses **O(n)** space for the output vector.
+
+A good design balances time and space for the problem at hand.
+
+## Recursion and the call stack
+
+So far our examples have used **iteration** (loops) to repeat work. A second way to repeat work is **recursion**, where a function calls *itself* on a smaller version of the same problem. Every recursive function needs two parts:
+
+- a **base case** that stops the recursion, and
+- a **recursive case** that moves the problem closer to the base case.
+
+A classic example is the factorial $n! = n \times (n-1) \times \dots \times 1$:
+
+```{r}
+factRec <- function(n) {
+  if (n <= 1) {
+    return(1)          # base case
+  }
+  n * factRec(n - 1)  # recursive case
+}
+
+factRec(5)
+```
+
+### The hidden space cost
+
+Recursion has a space cost that loops do not. Each time a function calls itself, R must remember where it was so it can resume once the inner call returns. It does this by adding a **stack frame** to the *call stack*. The frames are only cleared once the base case is reached and the calls unwind.
+
+This means a recursion that goes `n` levels deep uses **O(n) space on the call stack**, even if it returns a single number. The equivalent loop uses **O(1)** space:
+
+```{r}
+factIter <- function(n) {
+  res <- 1
+  for (i in seq_len(n)) {
+    res <- res * i
+  }
+  res
+}
+
+factIter(5)
+```
+
+Both are **O(n)** in time, but the loop keeps memory flat while the recursion grows the stack.
+
+::: {.callout-warning}
+R does **not** optimise tail-recursion, and it caps recursion depth (see `options(expressions = ...)`). Very deep recursion will throw a *"evaluation nested too deeply"* / stack overflow error. For deep problems in R, prefer iteration or vectorisation.
+:::
+
+### When recursion is expensive in time, too
+
+Recursion can also hide a severe *time* cost if the same sub-problems are recomputed. The naive Fibonacci sequence makes two recursive calls each step, so the work doubles at every level — **O(2^n)** time, the worst class from our table above:
+
+```{r}
+fibRec <- function(n) {
+  if (n < 2) return(n)        # base cases: fib(0)=0, fib(1)=1
+  fibRec(n - 1) + fibRec(n - 2)
+}
+
+system.time(fibRec(27))
+```
+
+The same sequence computed iteratively is **O(n)** time and **O(1)** space — astronomically faster:
+
+```{r}
+fibIter <- function(n) {
+  a <- 0; b <- 1
+  for (i in seq_len(n)) {
+    new <- a + b
+    a <- b
+    b <- new
+  }
+  a
+}
+
+system.time(fibIter(27))
+```
+
+::: {.callout-note}
+Recursion is not "bad" — it often expresses an algorithm far more clearly than a loop (the Euclidean algorithm and Newton-Raphson method in the *Mathematics to Code* section are natural recursions). The lesson is to be aware of its **two costs**: stack space proportional to depth, and repeated time if sub-problems overlap. When overlap happens, *memoisation* (caching results) or an iterative rewrite restores efficiency.
+:::
+
+::: {.callout-tip title="Going further 🚀"}
+Memoisation caches each result the first time it is computed, so every sub-problem is solved once — collapsing `fibRec`'s **O(2^n)** time down to **O(n)** without rewriting the recursion. The `memoise` package wraps any function for you:
+
+```{r}
+#| eval: false
+library(memoise)
+fibMemo <- memoise(fibRec)   # cache lives in the wrapper
+system.time(fibMemo(40))     # near-instant; naive fibRec(40) would hang
+```
+
+Under the hood it is just a lookup table. You can build a tiny one by hand with a base-R environment as the cache:
+
+```{r}
+cache <- new.env()
+fibCached <- function(n) {
+  key <- as.character(n)
+  if (!is.null(cache[[key]])) return(cache[[key]])   # already known?
+  val <- if (n < 2) n else fibCached(n - 1) + fibCached(n - 2)
+  cache[[key]] <- val                                # store for next time
+  val
+}
+fibCached(40)
+```
+:::
+
+## Practical optimisation strategy
+
+A sensible workflow is:
+
+1. write correct code first,
+2. check that it produces the right results,
+3. measure performance,
+4. optimise the real bottlenecks.
+
+Optimising too early can waste effort on parts of the code that are not important.
+
+## Why this matters in statistics
+
+Statistical analysis often involves repeated tasks such as:
+
+- scanning large datasets,
+- computing summaries,
+- fitting models multiple times,
+- running simulations.
+
+In these cases, choosing an efficient algorithm can make the difference between a script that finishes quickly and one that is too slow to use.
+
+## Summary
+
+Efficiency is a combination of algorithmic thinking and practical measurement. Big O notation helps you compare approaches, but real performance also depends on the specific language, data size, and implementation.

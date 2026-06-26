@@ -1,8 +1,5 @@
 ---
 title: "Introduction to Data Visualisation"
-author: 
-  name: Niko Gigiberia
-  email: Niko.gigiberia@warwick.ac.uk
 format: 
   html:
     fig-width: 10
@@ -18,7 +15,23 @@ format:
 *"The greatest value of a picture is when it forces us to notice what we never expected to see."* - John W. Tukey
 :::
 
-The subsections here will cover a few data visualisation techniques using `ggplot2`. The ggplot library is extremely powerful for data visualisation for a number of reasons: it is trivial to add and remove features from graphs, it is one of a few R libraries that are always being worked on and updated, and many more reasons will will discover here. 
+The subsections here will cover a few data visualisation techniques using `ggplot2`. The ggplot library is extremely powerful for data visualisation for a number of reasons: it is trivial to add and remove features from graphs, it is one of a few R libraries that are always being worked on and updated, and many more reasons we will discover here.
+
+This section is built to help you choose the right graph for the right question. The same data can be shown in many ways; the goal is to make your message clear.
+
+### Why this section matters
+
+Visualisation is not just decoration. Good graphs allow you to:
+
+- spot patterns and trends,
+- compare groups or changes over time,
+- communicate results to others,
+- check whether a model is sensible.
+
+### When to use base R vs `ggplot2`
+
+- Use base R for quick exploratory plots and simple visuals.
+- Use `ggplot2` when you need more control over labels, colours, layouts, or multi-layer graphics.
 
 This section covers: 
 
@@ -31,7 +44,7 @@ This section covers:
 * how to approach time-dependent data,
 * how to approach multivariate data,
 * miscellaneous graphs,
-* how to customise graphs,s
+* how to customise graphs,
 * general advice on data visualisation
 
 :::

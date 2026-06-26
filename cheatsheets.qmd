@@ -1,8 +1,5 @@
 ---
 title: "Cheatsheets"
-author: 
-  name: Maria-Louiza Van den Bergh
-  email: maria-louiza.van-den-bergh@warwick.ac.uk
 format: 
   html:
     fig-width: 12
@@ -19,7 +16,7 @@ format:
 
 There is a lot to learn to create beautiful and informative reports using R. In this section, there are several cheatsheets that will hopefully make this learning curve a little easier. 
 
-(If the files are not loading, there also available on the GitHub under the `Cheatsheets` folder [link](https://github.warwick.ac.uk/u2129292/Warwick-Statistics-Society-R-Course-2024-2025).)
+(If the files are not loading, they are also available on GitHub under the `Cheatsheets` folder [link](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27).)
 
 # Latex
 
@@ -39,3 +36,13 @@ library(ggplot2)
 ```
 
 ![](Cheatsheets/ggplot2.pdf){fig-alt="ggplot2 sheet, A4." width=90% height=500}
+
+## How to use the cheatsheets
+
+Cheatsheets are not a substitute for learning, but they are a fast way to look up functions and syntax while you are coding.
+
+- Use the LaTeX cheat sheet when you need to write mathematical notation, tables, or captions in a report.
+- Use the ggplot2 cheat sheet when you are building plots and need to remember common layers such as `geom_point()`, `geom_line()`, and `labs()`.
+- Keep the PDF open while you work so you can compare options for themes, scales, and labels.
+
+If a PDF does not display in your browser, download it to your computer and open it with a PDF viewer. Most viewers let you search for keywords such as `aes` or `facet_wrap`, which makes it easy to find the command you need.

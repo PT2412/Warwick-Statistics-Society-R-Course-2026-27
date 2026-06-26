@@ -20,16 +20,16 @@ We begin by loading in the cars dataset we used on the previous page (the code r
 #| code-fold: true
 
 ###| Code to create the dataset used in previous pages
-cars_data <- mtcars
+cars <- mtcars
 
-cars_data$am <- factor(cars_data$am)
-cars_data$vs <- factor(cars_data$vs)
+cars$am <- factor(cars$am)
+cars$vs <- factor(cars$vs)
 
-cars_data$manufacturer <- factor(rownames(cars_data))
-levels(cars_data$manufacturer) <- list(AMC = "AMC Javelin", 
+cars$manufacturer <- factor(rownames(cars))
+levels(cars$manufacturer) <- list(AMC = "AMC Javelin",
                                        Cadillac = "Cadillac Fleetwood" ,
                                        Camaro = "Camaro Z28", 
-                                       Datsum = "Datsun 710",
+                                       Datsun = "Datsun 710",
                                        Dodge = "Dodge Challenger",
                                        Duster = "Duster 360",
                                        Ferrari = "Ferrari Dino",
@@ -54,7 +54,7 @@ levels(cars_data$manufacturer) <- list(AMC = "AMC Javelin",
 
 ```{r}
 ###| Checking the data is correct
-head(cars_data)
+head(cars)
 ```
 
 # A basic summary table
@@ -79,18 +79,22 @@ The following code gives some examples of how to extract various summary statist
 
 ```{r}
 ###| Basic summary table on continuous data
-cars_data %>%
+cars %>%
   summarise("Num. observations" = n(),
             "Mean mpg" = mean(mpg),
             "Range displacement" = max(disp)-min(disp),
             "Median horsepower" = median(hp))
 ```
 
-Things get more complicated for categorical factors. We may need to use the `length()`, `which()` and `unique()` functions to find our desired statistics. 
+Things get more complicated for categorical factors. We may need to use the `length()`, `which()` and `unique()` functions to find our desired statistics.
+
+::: {.callout-note title="In a nutshell: counting TRUEs"}
+`length(which(vs == 1))` counts the rows where the condition `vs == 1` is TRUE. A simpler equivalent is `sum(vs == 1)`, because R treats each TRUE as 1 and each FALSE as 0 when summing.
+:::
 
 ```{r}
 ###| Basic summary table on categorical data
-cars_data %>%
+cars %>%
   summarise("vs 1" = length(which(vs == 1)),
             "am 0" = length(which(am == 0)),
             "Num. manufacturers" = length(unique(manufacturer))
@@ -99,11 +103,11 @@ cars_data %>%
 
 # Cylinder level exploration
 
-Recall that we identified 3 distinct cylinder levels (check using `unique(cars_data$cyl)`). To do this, we will use the `group_by()` function. 
+Recall that we identified 3 distinct cylinder levels (check using `unique(cars$cyl)`). To do this, we will use the `group_by()` function. 
 
 ```{r}
 ###| Basic summary table grouped by cylinders
-cars_data %>%
+cars %>%
   group_by(cyl) %>%
   summarise("Num. observations" = n(),
             "Mean mpg" = mean(mpg),
@@ -137,8 +141,8 @@ Thus far, we have relied on the raw R output to read the tables. This is not ide
 # install.packages("kableExtra")
 library(kableExtra)
 
-###| Grouped summary table 
-summary <- cars_data %>%
+###| Grouped summary table
+summ <- cars %>%
   group_by(cyl) %>%
   summarise("Num. observations" = n(),
             "Mean mpg" = mean(mpg),
@@ -150,16 +154,31 @@ summary <- cars_data %>%
   )
 
 ###| Output
-kable(summary)
+kable(summ)
 ```
 
-We can continue to change various arguments of the `kable` function to get truly beautiful tables. An excellent site for this is LINK. A quick example of some commands are the following:
+We can continue to change various arguments of the `kable` function to get truly beautiful tables. An excellent site for this is [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html). A quick example of some commands are the following:
 
 ```{r}
 ###| Example kable extra
-kable(summary, booktabs = TRUE, 
+kable(summ, booktabs = TRUE,
       col.names = c("Cylinders","Total","Mean MPG","Displacement range",
                     "Median horsepower","Num vs 1","Num am 0",
                     "Num unique manufacturers")) %>%
   add_header_above(c(" " = 1, "Summary Statistics" = 7))
 ```
+
+::: {.callout-tip title="Going further 🚀"}
+Typing out one statistic per column quickly becomes unwieldy. `dplyr::across()` applies the same function(s) to many columns at once, and for polished, publication-ready tables `gt` and especially `gtsummary::tbl_summary()` build them with almost no code.
+
+```{r}
+#| eval: false
+library(dplyr)
+cars %>%
+  group_by(cyl) %>%
+  summarise(across(c(mpg, disp, hp), list(mean = mean, sd = sd)))
+
+library(gtsummary)
+tbl_summary(cars, by = cyl)   # publication-ready summary table
+```
+:::

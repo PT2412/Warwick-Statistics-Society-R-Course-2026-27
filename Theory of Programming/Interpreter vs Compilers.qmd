@@ -1,0 +1,66 @@
+---
+title: "Interpreters vs Compilers"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+## What is an interpreter?
+
+An interpreter reads source code and executes it directly, typically one statement at a time. This makes interpreted languages easier to run interactively, which is why R and Python are popular for data analysis.
+
+Interpreters are useful for exploration and rapid development, but they often add overhead at runtime because the code must be translated as it runs.
+
+## What is a compiler?
+
+A compiler translates source code into machine code or another lower-level form before the program runs. The compiled program can then execute without the overhead of line-by-line translation.
+
+Compiled languages such as C or C++ are often faster at runtime because the instructions are already prepared for the processor.
+
+## Hybrids and bytecode
+
+Many modern languages use a hybrid approach:
+
+- source code is compiled into bytecode,
+- the bytecode is executed by a virtual machine,
+- some systems use just-in-time (JIT) compilation to optimise code while it runs.
+
+This gives a balance between developer productivity and runtime performance.
+
+## R and Python in practice
+
+R and Python are usually described as interpreted languages, but the full story is more nuanced.
+
+- R parses expressions and executes them through an interpreter.
+- Many of R's core functions are implemented in compiled C or C++.
+- Python also compiles source code to bytecode before execution.
+
+That means a high-level command such as summing a vector can still use fast compiled code behind the scenes.
+
+## Why this matters for data science
+
+Understanding the difference between interpreters and compilers helps you know where performance comes from.
+
+- high-level code is good for writing and testing ideas quickly,
+- compiled code is good for tight loops and heavy numeric work,
+- many data science languages combine both approaches.
+
+## Key trade-offs
+
+- **Interpreters**: easier to use, more flexible, slower per operation.
+- **Compilers**: faster at runtime, harder to write, less interactive.
+
+The practical choice is often to write readable high-level code first and then move the costly parts into compiled routines if needed.
+
+## Summary
+
+Interpreters and compilers are two ways of turning language into action. For a programming course, the important point is that high-level languages like R and Python can be both easy to write and, thanks to compiled internals, efficient enough for serious data work.

@@ -1,8 +1,5 @@
 ---
 title: "Introduction"
-author: 
-  name: Maria-Louiza Van den Bergh
-  email: maria-louiza.van-den-bergh@warwick.ac.uk
 format: 
   html:
     fig-width: 12
@@ -17,7 +14,18 @@ format:
     echo: fenced
 ---
 
-These pages will cover will introduce some key theory about how R operates and the basic building blocks of coding. It ends with generating plots using inbuilt R commands.  
+These pages will introduce some key theory about how R operates and the basic building blocks of coding. It ends with generating plots using inbuilt R commands.  
+
+This section is designed to be hands-on. The best way to learn is to type the examples, run them, and then change a few values to see what happens.
+
+### How to use this section
+
+- Start with the earliest pages if you are new to programming.
+- Run the code chunks one by one and inspect the output.
+- If you see a new concept, try modifying the code to explore it.
+- Use the later pages to practise plotting and working with real data.
+
+This section is a foundation for the rest of the course. The later sections on modelling, visualisation, and report writing assume you are comfortable with the basics of R syntax, data objects, and simple functions.
 
 This section covers: 
 

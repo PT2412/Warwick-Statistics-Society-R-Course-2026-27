@@ -1,0 +1,129 @@
+---
+title: "Poisson Regression (Count Data)"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+The second great non-normal response is the **count**: a non-negative integer $0, 1, 2, \dots$ — accidents per junction, emails per hour, warp breaks per loom. The natural model is **Poisson regression**, the Poisson-distribution, log-link member of the GLM family. It introduces one genuinely new practical concern that dominates real count analysis: **overdispersion**.
+
+# The model
+
+For a count response $Y_i$ we model its mean (rate) $\mu_i = \mathbb{E}[Y_i] > 0$. Since a rate must be positive but the linear predictor can be negative, we use the **log** link:
+$$
+\log \mu_i = \beta_0 + \beta_1 x_{i1} + \dots + \beta_p x_{ip}, \qquad\text{so}\qquad \mu_i = e^{\beta_0 + \beta_1 x_{i1} + \dots}.
+$$
+The exponential guarantees a positive fitted count whatever the predictors do. Because the link is the log, the coefficients act **multiplicatively** on the count — the count analogue of the odds ratios from logistic regression.
+
+::: {.callout-note title="In a nutshell: why counts need their own model"}
+A count cannot be negative, and — unlike the normal — its spread is tied to its level: rare events ($\mu$ small) barely vary, common events ($\mu$ large) vary a lot. The Poisson captures both facts in one assumption, $\text{Var}(Y) = \mathbb{E}[Y] = \mu$ ("the variance equals the mean"). That single equation is the model's strength *and*, as we will see, its most common failure point.
+:::
+
+# Fitting a Poisson regression
+
+R's built-in `warpbreaks` records the number of `breaks` in wool during weaving, for two types of `wool` (A, B) under three levels of `tension` (L, M, H). We model the break *count* from wool type and tension — one call to `glm()` with `family = poisson`.
+
+```{r}
+#| warning: false
+#| message: false
+
+model <- glm(breaks ~ wool + tension, data = warpbreaks, family = poisson)
+summary(model)
+```
+
+As always, the coefficients live on the **link scale** — here, the log scale. A negative coefficient means that level *reduces* the expected number of breaks relative to the baseline.
+
+# Interpreting the coefficients: rate ratios
+
+Exponentiating a coefficient turns the additive effect on $\log\mu$ into a multiplicative effect on the count itself — a **rate ratio** (also called an incidence-rate ratio).
+
+```{r}
+exp(cbind(RateRatio = coef(model), confint(model)))
+```
+
+A rate ratio of, say, $0.7$ for a tension level means moving to that level multiplies the expected number of breaks by $0.7$ — a **30% reduction**, holding wool fixed. A rate ratio above 1 increases the expected count; exactly 1 means no effect. This is the same "exponentiate to interpret" move as logistic regression — only now the multiplier acts on a *count* rather than the *odds*.
+
+# Offsets: modelling rates, not raw counts
+
+Often the counts are not directly comparable because they arise over different **amounts of exposure** — different numbers of looms, person-years, or kilometres driven. Ten accidents over a million miles is not the same as ten over a thousand. The fix is an **offset**: a term added to the linear predictor with its coefficient fixed at 1, so we model the count *per unit of exposure*.
+$$
+\log \mu_i = \log(\text{exposure}_i) + \beta_0 + \beta_1 x_{i1} + \dots
+$$
+
+```{r}
+#| eval: false
+
+# Schematic: model accident counts adjusting for distance driven
+glm(accidents ~ roadType, family = poisson,
+    offset = log(distanceDriven), data = roads)
+```
+
+The offset is the standard way to turn "counts" into "rates" — always include one when your rows represent different-sized opportunities for the event.
+
+# The big issue: overdispersion
+
+The Poisson stakes everything on **variance = mean**. Real count data very often varies *more* than that — extra heterogeneity, clustering, or unmeasured predictors inflate the spread. This is **overdispersion**, and ignoring it is the single most common mistake in count modelling: the coefficients stay roughly right, but their standard errors come out **too small**, so you declare effects "significant" that are not.
+
+The quick diagnostic compares the **residual deviance** to its degrees of freedom — for a well-fitting Poisson they should be roughly equal, so their ratio should be near 1. A more direct estimate uses the Pearson residuals.
+
+```{r}
+# Dispersion estimate: should be ≈ 1 for a genuine Poisson
+dispersion <- sum(residuals(model, type = "pearson")^2) / model$df.residual
+c(residualDeviance = model$deviance,
+  df               = model$df.residual,
+  dispersionRatio  = dispersion)
+```
+
+A dispersion ratio meaningfully above 1 (a rough rule of thumb is $> 1.5$, and certainly $> 2$) signals overdispersion. This is the exact phenomenon the **Frequentist Statistics** worked example met with the `discoveries` data, where the Poisson under-predicted the spread — there we *diagnosed* it; here we *fix* it.
+
+## Fix 1 — quasi-Poisson
+
+The lightest fix keeps the Poisson mean model but lets the variance be $\phi\mu$ for an estimated **dispersion parameter** $\phi$, which simply inflates the standard errors to honest sizes. Change one word: `family = quasipoisson`.
+
+```{r}
+modelQuasi <- glm(breaks ~ wool + tension, data = warpbreaks, family = quasipoisson)
+# Same coefficients as before, but wider (more honest) standard errors
+summary(modelQuasi)$coefficients
+```
+
+The point estimates are unchanged; the standard errors grow to reflect the true variability.
+
+## Fix 2 — the negative binomial
+
+A fuller fix replaces the distribution entirely with the **negative binomial**, which has a separate parameter allowing the variance to exceed the mean, $\text{Var}(Y) = \mu + \mu^2/\theta$. It is the count analogue of "the model itself was wrong, not just its error bars," and is fitted with `glm.nb` from the `MASS` package.
+
+```{r}
+#| eval: false
+library(MASS)
+modelNB <- glm.nb(breaks ~ wool + tension, data = warpbreaks)
+AIC(model, modelNB)        # lower AIC = better fit; the NB usually wins when overdispersed
+```
+
+::: {.callout-tip title="Going further 🚀"}
+Two more count complications worth knowing. **Excess zeros** — far more zero counts than any Poisson or NB predicts (e.g. number of fish caught, where many visitors never fish) — are handled by **zero-inflated** or **hurdle** models in the `pscl` package (`zeroinfl`, `hurdle`). And the dispersion check above can be automated with `performance::check_overdispersion()`, which runs a formal test rather than eyeballing the ratio.
+:::
+
+# Summary
+
+| Idea | Poisson regression |
+|---|---|
+| Response | Count $0, 1, 2, \dots$ |
+| Distribution / link | Poisson / log |
+| Model | $\log\mu = X\beta$, so $\mu = e^{X\beta}$ |
+| $e^{\beta_j}$ | **Rate ratio** — multiplicative effect on the expected count |
+| Offset | `offset = log(exposure)` to model rates per unit exposure |
+| Key assumption | Variance $=$ mean — often violated (**overdispersion**) |
+| Fixes | `quasipoisson` (inflate SEs) or `MASS::glm.nb` (negative binomial) |
+
+Poisson regression is the GLM template with a Poisson response and a log link. Its one trap is overdispersion — always check the variance assumption before trusting the standard errors. The next page makes diagnostics like this systematic across *all* GLMs.

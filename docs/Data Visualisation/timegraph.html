@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Visualizing Time – Warwick Statistics Society R Course 2025-2026</title>
+<title>Visualising Time – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,9 +105,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -144,7 +148,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -172,7 +176,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -181,7 +185,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/timegraph.html">Visualizing Time</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/timegraph.html">Visualising Time</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -237,7 +241,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -275,12 +279,65 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -311,17 +368,23 @@ window.Quarto = {
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -332,6 +395,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,13 +431,154 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -381,17 +591,23 @@ window.Quarto = {
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -425,25 +641,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -456,13 +672,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -483,6 +699,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -490,7 +712,83 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -531,9 +829,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/timegraph.html">Visualizing Time</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Data Visualisation/introvisualisation.html">Data Visualisation</a></li><li class="breadcrumb-item"><a href="../Data Visualisation/timegraph.html">Visualising Time</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Visualizing Time</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Visualising Time</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -551,7 +849,7 @@ window.Quarto = {
 
 
 <p>A graph is a powerful vehicle for displaying change. While standard bar charts compare static categories, time-dependent graphs capture the <em>motion</em> of data.</p>
-<p>In this chapter, we move beyond simple line charts to explore more sophisticated ways to visualize temporal change.</p>
+<p>In this chapter, we move beyond simple line charts to explore more sophisticated ways to visualise temporal change.</p>
 <section id="time-series" class="level1">
 <h1>Time Series</h1>
 <p>A time series is a sequence of observations indexed in time order.</p>
@@ -563,7 +861,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Math to Code Mindset
+<span class="screen-reader-only">Tip</span>Math to Code Mindset
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -577,7 +875,7 @@ Math to Code Mindset
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> psavert)) <span class="sc">+</span></span>
@@ -589,7 +887,7 @@ Math to Code Mindset
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Savings Rate"</span>,</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">""</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -618,22 +916,37 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">getSymbols</span>(<span class="fu">c</span>(<span class="st">"AAPL"</span>, <span class="st">"META"</span>), <span class="at">from =</span> <span class="st">"2023-01-01"</span>, <span class="at">to =</span> <span class="st">"2023-07-31"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">getSymbols</span>(<span class="fu">c</span>(<span class="st">"AAPL"</span>, <span class="st">"META"</span>), <span class="at">from =</span> <span class="st">"2023-01-01"</span>, <span class="at">to =</span> <span class="st">"2023-07-31"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AAPL" "META"</code></pre>
 </div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: getSymbols works by side effect">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: getSymbols works by side effect
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>quantmod::getSymbols("AAPL")</code> fetches live data from the internet and, rather than returning it, quietly creates an object named <code>AAPL</code> for you (notice there is no <code>&lt;-</code> assignment). This means it needs an internet connection to run, and because the data is live the results may differ slightly each time you run it.</p>
+</div>
+</div>
+<div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mseries <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mts <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">index</span>(AAPL), <span class="at">Close =</span> <span class="fu">as.numeric</span>(AAPL<span class="sc">$</span>AAPL.Close), <span class="at">Company =</span> <span class="st">"Apple"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">index</span>(META), <span class="at">Close =</span> <span class="fu">as.numeric</span>(META<span class="sc">$</span>META.Close), <span class="at">Company =</span> <span class="st">"Meta"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mseries, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Close, <span class="at">color =</span> Company)) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mts, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Close, <span class="at">color =</span> Company)) <span class="sc">+</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
@@ -642,12 +955,12 @@ Important
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Closing Price ($)"</span>,</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">""</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="timegraph_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="timegraph_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -656,14 +969,14 @@ Important
 </section>
 <section id="dumbbell-charts" class="level1">
 <h1>Dumbbell Charts</h1>
-<p>A dumbbell chart visualizes <strong>change between two time points</strong>.</p>
+<p>A dumbbell chart visualises <strong>change between two time points</strong>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Math to Code Mindset">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Math to Code Mindset
+<span class="screen-reader-only">Tip</span>Math to Code Mindset
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -677,15 +990,15 @@ Math to Code Mindset
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(gapminder, <span class="at">package =</span> <span class="st">"gapminder"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pdat <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Americas"</span>, year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1952</span>, <span class="dv">2007</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(country, year, lifeExp) <span class="sc">%&gt;%</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, <span class="at">values_from =</span> lifeExp, <span class="at">names_prefix =</span> <span class="st">"y"</span>)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">reorder</span>(country, y1952))) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pdat, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">reorder</span>(country, y1952))) <span class="sc">+</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_segment</span>(</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> y1952, <span class="at">xend =</span> y2007, <span class="at">yend =</span> <span class="fu">reorder</span>(country, y1952)),</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"grey70"</span>,</span>
@@ -699,12 +1012,12 @@ Math to Code Mindset
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Life Expectancy (Years)"</span>,</span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">""</span></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="timegraph_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="timegraph_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -720,9 +1033,9 @@ Math to Code Mindset
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_slope <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1992</span>, <span class="dv">1997</span>, <span class="dv">2002</span>, <span class="dv">2007</span>),</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
@@ -735,7 +1048,7 @@ Math to Code Mindset
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">factor</span>(year))</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_slope, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> rank, <span class="at">group =</span> country)) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(slope, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> rank, <span class="at">group =</span> country)) <span class="sc">+</span></span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"grey50"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_reverse</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) <span class="sc">+</span></span>
@@ -745,12 +1058,12 @@ Math to Code Mindset
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Rank (Higher = Better)"</span></span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="timegraph_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="timegraph_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -771,13 +1084,13 @@ Note
 </section>
 <section id="area-charts" class="level1">
 <h1>Area Charts</h1>
-<p>Area charts emphasize <strong>magnitude</strong> by filling the area beneath a line.</p>
+<p>Area charts emphasise <strong>magnitude</strong> by filling the area beneath a line.</p>
 <section id="stacked-area-charts" class="level2">
 <h2 class="anchored" data-anchor-id="stacked-area-charts">Stacked Area Charts</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(uspopage, <span class="at">package =</span> <span class="st">"gcookbook"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(uspopage, <span class="at">package =</span> <span class="st">"gcookbook"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>uspopage,</span>
@@ -791,12 +1104,12 @@ Note
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> <span class="st">"Age Group"</span>,</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">""</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="timegraph_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="timegraph_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -805,7 +1118,20 @@ Note
 </section>
 <section id="stream-graphs" class="level1">
 <h1>Stream Graphs</h1>
-<p>A stream graph is a <strong>centered stacked area chart</strong>. Instead of stacking values from zero upward, the entire stack is <strong>recentered around a moving baseline</strong>, reducing visual bias caused by accumulation from the bottom.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: this section is advanced/optional">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: this section is advanced/optional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Stream graphs are a more specialised technique. If you are still finding your feet, feel free to skip this section, the earlier charts cover everything you need, and you can return here later.</p>
+</div>
+</div>
+<p>A stream graph is a <strong>centred stacked area chart</strong>. Instead of stacking values from zero upward, the entire stack is <strong>recentred around a moving baseline</strong>, reducing visual bias caused by accumulation from the bottom.</p>
 <section id="from-stacked-areas-to-streams" class="level2">
 <h2 class="anchored" data-anchor-id="from-stacked-areas-to-streams">From Stacked Areas to Streams</h2>
 <div class="callout callout-style-default callout-tip callout-titled" title="Math to Code Mindset">
@@ -814,15 +1140,15 @@ Note
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Math to Code Mindset
+<span class="screen-reader-only">Tip</span>Math to Code Mindset
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>Input:</strong> Time <span class="math inline">\(t\)</span>, group <span class="math inline">\(g\)</span>, value <span class="math inline">\(y_{tg}\)</span></li>
-<li><strong>Normalize:</strong> <span class="math inline">\(p_{tg} = y_{tg} / \sum_g y_{tg}\)</span></li>
+<li><strong>Normalise:</strong> <span class="math inline">\(p_{tg} = y_{tg} / \sum_g y_{tg}\)</span></li>
 <li><strong>Stack:</strong> cumulative sums within each <span class="math inline">\(t\)</span></li>
-<li><strong>Recenter:</strong> shift stack midpoint to zero</li>
+<li><strong>Recentre:</strong> shift stack midpoint to zero</li>
 <li><strong>Output:</strong> Filled ribbons around a central baseline</li>
 </ul>
 </div>
@@ -834,9 +1160,9 @@ Math to Code Mindset
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>stream_data <span class="ot">&lt;-</span> uspopage <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>stream <span class="ot">&lt;-</span> uspopage <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">prop =</span> Thousands <span class="sc">/</span> <span class="fu">sum</span>(Thousands),</span>
@@ -849,7 +1175,7 @@ Math to Code Mindset
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="at">center =</span> (<span class="fu">max</span>(ymax) <span class="sc">+</span> <span class="fu">min</span>(ymin)) <span class="sc">/</span> <span class="dv">2</span>,</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="at">ymin =</span> ymin <span class="sc">-</span> center,</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="at">ymax =</span> ymax <span class="sc">-</span> center</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="what-this-does-mathematically" class="level3">
@@ -870,7 +1196,7 @@ Math to Code Mindset
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stream) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_ribbon</span>(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> Year,</span>
@@ -889,12 +1215,12 @@ Math to Code Mindset
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> <span class="st">"Age Group"</span></span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="timegraph_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="timegraph_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -910,10 +1236,10 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A stream graph is <strong>not a new chart type</strong> — it is a stacked area chart with a <strong>moving, centered baseline</strong>.</p>
+<p>A stream graph is <strong>not a new chart type</strong> — it is a stacked area chart with a <strong>moving, centred baseline</strong>.</p>
 </div>
 </div>
-<p>The widening of upper bands toward the right visualizes the aging of the US population.</p>
+<p>The widening of upper bands toward the right visualises the ageing of the US population.</p>
 
 
 <!-- -->
@@ -973,13 +1299,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1372,8 +1699,8 @@ Note
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visualizing Time"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visualising Time"</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
@@ -1390,7 +1717,7 @@ Note
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>A graph is a powerful vehicle for displaying change. While standard bar charts compare static categories, time-dependent graphs capture the *motion* of data.</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>In this chapter, we move beyond simple line charts to explore more sophisticated ways to visualize temporal change.</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>In this chapter, we move beyond simple line charts to explore more sophisticated ways to visualise temporal change.</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># Time Series</span></span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
@@ -1442,236 +1769,251 @@ Note
 <span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="fu">getSymbols</span>(<span class="fu">c</span>(<span class="st">"AAPL"</span>, <span class="st">"META"</span>), <span class="at">from =</span> <span class="st">"2023-01-01"</span>, <span class="at">to =</span> <span class="st">"2023-07-31"</span>)</span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>mseries <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">index</span>(AAPL), <span class="at">Close =</span> <span class="fu">as.numeric</span>(AAPL<span class="sc">$</span>AAPL.Close), <span class="at">Company =</span> <span class="st">"Apple"</span>),</span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">index</span>(META), <span class="at">Close =</span> <span class="fu">as.numeric</span>(META<span class="sc">$</span>META.Close), <span class="at">Company =</span> <span class="st">"Meta"</span>)</span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: getSymbols works by side effect"}</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="in">`quantmod::getSymbols("AAPL")`</span> fetches live data from the internet and, rather than returning it, quietly creates an object named <span class="in">`AAPL`</span> for you (notice there is no <span class="in">`&lt;-`</span> assignment). This means it needs an internet connection to run, and because the data is live the results may differ slightly each time you run it.</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mseries, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Close, <span class="at">color =</span> Company)) <span class="sc">+</span></span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Tech Stock Performance"</span>,</span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Apple vs Meta (Jan–July 2023)"</span>,</span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Closing Price ($)"</span>,</span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">""</span></span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="fu"># Dumbbell Charts</span></span>
-<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>A dumbbell chart visualizes **change between two time points**.</span>
-<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Math to Code Mindset"}</span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Input:** Category and two values</span>
-<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Transformation:** Pivot to wide format</span>
-<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Output:** A segment plus two points</span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>mts <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">index</span>(AAPL), <span class="at">Close =</span> <span class="fu">as.numeric</span>(AAPL<span class="sc">$</span>AAPL.Close), <span class="at">Company =</span> <span class="st">"Apple"</span>),</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">index</span>(META), <span class="at">Close =</span> <span class="fu">as.numeric</span>(META<span class="sc">$</span>META.Close), <span class="at">Company =</span> <span class="st">"Meta"</span>)</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mts, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Close, <span class="at">color =</span> Company)) <span class="sc">+</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Tech Stock Performance"</span>,</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Apple vs Meta (Jan–July 2023)"</span>,</span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Closing Price ($)"</span>,</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">""</span></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="fu"># Dumbbell Charts</span></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a>A dumbbell chart visualises **change between two time points**.</span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Math to Code Mindset"}</span>
 <span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(gapminder, <span class="at">package =</span> <span class="st">"gapminder"</span>)</span>
-<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Americas"</span>, year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1952</span>, <span class="dv">2007</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(country, year, lifeExp) <span class="sc">%&gt;%</span></span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, <span class="at">values_from =</span> lifeExp, <span class="at">names_prefix =</span> <span class="st">"y"</span>)</span>
-<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">reorder</span>(country, y1952))) <span class="sc">+</span></span>
-<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_segment</span>(</span>
-<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> y1952, <span class="at">xend =</span> y2007, <span class="at">yend =</span> <span class="fu">reorder</span>(country, y1952)),</span>
-<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"grey70"</span>,</span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> y1952), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> y2007), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Change in Life Expectancy (1952 vs 2007)"</span>,</span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Red = 1952, Blue = 2007"</span>,</span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Life Expectancy (Years)"</span>,</span>
-<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">""</span></span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
-<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="fu"># Slope Graphs (ggplot-only)</span></span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>Slope graphs track **relative position across discrete time points**.</span>
-<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>Key idea:</span>
-<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Fix the *x-position* to time, and the *y-position* to **rank**.</span></span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Input:** Category and two values</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Transformation:** Pivot to wide format</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Output:** A segment plus two points</span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(gapminder, <span class="at">package =</span> <span class="st">"gapminder"</span>)</span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>pdat <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Americas"</span>, year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1952</span>, <span class="dv">2007</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(country, year, lifeExp) <span class="sc">%&gt;%</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, <span class="at">values_from =</span> lifeExp, <span class="at">names_prefix =</span> <span class="st">"y"</span>)</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pdat, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">reorder</span>(country, y1952))) <span class="sc">+</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_segment</span>(</span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> y1952, <span class="at">xend =</span> y2007, <span class="at">yend =</span> <span class="fu">reorder</span>(country, y1952)),</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"grey70"</span>,</span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> y1952), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> y2007), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Change in Life Expectancy (1952 vs 2007)"</span>,</span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Red = 1952, Blue = 2007"</span>,</span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Life Expectancy (Years)"</span>,</span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">""</span></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="fu"># Slope Graphs (ggplot-only)</span></span>
 <span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>Slope graphs track **relative position across discrete time points**.</span>
 <span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>df_slope <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(</span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1992</span>, <span class="dv">1997</span>, <span class="dv">2002</span>, <span class="dv">2007</span>),</span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
-<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="st">"Panama"</span>, <span class="st">"Costa Rica"</span>, <span class="st">"Nicaragua"</span>,</span>
-<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="st">"Honduras"</span>, <span class="st">"El Salvador"</span>, <span class="st">"Guatemala"</span>, <span class="st">"Belize"</span></span>
-<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>lifeExp, <span class="at">ties.method =</span> <span class="st">"first"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">factor</span>(year))</span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>Key idea:</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Fix the *x-position* to time, and the *y-position* to **rank**.</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
 <span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_slope, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> rank, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"grey50"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_reverse</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Life Expectancy Rankings"</span>,</span>
-<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Central America (1992–2007)"</span>,</span>
-<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Rank (Higher = Better)"</span></span>
-<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
-<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(</span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a>year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1992</span>, <span class="dv">1997</span>, <span class="dv">2002</span>, <span class="dv">2007</span>),</span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a>country <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="st">"Panama"</span>, <span class="st">"Costa Rica"</span>, <span class="st">"Nicaragua"</span>,</span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="st">"Honduras"</span>, <span class="st">"El Salvador"</span>, <span class="st">"Guatemala"</span>, <span class="st">"Belize"</span></span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>lifeExp, <span class="at">ties.method =</span> <span class="st">"first"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">factor</span>(year))</span>
 <span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a>Crossing lines indicate **rank reversals** — for example, Guatemala overtakes Honduras in the early 2000s.</span>
-<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="fu"># Area Charts</span></span>
-<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>Area charts emphasize **magnitude** by filling the area beneath a line.</span>
-<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stacked Area Charts</span></span>
-<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(slope, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> rank, <span class="at">group =</span> country)) <span class="sc">+</span></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"grey50"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_reverse</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Life Expectancy Rankings"</span>,</span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Central America (1992–2007)"</span>,</span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Rank (Higher = Better)"</span></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>Crossing lines indicate **rank reversals** — for example, Guatemala overtakes Honduras in the early 2000s.</span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(uspopage, <span class="at">package =</span> <span class="st">"gcookbook"</span>)</span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a><span class="fu"># Area Charts</span></span>
 <span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a>uspopage,</span>
-<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Thousands <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">fill =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(AgeGroup))</span>
-<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_area</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
-<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"US Population Composition"</span>,</span>
-<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Population (Millions)"</span>,</span>
-<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> <span class="st">"Age Group"</span>,</span>
-<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">""</span></span>
-<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
-<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a><span class="fu"># Stream Graphs </span></span>
-<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a>A stream graph is a **centered stacked area chart**.</span>
-<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a>Instead of stacking values from zero upward, the entire stack is **recentered around a moving baseline**, reducing visual bias caused by accumulation from the bottom.</span>
-<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="fu">## From Stacked Areas to Streams</span></span>
-<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Math to Code Mindset"}</span>
-<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Input:** Time $t$, group $g$, value $y_{tg}$</span>
-<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Normalize:** $p_{tg} = y_{tg} / \sum_g y_{tg}$</span>
-<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Stack:** cumulative sums within each $t$</span>
-<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Recenter:** shift stack midpoint to zero</span>
-<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Output:** Filled ribbons around a central baseline</span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a>Area charts emphasise **magnitude** by filling the area beneath a line.</span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stacked Area Charts</span></span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(uspopage, <span class="at">package =</span> <span class="st">"gcookbook"</span>)</span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a>uspopage,</span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Thousands <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">fill =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(AgeGroup))</span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_area</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"US Population Composition"</span>,</span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Population (Millions)"</span>,</span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> <span class="st">"Age Group"</span>,</span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">""</span></span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="fu"># Stream Graphs</span></span>
 <span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: this section is advanced/optional"}</span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a>Stream graphs are a more specialised technique. If you are still finding your feet, feel free to skip this section, the earlier charts cover everything you need, and you can return here later.</span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Transformation</span></span>
-<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a>stream_data <span class="ot">&lt;-</span> uspopage <span class="sc">%&gt;%</span></span>
-<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
-<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a><span class="at">prop =</span> Thousands <span class="sc">/</span> <span class="fu">sum</span>(Thousands),</span>
-<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a><span class="at">ymax =</span> <span class="fu">cumsum</span>(prop),</span>
-<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a><span class="at">ymin =</span> ymax <span class="sc">-</span> prop</span>
-<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
-<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="at">center =</span> (<span class="fu">max</span>(ymax) <span class="sc">+</span> <span class="fu">min</span>(ymin)) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a><span class="at">ymin =</span> ymin <span class="sc">-</span> center,</span>
-<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a><span class="at">ymax =</span> ymax <span class="sc">-</span> center</span>
-<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a><span class="fu">### What this does mathematically</span></span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a>A stream graph is a **centred stacked area chart**.</span>
+<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a>Instead of stacking values from zero upward, the entire stack is **recentred around a moving baseline**, reducing visual bias caused by accumulation from the bottom.</span>
+<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a><span class="fu">## From Stacked Areas to Streams</span></span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Math to Code Mindset"}</span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Input:** Time $t$, group $g$, value $y_{tg}$</span>
+<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Normalise:** $p_{tg} = y_{tg} / \sum_g y_{tg}$</span>
+<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Stack:** cumulative sums within each $t$</span>
+<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Recentre:** shift stack midpoint to zero</span>
+<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Output:** Filled ribbons around a central baseline</span>
+<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Transformation</span></span>
+<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a>For each year:</span>
-<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Convert population counts to **proportions**</span>
-<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Stack age groups using cumulative sums</span>
-<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Compute the vertical midpoint of the stack</span>
-<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Shift the entire stack so its midpoint is zero</span>
-<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a>This removes the fixed baseline that causes distortion in stacked area charts.</span>
-<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stream Graph Rendering </span></span>
-<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
-<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span></span>
-<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_ribbon</span>(</span>
-<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(</span>
-<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> Year,</span>
-<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a><span class="at">ymin =</span> ymin,</span>
-<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a><span class="at">ymax =</span> ymax,</span>
-<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(AgeGroup)</span>
-<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a><span class="at">linewidth =</span> <span class="fl">0.15</span></span>
-<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
-<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
-<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"US Population Demographics"</span>,</span>
-<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Stream graph constructed from centered stacked areas"</span>,</span>
-<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Centered Proportion"</span>,</span>
-<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> <span class="st">"Age Group"</span></span>
-<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
-<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a>A stream graph is **not a new chart type** — it is a stacked area chart with a **moving, centered baseline**.</span>
-<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a>The widening of upper bands toward the right visualizes the aging of the US population.</span>
-<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a>stream <span class="ot">&lt;-</span> uspopage <span class="sc">%&gt;%</span></span>
+<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a><span class="at">prop =</span> Thousands <span class="sc">/</span> <span class="fu">sum</span>(Thousands),</span>
+<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a><span class="at">ymax =</span> <span class="fu">cumsum</span>(prop),</span>
+<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a><span class="at">ymin =</span> ymax <span class="sc">-</span> prop</span>
+<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a><span class="at">center =</span> (<span class="fu">max</span>(ymax) <span class="sc">+</span> <span class="fu">min</span>(ymin)) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a><span class="at">ymin =</span> ymin <span class="sc">-</span> center,</span>
+<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a><span class="at">ymax =</span> ymax <span class="sc">-</span> center</span>
+<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a><span class="fu">### What this does mathematically</span></span>
+<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a>For each year:</span>
+<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Convert population counts to **proportions**</span>
+<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Stack age groups using cumulative sums</span>
+<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Compute the vertical midpoint of the stack</span>
+<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Shift the entire stack so its midpoint is zero</span>
+<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a>This removes the fixed baseline that causes distortion in stacked area charts.</span>
+<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stream Graph Rendering </span></span>
+<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true </span></span>
+<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stream) <span class="sc">+</span></span>
+<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_ribbon</span>(</span>
+<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a><span class="fu">aes</span>(</span>
+<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> Year,</span>
+<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a><span class="at">ymin =</span> ymin,</span>
+<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a><span class="at">ymax =</span> ymax,</span>
+<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(AgeGroup)</span>
+<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a><span class="at">linewidth =</span> <span class="fl">0.15</span></span>
+<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(</span>
+<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"US Population Demographics"</span>,</span>
+<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a><span class="at">subtitle =</span> <span class="st">"Stream graph constructed from centered stacked areas"</span>,</span>
+<span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a><span class="at">y =</span> <span class="st">"Centered Proportion"</span>,</span>
+<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a><span class="at">fill =</span> <span class="st">"Age Group"</span></span>
+<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span>
+<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a>A stream graph is **not a new chart type** — it is a stacked area chart with a **moving, centred baseline**.</span>
+<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a>The widening of upper bands toward the right visualises the ageing of the US population.</span>
+<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

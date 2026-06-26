@@ -1,0 +1,124 @@
+---
+title: "Check Your Understanding"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+Time to fit GLMs yourself. Each question uses a dataset built into R, so you can run everything without downloading anything. **Attempt each part before opening the answer** — the solutions are hidden in the collapsible boxes.
+
+# Question 1 — Logistic regression
+
+R's `mtcars` records, for 32 cars, whether the engine is **V-shaped (`vs = 0`)** or **straight (`vs = 1`)**, along with fuel economy `mpg`.
+
+a. Fit a logistic regression predicting `vs` from `mpg`. Is higher fuel economy associated with **higher or lower** odds of a straight engine?
+b. Report the **odds ratio** for `mpg` and explain what it means.
+c. Predict the **probability** that a car doing 25 mpg has a straight engine.
+
+::: {.callout-note collapse="true" title="Show answer"}
+```{r}
+#| code-fold: false
+q1 <- glm(vs ~ mpg, data = mtcars, family = binomial)
+coef(summary(q1))
+```
+
+**(a)** The `mpg` coefficient is **positive**, so higher fuel economy is associated with **higher** log-odds — and therefore higher odds and probability — of a straight engine.
+
+**(b)** The odds ratio is the exponentiated coefficient:
+
+```{r}
+#| code-fold: false
+exp(coef(q1))["mpg"]
+```
+
+Each extra 1 mpg **multiplies** the odds of a straight engine by this factor (greater than 1 → the odds increase with mpg).
+
+**(c)** Predict on the response scale to get a probability:
+
+```{r}
+#| code-fold: false
+predict(q1, newdata = data.frame(mpg = 25), type = "response")
+```
+:::
+
+# Question 2 — Poisson regression
+
+R's `InsectSprays` gives the **count** of insects surviving on agricultural units treated with one of six sprays (`spray`, levels A–F).
+
+a. Fit a Poisson regression of `count` on `spray`. Which spray is the **baseline** (reference) level?
+b. Interpret the **rate ratio** for spray **C** relative to the baseline.
+c. Check the model for **overdispersion**.
+
+::: {.callout-note collapse="true" title="Show answer"}
+```{r}
+#| code-fold: false
+q2 <- glm(count ~ spray, data = InsectSprays, family = poisson)
+exp(coef(q2))
+```
+
+**(a)** Factor levels are coded alphabetically, so **spray A** is the baseline — it is absorbed into the intercept, and every other coefficient is relative to it.
+
+**(b)** The rate ratio for `sprayC` is well below 1: spray C produces only that fraction of spray A's insect count — a large reduction. (For example, a rate ratio of $0.1$ means about 90% fewer insects than spray A.)
+
+**(c)** Compare the residual deviance to its degrees of freedom, or estimate the dispersion from the Pearson residuals:
+
+```{r}
+#| code-fold: false
+c(ratio = q2$deviance / q2$df.residual,
+  dispersion = sum(residuals(q2, type = "pearson")^2) / q2$df.residual)
+```
+
+Both are close to 1, so this Poisson model shows **no serious overdispersion** — unusually well-behaved for real count data. (Had they been well above 1, you would switch to `quasipoisson` or `MASS::glm.nb`.)
+:::
+
+# Question 3 — Choosing the right GLM
+
+No code — just identify, for each response variable, the **distribution** and **link** you would use (i.e. what to put in `family =`).
+
+a. Whether a customer **churns** (leaves) or not, from their usage.
+b. The **number of goals** a football team scores in a match, from possession statistics.
+c. The **proportion of defective items** in batches of 100, from the production line used.
+
+::: {.callout-note collapse="true" title="Show answer"}
+| Response | Type | Distribution / link | `family =` |
+|---|---|---|---|
+| **(a)** Churn (yes/no) | Binary | Binomial / logit | `binomial` |
+| **(b)** Goals scored | Count | Poisson / log | `poisson` |
+| **(c)** Defectives out of 100 | Proportion / count of successes | Binomial / logit | `binomial`, fitted with `cbind(defective, working) ~ ...` |
+
+Note that **(c)** is still **binomial** — a proportion is just a count of successes out of a known number of trials, so logistic regression handles it once you supply the successes and failures as two columns.
+:::
+
+# Question 4 — Reading a fitted model
+
+The model below is fitted for you. Without running anything new, answer from the output:
+
+```{r}
+#| code-fold: false
+q4 <- glm(am ~ hp, data = mtcars, family = binomial)
+exp(cbind(oddsRatio = coef(q4), confint(q4)))
+```
+
+a. Does higher horsepower raise or lower the odds of a **manual** gearbox (`am = 1`)?
+b. Does the 95% confidence interval for the `hp` odds ratio include 1, and why does that matter?
+
+::: {.callout-note collapse="true" title="Show answer"}
+**(a)** The `hp` odds ratio is **below 1**, so higher horsepower is associated with **lower** odds of a manual gearbox (more powerful cars in this data tend to be automatics).
+
+**(b)** Look at whether the `hp` row's lower and upper bounds straddle **1**. An odds ratio of 1 means "no effect," so if the interval **includes 1** the effect is not statistically clear at the 5% level; if it lies **entirely below 1**, the negative association is significant. (This is the odds-scale version of "does the coefficient's confidence interval contain zero?" — recall that odds ratio $=1$ corresponds to log-odds coefficient $=0$.)
+:::
+
+---
+
+If you can fit each model, exponentiate the coefficients into odds or rate ratios, turn predictions into probabilities, and check for overdispersion, you have the working toolkit of generalised linear models. From here, the natural next steps are the broader model families flagged in the *Going further* boxes — mixed models, GAMs, and the machine-learning methods of later sections.

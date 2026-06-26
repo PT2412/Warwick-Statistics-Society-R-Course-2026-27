@@ -29,6 +29,10 @@ In this case, as it is an inbuilt R dataset, we can find more information using 
 ?mtcars
 ```
 
+:::{.callout-note title="In a nutshell: where does ?mtcars go?"}
+Running `?mtcars` opens the documentation in the **Help pane** of RStudio — it does not print the help text into a rendered document, so do not expect to see it appear in the output here.
+:::
+
 From the help box, we can learn the following:
 
 :::{}
@@ -45,11 +49,12 @@ The 11 variables are:
 | disp | Displacement in cubic inches |
 | hp | Gross horsepower | 
 | wt | Weight in 1000 lbs |
-| sqec | 1/4 mile time |
+| qsec | 1/4 mile time |
+| drat | Rear axle ratio |
 | vs | Engine - 0 if V-shaped and 1 if straight |
 | am | Transmission - 0 if automatic and 1 if manual |
 | gear | Number of forward gears |
-| carb | Number of carburetors |
+| carb | Number of carburettors |
 
 : Variable names {.hover}
 
@@ -59,13 +64,13 @@ Let us load in the data, find the dimensions and the names of the variables.
 
 ```{r}
 ###| Loading and saving data
-cars_data <- mtcars
+cars <- mtcars
 
 ###| Dimension of the dataset
-dim(cars_data)
+dim(cars)
 
 ###| Names of variables
-names(cars_data)
+names(cars)
 ```
 
 From the `dim()` function, we learn there are 32 rows (observations) and 11 columns. From the `names()` function, we learn the columns are named: "mpg", "cyl", "disp", "hp", "drat", "wt", "qsec", "vs",   "am", "gear" and "carb".
@@ -74,10 +79,23 @@ We can get important statistics about each column using the `summary()` function
 
 ```{r}
 ###| summary function
-summary(cars_data)
+summary(cars)
 ```
 
-While it is very useful to have the minimum, first quantile, median, third quantile, maximum and mean, it does not always make sense given the variables. 
+While it is very useful to have the minimum, first quantile, median, third quantile, maximum and mean, it does not always make sense given the variables.
+
+::: {.callout-tip title="Going further 🚀"}
+For a richer one-call overview, `skimr::skim()` adds missingness counts and tiny inline histograms, while `GGally::ggpairs()` draws a whole grid of pairwise scatter plots and correlations at once.
+
+```{r}
+#| eval: false
+library(skimr)
+skim(cars)        # summary with missingness and mini-histograms
+
+library(GGally)
+ggpairs(cars)     # pairwise scatter/correlation matrix
+```
+:::
 
 # Step 3 - Cleaning data 
 
@@ -91,11 +109,11 @@ There are several ways to do this. I give the first example using base R. The se
 
 ```{r}
 ###| Factoring using base R
-cars_data$am <- factor(cars_data$am)
-cars_data$vs <- factor(cars_data$vs)
+cars$am <- factor(cars$am)
+cars$vs <- factor(cars$vs)
 
 ###| Summary
-summary(cars_data)
+summary(cars)
 ```
 
 ```{r}
@@ -104,15 +122,15 @@ summary(cars_data)
 library(dplyr)
 
 ###| Save the dataset
-cars_dplyr <- mtcars
+carsDplyr <- mtcars
 
 ###| Factoring variables
-cars_dplyr <- cars_dplyr %>%
+carsDplyr <- carsDplyr %>%
   mutate(vs = factor(vs),
          am = factor(am))
 
 ###| Summary of only vs and am columns
-summary(cars_data[,c(8,9)])
+summary(carsDplyr[, c("vs","am")])
 ```
 
 
@@ -122,19 +140,19 @@ We can find the names of each row using the `rownames()` command.
 
 ```{r}
 ###| Row/observation names
-rownames(cars_data)
+rownames(cars)
 ```
 Looking at the list, we can see some cars are made by the same manufacturer. It may be important to consider this in future analysis. So, let us create a new variable, `manufacturer`, that will account for this.
 
 ```{r}
 ###| New variable
-cars_data$manufacturer <- factor(rownames(cars_data))
+cars$manufacturer <- factor(rownames(cars))
 
 ###| Grouping the manufacturers
-levels(cars_data$manufacturer) <- list(AMC = "AMC Javelin", 
+levels(cars$manufacturer) <- list(AMC = "AMC Javelin",
                                        Cadillac = "Cadillac Fleetwood" ,
                                        Camaro = "Camaro Z28", 
-                                       Datsum = "Datsun 710",
+                                       Datsun = "Datsun 710",
                                        Dodge = "Dodge Challenger",
                                        Duster = "Duster 360",
                                        Ferrari = "Ferrari Dino",
@@ -157,33 +175,37 @@ levels(cars_data$manufacturer) <- list(AMC = "AMC Javelin",
                                        Volvo = "Volvo 142E")
 
 ###| Checking output
-cars_data$manufacturer
+cars$manufacturer
 ```
 
-Now we have a variable that lists manufacturers. We can check the categories using the `levels()` command. 
+:::{.callout-note title="In a nutshell: relabelling factor levels"}
+Assigning to `levels(cars$manufacturer)` with a `list()` **regroups and relabels** the factor: every old level on the right-hand side is renamed to the new label on the left (and several old levels can be merged into one, as we do for `Merc`). Be careful — any level you forget to include in the list is **silently turned into `NA`**, so always make sure every original level appears somewhere.
+:::
+
+Now we have a variable that lists manufacturers. We can check the categories using the `levels()` command.
 
 ```{r}
 ###| Levels()
-levels(cars_data$manufacturer)
+levels(cars$manufacturer)
 ```
 ## Should it be categorical or continuous?
 
-There a few clear cut instances in the cars dataset where the variables should be categorical. We have addressed these: `vm`, `am` and `manufacturer`. However, there are instances where it is less clear. 
+There a few clear cut instances in the cars dataset where the variables should be categorical. We have addressed these: `vs`, `am` and `manufacturer`. However, there are instances where it is less clear. 
 
 For example, consider the cylinders variable. In our data, we have observations with 3 distinct categories: 4, 6 and 8. (We can find this with `unique()` function.)
 
 ```{r}
 ###| Cylinders
-unique(cars_data$cyl)
+unique(cars$cyl)
 ```
 
 Thus, we could argue we should treat cylinders as categorical data. However, treating cylinders as categorical removes the ability to treat this as a single variable. As one variable, we could test how increasing the number of cylinders impacts performance.
 
 When we come to modelling, we should test models with cylinders treated as a continuous and a categorical variable. 
 
-# Next step - Exploratory Data Analsysis
+# Next step - Exploratory Data Analysis
 
-Now that we know about our dataset and have done an initial check of the data, we can move on to the next step - Explanatory Data Analysis (EDA).
+Now that we know about our dataset and have done an initial check of the data, we can move on to the next step - Exploratory Data Analysis (EDA).
 
 An exact definition of EDA is hard to pin down. However, the [IBM](https://www.ibm.com/topics/exploratory-data-analysis) gives an idea of what EDA is: 
 

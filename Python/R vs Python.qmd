@@ -1,0 +1,149 @@
+---
+title: "R vs Python: Key Differences"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+You now know enough Python to read it and run it. This page is a **reference**: the side-by-side differences that catch R users out, the genuine *gotchas* that cause silent bugs, and guidance on **when to reach for which language**. Keep it handy as you move between the two.
+
+# The cheat sheet
+
+Most differences are cosmetic — the same idea wearing different syntax.
+
+| Idea | R | Python |
+|---|---|---|
+| Assign | `x <- 5` | `x = 5` |
+| Index the first element | `x[1]` (1-based) | `x[0]` (0-based) |
+| Slice | `x[1:3]` → 3 items (inclusive) | `x[0:3]` → 3 items (end **excluded**) |
+| Code blocks | `{ ... }` braces | indentation (4 spaces) |
+| Load a library | `library(dplyr)` | `import pandas as pd` |
+| Call on an object | `mean(x)` (function) | `x.mean()` (method) |
+| Element-wise maths | native to vectors | needs a **NumPy array** |
+| Table of data | `data.frame` / tibble | pandas `DataFrame` |
+| Missing value | `NA` | `None` / `np.nan` |
+| Logical and/or/not | `&`, `\|`, `!` | `and`, `or`, `not` |
+| True / false | `TRUE` / `FALSE` | `True` / `False` |
+| Naming style | `camelCase` / `dot.case` | `snake_case` |
+
+# The gotchas that cause real bugs
+
+The cosmetic differences are easy. These next three actually change behaviour, and the second one in particular has cost many a data scientist an afternoon.
+
+## Indexing starts at 0, and slices exclude the end
+
+```{python}
+v = [10, 20, 30, 40, 50]
+print(v[0])       # FIRST element -> 10
+print(v[0:3])     # indices 0,1,2 -> [10, 20, 30]  (index 3 excluded)
+print(v[-1])      # last element -> 50
+```
+
+The same logic in R is 1-based and inclusive:
+
+```{r}
+v <- c(10, 20, 30, 40, 50)
+v[1]              # first -> 10
+v[1:3]            # -> 10 20 30 (3 included)
+```
+
+## Copy vs reference — the dangerous one
+
+In R, assigning one object to another makes an **independent copy** (copy-on-modify): change one and the other is untouched. In Python, assignment for containers like lists makes the new name point to the **same object** — change one and the other changes too.
+
+```{python}
+a = [1, 2, 3]
+b = a             # b is NOT a copy — it points to the same list
+a.append(4)
+print(b)          # [1, 2, 3, 4]  -> b changed as well!
+```
+
+```{r}
+a <- c(1, 2, 3)
+b <- a            # b IS an independent copy
+a <- c(a, 4)
+b                 # still 1 2 3 -> unaffected
+```
+
+::: {.callout-important title="The copy-vs-reference trap"}
+This is the single most surprising difference for an R user, and it causes **silent** bugs — your data changes somewhere you did not expect. In Python, if you want a genuine copy of a list use `b = a.copy()` (or `df.copy()` for a pandas DataFrame). R's automatic copying is safer but can use more memory; Python's referencing is faster but demands care.
+:::
+
+## Missing values
+
+Both languages handle missingness, but the names and tools differ: R's `NA` versus Python's `None` and NumPy's `np.nan`.
+
+```{python}
+import numpy as np
+x = np.array([1.0, 2.0, np.nan, 4.0])
+print(np.isnan(x))         # which are missing?
+print(np.nanmean(x))       # mean ignoring the missing value
+```
+
+```{r}
+x <- c(1, 2, NA, 4)
+is.na(x)
+mean(x, na.rm = TRUE)      # the R equivalent of nanmean
+```
+
+# Vectorisation: a shared idea, a different default
+
+Both languages reward **vectorised** code over explicit loops — but R vectorises *by default*, whereas in Python a plain list does not, and you must reach for NumPy.
+
+```{python}
+import numpy as np
+arr = np.array([1, 2, 3, 4])
+print(arr * 2)             # element-wise -> [2 4 6 8]  (because it's a NumPy array)
+```
+
+```{r}
+vec <- c(1, 2, 3, 4)
+vec * 2                    # element-wise by default -> 2 4 6 8
+```
+
+The lesson: in Python, "think in NumPy arrays and pandas columns," never in raw `for` loops over lists, exactly as you avoid loops over R vectors.
+
+# When to use which?
+
+Neither is better; they have different centres of gravity.
+
+| Reach for **R** when… | Reach for **Python** when… |
+|---|---|
+| Doing statistics, modelling or inference | Building general-purpose software or pipelines |
+| Producing plots and publication-quality reports | Doing deep learning (PyTorch, TensorFlow) |
+| Working interactively on a data analysis | Deploying models to production |
+| Using a specialised stats package (`lme4`, `brms`, `survival`) | Web scraping, automation, app back-ends |
+| Communicating results (RMarkdown, Shiny) | Large-scale or engineering-heavy ML |
+
+::: {.callout-note title="In a nutshell: learn the concepts, not just the syntax"}
+The hard part of data science — what a model is, what a join does, why you hold out a test set — is **identical** in both languages. Once you know it in one, picking up the other is mostly learning new spellings for old ideas. Be fluent in one, comfortable in the other, and choose per task.
+:::
+
+::: {.callout-tip title="Going further 🚀"}
+You do not always have to choose. R's **`reticulate`** lets you call Python *from* R (and this whole section runs Python that way); Python's **`rpy2`** does the reverse. In a single `reticulate`-powered document you can build a tidy dataset in R, hand it to a Python machine-learning model as `r.myData`, and read the predictions back in R as `py$predictions` — using each language for what it does best. That interoperability, not tribal loyalty to one language, is how modern data science actually works.
+:::
+
+# Summary
+
+| | R | Python |
+|---|---|---|
+| Home turf | Statistics, visualisation, reporting | General-purpose, ML, production |
+| Data table | `data.frame` / tibble | pandas `DataFrame` |
+| Numeric engine | native vectors | NumPy arrays |
+| Wrangling | `dplyr` / `tidyr` | pandas |
+| Indexing | 1-based, inclusive | 0-based, end-exclusive |
+| Copy semantics | copy-on-modify (safe) | reference (fast, careful) |
+| Bridge | `reticulate` ↔ `rpy2` | |
+
+Two languages, one set of ideas. With R as your foundation and Python as your second tongue, the Machine Learning section — and the wider world of data science — is open to you in whichever language the job calls for.

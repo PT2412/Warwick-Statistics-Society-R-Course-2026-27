@@ -1,0 +1,143 @@
+---
+title: "Programming Best Practices"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+---
+
+## Good programming practice
+
+Programming best practices help make code easier to read, easier to maintain, and less likely to contain hidden bugs. They are especially useful in a statistics course, where reproducibility and clarity are critical.
+
+## Naming and readability
+
+Choose clear names for variables, functions, and objects. Good names describe intent without forcing the reader to decode the logic.
+
+Common naming conventions include:
+
+- `snake_case` (e.g. `mean_score`) in R and Python
+- `camelCase` (e.g. `meanScore`) in JavaScript and some other languages
+
+Both are acceptable as long as you are consistent.
+
+- `mean_score` is better than `x`.
+- `calculate_confidence_interval()` is better than `f()`.
+- `student_age` is better than `sa`.
+
+Clear names make it easier to revisit code later and to share it with others.
+
+## Modular code
+
+Break complex work into small reusable pieces. If a block of logic is repeated or conceptually separate, put it in a function.
+
+- A function should do one thing.
+- Functions make analysis scripts easier to test.
+- Modular code is easier to reuse in other analyses.
+
+The reasoning for this was shown in the previous section on Abstraction, but the main purpose is compartmentalisation. By breaking code into modules, we can isolate specific functionality and test it independently. This also allows us to reuse code across different projects without copying and pasting alongside diagnosing issues. For example, if we have a function to calculate a z-score, we can use it in multiple places without rewriting the logic.
+
+## Comments and documentation
+
+Comments should explain why a piece of code exists, not what the code literally does.
+
+- Use comments for intent, assumptions, and unusual decisions.
+- Keep comments up to date with the code.
+- Prefer short, clear explanations rather than long paragraphs.
+
+Comments are essential for helping others, or your future self, understand the reasoning behind your code. They should provide context, not restate the code.
+
+## Reproducibility
+
+A key goal in statistical programming is reproducibility.
+
+- Keep the analysis workflow in script or notebook form.
+- Avoid manual point-and-click steps when possible.
+- Save package versions or record the environment when needed.
+- Use version control such as `git` to track changes and collaborate safely.
+
+This is done mostly through seed setting, allowing you to generate the same random numbers each time you run the code. By setting a seed, you ensure that your results can be replicated exactly, which is crucial for scientific research and for building trust in your analysis.
+
+## Testing and validation
+
+Small checks inside your script can catch errors early.
+
+- Use `stopifnot()` to assert assumptions in R.
+- Check the shape and type of input data before using it.
+- Validate function outputs with simple examples.
+
+Example:
+```{r}
+x <- 7
+stopifnot(is.numeric(x), length(x) > 0)
+```
+
+## Formatting and style
+
+Consistent style helps a team read your code faster.
+
+- Use tools like `styler` for R or `black` for Python.
+- Keep functions short and focused.
+- Prefer clear code over clever one-liners.
+
+## Error handling and validation
+
+When working with data, assume inputs may be imperfect.
+
+- Check data types before operating on them.
+- Handle missing values explicitly.
+- Use assertions or guards in functions to catch invalid inputs early.
+
+This can be done through the use of `tryCatch` in R, which allows you to handle errors gracefully without crashing your entire script. By validating inputs and handling exceptions, you can make your code more robust and easier to debug when things go wrong. Alternatively, you can attempt to justify your decisions through the use of comments, which can help others understand the reasoning behind your error handling choices.
+
+## Performance awareness
+
+Write code that is correct first, then consider whether it needs to be faster.
+
+- Use vectorised operations instead of explicit loops where possible.
+- Prefer built-in functions for data manipulation.
+- When necessary, use compiled code or packages designed for speed.
+
+While performance can be important, it should not come at the cost of readability and correctness. Start by writing clear and correct code, and only optimise if you identify a bottleneck. In R, for example, using vectorised functions from packages like `dplyr` can often be much faster than writing explicit loops, while also being more readable. This will be focussed on more in the section on Time and Space Efficiency, but the key takeaway is to write code that is easy to understand first, and then optimise if needed.
+
+## Keep the story clear
+
+A well-written analysis should tell a story.
+
+- Start with data preparation,
+- then move to modelling,
+- then finish with interpretation and diagnostics.
+
+A clear narrative helps guide the reader through your thought process and makes the analysis easier to reproduce.
+
+## Collaboration and style
+
+Good code is easier to share.
+
+- Use consistent formatting.
+- Keep functions short and focused.
+- Prefer clarity over cleverness.
+
+Clean, consistent code is easier for others to read and modify.
+
+## Safe data handling
+
+Handle data carefully and explicitly.
+
+- Validate input shapes and types.
+- Document assumptions about missing values.
+- Keep cleaning steps separate from modelling steps.
+
+This reduces the risk of drawing conclusions from improperly prepared data.
+
+## Summary
+
+Programming best practices are not rules for their own sake. They are habits that make statistical analysis more reliable, more transparent, and easier to maintain.

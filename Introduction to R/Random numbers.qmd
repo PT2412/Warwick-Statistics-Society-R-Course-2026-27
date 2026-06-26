@@ -23,9 +23,22 @@ library(stats)
 
 We will begin by looking at generating a uniform number before doing on to look at continuous and discrete random variables.
 
+::: {.callout-note title="In a nutshell: the r / d / p / q prefixes"}
+Every distribution in R comes with four functions, named by a prefix plus the distribution's short name (`unif`, `norm`, `binom`, `pois`, …). You only need to recognise the prefix:
+
+| Prefix | Example | Plain English |
+|---|---|---|
+| `r` | `runif(5)` | **r**andom — draw random values from the distribution |
+| `d` | `dnorm(0)` | **d**ensity — the height of the curve at a point (how "likely" that value is) |
+| `p` | `pnorm(1.96)` | **p**robability — the area to the *left* (the cumulative probability, $P(X \le x)$) |
+| `q` | `qnorm(0.975)` | **q**uantile — the reverse of `p`: give it a probability, it returns the cut-off value |
+
+So `runif` *makes* numbers, and `punif` *tells you the probability* of getting one that small. If you remember just this table, the rest of the page is filling in the details.
+:::
+
 # Random uniform numbers
 
-To generate a random number, we are going to use the uniform distribution. Let $X\sim \text{Uniform}[a,b]$. Then, the probability mass function of X is
+To generate a random number, we are going to use the uniform distribution. Let $X\sim \text{Uniform}[a,b]$. Then, the probability density function of X is
 
 $$
 f(x) = \begin{cases}
@@ -43,17 +56,17 @@ For simplicity, we will demonstrate this with 2 uniform random variables: $X\sim
 x <- runif(n = 1, min = 0, max = 1)
 x
 
-###| Probability we generated x
-prob_x <- punif(x, min = 0, max = 1)
-prob_x
+###| Cumulative probability P(X <= x)
+probX <- punif(x, min = 0, max = 1)
+probX
 
 ###| Generate a random number, y
 y <- runif(n = 1, min = 1, max = 5)
 y
 
-###| Probability we generated y
-prob_y <- punif(y, min = 1, max = 5)
-prob_y
+###| Cumulative probability P(X <= x)
+probY <- punif(y, min = 1, max = 5)
+probY
 ```
 
 We can also find the value, $x$, that corresponds to the probability $P(X\leq x) = a$.
@@ -81,7 +94,7 @@ y <- runif(n = 1, min = 1, max = 5)
 dunif(y, min = 1,max = 5)
 ```
 
-Up until now, we have only generated 1 number at a time. However, we can generate several numbers at once by changing the \$n = \$ argument. However, this only works for the 'runif()' function!
+Up until now, we have only generated 1 number at a time. However, we can generate several numbers at once by changing the \$n = \$ argument. This works for all of R's random-generation functions (rnorm, rbinom, rpois, runif, ...): given n > 1, each generates n values.
 
 ```{r}
 ###| Multiple values at once
@@ -98,13 +111,13 @@ Now, suppose we want to sample from a binomial distribution, i.e. we want to gen
 x <- rbinom(n=1, size = 5, prob = 0.2)
 x
 
-###| Probability generated x
-prob_x <- pbinom(x, size = 5, prob = 0.2)
-prob_x
+###| Cumulative probability P(X <= x)
+probX <- pbinom(x, size = 5, prob = 0.2)
+probX
 
-###| f(x), density of x
-density_x <- dbinom(x, size = 5, prob = 0.2)
-density_x
+###| f(x), probability mass, P(X = x)
+densityX <- dbinom(x, size = 5, prob = 0.2)
+densityX
 
 ###| Quantile of 0.75
 qbinom(p = 0.75, size = 5, prob = 0.2)

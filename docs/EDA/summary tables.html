@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>dplyr: summary tables – Warwick Statistics Society R Course 2025-2026</title>
+<title>dplyr: summary tables – Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,13 +105,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -121,7 +125,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -148,7 +152,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -176,7 +180,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -241,7 +245,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,12 +283,65 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -315,17 +372,23 @@ window.Quarto = {
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -336,6 +399,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -366,13 +435,154 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -385,17 +595,23 @@ window.Quarto = {
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -429,25 +645,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -460,13 +676,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -487,6 +703,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -494,7 +716,83 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -541,20 +839,20 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">###| Code to create the dataset used in previous pages</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cars_data <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> mtcars</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars_data<span class="sc">$</span>am)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars_data<span class="sc">$</span>vs)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars<span class="sc">$</span>am)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars<span class="sc">$</span>vs)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>manufacturer <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(cars_data))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars_data<span class="sc">$</span>manufacturer) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">AMC =</span> <span class="st">"AMC Javelin"</span>, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>manufacturer <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(cars))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars<span class="sc">$</span>manufacturer) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">AMC =</span> <span class="st">"AMC Javelin"</span>,</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Cadillac =</span> <span class="st">"Cadillac Fleetwood"</span> ,</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Camaro =</span> <span class="st">"Camaro Z28"</span>, </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Datsum =</span> <span class="st">"Datsun 710"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Datsun =</span> <span class="st">"Datsun 710"</span>,</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Dodge =</span> <span class="st">"Dodge Challenger"</span>,</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Duster =</span> <span class="st">"Duster 360"</span>,</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ferrari =</span> <span class="st">"Ferrari Dino"</span>,</span>
@@ -575,16 +873,16 @@ window.Quarto = {
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Toyota =</span> <span class="fu">c</span>(<span class="st">"Toyota Corolla"</span>,<span class="st">"Toyota Corona"</span>),</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Valiant =</span> <span class="st">"Valiant"</span>,</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Volvo =</span> <span class="st">"Volvo 142E"</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Checking the data is correct</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_data)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
@@ -597,7 +895,7 @@ Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
                   manufacturer
 Mazda RX4                Mazda
 Mazda RX4 Wag            Mazda
-Datsun 710              Datsum
+Datsun 710              Datsun
 Hornet 4 Drive          Hornet
 Hornet Sportabout       Hornet
 Valiant                Valiant</code></pre>
@@ -620,13 +918,13 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false # will remove output messages</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package downloading and activating</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>If you are using RStudio, you can check which packages are installed using the bottom right window.</p>
@@ -636,14 +934,14 @@ Note
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table on continuous data</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Range displacement"</span> <span class="ot">=</span> <span class="fu">max</span>(disp)<span class="sc">-</span><span class="fu">min</span>(disp),</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Median horsepower"</span> <span class="ot">=</span> <span class="fu">median</span>(hp))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Num. observations Mean mpg Range displacement Median horsepower
@@ -651,17 +949,30 @@ Note
 </div>
 </div>
 <p>Things get more complicated for categorical factors. We may need to use the <code>length()</code>, <code>which()</code> and <code>unique()</code> functions to find our desired statistics.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: counting TRUEs">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: counting TRUEs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>length(which(vs == 1))</code> counts the rows where the condition <code>vs == 1</code> is TRUE. A simpler equivalent is <code>sum(vs == 1)</code>, because R treats each TRUE as 1 and each FALSE as 0 when summing.</p>
+</div>
+</div>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table on categorical data</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"vs 1"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(vs <span class="sc">==</span> <span class="dv">1</span>)),</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"am 0"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(am <span class="sc">==</span> <span class="dv">0</span>)),</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Num. manufacturers"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(manufacturer))</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  vs 1 am 0 Num. manufacturers
@@ -671,13 +982,13 @@ Note
 </section>
 <section id="cylinder-level-exploration" class="level1">
 <h1>Cylinder level exploration</h1>
-<p>Recall that we identified 3 distinct cylinder levels (check using <code>unique(cars_data$cyl)</code>). To do this, we will use the <code>group_by()</code> function.</p>
+<p>Recall that we identified 3 distinct cylinder levels (check using <code>unique(cars$cyl)</code>). To do this, we will use the <code>group_by()</code> function.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table grouped by cylinders</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
@@ -687,7 +998,7 @@ Note
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"am 0"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(am <span class="sc">==</span> <span class="dv">0</span>)),</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Num. manufacturers"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(manufacturer))</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 8
@@ -728,11 +1039,11 @@ Important
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("kableExtra")</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'kableExtra' was built under R version 4.4.3</code></pre>
@@ -748,9 +1059,9 @@ Attaching package: 'kableExtra'</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Grouped summary table </span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> cars_data <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Grouped summary table</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>summ <span class="ot">&lt;-</span> cars <span class="sc">%&gt;%</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
@@ -762,8 +1073,8 @@ Attaching package: 'kableExtra'</code></pre>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="do">###| Output</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summary)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summ)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -824,21 +1135,21 @@ Attaching package: 'kableExtra'</code></pre>
 </table>
 </div>
 </div>
-<p>We can continue to change various arguments of the <code>kable</code> function to get truly beautiful tables. An excellent site for this is LINK. A quick example of some commands are the following:</p>
+<p>We can continue to change various arguments of the <code>kable</code> function to get truly beautiful tables. An excellent site for this is <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">kableExtra</a>. A quick example of some commands are the following:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Example kable extra</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summary, <span class="at">booktabs =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summ, <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Cylinders"</span>,<span class="st">"Total"</span>,<span class="st">"Mean MPG"</span>,<span class="st">"Displacement range"</span>,</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Median horsepower"</span>,<span class="st">"Num vs 1"</span>,<span class="st">"Num am 0"</span>,</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Num unique manufacturers"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Summary Statistics"</span> <span class="ot">=</span> <span class="dv">7</span>))</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -902,6 +1213,34 @@ Summary Statistics
 </table>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Typing out one statistic per column quickly becomes unwieldy. <code>dplyr::across()</code> applies the same function(s) to many columns at once, and for polished, publication-ready tables <code>gt</code> and especially <code>gtsummary::tbl_summary()</code> build them with almost no code.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(mpg, disp, hp), <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd)))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(cars, <span class="at">by =</span> cyl)   <span class="co"># publication-ready summary table</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+</div>
 
 
 <!-- -->
@@ -960,13 +1299,14 @@ Summary Statistics
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1359,172 +1699,191 @@ Summary Statistics
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "dplyr: summary tables"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>We begin by loading in the cars dataset we used on the previous page (the code required is available below if needed). Please note that we want to use the version that has the manufacturers included! </span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="do">###| Code to create the dataset used in previous pages</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>cars_data <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars_data<span class="sc">$</span>am)</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars_data<span class="sc">$</span>vs)</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>cars_data<span class="sc">$</span>manufacturer <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(cars_data))</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars_data<span class="sc">$</span>manufacturer) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">AMC =</span> <span class="st">"AMC Javelin"</span>, </span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Cadillac =</span> <span class="st">"Cadillac Fleetwood"</span> ,</span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Camaro =</span> <span class="st">"Camaro Z28"</span>, </span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Datsum =</span> <span class="st">"Datsun 710"</span>,</span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Dodge =</span> <span class="st">"Dodge Challenger"</span>,</span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Duster =</span> <span class="st">"Duster 360"</span>,</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ferrari =</span> <span class="st">"Ferrari Dino"</span>,</span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Fiat =</span> <span class="fu">c</span>(<span class="st">"Fiat 128"</span>,<span class="st">"Fiat X1-9"</span>),</span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ford =</span> <span class="st">"Ford Pantera L"</span>,</span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Honda =</span> <span class="st">"Honda Civic"</span>,</span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Hornet =</span> <span class="fu">c</span>(<span class="st">"Hornet 4 Drive"</span>,<span class="st">"Hornet Sportabout"</span>),</span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Lincoln =</span> <span class="st">"Lincoln Continental"</span>,</span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Chrysler =</span> <span class="st">"Chrysler Imperial"</span>,</span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Lotus =</span> <span class="st">"Lotus Europa"</span>,</span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Maserati =</span> <span class="st">"Maserati Bora"</span>,</span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Mazda =</span> <span class="fu">c</span>(<span class="st">"Mazda RX4"</span>,<span class="st">"Mazda RX4 Wag"</span>),</span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Merc =</span> <span class="fu">c</span>(<span class="st">"Merc 230"</span>,<span class="st">"Merc 240D"</span>,<span class="st">"Merc 280"</span>,</span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Merc 280C"</span>,<span class="st">"Merc 450SE"</span>,<span class="st">"Merc 450SL"</span>,</span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Merc 450SLC"</span>),</span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Pontiac =</span> <span class="st">"Pontiac Firebird"</span>,</span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Porsche =</span> <span class="st">"Porsche 914-2"</span>,</span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Toyota =</span> <span class="fu">c</span>(<span class="st">"Toyota Corolla"</span>,<span class="st">"Toyota Corona"</span>),</span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Valiant =</span> <span class="st">"Valiant"</span>,</span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Volvo =</span> <span class="st">"Volvo 142E"</span>)</span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="do">###| Checking the data is correct</span></span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars_data)</span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a><span class="fu"># A basic summary table</span></span>
-<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a>To create a summary table, we could manually calculate every entry and then create a dataset of these values and then create the table. However, it is much quicker (and easier) to use the <span class="in">`summarise()`</span> function that comes with the <span class="in">`dplyr`</span> package. </span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>The <span class="in">`dplyr`</span> package will be installed/active if you have tidyverse. Alternatively, you can directly install and activate the package with the following commands:</span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false # will remove output messages</span></span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package downloading and activating</span></span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
-<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>If you are using RStudio, you can check which packages are installed using the bottom right window. </span>
-<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a>The following code gives some examples of how to extract various summary statistics using the <span class="in">`summarise()`</span> command. </span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table on continuous data</span></span>
-<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
-<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
-<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Range displacement"</span> <span class="ot">=</span> <span class="fu">max</span>(disp)<span class="sc">-</span><span class="fu">min</span>(disp),</span>
-<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Median horsepower"</span> <span class="ot">=</span> <span class="fu">median</span>(hp))</span>
-<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a>Things get more complicated for categorical factors. We may need to use the <span class="in">`length()`</span>, <span class="in">`which()`</span> and <span class="in">`unique()`</span> functions to find our desired statistics. </span>
-<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table on categorical data</span></span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
-<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"vs 1"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(vs <span class="sc">==</span> <span class="dv">1</span>)),</span>
-<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a>            <span class="st">"am 0"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(am <span class="sc">==</span> <span class="dv">0</span>)),</span>
-<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Num. manufacturers"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(manufacturer))</span>
-<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cylinder level exploration</span></span>
-<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>Recall that we identified 3 distinct cylinder levels (check using <span class="in">`unique(cars_data$cyl)`</span>). To do this, we will use the <span class="in">`group_by()`</span> function. </span>
-<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table grouped by cylinders</span></span>
-<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>cars_data <span class="sc">%&gt;%</span></span>
-<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
-<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
-<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Range displacement"</span> <span class="ot">=</span> <span class="fu">max</span>(disp)<span class="sc">-</span><span class="fu">min</span>(disp),</span>
-<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Median horsepower"</span> <span class="ot">=</span> <span class="fu">median</span>(hp),</span>
-<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>            <span class="st">"vs 1"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(vs <span class="sc">==</span> <span class="dv">1</span>)),</span>
-<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>            <span class="st">"am 0"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(am <span class="sc">==</span> <span class="dv">0</span>)),</span>
-<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Num. manufacturers"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(manufacturer))</span>
-<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>:::{.callout-important}</span>
-<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>It is important to note that this summary table had $3$ rows and not $1$! The statistics in each row correspond to the cars that had X number of cylinders. For example, of the $11$ cars with $4$ cylinders, the mean mpg was $26.6$, the displacement range $75.6$ etc... </span>
-<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a>When reading off this table, we can note a few things about the different types of cars:</span>
-<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>:::{}</span>
-<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Fewer cars had $6$ cylinders than $4$ or $8$. </span>
-<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>As the number of cylinders increased, the mean mpg decreased, the displacement range increased, and the median horsepower increased. </span>
-<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>No $8$ cylinder cars had <span class="in">`vs 1`</span>. </span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>There is no clear pattern in the <span class="in">`am 0`</span> or manufacturer identifiable from this table. </span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a><span class="fu"># Making the tables more readable</span></span>
-<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>Thus far, we have relied on the raw R output to read the tables. This is not ideal for reports or long periods of work. Instead, we can use the <span class="in">`kable()`</span> function from the <span class="in">`kableExtra`</span> package for neat tables. </span>
-<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package</span></span>
-<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("kableExtra")</span></span>
-<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a><span class="do">###| Grouped summary table </span></span>
-<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> cars_data <span class="sc">%&gt;%</span></span>
-<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
-<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
-<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Range displacement"</span> <span class="ot">=</span> <span class="fu">max</span>(disp)<span class="sc">-</span><span class="fu">min</span>(disp),</span>
-<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Median horsepower"</span> <span class="ot">=</span> <span class="fu">median</span>(hp),</span>
-<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a>            <span class="st">"vs 1"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(vs <span class="sc">==</span> <span class="dv">1</span>)),</span>
-<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a>            <span class="st">"am 0"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(am <span class="sc">==</span> <span class="dv">0</span>)),</span>
-<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Num. manufacturers"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(manufacturer))</span>
-<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a><span class="do">###| Output</span></span>
-<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summary)</span>
-<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a>We can continue to change various arguments of the <span class="in">`kable`</span> function to get truly beautiful tables. An excellent site for this is LINK. A quick example of some commands are the following:</span>
-<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a><span class="do">###| Example kable extra</span></span>
-<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summary, <span class="at">booktabs =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Cylinders"</span>,<span class="st">"Total"</span>,<span class="st">"Mean MPG"</span>,<span class="st">"Displacement range"</span>,</span>
-<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Median horsepower"</span>,<span class="st">"Num vs 1"</span>,<span class="st">"Num am 0"</span>,</span>
-<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Num unique manufacturers"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Summary Statistics"</span> <span class="ot">=</span> <span class="dv">7</span>))</span>
-<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "dplyr: summary tables"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>We begin by loading in the cars dataset we used on the previous page (the code required is available below if needed). Please note that we want to use the version that has the manufacturers included! </span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="do">###| Code to create the dataset used in previous pages</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars<span class="sc">$</span>am)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(cars<span class="sc">$</span>vs)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>manufacturer <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rownames</span>(cars))</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(cars<span class="sc">$</span>manufacturer) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">AMC =</span> <span class="st">"AMC Javelin"</span>,</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Cadillac =</span> <span class="st">"Cadillac Fleetwood"</span> ,</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Camaro =</span> <span class="st">"Camaro Z28"</span>, </span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Datsun =</span> <span class="st">"Datsun 710"</span>,</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Dodge =</span> <span class="st">"Dodge Challenger"</span>,</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Duster =</span> <span class="st">"Duster 360"</span>,</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ferrari =</span> <span class="st">"Ferrari Dino"</span>,</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Fiat =</span> <span class="fu">c</span>(<span class="st">"Fiat 128"</span>,<span class="st">"Fiat X1-9"</span>),</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Ford =</span> <span class="st">"Ford Pantera L"</span>,</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Honda =</span> <span class="st">"Honda Civic"</span>,</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Hornet =</span> <span class="fu">c</span>(<span class="st">"Hornet 4 Drive"</span>,<span class="st">"Hornet Sportabout"</span>),</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Lincoln =</span> <span class="st">"Lincoln Continental"</span>,</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Chrysler =</span> <span class="st">"Chrysler Imperial"</span>,</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Lotus =</span> <span class="st">"Lotus Europa"</span>,</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Maserati =</span> <span class="st">"Maserati Bora"</span>,</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Mazda =</span> <span class="fu">c</span>(<span class="st">"Mazda RX4"</span>,<span class="st">"Mazda RX4 Wag"</span>),</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Merc =</span> <span class="fu">c</span>(<span class="st">"Merc 230"</span>,<span class="st">"Merc 240D"</span>,<span class="st">"Merc 280"</span>,</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Merc 280C"</span>,<span class="st">"Merc 450SE"</span>,<span class="st">"Merc 450SL"</span>,</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>                                                <span class="st">"Merc 450SLC"</span>),</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Pontiac =</span> <span class="st">"Pontiac Firebird"</span>,</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Porsche =</span> <span class="st">"Porsche 914-2"</span>,</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Toyota =</span> <span class="fu">c</span>(<span class="st">"Toyota Corolla"</span>,<span class="st">"Toyota Corona"</span>),</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Valiant =</span> <span class="st">"Valiant"</span>,</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Volvo =</span> <span class="st">"Volvo 142E"</span>)</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="do">###| Checking the data is correct</span></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="fu"># A basic summary table</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>To create a summary table, we could manually calculate every entry and then create a dataset of these values and then create the table. However, it is much quicker (and easier) to use the <span class="in">`summarise()`</span> function that comes with the <span class="in">`dplyr`</span> package. </span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>The <span class="in">`dplyr`</span> package will be installed/active if you have tidyverse. Alternatively, you can directly install and activate the package with the following commands:</span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false # will remove output messages</span></span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package downloading and activating</span></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>If you are using RStudio, you can check which packages are installed using the bottom right window. </span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>The following code gives some examples of how to extract various summary statistics using the <span class="in">`summarise()`</span> command. </span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table on continuous data</span></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Range displacement"</span> <span class="ot">=</span> <span class="fu">max</span>(disp)<span class="sc">-</span><span class="fu">min</span>(disp),</span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Median horsepower"</span> <span class="ot">=</span> <span class="fu">median</span>(hp))</span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>Things get more complicated for categorical factors. We may need to use the <span class="in">`length()`</span>, <span class="in">`which()`</span> and <span class="in">`unique()`</span> functions to find our desired statistics.</span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: counting TRUEs"}</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="in">`length(which(vs == 1))`</span> counts the rows where the condition <span class="in">`vs == 1`</span> is TRUE. A simpler equivalent is <span class="in">`sum(vs == 1)`</span>, because R treats each TRUE as 1 and each FALSE as 0 when summing.</span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table on categorical data</span></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"vs 1"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(vs <span class="sc">==</span> <span class="dv">1</span>)),</span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a>            <span class="st">"am 0"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(am <span class="sc">==</span> <span class="dv">0</span>)),</span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Num. manufacturers"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(manufacturer))</span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a><span class="fu"># Cylinder level exploration</span></span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>Recall that we identified 3 distinct cylinder levels (check using <span class="in">`unique(cars$cyl)`</span>). To do this, we will use the <span class="in">`group_by()`</span> function. </span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="do">###| Basic summary table grouped by cylinders</span></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Range displacement"</span> <span class="ot">=</span> <span class="fu">max</span>(disp)<span class="sc">-</span><span class="fu">min</span>(disp),</span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Median horsepower"</span> <span class="ot">=</span> <span class="fu">median</span>(hp),</span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>            <span class="st">"vs 1"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(vs <span class="sc">==</span> <span class="dv">1</span>)),</span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a>            <span class="st">"am 0"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(am <span class="sc">==</span> <span class="dv">0</span>)),</span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Num. manufacturers"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(manufacturer))</span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a>:::{.callout-important}</span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a>It is important to note that this summary table had $3$ rows and not $1$! The statistics in each row correspond to the cars that had X number of cylinders. For example, of the $11$ cars with $4$ cylinders, the mean mpg was $26.6$, the displacement range $75.6$ etc... </span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a>When reading off this table, we can note a few things about the different types of cars:</span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>:::{}</span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Fewer cars had $6$ cylinders than $4$ or $8$. </span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>As the number of cylinders increased, the mean mpg decreased, the displacement range increased, and the median horsepower increased. </span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>No $8$ cylinder cars had <span class="in">`vs 1`</span>. </span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>There is no clear pattern in the <span class="in">`am 0`</span> or manufacturer identifiable from this table. </span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a><span class="fu"># Making the tables more readable</span></span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>Thus far, we have relied on the raw R output to read the tables. This is not ideal for reports or long periods of work. Instead, we can use the <span class="in">`kable()`</span> function from the <span class="in">`kableExtra`</span> package for neat tables. </span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a><span class="do">###| Package</span></span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("kableExtra")</span></span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a><span class="do">###| Grouped summary table</span></span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>summ <span class="ot">&lt;-</span> cars <span class="sc">%&gt;%</span></span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">"Num. observations"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Mean mpg"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Range displacement"</span> <span class="ot">=</span> <span class="fu">max</span>(disp)<span class="sc">-</span><span class="fu">min</span>(disp),</span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Median horsepower"</span> <span class="ot">=</span> <span class="fu">median</span>(hp),</span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>            <span class="st">"vs 1"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(vs <span class="sc">==</span> <span class="dv">1</span>)),</span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a>            <span class="st">"am 0"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">which</span>(am <span class="sc">==</span> <span class="dv">0</span>)),</span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Num. manufacturers"</span> <span class="ot">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(manufacturer))</span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="do">###| Output</span></span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summ)</span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a>We can continue to change various arguments of the <span class="in">`kable`</span> function to get truly beautiful tables. An excellent site for this is <span class="co">[</span><span class="ot">kableExtra</span><span class="co">](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)</span>. A quick example of some commands are the following:</span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="do">###| Example kable extra</span></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(summ, <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Cylinders"</span>,<span class="st">"Total"</span>,<span class="st">"Mean MPG"</span>,<span class="st">"Displacement range"</span>,</span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Median horsepower"</span>,<span class="st">"Num vs 1"</span>,<span class="st">"Num am 0"</span>,</span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Num unique manufacturers"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Summary Statistics"</span> <span class="ot">=</span> <span class="dv">7</span>))</span>
+<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a>Typing out one statistic per column quickly becomes unwieldy. <span class="in">`dplyr::across()`</span> applies the same function(s) to many columns at once, and for polished, publication-ready tables <span class="in">`gt`</span> and especially <span class="in">`gtsummary::tbl_summary()`</span> build them with almost no code.</span>
+<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
+<span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb18-197"><a href="#cb18-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(mpg, disp, hp), <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd)))</span>
+<span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(cars, <span class="at">by =</span> cyl)   <span class="co"># publication-ready summary table</span></span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

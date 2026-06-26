@@ -39,9 +39,9 @@ data(msleep, package = "ggplot2")
 # plot the distribution of diet (vore)
 # We filter out NAs for a cleaner plot
 library(dplyr)
-msleep_clean <- msleep %>% filter(!is.na(vore))
+mclean <- msleep %>% filter(!is.na(vore))
 
-ggplot(msleep_clean, aes(x = vore)) +
+ggplot(mclean, aes(x = vore)) +
   geom_bar()
 
 ```
@@ -54,9 +54,13 @@ From this plot we can immediately see that most mammals in this dataset are herb
 
 Instead of showing raw counts, bars can also represent percentages. In a bar chart, `aes(x = vore)` is shorthand for `aes(x = vore, y = after_stat(count))`, where `count` is the frequency in each category. By working with this quantity explicitly, we can convert counts into percentages.
 
+::: {.callout-note title="In a nutshell: what after_stat means"}
+`after_stat()` tells `ggplot2` to compute the bar heights itself from the data (here, by counting how many mammals fall in each category), rather than you supplying a `y` value directly.
+:::
+
 ```{r}
 # plot the distribution as percentages
-ggplot(msleep_clean,
+ggplot(mclean,
        aes(x = vore, y = after_stat(count/sum(count)))) +
   geom_bar() +
   labs(x = "Diet",
@@ -76,7 +80,7 @@ It is often helpful to order categories by their frequency. To do this, we first
 
 ```{r}
 # calculate number of mammals in each diet category
-plotdata <- msleep_clean %>%
+pdat <- mclean %>%
   count(vore)
 
 ```
@@ -94,7 +98,7 @@ We can now use this dataset to create a sorted bar chart.
 
 ```{r}
 # plot the bars in ascending order
-ggplot(plotdata,
+ggplot(pdat,
        aes(x = reorder(vore, n), y = n)) +
   geom_bar(stat="identity") +
   labs(x = "Diet",
@@ -113,7 +117,7 @@ Sometimes it is useful to display the numerical values directly on the bars.
 
 ```{r}
 # plot the bars with numeric labels
-ggplot(plotdata,
+ggplot(pdat,
        aes(x = vore, y = n)) +
   geom_bar(stat="identity") +
   geom_text(aes(label = n), vjust=-0.5) +
@@ -133,14 +137,14 @@ Putting these ideas together, we can create a bar chart showing percentages, ord
 #| message: false
 
 library(scales)
-plotdata <- msleep_clean %>%
+pdat <- mclean %>%
   count(vore) %>%
   mutate(pct = n / sum(n),
          pctlabel = paste0(round(pct*100), "%"))
 
 # plot the bars as percentages,
 # in descending order with bar labels
-ggplot(plotdata,
+ggplot(pdat,
        aes(x = reorder(vore, -pct), y = pct)) +
   geom_bar(stat="identity", fill="indianred3", color="black") +
   geom_text(aes(label = pctlabel), vjust=-0.25) +
@@ -220,13 +224,13 @@ A pie chart in `ggplot2` is essentially a bar chart plotted on a polar coordinat
 
 ```{r}
 # Prepare data for pie chart
-plotdata <- msleep_clean %>%
+pdat <- mclean %>%
   count(vore) %>%
   mutate(prop = n / sum(n)) %>%
   mutate(label = scales::percent(prop))
 
 # Create pie chart
-ggplot(plotdata, aes(x = "", y = prop, fill = vore)) +
+ggplot(pdat, aes(x = "", y = prop, fill = vore)) +
   geom_bar(stat = "identity", width = 1, color = "white") +
   coord_polar("y", start = 0) +
   theme_void() +
@@ -240,7 +244,7 @@ To place labels inside the slices, we can use `geom_text()` with `position_stack
 
 ```{r}
 # Create pie chart with labels
-ggplot(plotdata, aes(x = "", y = prop, fill = vore)) +
+ggplot(pdat, aes(x = "", y = prop, fill = vore)) +
   geom_bar(stat = "identity", width = 1, color = "white") +
   coord_polar("y", start = 0) +
   geom_text(aes(label = label),
@@ -269,10 +273,10 @@ Tree maps provide another alternative to pie charts and are particularly useful 
 library(treemapify)
 
 # create a treemap of mammal orders
-plotdata <- msleep %>%
+pdat <- msleep %>%
   count(order)
 
-ggplot(plotdata,
+ggplot(pdat,
        aes(fill = order, area = n)) +
   geom_treemap() +
   labs(title = "Mammals by Order")
@@ -283,7 +287,7 @@ Adding labels makes the plot more informative.
 
 ```{r}
 # create a treemap with tile labels
-ggplot(plotdata,
+ggplot(pdat,
        aes(fill = order, area = n, label = order)) +
   geom_treemap() +
   geom_treemap_text(colour = "white", place = "centre") +
@@ -302,7 +306,7 @@ We begin by sorting the data and assigning logical `x` and `y` coordinates to ea
 
 ```{r}
 # Prepare data: Sort by diet to cluster colors
-waffle_data <- msleep_clean %>%
+waffle <- mclean %>%
   arrange(vore) %>%
   mutate(
     # Create x and y coordinates for a 10-column grid
@@ -311,7 +315,7 @@ waffle_data <- msleep_clean %>%
   )
 
 # Create the chart using geom_tile
-ggplot(waffle_data, aes(x = x, y = y, fill = vore)) +
+ggplot(waffle, aes(x = x, y = y, fill = vore)) +
   geom_tile(color = "white") +  # white borders create the "grid" look
   coord_fixed() +               # ensures squares remain square
   theme_void() +                # removes axes and backgrounds
@@ -470,7 +474,22 @@ Many additional options are available; see `?geom_dotplot` for further details.
 
 These are just a couple of ways you could visualise one variable, do explore to find more!
 
+::: {.callout-tip title="Going further 🚀"}
+Two modern packages give you slicker distribution displays. `ggbeeswarm` spreads overlapping points sideways so none are hidden, and `ggridges` draws a density curve per group, stacked into a ridgeline plot.
+
+```{r}
+#| eval: false
+library(ggbeeswarm)
+ggplot(msleep, aes(x = vore, y = sleep_total)) +
+  geom_beeswarm()
+
+library(ggridges)
+ggplot(msleep, aes(x = sleep_total, y = vore)) +
+  geom_density_ridges()
+```
+:::
+
 # Further Resources
 
-- [R for Data Science](https://r4ds.had.co.nz/) 
+- [R for Data Science](https://r4ds.hadley.nz/)
 - [ggplot2 documentation](https://ggplot2.tidyverse.org/)

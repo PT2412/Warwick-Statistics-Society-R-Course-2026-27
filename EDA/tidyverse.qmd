@@ -1,0 +1,315 @@
+---
+title: "Data Wrangling with the tidyverse"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+On the previous pages we met base-R exploratory data analysis and the `dplyr` verb `summarise()`. This page widens the toolkit into the full **tidyverse** workflow, the modern, consistent way most R users wrangle data today.
+
+# What is the tidyverse?
+
+The tidyverse is a *family* of R packages that share a common philosophy and a common style, so they all fit together neatly. The shared idea is **tidy data**: every dataset is organised so that
+
+* each **row** is a single observation, and
+* each **column** is a single variable.
+
+Once data is tidy, the same handful of functions work on every dataset in the same way. The core members of the family are:
+
+* **dplyr** — manipulating data frames (selecting, filtering, summarising).
+* **tidyr** — reshaping data between wide and long ("tidying").
+* **ggplot2** — building graphs (covered in the Data Visualisation section).
+* **readr** — reading rectangular data (CSV and similar) into R.
+* **stringr** — working with text strings.
+* **lubridate** — working with dates and times.
+* **purrr** — functional programming and iteration.
+
+Loading the umbrella package `tidyverse` attaches all of these at once.
+
+```{r}
+#| warning: false
+#| message: false
+
+###| Load the whole family in one line
+# install.packages("tidyverse")
+library(tidyverse)
+```
+
+::: {.callout-note title="In a nutshell: tidyverse"}
+The tidyverse is a set of packages that all assume **tidy data** (one row per observation, one column per variable) and work together in the same consistent style. `library(tidyverse)` loads them all.
+:::
+
+Throughout this page our running example is the built-in `mpg` dataset from ggplot2, which records fuel-economy data for a range of cars.
+
+```{r}
+###| A first look at the data
+mpg
+```
+
+# The pipe `|>`
+
+The single most important habit in tidyverse code is the **pipe**. The pipe takes whatever is on its left and feeds it in as the first argument to the function on its right. This lets us chain steps so that code reads left-to-right and top-to-bottom, in the same order we think about the task.
+
+Without a pipe, we either nest functions (read inside-out) or create lots of intermediate variables:
+
+```{r}
+###| Before: nested functions are read inside-out
+head(arrange(filter(mpg, cyl == 4), hwy))
+```
+
+With a pipe, the same steps read as a recipe: take `mpg`, *then* filter, *then* arrange, *then* show the head.
+
+```{r}
+###| After: the pipe reads top-to-bottom
+mpg |>
+  filter(cyl == 4) |>
+  arrange(hwy) |>
+  head()
+```
+
+::: {.callout-note title="In a nutshell: the pipe"}
+`x |> f()` is just a tidier way of writing `f(x)`. Chaining pipes lets you read a data pipeline as a list of steps in the order they happen.
+:::
+
+::: {.callout-tip title="Going further 🚀"}
+You will very often see the older pipe `%>%` (from the `magrittr` package, re-exported by dplyr) in tutorials and on the previous EDA page. For everyday use `|>` (built into R since version 4.1) and `%>%` behave almost identically, so you can read them as the same thing. `|>` is now preferred because it needs no extra package.
+:::
+
+# The core dplyr verbs
+
+Almost all data wrangling can be done with a small set of `dplyr` "verbs". We will meet each one in turn, applied to `mpg`.
+
+## `select()` — choose columns
+
+`select()` keeps (or drops) **columns** by name.
+
+```{r}
+###| Keep only a few columns
+mpg |>
+  select(manufacturer, model, class, hwy)
+```
+
+## `filter()` — choose rows
+
+`filter()` keeps the **rows** that satisfy a condition. Conditions use the comparison operators (`==`, `>`, `<`, `>=`, `<=`, `!=`) and can be combined with `&` (and) / `|` (or).
+
+```{r}
+###| Keep only efficient compact cars
+mpg |>
+  filter(class == "compact" & hwy > 30)
+```
+
+## `arrange()` — sort rows
+
+`arrange()` reorders the rows by one or more columns. Wrap a column in `desc()` to sort from largest to smallest.
+
+```{r}
+###| Sort by highway mpg, highest first
+mpg |>
+  arrange(desc(hwy))
+```
+
+## `mutate()` — create new columns
+
+`mutate()` adds new columns (or overwrites existing ones), keeping everything else. Here we convert the US "miles per gallon" figures into the European "litres per 100 km".
+
+```{r}
+###| Add a derived column
+mpg |>
+  mutate(hwyLper100km = 235.215 / hwy) |>
+  select(model, hwy, hwyLper100km)
+```
+
+## `summarise()` and `group_by()` — collapse to summaries
+
+`summarise()` collapses many rows into a single summary row. On its own it summarises the whole table; combined with `group_by()` it produces **one summary row per group**.
+
+```{r}
+###| One overall summary row
+mpg |>
+  summarise(meanHwy = mean(hwy),
+            numCars = n())
+```
+
+```{r}
+###| One summary row per class of car
+mpg |>
+  group_by(class) |>
+  summarise(meanHwy = mean(hwy),
+            numCars = n())
+```
+
+::: {.callout-note title="In a nutshell: the five verbs"}
+* `select()` = pick **columns**.
+* `filter()` = pick **rows** by a condition.
+* `arrange()` = **sort** the rows.
+* `mutate()` = **add** or change columns.
+* `summarise()` (often with `group_by()`) = **collapse** rows into summaries.
+:::
+
+# Chaining verbs into a pipeline
+
+The real power appears when we string several verbs together with the pipe to answer one question. For example: *which classes of car have the best average highway fuel economy?*
+
+```{r}
+###| Mean highway mpg by class, best first
+mpg |>
+  group_by(class) |>
+  summarise(meanHwy = mean(hwy),
+            numCars = n()) |>
+  arrange(desc(meanHwy))
+```
+
+Read top-to-bottom, the pipeline says: take `mpg`, group it by `class`, work out the mean highway mpg and the count within each class, then sort the result with the most efficient classes at the top. Sub-compact and compact cars come out best, while pickups and SUVs trail at the bottom.
+
+# Reshaping data with tidyr
+
+Sometimes data is the right information but the wrong **shape**. Two formats matter:
+
+* **Wide** — one row per subject, with a separate column for each measurement.
+* **Long** (tidy) — one row per measurement, with a column naming the measurement and a column holding its value.
+
+`tidyr` converts between the two with `pivot_longer()` and `pivot_wider()`.
+
+Let us build a small wide table: the mean city (`cty`) and highway (`hwy`) mpg for each class.
+
+```{r}
+###| A small wide table to reshape
+mpgWide <- mpg |>
+  group_by(class) |>
+  summarise(meanCty = mean(cty),
+            meanHwy = mean(hwy))
+mpgWide
+```
+
+`pivot_longer()` stacks the two measurement columns into a single `measure`/`value` pair, giving a tidy long table.
+
+```{r}
+###| Wide -> long
+mpgLong <- mpgWide |>
+  pivot_longer(cols = c(meanCty, meanHwy),
+               names_to = "measure",
+               values_to = "value")
+mpgLong
+```
+
+`pivot_wider()` is the exact inverse: it spreads the `measure`/`value` pair back out into one column per measurement, recovering the wide table.
+
+```{r}
+###| Long -> wide (back where we started)
+mpgLong |>
+  pivot_wider(names_from = "measure",
+              values_from = "value")
+```
+
+::: {.callout-note title="In a nutshell: pivoting"}
+`pivot_longer()` makes a table **taller** (wide → long, the tidy shape ggplot2 prefers). `pivot_wider()` makes it **wider** (long → wide, easier to read in a report). They undo each other.
+:::
+
+# Joining tables
+
+Real analyses usually spread information across several tables that must be combined on a shared key. `dplyr` provides a family of **join** functions. We will use the two built-in demo tables `band_members` and `band_instruments`, which share a `name` column.
+
+```{r}
+###| The two tables to be joined
+band_members
+band_instruments
+```
+
+`left_join()` keeps **every row from the left table** and attaches the matching information from the right table, filling in `NA` where there is no match.
+
+```{r}
+###| Keep all band members, add their instrument where known
+band_members |>
+  left_join(band_instruments, by = "name")
+```
+
+::: {.callout-note title="In a nutshell: join types"}
+All joins match rows on a shared key; they differ only in which rows they keep.
+
+* `inner_join()` — only rows that appear in **both** tables.
+* `left_join()` — **all** rows from the left table.
+* `right_join()` — **all** rows from the right table.
+* `full_join()` — **all** rows from either table.
+:::
+
+# Going further
+
+You now have the core wrangling toolkit. The tidyverse goes much deeper, and these are the most useful next steps.
+
+::: {.callout-tip title="Going further 🚀"}
+* **`across()`** applies the same summary to many columns at once, instead of typing one per line.
+
+```{r}
+###| Summarise several columns in one go
+mpg |>
+  group_by(class) |>
+  summarise(across(c(cty, hwy, displ), mean))
+```
+
+* **`stringr`** handles text: detecting, extracting and replacing patterns.
+
+```{r}
+###| Flag cars whose model name mentions 'quattro'
+mpg |>
+  mutate(isQuattro = str_detect(model, "quattro")) |>
+  select(model, isQuattro) |>
+  head()
+```
+
+* **`lubridate`** parses and manipulates dates and times.
+
+```{r}
+###| Parse a date and pull out its parts
+myDate <- ymd("2026-06-26")
+c(year = year(myDate), month = month(myDate), day = day(myDate))
+```
+
+* **`purrr::map()`** applies a function to each element of a list or vector, returning the results tidily.
+
+```{r}
+###| The mean of every numeric column in mpg
+mpg |>
+  select(where(is.numeric)) |>
+  map_dbl(mean)
+```
+
+* **`janitor::clean_names()`** instantly tidies messy column names (spaces and capitals become `snake_case`). This lives outside the tidyverse, so it is shown but not run here.
+
+```{r}
+#| eval: false
+# install.packages("janitor")
+library(janitor)
+mpg |>
+  clean_names()
+```
+:::
+
+# Summary of the verbs
+
+| Function | Package | What it does |
+|---|---|---|
+| `|>` | base R | Chain steps left-to-right |
+| `select()` | dplyr | Pick columns |
+| `filter()` | dplyr | Pick rows by a condition |
+| `arrange()` | dplyr | Sort rows (use `desc()` to reverse) |
+| `mutate()` | dplyr | Add or change columns |
+| `group_by()` | dplyr | Split into groups for grouped operations |
+| `summarise()` | dplyr | Collapse rows into summaries |
+| `across()` | dplyr | Apply a function to many columns |
+| `pivot_longer()` | tidyr | Reshape wide → long |
+| `pivot_wider()` | tidyr | Reshape long → wide |
+| `left_join()` | dplyr | Combine two tables on a shared key |
+
+With these few verbs, the pipe, and tidy data, you can carry out the vast majority of everyday data wrangling in R.

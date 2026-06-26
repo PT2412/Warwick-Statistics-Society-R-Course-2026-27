@@ -1,0 +1,176 @@
+---
+title: "Python for R Users: Setup and Basics"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+You have spent this course learning R. **Python** is the other great language of data science, and a well-rounded statistician is fluent in both. This short section is a **bridge for R users**: rather than teaching programming from scratch, it maps what you *already know in R* onto Python, then introduces the two libraries that power data work — **NumPy** and **pandas** — so that the Python code in the Machine Learning section becomes readable and runnable. It also feeds directly into modules like ST236 (Python for Data Analytic Tasks).
+
+::: {.callout-note title="In a nutshell: this is translation, not a fresh start"}
+You are not learning to program again — you already can. You are learning to *say the same things in a new language*. An R vector becomes a NumPy array; a `data.frame` becomes a pandas DataFrame; `dplyr` becomes pandas. Keep your R knowledge in mind and read each Python idea as "the Python version of the R thing I know."
+:::
+
+# Getting Python running
+
+To follow along on your own machine you need a Python installation with the scientific libraries. Two easy routes:
+
+- **Google Colab** ([colab.research.google.com](https://colab.research.google.com)) — a free, browser-based notebook with NumPy and pandas already installed. Nothing to set up; ideal for experimenting.
+- **A local install** — the **Anaconda** (or Miniconda) distribution bundles Python with NumPy, pandas and the rest of the scientific stack in one download.
+
+The pages of this section actually *run* their Python code through R's **`reticulate`** package, which lets a single document execute both R and Python. If you want to reproduce that locally, install `reticulate` and point it at a Python with the libraries:
+
+```{r}
+#| eval: false
+install.packages("reticulate")
+library(reticulate)
+py_install(c("numpy", "pandas"))   # install the libraries into reticulate's Python
+```
+
+Everything below this point is genuinely executed, so the output you see is what Python really returns.
+
+# The five things that will trip up an R user
+
+Before any code, internalise the handful of differences that cause 90% of beginner mistakes coming from R:
+
+::: {.callout-important title="Five Python surprises for R users"}
+1. **Indexing starts at 0**, not 1. The first element of a list is `x[0]`. And slices are **end-exclusive**: `x[0:2]` gives elements 0 and 1, *not* 2.
+2. **Assignment is `=`**, not `<-`. (`<-` is not valid Python.)
+3. **Indentation is part of the syntax.** Python has no `{ }`; a consistent indent (usually 4 spaces) defines a block. Get it wrong and the code errors.
+4. **Methods, not functions.** Where R writes `mean(x)`, Python often writes `x.mean()` — the function "belongs to" the object and is called with a dot.
+5. **The naming convention is `snake_case`** (`my_data`), not the `camelCase` or `dot.case` common in R.
+:::
+
+# Assignment and printing
+
+R returns and prints the last value automatically; in Python you usually call `print()` to see output.
+
+```{python}
+x = 5
+y = 10
+print(x + y)
+```
+
+The same in R, for comparison:
+
+```{r}
+x <- 5
+y <- 10
+x + y
+```
+
+# Types
+
+Python's basic types mirror R's: integers, floating-point numbers, strings and booleans. The `type()` function reports them (note Python's booleans are capitalised, `True`/`False`).
+
+```{python}
+print(type(7))          # int
+print(type(7.5))        # float
+print(type("stats"))    # str
+print(type(True))       # bool
+```
+
+# Lists: Python's everyday container
+
+A Python **list** is the closest everyday analogue of an R vector — an ordered collection — though it can hold mixed types like an R *list*. The crucial difference is **0-based, end-exclusive** indexing.
+
+```{python}
+my_list = [10, 20, 30, 40, 50]
+
+print(my_list[0])      # first element  -> 10   (R would be my_list[1])
+print(my_list[1:3])    # indices 1 and 2 -> [20, 30]   (end 3 excluded)
+print(my_list[-1])     # last element   -> 50
+print(len(my_list))    # length         -> 5
+
+my_list.append(60)     # add to the end (a method!)
+print(my_list)
+```
+
+::: {.callout-note title="In a nutshell: lists do not do maths"}
+Beware: a plain Python list does **not** behave like an R vector under arithmetic. `[1, 2, 3] * 2` gives `[1, 2, 3, 1, 2, 3]` (it *repeats* the list), not `[2, 4, 6]`. For element-wise maths you need a **NumPy array** — which is exactly why NumPy exists, and the subject of the next page.
+:::
+
+# Dictionaries: the named-list analogue
+
+A **dictionary** stores key–value pairs, like an R named list. You look values up by their key.
+
+```{python}
+prices = {"apple": 0.50, "banana": 0.30, "cherry": 0.80}
+
+print(prices["apple"])        # look up by key -> 0.5
+print(list(prices.keys()))    # the keys
+print(list(prices.values()))  # the values
+```
+
+# Loops and conditionals
+
+The logic is identical to R; only the syntax (a colon and indentation instead of braces) changes. Note `range(n)` counts `0, 1, …, n-1`.
+
+```{python}
+for i in range(4):        # 0, 1, 2, 3
+    print(i)
+```
+
+```{python}
+score = 72
+
+if score >= 70:
+    grade = "First"
+elif score >= 60:
+    grade = "2:1"
+else:
+    grade = "lower"
+
+print(grade)
+```
+
+Python's logical operators are the words **`and`**, **`or`**, **`not`** (where R uses `&`, `|`, `!`), and equality is `==`.
+
+# Functions
+
+Defined with `def`, a colon, and an indented body. The `return` statement hands back the result (just like R's `return()`, but here it is the norm). Default arguments work as in R.
+
+```{python}
+def power(x, p=2):        # p defaults to 2
+    return x ** p          # ** is exponentiation (R's ^)
+
+print(power(5))            # 25
+print(power(2, 10))        # 1024
+```
+
+# Importing libraries
+
+Where R attaches a package with `library()`, Python **imports** a module, conventionally giving it a short alias. You then reach its functions through that alias with a dot.
+
+```{python}
+import numpy as np
+
+print(np.sqrt(16))        # use numpy's sqrt via the alias 'np'  -> 4.0
+```
+
+This `import … as …` line will start almost every Python data script you write — `import numpy as np` and `import pandas as pd` are practically universal.
+
+::: {.callout-tip title="Going further 🚀"}
+A few idioms that make Python feel natural once you know R's equivalents: **list comprehensions** (`[x**2 for x in range(5)]`) are Python's compact answer to `sapply`/`vapply`; **f-strings** (`f"grade: {grade}"`) are its `paste0`/`sprintf`; and `help(np.sqrt)` (or `?` in a notebook) is its `?`. Because this document runs through `reticulate`, you can even pass objects between the languages — an R data frame `myData` is visible in Python as `r.myData`, and a Python object `result` is visible in R as `py$result`.
+:::
+
+# Where this section is going
+
+:::{}
+* **NumPy** — arrays and vectorised computing: the analogue of R's vectorised vectors and matrices, and the foundation of all numerical Python.
+* **pandas** — DataFrames for data wrangling: the analogue of `data.frame`/tibble and `dplyr`, for filtering, transforming and summarising tabular data.
+* **R vs Python** — a reference page of the key differences and gotchas, and guidance on when to reach for which language.
+:::
+
+With these three, the Python half of the Machine Learning section stops being decorative and becomes code you can read, run and adapt.

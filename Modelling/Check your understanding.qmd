@@ -28,13 +28,13 @@ Download and load in the `data.csv` file. This contains 3 variables: x1, x2 and 
 
 # `coursework.csv` task
 
-Download and load in the coursework.csv` file. This is a dataset of the coursework marks, out of 20, and the exam marks, out of 100.
+Download and load in the `coursework.csv` file. This is a dataset of the coursework marks, out of 20, and the exam marks, out of 100.
 
 <div>
 
 -   Create coursework and exam variables in R.
 -   Plot exam against coursework with exam on the y axis.
--   For a simple linear regression model with exam as the response and coursework as the predictor variable.
+-   Fit a simple linear regression model with exam as the response and coursework as the predictor variable.
 -   According to the model, for each extra coursework mark, how many extra exam marks were obtained?
 -   Using the 'fitted' command in R, calculate the fitted values of the model.
     -   Use ?fitted to get more information about this command.
@@ -75,7 +75,7 @@ m1 <- lm(y ~ x1 + x2, data = data)
 m1
 ```
 
-If $x1 = 0$ and $x2= 0$, we expect $y=5.6$. Assuming $x2$ remains constant, if $x1$ increases by 1, we expect $y$ to increase by 0.6. Assuming $x1$ remains constant, if $x1$ increases by 1, we expect $y$ to decrease by 0.005.
+If $x1 = 0$ and $x2= 0$, we expect $y=5.6$. Assuming $x2$ remains constant, if $x1$ increases by 1, we expect $y$ to increase by 0.6. Assuming $x1$ remains constant, if $x2$ increases by 1, we expect $y$ to decrease by 0.005.
 
 ```{r}
 ###| Fitting the second model
@@ -83,17 +83,17 @@ m2 <- lm(y ~ x1 + I(x2^2), data = data) # NOTE THAT WE NEED TO USE I()!
 m2
 ```
 
-If $x1 = 0$ and $x2= 0$, we expect $y=5.4$. Assuming $x2$ remains constant, if $x1$ increases by 1, we expect $y$ to increase by 0.6. Assuming $x1$ remains constant, if $x1$ increases by 1, we do not expect $y$ to change (to 4 decimal places).
+If $x1 = 0$ and $x2= 0$, we expect $y=5.4$. Assuming $x2$ remains constant, if $x1$ increases by 1, we expect $y$ to increase by 0.6. Assuming $x1$ remains constant, if $x2$ increases by 1, we do not expect $y$ to change (to 4 decimal places).
 
 # Answers to coursework.csv
 
 ```{r}
 ###| Loading in file
-coursework.df <- read.csv("../Data/coursework.csv")
+cwDf <- read.csv("../Data/coursework.csv")
 
 ###| Variable assigning
-coursework <- coursework.df$cw
-exam <- coursework.df$exam
+coursework <- cwDf$cw
+exam <- cwDf$exam
 
 ###| Scatter plot
 plot(coursework,exam, xlab = "Raw coursework mark",
@@ -104,7 +104,7 @@ From the scatter plot, we observe that a linear relationship between the raw cou
 
 ```{r}
 ###| Raw coursework model
-m1 <- lm(exam ~ cw, data = coursework.df)
+m1 <- lm(exam ~ cw, data = cwDf)
 m1
 ```
 
@@ -128,15 +128,25 @@ abline(a = m1$coefficients[1], b = m1$coefficients[2], col = "blue")
 
 ```{r}
 ###| Coursework as a percentage
-coursework.df$coursework_perc <- coursework/20
+cwDf$cwPerc <- coursework/20
 
-m2 <- lm(exam ~ coursework_perc, data = coursework.df)
+m2 <- lm(exam ~ cwPerc, data = cwDf)
 m2
 
-fitted_perc <- fitted(m2)
-fitted_perc
+fittedPerc <- fitted(m2)
+fittedPerc
 ```
 
 The fitted values and the intercept estimate are the same! However, the $\beta$ estimate is now 87.66, $20\times 4.383$.
 
-If a student achieves $100\%$ in their coursework, we expect them to achive $19.38 + 87.66 = 107.04\%$ in the exam. This is a big problem as a student cannot achieve $>100\%$! It is very important to be careful when extrapolating as it is very easy to end up in unrealistic (or even impossible) situations.
+If a student achieves $100\%$ in their coursework, we expect them to achieve $19.38 + 87.66 = 107.04\%$ in the exam. This is a big problem as a student cannot achieve $>100\%$! It is very important to be careful when extrapolating as it is very easy to end up in unrealistic (or even impossible) situations.
+
+::: {.callout-tip title="Going further 🚀"}
+The natural next step is the **generalised linear model (GLM)**, which relaxes the normal-response assumption: `glm()` with a `family` argument handles counts (`family = poisson`), yes/no outcomes (`family = binomial`) and more. You can also quantify uncertainty about a *new* observation with `predict(..., interval = "prediction")`, which is wider than a confidence interval because it includes the random error term.
+
+```{r}
+#| eval: false
+m_glm <- glm(y ~ x1 + x2, family = poisson, data = data)
+predict(m1, newdata = data, interval = "prediction")
+```
+:::

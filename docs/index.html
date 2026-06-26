@@ -2,14 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nikoloz (Niko) Gigiberia">
+<meta name="author" content="Prabhat Tummala">
 
-<title>Warwick Statistics Society R Course 2025-2026</title>
+<title>Warwick Statistics Society R Course 2026-2027</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -72,10 +75,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-feb638320027fbf6a5811c1fd016ec02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -103,9 +106,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -118,7 +122,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -145,7 +149,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Warwick Statistics Society R Course 2025-2026</span>
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -173,7 +177,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -238,7 +242,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Operations</span></a>
+ <span class="menu-text">Operators</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -276,12 +280,65 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Mathematics to R</span></a>
+ <span class="menu-text">Theory of Programming</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
@@ -312,17 +369,23 @@ window.Quarto = {
  <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Linear modelling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
@@ -333,6 +396,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -363,13 +432,154 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
@@ -382,17 +592,23 @@ window.Quarto = {
  <span class="menu-text">dplyr: summary tables</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Data Visualisation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
@@ -426,25 +642,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Bivariate Data</span></a>
+ <span class="menu-text">Visualising Bivariate Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Time</span></a>
+ <span class="menu-text">Visualising Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Visualizing Multiple Variables</span></a>
+ <span class="menu-text">Visualising Multiple Variables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Specialized Visualization Techniques</span></a>
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -457,13 +673,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Report Writing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
@@ -484,6 +700,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">English and Style</span></a>
   </div>
@@ -491,7 +713,83 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">How to Use AI/LLMs for your studiesS</span></a>
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
   </div>
 </li>
       </ul>
@@ -509,6 +807,7 @@ window.Quarto = {
   <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
   <li><a href="#navigating-the-website" id="toc-navigating-the-website" class="nav-link" data-scroll-target="#navigating-the-website">Navigating the website</a></li>
   <li><a href="#structure-of-a-page" id="toc-structure-of-a-page" class="nav-link" data-scroll-target="#structure-of-a-page">Structure of a page</a></li>
+  <li><a href="#two-ways-to-read-this-course" id="toc-two-ways-to-read-this-course" class="nav-link" data-scroll-target="#two-ways-to-read-this-course">Two ways to read this course</a></li>
   <li><a href="#sections" id="toc-sections" class="nav-link" data-scroll-target="#sections">Sections</a></li>
   </ul>
 </nav>
@@ -518,7 +817,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Warwick Statistics Society R Course 2025-2026</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Warwick Statistics Society R Course 2026-2027</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -528,7 +827,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Nikoloz (Niko) Gigiberia <a href="mailto:niko.gigiberia@warwick.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+             <p>Prabhat Tummala <a href="mailto:Prabhat.Tummala@warwick.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
           </div>
   </div>
     
@@ -543,8 +842,8 @@ window.Quarto = {
 
 <section id="welcome" class="level1">
 <h1>Welcome!</h1>
-<p>R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached <a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26">Github</a> aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).</p>
-<p>This Github was created for the Warwick Statistics Society’s R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling and ST221 Linear Statistical Modelling. While I (Nikoloz) have revamped this R course, the foundational work was set by my predecessor, Maria-Louiza Van den Bergh, who originally compiled this Github. The course builds off of the work by previous R Course Coordinators: Neel Shah, Mia Carla Chapman, and Viresh Shah.</p>
+<p>R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27">Github</a> aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).</p>
+<p>This Github was created for the Warwick Statistics Society’s R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling, and ST231 Linear Statistical Modelling alongside other modules that require some programming knowledge like ST236 Python for Data Analytic Tasks, ST237 Visualisation and Communication of Data, and others.. While I (Prabhat) have revamped this R course, the foundational work was set by my predecessor, <strong>Maria-Louiza Van den Bergh</strong>, who originally compiled this Github. This work was built upon by subsequent contributors: <strong>Niko Gigiberia</strong>. The course builds off of the work by previous R Course Coordinators: <strong>Neel Shah</strong>, <strong>Mia Carla Chapman</strong>, and <strong>Viresh Shah</strong>.</p>
 <p>If you find any corrections, or believe a section would benefit from more explanations, please do reach out and email me <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -561,11 +860,17 @@ window.Quarto = {
 <ul>
 <li>Welcome</li>
 <li>Introduction to R</li>
+<li>Theory of Programming</li>
 <li>Mathematics to R</li>
 <li>Linear modelling</li>
+<li>Generalised linear models</li>
+<li>Frequentist statistics (Parametric models)</li>
+<li>Bayesian statistics</li>
 <li>Exploratory data analysis (EDA)</li>
 <li>Data Visualisation</li>
 <li>Report Writing</li>
+<li>Python for R Users</li>
+<li>Machine Learning (R and Python)</li>
 </ul>
 </div>
 <p>On the right, there is a table of contents for each page. On the top, I have pulled out crucial tabs that cover downloading R, some quick references guides and the databases used.</p>
@@ -579,12 +884,12 @@ window.Quarto = {
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">###| Example code chunk</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">7</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="co"># comment example</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 17</code></pre>
@@ -592,13 +897,48 @@ window.Quarto = {
 </div>
 <p>Finally, there will be several ‘Check you understanding’ areas. Answers to these questions (and the code used to produce them) are available just below the questions. However, I strongly recommend you attempt to answer them before reviewing the solutions!</p>
 </section>
+<section id="two-ways-to-read-this-course" class="level1">
+<h1>Two ways to read this course</h1>
+<p>This course is written to work for two very different readers, and you should feel free to read it differently depending on which you are on a given day.</p>
+<ul>
+<li><strong>If you are finding it hard:</strong> stick to the <strong>core path</strong>. Read the short explanation, run the code example exactly as written, then change one thing and re-run it to see what happens. You do <em>not</em> need to understand every line the first time — the “Check your understanding” exercises and the plain-English summaries are enough to move on. It is completely normal to revisit a page two or three times.</li>
+<li><strong>If you want more:</strong> look out for the <strong>“Going further” boxes</strong>. These are optional, self-contained detours that point you to genuinely useful or interesting corners of R — extra packages, slicker idioms, deeper theory, or a small challenge to try. Nothing later in the course depends on them, so they are pure upside for the curious.</li>
+</ul>
+<p>To make these easy to spot, two kinds of coloured box recur throughout:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A plain-English summary of the key idea on a page, with no maths or jargon. If you only remember one thing, remember this. (Aimed at readers who want the takeaway without the detail.)</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An optional extension for the curious — a cool package, a neater technique, or a deeper idea to explore. Safe to skip; fun to read. (Aimed at readers who want to see more of what R can do.)</p>
+</div>
+</div>
+</section>
 <section id="sections" class="level1">
 <h1>Sections</h1>
-<p>There are several sections and pages to this website. The following is a general overview of each section and the pages included.</p>
+<p>There are several sections and pages to this website. The following is a general overview of each section and the pages included. Please note that any module references are only general ideas of which parts of the course are most relevant to that module.</p>
 <div>
 <ul>
 <li><strong>Welcome</strong> - This page.</li>
-<li><strong>Introduction to R</strong> - This section covers how R stores data, variables, control structures and basic plots.
+<li><strong>Introduction to R (ST117)</strong> - This section covers how R stores data, variables, control structures and basic plots.
 <ul>
 <li>Introduction - <em>Reviews what material is covered by this section</em>.</li>
 <li>Data types - <em>The different values R can recognise</em>.</li>
@@ -610,6 +950,16 @@ window.Quarto = {
 <li>Random numbers - <em>Generate a random number in R and find the probability it was generated using a particular statistical distribution.</em></li>
 <li>Figures - <em>Use base R to plot scatter plots, box plots, histograms and line graphs. </em></li>
 </ul></li>
+<li><strong>Theory of Programming</strong> - This section explores the tenets of programming (not specific to R) and covers,
+<ul>
+<li>Purpose of Programming - <em>Reviews the purpose of programming, its purpose and strengths compared to manual solving of problems</em>.</li>
+<li>Control Structures &amp; Code Abstraction - <em>The flow of logic in code and how to write reusable program pieces</em>.</li>
+<li>Interpreter vs Compilers - <em>How code is translated and executed in languages like R and Python</em>.</li>
+<li>Data Structures and Algorithms - <em>Core data structures and algorithmic thinking for statistical computing</em>.</li>
+<li>Time and Space Efficiency - <em>How to write good code in terms of space and time efficiency</em>.</li>
+<li>Efficiency in R - <em>R-specific performance ideas such as vectorisation and compiled code</em>.</li>
+<li>Programming Best Practices - <em>Tips for readable, reproducible, and robust statistical code</em>.</li>
+</ul></li>
 <li><strong>Mathematics to Code</strong> - This section covers the intuition and algorithmic thinking with which one should approach programming.
 <ul>
 <li>Introduction - <em>How does the computer think and interpret your code?</em></li>
@@ -617,8 +967,9 @@ window.Quarto = {
 <li>Euclidean Algorithm - <em>An example implementation of the Euclidean Algorithm for finding GCDs with the logic and R code explained.</em></li>
 <li>Monte Carlo Approximation - <em>An example implementation of Monte Carlo approximation of with the logic and R code explained.</em></li>
 <li>Newton-Raphson Method - <em>An example implementation of the Newton-Raphson method for finding roots of functions with the logic and R code explained.</em></li>
+<li>Markov Chains - <em>Simulating a Markov chain and finding its long-run (stationary) behaviour — the engine behind the MCMC sampler in the Bayesian section.</em></li>
 </ul></li>
-<li><strong>Modelling</strong> - This section covers how to plot a linear model and check diagnostic plots.
+<li><strong>Linear Modelling (ST231)</strong> - This section covers how to plot a linear model and check diagnostic plots.
 <ul>
 <li>What is a linear model? - <em>A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.</em></li>
 <li>Fitting a model with continuous data - <em>Examples of fitting a linear model with integer and real number data.</em></li>
@@ -626,12 +977,40 @@ window.Quarto = {
 <li>Model diagnostics - <em>Linear models must fit the 4 key assumptions. This is how we check they do.</em></li>
 <li>Check your understanding - <em>Fit linear models on two datasets.</em></li>
 </ul></li>
-<li><strong>Exploratory data analysis</strong> - This section covers a few different ways to get insights about a dataset.
+<li><strong>Generalised Linear Models (ST231/ST346/ST426)</strong> - Extends linear models to binary, count and other non-normal responses by adding a distribution and a link function. Fitted by maximum likelihood, building on the Frequentist Statistics section.
+<ul>
+<li>Introduction to GLMs - <em>Why linear models fail for binary/count data; the three components and the link function.</em></li>
+<li>Logistic regression - <em>Binary data with the logit link; odds, odds ratios, predicted probabilities and classification.</em></li>
+<li>Poisson regression - <em>Count data with the log link; rate ratios, offsets, and overdispersion (with the negative-binomial fix).</em></li>
+<li>Diagnostics and inference - <em>Deviance, residuals, likelihood-ratio tests, AIC and confidence intervals for GLMs.</em></li>
+<li>Check your understanding - <em>Fit and interpret GLMs yourself, with hidden solutions.</em></li>
+</ul></li>
+<li><strong>Frequentist Statistics (ST230)</strong> - This section moves beyond linear models onto parametric fitting — the rigorous fitting of distributions to data — from the <em>frequentist</em> viewpoint where the parameter is fixed and the data is random.
+<ul>
+<li>Introduction - <em>Probability vs statistics, the frequentist worldview, and method of moments vs maximum likelihood.</em></li>
+<li>Likelihood, score and Fisher information - <em>The central engine: from likelihood to a point estimate and its standard error.</em></li>
+<li>Asymptotics and confidence intervals - <em>Large-sample normality, and the Wald and likelihood-ratio intervals.</em></li>
+<li>Simulation - <em>Bootstrapping and <code>optim</code> for when the formulas run out.</em></li>
+<li>Hypothesis testing - <em>p-values, power, and the Wald/score/likelihood-ratio “trinity”.</em></li>
+<li>Worked examples - <em>The whole pipeline end to end on real data, including model checking.</em></li>
+</ul></li>
+<li><strong>Bayesian Statistics</strong> - The mirror image of the frequentist section: here the parameter is treated as <em>uncertain</em> and given a probability distribution, which the data updates.
+<ul>
+<li>Introduction - <em>The Bayesian worldview and how it contrasts with frequentism.</em></li>
+<li>Bayes’ theorem and the posterior - <em>Prior × likelihood → posterior, the Beta–Binomial coin model, and credible intervals.</em></li>
+<li>Priors and the large-sample bridge - <em>Choosing priors, prior sensitivity, and how Bayesian and frequentist answers converge.</em></li>
+<li>Bayesian computation - <em>Grid approximation and a hand-coded MCMC sampler (with a glimpse of probabilistic-programming packages).</em></li>
+<li>Bayesian testing and model comparison - <em>Posterior probabilities, the ROPE, and Bayes factors.</em></li>
+<li>Worked examples - <em>The whole Bayesian pipeline end to end, including posterior predictive checks.</em></li>
+<li>Bayesian forecasting - <em>Time-series forecasting with an AR(1) model fitted by MCMC, producing a full predictive distribution for the future.</em></li>
+</ul></li>
+<li><strong>Exploratory data analysis (ST117)</strong> - This section covers a few different ways to get insights about a dataset.
 <ul>
 <li>cars dataset - <em>A simple example covering investigating and cleaning the inbuilt <code>mtcars</code> dataset.</em></li>
 <li>dplyr: summary tables - <em>Examples of using the <code>dplyr</code> package’s <code>summarise()</code> function on the <code>mtcars</code> dataset.</em></li>
+<li>Data wrangling with the tidyverse - <em>The core <code>dplyr</code> verbs, the pipe, reshaping with <code>tidyr</code>, and joining tables.</em></li>
 </ul></li>
-<li><strong>Data Visualisation</strong> - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.
+<li><strong>Data Visualisation (ST117/ST237)</strong> - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.
 <ul>
 <li>Introduction to Data Visualisation</li>
 <li>Data Import and Preparation in R</li>
@@ -641,14 +1020,34 @@ window.Quarto = {
 <li>Visualising Bivariate Data</li>
 <li>Visualising Time</li>
 <li>Visualising Multiple Variables</li>
-<li>Specialised Visualization Techniques</li>
+<li>Specialised Visualisation Techniques</li>
 <li>Best Practices</li>
 </ul></li>
-<li><strong>Report Writing and Mathematical Communication</strong> - This sections covers how to approach report writing for audiences both inside and outside of one’s field.</li>
+<li><strong>Report Writing and Mathematical Communication (ST117)</strong> - This section covers how to approach report writing for audiences both inside and outside of one’s field.
+<ul>
+<li>Introduction, structure and reporting results - <em>How to structure a report and present numbers, tables and figures clearly.</em></li>
+<li>Reproducibility and workflow - <em>RMarkdown, project organisation, version control and reproducible environments so your analysis can be rerun and trusted.</em></li>
+<li>Writing and use of AI - <em>Clear technical English and the sensible use of AI tools.</em></li>
+</ul></li>
+<li><strong>Python for R Users (ST236)</strong> - A bridge into Python for students who already know R: the same ideas in a new language, with the libraries that underpin the Machine Learning section. All code is executable.
+<ul>
+<li>Setup and basics - <em>Running Python, and Python syntax mapped onto the R you already know (0-indexing, methods, lists, dictionaries, loops, functions).</em></li>
+<li>NumPy - <em>Arrays and vectorised computing — the analogue of R’s vectorised vectors and matrices.</em></li>
+<li>pandas - <em>DataFrames for wrangling — the analogue of <code>data.frame</code>/tibble and <code>dplyr</code>.</em></li>
+<li>R vs Python - <em>A reference of the key differences and gotchas, and when to use which language.</em></li>
+</ul></li>
+<li><strong>Machine Learning (ST236/ST349)</strong> - This section steps from statistics into machine learning — building models that predict and find structure — and showcases the same ideas in <strong>both R and Python</strong>, the two main languages of data science.
+<ul>
+<li>Introduction to Machine Learning - <em>Supervised vs unsupervised learning, the train/test split, overfitting, and why we use both R and Python.</em></li>
+<li>Supervised learning - <em>Classification with decision trees and random forests on the iris data, in R and Python side by side.</em></li>
+<li>Regularisation and cross-validation - <em>Ridge and lasso to control overfitting, with k-fold cross-validation to tune them.</em></li>
+<li>Unsupervised learning - <em>k-means clustering and principal component analysis when there is no label to predict.</em></li>
+<li>Deep learning - <em>Neural networks from the ground up — neurons, layers and how they learn — with a small network in R and the modern frameworks in R and Python.</em></li>
+</ul></li>
 </ul>
 </div>
-<p>The necessary data for this website can be found in the <code>Datasets</code> folder (<a href="https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26">link</a>). There is guidance in the relevant pages on how to load in data.</p>
-<p>Please note that <strong>future pages</strong> aim to include: model selection; generalised linear modelling; exploratory data analysis; and using the <code>kableExtra</code> and <code>dplyr</code> packages to produce tables. Time permitting, these will be created for the 2025/256 R course and aim to go alongside ST404 Applied Statistical Modelling and provide additional support for ST346 Generalised Linear Models. I, Niko will aim to implement these as well as the year 2025-26 rolls along. I also aim to add pages on Bayesian statistics and Markov Chain Monte Carlo using R and Python.</p>
+<p>The necessary data for this website can be found in the <code>Datasets</code> folder (<a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27">link</a>). There is guidance in the relevant pages on how to load in data.</p>
+<p>Please note that <strong>future pages</strong> aim to include: Machine Learning paradigms, Bayesian forecasting, and possibly smaller pages dedicated to other programming languages like C for the sake of efficiency.</p>
 
 
 <!-- -->
@@ -659,7 +1058,7 @@ window.Quarto = {
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>My University of Warwick email is: niko.gigiberia@warwick.ac.uk.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>My University of Warwick email is: Prabhat.Tummala@warwick.ac.uk.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -713,13 +1112,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1112,11 +1512,11 @@ window.Quarto = {
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Warwick Statistics Society R Course 2025-2026"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Warwick Statistics Society R Course 2026-2027"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">  name: Nikoloz (Niko) Gigiberia</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">  email: niko.gigiberia@warwick.ac.uk</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">  name: Prabhat Tummala</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">  email: Prabhat.Tummala@warwick.ac.uk</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
@@ -1133,13 +1533,13 @@ window.Quarto = {
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome!</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached <span class="co">[</span><span class="ot">Github</span><span class="co">](https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26)</span> aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>R is a very popular coding language, primarily used by statisticians around the world. As such, it is important for new statisticians (or those who will require substantial statistics in their degrees/jobs) to get to grips with the language. This website and the attached <span class="co">[</span><span class="ot">Github</span><span class="co">](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27)</span> aim to cover the key steps from first lines of code after you have installed R, to how to fit linear models and perform Explanatory Data Analysis (EDA).</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>This Github was created for the Warwick Statistics Society's R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling and ST221 Linear Statistical Modelling. While I (Nikoloz) have revamped this R course, the foundational work was set by my predecessor, Maria-Louiza Van den Bergh, who originally compiled this Github. The course builds off of the work by previous R Course Coordinators: Neel Shah, Mia Carla Chapman, and Viresh Shah.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>This Github was created for the Warwick Statistics Society's R course. It accompanies the 2 core Warwick R modules: ST117 Introduction to Statistical Modelling, and ST231 Linear Statistical Modelling alongside other modules that require some programming knowledge like ST236 Python for Data Analytic Tasks, ST237 Visualisation and Communication of Data, and others.. While I (Prabhat) have revamped this R course, the foundational work was set by my predecessor, **Maria-Louiza Van den Bergh**, who originally compiled this Github. This work was built upon by subsequent contributors: **Niko Gigiberia**. The course builds off of the work by previous R Course Coordinators: **Neel Shah**, **Mia Carla Chapman**, and **Viresh Shah**.</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>If you find any corrections, or believe a section would benefit from more explanations, please do reach out and email me <span class="ot">[^1]</span>.</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>My University of Warwick email is: niko.gigiberia@warwick.ac.uk. </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>My University of Warwick email is: Prabhat.Tummala@warwick.ac.uk. </span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="al">![QR code for website](QR-website.png)</span></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
@@ -1152,85 +1552,154 @@ window.Quarto = {
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>:::{}</span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Welcome</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Introduction to R</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Mathematics to R</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Linear modelling</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Exploratory data analysis (EDA)</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Data Visualisation</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Report Writing</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>On the right, there is a table of contents for each page. On the top, I have pulled out crucial tabs that cover downloading R, some quick references guides and the databases used.  </span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="fu"># Structure of a page</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Theory of Programming</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Mathematics to R</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Linear modelling</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Generalised linear models</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Frequentist statistics (Parametric models)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Bayesian statistics</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Exploratory data analysis (EDA)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Data Visualisation</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Report Writing</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Python for R Users</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Machine Learning (R and Python)</span>
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>Each page begins with a short paragraph that indicates what will be covered by the page. There are then several sections that cover theory and code examples. </span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>Key functions appear in purple text like this <span class="in">`function()`</span>. Longer passages of code appear inside grey boxes with comments denoted using <span class="in">`###|`</span> and <span class="in">`#`</span>. (The triple <span class="in">`###|`</span> typically denotes a heading; the single <span class="in">`#`</span> adds additional information.)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>On the right, there is a table of contents for each page. On the top, I have pulled out crucial tabs that cover downloading R, some quick references guides and the databases used.  </span>
 <span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>For some code examples, you are able to scroll left and right to see the entire code (this is typically for comments). The output may also be cut off on the side and require scrolling. The code can be hidden or shown by clicking on the triangle ($\triangleright$). By default, all code examples are shown and any code answers are hidden. </span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="fu"># Structure of a page</span></span>
 <span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>The entire code can be copied to the clipboard using the icon in the right corner. Please note that the ` ``<span class="in">`{r} `</span> and ` ``<span class="in">` `</span> are used to create code chunks. These are not needed in an R Script or if the code is being copied into an already existing code chunk in an R Markdown or Quarto document. </span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>Each page begins with a short paragraph that indicates what will be covered by the page. There are then several sections that cover theory and code examples. </span>
 <span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="do">###| Example code chunk</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">7</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="co"># comment example</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>Finally, there will be several 'Check you understanding' areas. Answers to these questions (and the code used to produce them) are available just below the questions. However, I strongly recommend you attempt to answer them before reviewing the solutions! </span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu"># Sections</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>There are several sections and pages to this website. The following is a general overview of each section and the pages included.</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>Key functions appear in purple text like this <span class="in">`function()`</span>. Longer passages of code appear inside grey boxes with comments denoted using <span class="in">`###|`</span> and <span class="in">`#`</span>. (The triple <span class="in">`###|`</span> typically denotes a heading; the single <span class="in">`#`</span> adds additional information.)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>For some code examples, you are able to scroll left and right to see the entire code (this is typically for comments). The output may also be cut off on the side and require scrolling. The code can be hidden or shown by clicking on the triangle ($\triangleright$). By default, all code examples are shown and any code answers are hidden. </span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>The entire code can be copied to the clipboard using the icon in the right corner. Please note that the ` ``<span class="in">`{r} `</span> and ` ``<span class="in">` `</span> are used to create code chunks. These are not needed in an R Script or if the code is being copied into an already existing code chunk in an R Markdown or Quarto document. </span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="do">###| Example code chunk</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="co"># comment example</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>:::{}</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>Finally, there will be several 'Check you understanding' areas. Answers to these questions (and the code used to produce them) are available just below the questions. However, I strongly recommend you attempt to answer them before reviewing the solutions!</span>
 <span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Welcome** - This page. </span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Introduction to R** - This section covers how R stores data, variables, control structures and basic plots. </span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction - *Reviews what material is covered by this section*.</span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data types - *The different values R can recognise*.</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data structures - *How R stores data*.</span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Variables - *How to store your own data with a callable name. *</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Operators - *The building blocks of code, operators allow you to do basic arithmetic, compare values and check if something is true.*</span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Control structures - *if, else, for and while loops.*</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Custom functions - *How to create a custom function to reduce repetitive code.*</span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Random numbers - *Generate a random number in R and find the probability it was generated using a particular statistical distribution.*</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Figures - *Use base R to plot scatter plots, box plots, histograms and line graphs. *</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Mathematics to Code** - This section covers the intuition and algorithmic thinking with which one should approach programming.</span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction - *How does the computer think and interpret your code?*</span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss">  +  </span>Mathematical intuition behind coding - *How do you go about translating mathematical logic into computer code?*</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Euclidean Algorithm - *An example implementation of the Euclidean Algorithm for finding GCDs with the logic and R code explained.*</span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Monte Carlo Approximation - *An example implementation of Monte Carlo approximation of \pi with the logic and R code explained.*</span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Newton-Raphson Method - *An example implementation of the Newton-Raphson method for finding roots of functions with the logic and R code explained.*</span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Modelling** - This section covers how to plot a linear model and check diagnostic plots. </span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>What is a linear model? - *A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.*</span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Fitting a model with continuous data - *Examples of fitting a linear model with integer and real number data.*</span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Fitting a model with categorical data - *Examples of fitting a linear model with categorical data on the agriculture dataset, with and without intercept terms.*</span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Model diagnostics - *Linear models must fit the 4 key assumptions. This is how we check they do.*</span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Check your understanding - *Fit linear models on two datasets.*</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Exploratory data analysis** - This section covers a few different ways to get insights about a dataset. </span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>cars dataset - *A simple example covering investigating and cleaning the inbuilt `mtcars` dataset.*</span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>dplyr: summary tables - *Examples of using the `dplyr` package's `summarise()` function on the `mtcars` dataset.*</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Data Visualisation** - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction to Data Visualisation</span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data Import and Preparation in R </span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction to ggplot2</span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Graph Customisation</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Univariate Data</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Bivariate Data</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Time</span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Multiple Variables</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Specialised Visualization Techniques</span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Best Practices</span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Report Writing and Mathematical Communication** - This sections covers how to approach report writing for audiences both inside and outside of one's field.</span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>The necessary data for this website can be found in the <span class="in">`Datasets`</span> folder (<span class="co">[</span><span class="ot">link</span><span class="co">](https://github.com/Niko-Gigi/Warwick-Statistics-Society-R-Course-2025-26)</span>). There is guidance in the relevant pages on how to load in data. </span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>Please note that **future pages** aim to include: model selection; generalised linear modelling; exploratory data analysis; and using the <span class="in">`kableExtra`</span> and <span class="in">`dplyr`</span> packages to produce tables. Time permitting, these will be created for the 2025/256 R course and aim to go alongside ST404 Applied Statistical Modelling and provide additional support for ST346 Generalised Linear Models. I, Niko will aim to implement these as well as the year 2025-26 rolls along. I also aim to add pages on Bayesian statistics and Markov Chain Monte Carlo using R and Python.</span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="fu"># Two ways to read this course</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>This course is written to work for two very different readers, and you should feel free to read it differently depending on which you are on a given day.</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**If you are finding it hard:** stick to the **core path**. Read the short explanation, run the code example exactly as written, then change one thing and re-run it to see what happens. You do *not* need to understand every line the first time — the "Check your understanding" exercises and the plain-English summaries are enough to move on. It is completely normal to revisit a page two or three times.</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**If you want more:** look out for the **"Going further" boxes**. These are optional, self-contained detours that point you to genuinely useful or interesting corners of R — extra packages, slicker idioms, deeper theory, or a small challenge to try. Nothing later in the course depends on them, so they are pure upside for the curious.</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>To make these easy to spot, two kinds of coloured box recur throughout:</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell"}</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>A plain-English summary of the key idea on a page, with no maths or jargon. If you only remember one thing, remember this. (Aimed at readers who want the takeaway without the detail.)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>An optional extension for the curious — a cool package, a neater technique, or a deeper idea to explore. Safe to skip; fun to read. (Aimed at readers who want to see more of what R can do.)</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="fu"># Sections</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>There are several sections and pages to this website. The following is a general overview of each section and the pages included. Please note that any module references are only general ideas of which parts of the course are most relevant to that module.</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>:::{}</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Welcome** - This page. </span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Introduction to R (ST117)** - This section covers how R stores data, variables, control structures and basic plots. </span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction - *Reviews what material is covered by this section*.</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data types - *The different values R can recognise*.</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data structures - *How R stores data*.</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Variables - *How to store your own data with a callable name. *</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Operators - *The building blocks of code, operators allow you to do basic arithmetic, compare values and check if something is true.*</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Control structures - *if, else, for and while loops.*</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Custom functions - *How to create a custom function to reduce repetitive code.*</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Random numbers - *Generate a random number in R and find the probability it was generated using a particular statistical distribution.*</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Figures - *Use base R to plot scatter plots, box plots, histograms and line graphs. *</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Theory of Programming** - This section explores the tenets of programming (not specific to R) and covers,</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Purpose of Programming - *Reviews the purpose of programming, its purpose and strengths compared to manual solving of problems*.</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Control Structures &amp; Code Abstraction - *The flow of logic in code and how to write reusable program pieces*.</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Interpreter vs Compilers - *How code is translated and executed in languages like R and Python*.</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data Structures and Algorithms - *Core data structures and algorithmic thinking for statistical computing*.</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Time and Space Efficiency - *How to write good code in terms of space and time efficiency*.</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Efficiency in R - *R-specific performance ideas such as vectorisation and compiled code*.</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Programming Best Practices - *Tips for readable, reproducible, and robust statistical code*.</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Mathematics to Code** - This section covers the intuition and algorithmic thinking with which one should approach programming.</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction - *How does the computer think and interpret your code?*</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="ss">  +  </span>Mathematical intuition behind coding - *How do you go about translating mathematical logic into computer code?*</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Euclidean Algorithm - *An example implementation of the Euclidean Algorithm for finding GCDs with the logic and R code explained.*</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Monte Carlo Approximation - *An example implementation of Monte Carlo approximation of \pi with the logic and R code explained.*</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Newton-Raphson Method - *An example implementation of the Newton-Raphson method for finding roots of functions with the logic and R code explained.*</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Markov Chains - *Simulating a Markov chain and finding its long-run (stationary) behaviour — the engine behind the MCMC sampler in the Bayesian section.*</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Linear Modelling (ST231)** - This section covers how to plot a linear model and check diagnostic plots. </span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>What is a linear model? - *A linear model explains or predicts the relationship between variables. There are 4 key assumptions that must be met.*</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Fitting a model with continuous data - *Examples of fitting a linear model with integer and real number data.*</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Fitting a model with categorical data - *Examples of fitting a linear model with categorical data on the agriculture dataset, with and without intercept terms.*</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Model diagnostics - *Linear models must fit the 4 key assumptions. This is how we check they do.*</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Check your understanding - *Fit linear models on two datasets.*</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Generalised Linear Models (ST231/ST346/ST426)** - Extends linear models to binary, count and other non-normal responses by adding a distribution and a link function. Fitted by maximum likelihood, building on the Frequentist Statistics section.</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction to GLMs - *Why linear models fail for binary/count data; the three components and the link function.*</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Logistic regression - *Binary data with the logit link; odds, odds ratios, predicted probabilities and classification.*</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Poisson regression - *Count data with the log link; rate ratios, offsets, and overdispersion (with the negative-binomial fix).*</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Diagnostics and inference - *Deviance, residuals, likelihood-ratio tests, AIC and confidence intervals for GLMs.*</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Check your understanding - *Fit and interpret GLMs yourself, with hidden solutions.*</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Frequentist Statistics (ST230)** - This section moves beyond linear models onto parametric fitting — the rigorous fitting of distributions to data — from the *frequentist* viewpoint where the parameter is fixed and the data is random.</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction - *Probability vs statistics, the frequentist worldview, and method of moments vs maximum likelihood.*</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Likelihood, score and Fisher information - *The central engine: from likelihood to a point estimate and its standard error.*</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Asymptotics and confidence intervals - *Large-sample normality, and the Wald and likelihood-ratio intervals.*</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Simulation - *Bootstrapping and `optim` for when the formulas run out.*</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Hypothesis testing - *p-values, power, and the Wald/score/likelihood-ratio "trinity".*</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Worked examples - *The whole pipeline end to end on real data, including model checking.*</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Bayesian Statistics** - The mirror image of the frequentist section: here the parameter is treated as *uncertain* and given a probability distribution, which the data updates.</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction - *The Bayesian worldview and how it contrasts with frequentism.*</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Bayes' theorem and the posterior - *Prior × likelihood → posterior, the Beta–Binomial coin model, and credible intervals.*</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Priors and the large-sample bridge - *Choosing priors, prior sensitivity, and how Bayesian and frequentist answers converge.*</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Bayesian computation - *Grid approximation and a hand-coded MCMC sampler (with a glimpse of probabilistic-programming packages).*</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Bayesian testing and model comparison - *Posterior probabilities, the ROPE, and Bayes factors.*</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Worked examples - *The whole Bayesian pipeline end to end, including posterior predictive checks.*</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Bayesian forecasting - *Time-series forecasting with an AR(1) model fitted by MCMC, producing a full predictive distribution for the future.*</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Exploratory data analysis (ST117)** - This section covers a few different ways to get insights about a dataset.</span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>cars dataset - *A simple example covering investigating and cleaning the inbuilt `mtcars` dataset.*</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>dplyr: summary tables - *Examples of using the `dplyr` package's `summarise()` function on the `mtcars` dataset.*</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data wrangling with the tidyverse - *The core `dplyr` verbs, the pipe, reshaping with `tidyr`, and joining tables.*</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Data Visualisation (ST117/ST237)** - This section covers data visualisation techniques, conventions and good habits to develop throughout your degree.</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction to Data Visualisation</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Data Import and Preparation in R </span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction to ggplot2</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Graph Customisation</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Univariate Data</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Bivariate Data</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Time</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Visualising Multiple Variables</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Specialised Visualisation Techniques</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Best Practices</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Report Writing and Mathematical Communication (ST117)** - This section covers how to approach report writing for audiences both inside and outside of one's field.</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction, structure and reporting results - *How to structure a report and present numbers, tables and figures clearly.*</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Reproducibility and workflow - *RMarkdown, project organisation, version control and reproducible environments so your analysis can be rerun and trusted.*</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Writing and use of AI - *Clear technical English and the sensible use of AI tools.*</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Python for R Users (ST236)** - A bridge into Python for students who already know R: the same ideas in a new language, with the libraries that underpin the Machine Learning section. All code is executable.</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Setup and basics - *Running Python, and Python syntax mapped onto the R you already know (0-indexing, methods, lists, dictionaries, loops, functions).*</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>NumPy - *Arrays and vectorised computing — the analogue of R's vectorised vectors and matrices.*</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>pandas - *DataFrames for wrangling — the analogue of `data.frame`/tibble and `dplyr`.*</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>R vs Python - *A reference of the key differences and gotchas, and when to use which language.*</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Machine Learning (ST236/ST349)** - This section steps from statistics into machine learning — building models that predict and find structure — and showcases the same ideas in **both R and Python**, the two main languages of data science.</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Introduction to Machine Learning - *Supervised vs unsupervised learning, the train/test split, overfitting, and why we use both R and Python.*</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Supervised learning - *Classification with decision trees and random forests on the iris data, in R and Python side by side.*</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Regularisation and cross-validation - *Ridge and lasso to control overfitting, with k-fold cross-validation to tune them.*</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Unsupervised learning - *k-means clustering and principal component analysis when there is no label to predict.*</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="ss">  + </span>Deep learning - *Neural networks from the ground up — neurons, layers and how they learn — with a small network in R and the modern frameworks in R and Python.*</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>The necessary data for this website can be found in the <span class="in">`Datasets`</span> folder (<span class="co">[</span><span class="ot">link</span><span class="co">](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27)</span>). There is guidance in the relevant pages on how to load in data. </span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>Please note that **future pages** aim to include: Machine Learning paradigms, Bayesian forecasting, and possibly smaller pages dedicated to other programming languages like C for the sake of efficiency.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

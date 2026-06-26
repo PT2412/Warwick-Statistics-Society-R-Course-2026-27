@@ -22,11 +22,11 @@ Imagine you’re trying to **explain a puzzle to a robot**. Robots don’t guess
 Mathematics trains you to:
 
 
-* **Define problems precisely** through rigourous proofs (NOTHING is assumed unless stated)
+* **Define problems precisely** through rigorous proofs (NOTHING is assumed unless stated)
 * **Work with abstract structures** (ideas of groups, rings, fields in algebra)
 * **Think algorithmically** (the many algorithms you will come across e.g. Euclidean, Gram-Schmidt)
 * **Break complex problems into parts** (this is essentially what you do during a proof!)
-* **Understand edge cases and generalization** (this is also a skill gained in proofs!)
+* **Understand edge cases and generalisation** (this is also a skill gained in proofs!)
 
 
 ::: {.callout-tip title="Math to Code Mindset"}
@@ -41,7 +41,7 @@ When approaching a coding task, ask yourself:
 :::
 
 :::{.callout-important}
-Your code is exectued by a machine. Machines do not guess or assume, they only understand *exact* instructions. Therefore, keep in mind to specify your code.
+Your code is executed by a machine. Machines do not guess or assume, they only understand *exact* instructions. Therefore, keep in mind to specify your code.
 :::
 
 #### Here is a flowchart of how to build mathematical code in 7 easy steps: 

@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>NumPy: Arrays and Vectorised Computing – Warwick Statistics Society R Course 2026-2027</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Using R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cheatsheets.html"> 
+<span class="menu-text">Cheatsheets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data/Raw data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Python/Introduction Python.html">Python for R Users</a></li><li class="breadcrumb-item"><a href="../Python/numpy.html">NumPy: Arrays and Vectorised Computing</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/introduction to r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/control structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/Random numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Theory of Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intuit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mathematical intuition behind coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code Euclidean Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Euclidean Algorithm — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MonteCarlo Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo Approximation of π — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code NewtonRaph Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Continuous data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with continuous data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Categorical data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with categorical data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check your understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cars dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/summary tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr: summary tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualisation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/importing data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Import and Preparation in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/baseR and ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to ggplot2: The Grammar of Graphics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/customising graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Customisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/univariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Univariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Bivariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Multiple Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Best Practices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Report Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Report Writing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportstructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Report Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Report Statistical Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English and Style</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-numpy" id="toc-why-numpy" class="nav-link active" data-scroll-target="#why-numpy">Why NumPy?</a></li>
+  <li><a href="#creating-arrays" id="toc-creating-arrays" class="nav-link" data-scroll-target="#creating-arrays">Creating arrays</a></li>
+  <li><a href="#vectorised-arithmetic-and-broadcasting" id="toc-vectorised-arithmetic-and-broadcasting" class="nav-link" data-scroll-target="#vectorised-arithmetic-and-broadcasting">Vectorised arithmetic and broadcasting</a></li>
+  <li><a href="#aggregations-summaries" id="toc-aggregations-summaries" class="nav-link" data-scroll-target="#aggregations-summaries">Aggregations (summaries)</a></li>
+  <li><a href="#d-arrays-matrices" id="toc-d-arrays-matrices" class="nav-link" data-scroll-target="#d-arrays-matrices">2-D arrays (matrices)</a></li>
+  <li><a href="#boolean-masking" id="toc-boolean-masking" class="nav-link" data-scroll-target="#boolean-masking">Boolean masking</a></li>
+  <li><a href="#going-further-speed-and-the-wider-ecosystem" id="toc-going-further-speed-and-the-wider-ecosystem" class="nav-link" data-scroll-target="#going-further-speed-and-the-wider-ecosystem">Going further: speed and the wider ecosystem</a></li>
+  <li><a href="#summary-r-to-numpy-cheat-sheet" id="toc-summary-r-to-numpy-cheat-sheet" class="nav-link" data-scroll-target="#summary-r-to-numpy-cheat-sheet">Summary: R to NumPy cheat sheet</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Python/Introduction Python.html">Python for R Users</a></li><li class="breadcrumb-item"><a href="../Python/numpy.html">NumPy: Arrays and Vectorised Computing</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">NumPy: Arrays and Vectorised Computing</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>You already think in terms of vectors: in R you write <code>c(1, 2, 3) * 2</code> and the whole thing scales at once, no loop required. Python’s plain lists do <strong>not</strong> behave that way, but the <strong>NumPy</strong> library gives you back exactly the vectorised, fast, mathematical objects you are used to. This page is the translation guide: you know this in R, here is the NumPy version.</p>
+<p>Throughout, we import NumPy under its conventional alias <code>np</code>:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>np.__version__</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>'2.4.6'</code></pre>
+</div>
+</div>
+<section id="why-numpy" class="level1">
+<h1>Why NumPy?</h1>
+<p>In R, arithmetic on a vector is <em>element-wise</em> and instant. Python’s built-in <code>list</code> does something quite different: multiplying a list by a number <strong>repeats</strong> the list rather than scaling its contents.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plain_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plain_list <span class="op">*</span> <span class="dv">2</span>          <span class="co"># repetition, NOT element-wise maths!</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 2, 3, 1, 2, 3]</code></pre>
+</div>
+</div>
+<p>Compare with R, where multiplication does what a statistician expects:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plainVector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plainVector <span class="sc">*</span> <span class="dv">2</span>          <span class="co"># element-wise: 2 4 6</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 4 6</code></pre>
+</div>
+</div>
+<p>The fix is the NumPy <strong>array</strong> (<code>ndarray</code>). It is the direct analogue of R’s atomic vector: element-wise arithmetic, vectorised maths functions, and fast C-level loops under the hood.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>arr <span class="op">*</span> <span class="dv">2</span>                  <span class="co"># element-wise: array([2, 4, 6])</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([2, 4, 6])</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: a NumPy array is R's vector">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: a NumPy array is R’s vector
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A Python <code>list</code> is just a container and does not do maths element-wise (<code>[1,2,3] * 2</code> repeats it). Whenever you would reach for an R vector, reach for a <strong>NumPy array</strong> instead: <code>np.array([...])</code>. Everything else on this page follows from that one idea.</p>
+</div>
+</div>
+</section>
+<section id="creating-arrays" class="level1">
+<h1>Creating arrays</h1>
+<p>There are a handful of constructors you will use constantly. Each one maps cleanly onto an R function you already know.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])      <span class="co"># like R's c(1, 2, 3)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([1, 2, 3])</code></pre>
+</div>
+</div>
+<p><code>np.arange</code> is R’s <code>seq</code> with the “by” argument: it generates a sequence with a fixed step. Note the <strong>end is exclusive</strong>, so this stops before 10.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>)      <span class="co"># like seq(0, 8, by = 2) -&gt; 0 2 4 6 8</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([0, 2, 4, 6, 8])</code></pre>
+</div>
+</div>
+<p><code>np.linspace</code> is R’s <code>seq</code> with <code>length.out</code>: give it a start, an end (this time <strong>inclusive</strong>), and how many points you want, evenly spaced.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>)     <span class="co"># like seq(0, 1, length.out = 5)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([0.  , 0.25, 0.5 , 0.75, 1.  ])</code></pre>
+</div>
+</div>
+<p><code>np.zeros</code> and <code>np.ones</code> build arrays filled with a constant, much like R’s <code>rep</code>. For a 2-D shape you pass a tuple <code>(rows, cols)</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>np.zeros(<span class="dv">3</span>)              <span class="co"># like rep(0, 3)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([0., 0., 0.])</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>np.ones((<span class="dv">2</span>, <span class="dv">2</span>))          <span class="co"># a 2x2 matrix of ones; like matrix(1, 2, 2)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[1., 1.],
+       [1., 1.]])</code></pre>
+</div>
+</div>
+<p>Here is the R side of the same ideas for reference:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">8</span>, <span class="at">by =</span> <span class="dv">2</span>)        <span class="co"># arange</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">5</span>)<span class="co"># linspace</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>)                <span class="co"># zeros</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 2 4 6 8
+[1] 0.00 0.25 0.50 0.75 1.00
+[1] 0 0 0</code></pre>
+</div>
+</div>
+</section>
+<section id="vectorised-arithmetic-and-broadcasting" class="level1">
+<h1>Vectorised arithmetic and broadcasting</h1>
+<p>This is where NumPy feels like home. Operators and maths functions apply element-wise, exactly as in R, with no explicit loop.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>arr <span class="op">*</span> <span class="dv">2</span>                  <span class="co"># scale every element</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([2, 4, 6, 8])</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">+</span> arr                <span class="co"># element-wise addition of two arrays</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([2, 4, 6, 8])</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>np.sqrt(arr)             <span class="co"># vectorised maths function, like sqrt() in R</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([1.        , 1.41421356, 1.73205081, 2.        ])</code></pre>
+</div>
+</div>
+<p>When you combine an array with a single number, NumPy <strong>broadcasts</strong> the scalar across every element. This is precisely R’s recycling of a length-1 vector.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">+</span> <span class="dv">10</span>                 <span class="co"># 10 is broadcast to every element</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([11, 12, 13, 14])</code></pre>
+</div>
+</div>
+<p>The R analogue is identical in spirit:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x)                  <span class="co"># vectorised</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">10</span>                   <span class="co"># length-1 vector recycled</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.000000 1.414214 1.732051 2.000000
+[1] 11 12 13 14</code></pre>
+</div>
+</div>
+</section>
+<section id="aggregations-summaries" class="level1">
+<h1>Aggregations (summaries)</h1>
+<p>Reducing an array to a single summary number works just like R’s <code>mean</code>, <code>sum</code>, and friends, with one notable difference: in NumPy these are usually <strong>methods</strong> attached to the array (written <code>arr.mean()</code>), whereas in R they are <strong>functions</strong> that take the vector as an argument (<code>mean(x)</code>).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>])</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>arr.mean()               <span class="co"># R: mean(x)</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>np.float64(6.0)</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>arr.<span class="bu">sum</span>(), arr.<span class="bu">min</span>(), arr.<span class="bu">max</span>()   <span class="co"># R: sum(x), min(x), max(x)</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(np.int64(30), np.int64(2), np.int64(10))</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>arr.std()                <span class="co"># population standard deviation by default</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>np.float64(2.8284271247461903)</code></pre>
+</div>
+</div>
+<p>The R equivalents read left-to-right as function calls:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x); <span class="fu">sum</span>(x); <span class="fu">min</span>(x); <span class="fu">max</span>(x); <span class="fu">sd</span>(x)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6
+[1] 30
+[1] 2
+[1] 10
+[1] 3.162278</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A subtle gotcha: <code>arr.std()</code> divides by <code>n</code> (the population formula), whereas R’s <code>sd(x)</code> divides by <code>n - 1</code> (the sample formula). To match R, use <code>arr.std(ddof=1)</code>, where <code>ddof</code> is the “delta degrees of freedom” subtracted from <code>n</code>.</p>
+</div>
+</div>
+</section>
+<section id="d-arrays-matrices" class="level1">
+<h1>2-D arrays (matrices)</h1>
+<p>A nested list becomes a 2-D array, the analogue of R’s <code>matrix</code>. The <code>.shape</code> attribute reports the dimensions as a <code>(rows, cols)</code> tuple, much like R’s <code>dim()</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>m.shape                  <span class="co"># (2, 2); like dim() in R</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(2, 2)</code></pre>
+</div>
+</div>
+<p>Element access uses square brackets with a comma, and here is the single biggest trap for an R user: <strong>NumPy indices start at 0</strong>, not 1. So the top-left element is <code>m[0, 0]</code>, and <code>m[0, 1]</code> is the first row, second column.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">0</span>, <span class="dv">1</span>]                  <span class="co"># row 0, column 1 -&gt; 2 (R's m[1, 2])</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>np.int64(2)</code></pre>
+</div>
+</div>
+<p>Matrix multiplication uses the <code>@</code> operator, which plays the role of R’s <code>%*%</code>. (Plain <code>*</code> would multiply element-wise instead.)</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">@</span> m                    <span class="co"># matrix product; R: m %*% m</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[ 7, 10],
+       [15, 22]])</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: counting starts at 0, and slice ends are exclusive">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: counting starts at 0, and slice ends are exclusive
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>NumPy is <strong>0-indexed</strong>: the first element is <code>arr[0]</code>, so an R index <code>i</code> becomes a NumPy index <code>i - 1</code>. Slices are also <strong>half-open</strong> (the end is excluded): <code>arr[1:3]</code> returns the elements at positions 1 and 2 only, <em>not</em> position 3. R’s <code>x[2:3]</code> (inclusive) is NumPy’s <code>arr[1:3]</code>.</p>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>])</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>:<span class="dv">3</span>]                   <span class="co"># indices 1 and 2 -&gt; array([20, 30]); 3 is excluded</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([20, 30])</code></pre>
+</div>
+</div>
+</section>
+<section id="boolean-masking" class="level1">
+<h1>Boolean masking</h1>
+<p>Filtering with a logical condition is one of R’s most loved features (<code>x[x &gt; 2]</code>), and NumPy does the same thing with the same syntax. A comparison produces a boolean array, which you then use as an index.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>arr <span class="op">&gt;</span> <span class="dv">2</span>                  <span class="co"># a boolean mask: array([False, False, True, True, True])</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([False, False,  True,  True,  True])</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>arr[arr <span class="op">&gt;</span> <span class="dv">2</span>]             <span class="co"># keep only the elements where the mask is True</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([3, 4, 5])</code></pre>
+</div>
+</div>
+<p><code>np.where</code> is the vectorised “if-else”: choose between two values per element based on a condition, much like R’s <code>ifelse</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>np.where(arr <span class="op">&gt;</span> <span class="dv">2</span>, arr, <span class="dv">0</span>)   <span class="co"># keep values &gt; 2, replace the rest with 0</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([0, 0, 3, 4, 5])</code></pre>
+</div>
+</div>
+<p>The R version is reassuringly familiar:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">2</span>]                 <span class="co"># logical indexing</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">2</span>, x, <span class="dv">0</span>)      <span class="co"># vectorised if-else</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 4 5
+[1] 0 0 3 4 5</code></pre>
+</div>
+</div>
+</section>
+<section id="going-further-speed-and-the-wider-ecosystem" class="level1">
+<h1>Going further: speed and the wider ecosystem</h1>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Just as in R, the golden rule is <strong>vectorise instead of looping</strong>. A Python <code>for</code> loop over millions of elements is slow because each step runs in the Python interpreter; a NumPy expression like <code>arr * 2</code> runs the loop in compiled C, exactly as R’s vectorised operations drop into C/Fortran. So prefer <code>arr.sum()</code> over a hand-written loop, and prefer boolean masks over filtering one element at a time.</p>
+<p>NumPy is also the <strong>foundation of the scientific Python stack</strong>. The <code>scipy</code> library builds on it for optimisation, integration, and statistics; <strong>pandas</strong> data frames store their columns as NumPy arrays; and <strong>scikit-learn</strong> expects NumPy arrays as the inputs and outputs of its models. Learn NumPy well and the rest of the ecosystem falls into place.</p>
+</div>
+</div>
+</section>
+<section id="summary-r-to-numpy-cheat-sheet" class="level1">
+<h1>Summary: R to NumPy cheat sheet</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 31%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>R</th>
+<th>NumPy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Create a vector/array</td>
+<td><code>c(1, 2, 3)</code></td>
+<td><code>np.array([1, 2, 3])</code></td>
+</tr>
+<tr class="even">
+<td>Sequence by step</td>
+<td><code>seq(0, 8, by = 2)</code></td>
+<td><code>np.arange(0, 10, 2)</code></td>
+</tr>
+<tr class="odd">
+<td>Sequence by length</td>
+<td><code>seq(0, 1, length.out = 5)</code></td>
+<td><code>np.linspace(0, 1, 5)</code></td>
+</tr>
+<tr class="even">
+<td>Repeat a constant</td>
+<td><code>rep(0, 3)</code></td>
+<td><code>np.zeros(3)</code></td>
+</tr>
+<tr class="odd">
+<td>Scale element-wise</td>
+<td><code>x * 2</code></td>
+<td><code>arr * 2</code></td>
+</tr>
+<tr class="even">
+<td>Vectorised maths</td>
+<td><code>sqrt(x)</code></td>
+<td><code>np.sqrt(arr)</code></td>
+</tr>
+<tr class="odd">
+<td>Mean / sum</td>
+<td><code>mean(x)</code> / <code>sum(x)</code></td>
+<td><code>arr.mean()</code> / <code>arr.sum()</code></td>
+</tr>
+<tr class="even">
+<td>Standard deviation</td>
+<td><code>sd(x)</code></td>
+<td><code>arr.std(ddof=1)</code></td>
+</tr>
+<tr class="odd">
+<td>Matrix</td>
+<td><code>matrix(...)</code></td>
+<td><code>np.array([[...], [...]])</code></td>
+</tr>
+<tr class="even">
+<td>Dimensions</td>
+<td><code>dim(m)</code></td>
+<td><code>m.shape</code></td>
+</tr>
+<tr class="odd">
+<td>Element (1- vs 0-indexed)</td>
+<td><code>m[1, 2]</code></td>
+<td><code>m[0, 1]</code></td>
+</tr>
+<tr class="even">
+<td>Matrix multiply</td>
+<td><code>m %*% m</code></td>
+<td><code>m @ m</code></td>
+</tr>
+<tr class="odd">
+<td>Logical filter</td>
+<td><code>x[x &gt; 2]</code></td>
+<td><code>arr[arr &gt; 2]</code></td>
+</tr>
+<tr class="even">
+<td>Vectorised if-else</td>
+<td><code>ifelse(c, a, b)</code></td>
+<td><code>np.where(c, a, b)</code></td>
+</tr>
+</tbody>
+</table>
+<p>You now have the core translation: a NumPy array is R’s vector, arithmetic is element-wise, summaries are methods, and indexing starts at 0. With that mental model, most NumPy code reads like the R you already know.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "NumPy: Arrays and Vectorised Computing"</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="co">    mathjax: true</span></span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>You already think in terms of vectors: in R you write <span class="in">`c(1, 2, 3) * 2`</span> and the whole thing scales at once, no loop required. Python's plain lists do **not** behave that way, but the **NumPy** library gives you back exactly the vectorised, fast, mathematical objects you are used to. This page is the translation guide: you know this in R, here is the NumPy version.</span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>Throughout, we import NumPy under its conventional alias <span class="in">`np`</span>:</span>
+<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a>np.__version__</span>
+<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a><span class="fu"># Why NumPy?</span></span>
+<span id="cb55-31"><a href="#cb55-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-32"><a href="#cb55-32" aria-hidden="true" tabindex="-1"></a>In R, arithmetic on a vector is *element-wise* and instant. Python's built-in `list` does something quite different: multiplying a list by a number **repeats** the list rather than scaling its contents.</span>
+<span id="cb55-33"><a href="#cb55-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-36"><a href="#cb55-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-37"><a href="#cb55-37" aria-hidden="true" tabindex="-1"></a>plain_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb55-38"><a href="#cb55-38" aria-hidden="true" tabindex="-1"></a>plain_list <span class="op">*</span> <span class="dv">2</span>          <span class="co"># repetition, NOT element-wise maths!</span></span>
+<span id="cb55-39"><a href="#cb55-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-40"><a href="#cb55-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-41"><a href="#cb55-41" aria-hidden="true" tabindex="-1"></a>Compare with R, where multiplication does what a statistician expects:</span>
+<span id="cb55-42"><a href="#cb55-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-45"><a href="#cb55-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-46"><a href="#cb55-46" aria-hidden="true" tabindex="-1"></a>plainVector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb55-47"><a href="#cb55-47" aria-hidden="true" tabindex="-1"></a>plainVector <span class="sc">*</span> <span class="dv">2</span>          <span class="co"># element-wise: 2 4 6</span></span>
+<span id="cb55-48"><a href="#cb55-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-49"><a href="#cb55-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-50"><a href="#cb55-50" aria-hidden="true" tabindex="-1"></a>The fix is the NumPy **array** (<span class="in">`ndarray`</span>). It is the direct analogue of R's atomic vector: element-wise arithmetic, vectorised maths functions, and fast C-level loops under the hood.</span>
+<span id="cb55-51"><a href="#cb55-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-54"><a href="#cb55-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-55"><a href="#cb55-55" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb55-56"><a href="#cb55-56" aria-hidden="true" tabindex="-1"></a>arr <span class="op">*</span> <span class="dv">2</span>                  <span class="co"># element-wise: array([2, 4, 6])</span></span>
+<span id="cb55-57"><a href="#cb55-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-58"><a href="#cb55-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-59"><a href="#cb55-59" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: a NumPy array is R's vector"}</span>
+<span id="cb55-60"><a href="#cb55-60" aria-hidden="true" tabindex="-1"></a>A Python <span class="in">`list`</span> is just a container and does not do maths element-wise (<span class="in">`[1,2,3] * 2`</span> repeats it). Whenever you would reach for an R vector, reach for a **NumPy array** instead: <span class="in">`np.array([...])`</span>. Everything else on this page follows from that one idea.</span>
+<span id="cb55-61"><a href="#cb55-61" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb55-62"><a href="#cb55-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-63"><a href="#cb55-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># Creating arrays</span></span>
+<span id="cb55-64"><a href="#cb55-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-65"><a href="#cb55-65" aria-hidden="true" tabindex="-1"></a>There are a handful of constructors you will use constantly. Each one maps cleanly onto an R function you already know.</span>
+<span id="cb55-66"><a href="#cb55-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-69"><a href="#cb55-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-70"><a href="#cb55-70" aria-hidden="true" tabindex="-1"></a>np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])      <span class="co"># like R's c(1, 2, 3)</span></span>
+<span id="cb55-71"><a href="#cb55-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-72"><a href="#cb55-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-73"><a href="#cb55-73" aria-hidden="true" tabindex="-1"></a><span class="in">`np.arange`</span> is R's <span class="in">`seq`</span> with the "by" argument: it generates a sequence with a fixed step. Note the **end is exclusive**, so this stops before 10.</span>
+<span id="cb55-74"><a href="#cb55-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-77"><a href="#cb55-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-78"><a href="#cb55-78" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>)      <span class="co"># like seq(0, 8, by = 2) -&gt; 0 2 4 6 8</span></span>
+<span id="cb55-79"><a href="#cb55-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-80"><a href="#cb55-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-81"><a href="#cb55-81" aria-hidden="true" tabindex="-1"></a><span class="in">`np.linspace`</span> is R's <span class="in">`seq`</span> with <span class="in">`length.out`</span>: give it a start, an end (this time **inclusive**), and how many points you want, evenly spaced.</span>
+<span id="cb55-82"><a href="#cb55-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-85"><a href="#cb55-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-86"><a href="#cb55-86" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>)     <span class="co"># like seq(0, 1, length.out = 5)</span></span>
+<span id="cb55-87"><a href="#cb55-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-88"><a href="#cb55-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-89"><a href="#cb55-89" aria-hidden="true" tabindex="-1"></a><span class="in">`np.zeros`</span> and <span class="in">`np.ones`</span> build arrays filled with a constant, much like R's <span class="in">`rep`</span>. For a 2-D shape you pass a tuple <span class="in">`(rows, cols)`</span>.</span>
+<span id="cb55-90"><a href="#cb55-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-93"><a href="#cb55-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-94"><a href="#cb55-94" aria-hidden="true" tabindex="-1"></a>np.zeros(<span class="dv">3</span>)              <span class="co"># like rep(0, 3)</span></span>
+<span id="cb55-95"><a href="#cb55-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-96"><a href="#cb55-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-99"><a href="#cb55-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-100"><a href="#cb55-100" aria-hidden="true" tabindex="-1"></a>np.ones((<span class="dv">2</span>, <span class="dv">2</span>))          <span class="co"># a 2x2 matrix of ones; like matrix(1, 2, 2)</span></span>
+<span id="cb55-101"><a href="#cb55-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-102"><a href="#cb55-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-103"><a href="#cb55-103" aria-hidden="true" tabindex="-1"></a>Here is the R side of the same ideas for reference:</span>
+<span id="cb55-104"><a href="#cb55-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-107"><a href="#cb55-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-108"><a href="#cb55-108" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">8</span>, <span class="at">by =</span> <span class="dv">2</span>)        <span class="co"># arange</span></span>
+<span id="cb55-109"><a href="#cb55-109" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">5</span>)<span class="co"># linspace</span></span>
+<span id="cb55-110"><a href="#cb55-110" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>)                <span class="co"># zeros</span></span>
+<span id="cb55-111"><a href="#cb55-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-112"><a href="#cb55-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-113"><a href="#cb55-113" aria-hidden="true" tabindex="-1"></a><span class="fu"># Vectorised arithmetic and broadcasting</span></span>
+<span id="cb55-114"><a href="#cb55-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-115"><a href="#cb55-115" aria-hidden="true" tabindex="-1"></a>This is where NumPy feels like home. Operators and maths functions apply element-wise, exactly as in R, with no explicit loop.</span>
+<span id="cb55-116"><a href="#cb55-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-119"><a href="#cb55-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-120"><a href="#cb55-120" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb55-121"><a href="#cb55-121" aria-hidden="true" tabindex="-1"></a>arr <span class="op">*</span> <span class="dv">2</span>                  <span class="co"># scale every element</span></span>
+<span id="cb55-122"><a href="#cb55-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-123"><a href="#cb55-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-126"><a href="#cb55-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-127"><a href="#cb55-127" aria-hidden="true" tabindex="-1"></a>arr <span class="op">+</span> arr                <span class="co"># element-wise addition of two arrays</span></span>
+<span id="cb55-128"><a href="#cb55-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-129"><a href="#cb55-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-132"><a href="#cb55-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-133"><a href="#cb55-133" aria-hidden="true" tabindex="-1"></a>np.sqrt(arr)             <span class="co"># vectorised maths function, like sqrt() in R</span></span>
+<span id="cb55-134"><a href="#cb55-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-135"><a href="#cb55-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-136"><a href="#cb55-136" aria-hidden="true" tabindex="-1"></a>When you combine an array with a single number, NumPy **broadcasts** the scalar across every element. This is precisely R's recycling of a length-1 vector.</span>
+<span id="cb55-137"><a href="#cb55-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-140"><a href="#cb55-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-141"><a href="#cb55-141" aria-hidden="true" tabindex="-1"></a>arr <span class="op">+</span> <span class="dv">10</span>                 <span class="co"># 10 is broadcast to every element</span></span>
+<span id="cb55-142"><a href="#cb55-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-143"><a href="#cb55-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-144"><a href="#cb55-144" aria-hidden="true" tabindex="-1"></a>The R analogue is identical in spirit:</span>
+<span id="cb55-145"><a href="#cb55-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-148"><a href="#cb55-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-149"><a href="#cb55-149" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb55-150"><a href="#cb55-150" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x)                  <span class="co"># vectorised</span></span>
+<span id="cb55-151"><a href="#cb55-151" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">10</span>                   <span class="co"># length-1 vector recycled</span></span>
+<span id="cb55-152"><a href="#cb55-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-153"><a href="#cb55-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-154"><a href="#cb55-154" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aggregations (summaries)</span></span>
+<span id="cb55-155"><a href="#cb55-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-156"><a href="#cb55-156" aria-hidden="true" tabindex="-1"></a>Reducing an array to a single summary number works just like R's <span class="in">`mean`</span>, <span class="in">`sum`</span>, and friends, with one notable difference: in NumPy these are usually **methods** attached to the array (written `arr.mean()`), whereas in R they are **functions** that take the vector as an argument (<span class="in">`mean(x)`</span>).</span>
+<span id="cb55-157"><a href="#cb55-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-160"><a href="#cb55-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-161"><a href="#cb55-161" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>])</span>
+<span id="cb55-162"><a href="#cb55-162" aria-hidden="true" tabindex="-1"></a>arr.mean()               <span class="co"># R: mean(x)</span></span>
+<span id="cb55-163"><a href="#cb55-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-164"><a href="#cb55-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-167"><a href="#cb55-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-168"><a href="#cb55-168" aria-hidden="true" tabindex="-1"></a>arr.<span class="bu">sum</span>(), arr.<span class="bu">min</span>(), arr.<span class="bu">max</span>()   <span class="co"># R: sum(x), min(x), max(x)</span></span>
+<span id="cb55-169"><a href="#cb55-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-170"><a href="#cb55-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-173"><a href="#cb55-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-174"><a href="#cb55-174" aria-hidden="true" tabindex="-1"></a>arr.std()                <span class="co"># population standard deviation by default</span></span>
+<span id="cb55-175"><a href="#cb55-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-176"><a href="#cb55-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-177"><a href="#cb55-177" aria-hidden="true" tabindex="-1"></a>The R equivalents read left-to-right as function calls:</span>
+<span id="cb55-178"><a href="#cb55-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-181"><a href="#cb55-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-182"><a href="#cb55-182" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb55-183"><a href="#cb55-183" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x); <span class="fu">sum</span>(x); <span class="fu">min</span>(x); <span class="fu">max</span>(x); <span class="fu">sd</span>(x)</span>
+<span id="cb55-184"><a href="#cb55-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-185"><a href="#cb55-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-186"><a href="#cb55-186" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb55-187"><a href="#cb55-187" aria-hidden="true" tabindex="-1"></a>A subtle gotcha: <span class="in">`arr.std()`</span> divides by <span class="in">`n`</span> (the population formula), whereas R's <span class="in">`sd(x)`</span> divides by <span class="in">`n - 1`</span> (the sample formula). To match R, use <span class="in">`arr.std(ddof=1)`</span>, where <span class="in">`ddof`</span> is the "delta degrees of freedom" subtracted from <span class="in">`n`</span>.</span>
+<span id="cb55-188"><a href="#cb55-188" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb55-189"><a href="#cb55-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-190"><a href="#cb55-190" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2-D arrays (matrices)</span></span>
+<span id="cb55-191"><a href="#cb55-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-192"><a href="#cb55-192" aria-hidden="true" tabindex="-1"></a>A nested list becomes a 2-D array, the analogue of R's <span class="in">`matrix`</span>. The <span class="in">`.shape`</span> attribute reports the dimensions as a <span class="in">`(rows, cols)`</span> tuple, much like R's <span class="in">`dim()`</span>.</span>
+<span id="cb55-193"><a href="#cb55-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-196"><a href="#cb55-196" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-197"><a href="#cb55-197" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb55-198"><a href="#cb55-198" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">3</span>, <span class="dv">4</span>]])</span>
+<span id="cb55-199"><a href="#cb55-199" aria-hidden="true" tabindex="-1"></a>m.shape                  <span class="co"># (2, 2); like dim() in R</span></span>
+<span id="cb55-200"><a href="#cb55-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-201"><a href="#cb55-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-202"><a href="#cb55-202" aria-hidden="true" tabindex="-1"></a>Element access uses square brackets with a comma, and here is the single biggest trap for an R user: **NumPy indices start at 0**, not 1. So the top-left element is <span class="in">`m[0, 0]`</span>, and <span class="in">`m[0, 1]`</span> is the first row, second column.</span>
+<span id="cb55-203"><a href="#cb55-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-206"><a href="#cb55-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-207"><a href="#cb55-207" aria-hidden="true" tabindex="-1"></a>m[<span class="dv">0</span>, <span class="dv">1</span>]                  <span class="co"># row 0, column 1 -&gt; 2 (R's m[1, 2])</span></span>
+<span id="cb55-208"><a href="#cb55-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-209"><a href="#cb55-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-210"><a href="#cb55-210" aria-hidden="true" tabindex="-1"></a>Matrix multiplication uses the <span class="in">`@`</span> operator, which plays the role of R's <span class="in">`%*%`</span>. (Plain <span class="in">`*`</span> would multiply element-wise instead.)</span>
+<span id="cb55-211"><a href="#cb55-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-214"><a href="#cb55-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-215"><a href="#cb55-215" aria-hidden="true" tabindex="-1"></a>m <span class="op">@</span> m                    <span class="co"># matrix product; R: m %*% m</span></span>
+<span id="cb55-216"><a href="#cb55-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-217"><a href="#cb55-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-218"><a href="#cb55-218" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: counting starts at 0, and slice ends are exclusive"}</span>
+<span id="cb55-219"><a href="#cb55-219" aria-hidden="true" tabindex="-1"></a>NumPy is **0-indexed**: the first element is `arr[0]`, so an R index `i` becomes a NumPy index `i - 1`. Slices are also **half-open** (the end is excluded): <span class="in">`arr[1:3]`</span> returns the elements at positions 1 and 2 only, *not* position 3. R's <span class="in">`x[2:3]`</span> (inclusive) is NumPy's <span class="in">`arr[1:3]`</span>.</span>
+<span id="cb55-220"><a href="#cb55-220" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb55-221"><a href="#cb55-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-224"><a href="#cb55-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-225"><a href="#cb55-225" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>])</span>
+<span id="cb55-226"><a href="#cb55-226" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>:<span class="dv">3</span>]                   <span class="co"># indices 1 and 2 -&gt; array([20, 30]); 3 is excluded</span></span>
+<span id="cb55-227"><a href="#cb55-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-228"><a href="#cb55-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-229"><a href="#cb55-229" aria-hidden="true" tabindex="-1"></a><span class="fu"># Boolean masking</span></span>
+<span id="cb55-230"><a href="#cb55-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-231"><a href="#cb55-231" aria-hidden="true" tabindex="-1"></a>Filtering with a logical condition is one of R's most loved features (<span class="in">`x[x &gt; 2]`</span>), and NumPy does the same thing with the same syntax. A comparison produces a boolean array, which you then use as an index.</span>
+<span id="cb55-232"><a href="#cb55-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-235"><a href="#cb55-235" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-236"><a href="#cb55-236" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb55-237"><a href="#cb55-237" aria-hidden="true" tabindex="-1"></a>arr <span class="op">&gt;</span> <span class="dv">2</span>                  <span class="co"># a boolean mask: array([False, False, True, True, True])</span></span>
+<span id="cb55-238"><a href="#cb55-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-239"><a href="#cb55-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-242"><a href="#cb55-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-243"><a href="#cb55-243" aria-hidden="true" tabindex="-1"></a>arr[arr <span class="op">&gt;</span> <span class="dv">2</span>]             <span class="co"># keep only the elements where the mask is True</span></span>
+<span id="cb55-244"><a href="#cb55-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-245"><a href="#cb55-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-246"><a href="#cb55-246" aria-hidden="true" tabindex="-1"></a><span class="in">`np.where`</span> is the vectorised "if-else": choose between two values per element based on a condition, much like R's <span class="in">`ifelse`</span>.</span>
+<span id="cb55-247"><a href="#cb55-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-250"><a href="#cb55-250" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb55-251"><a href="#cb55-251" aria-hidden="true" tabindex="-1"></a>np.where(arr <span class="op">&gt;</span> <span class="dv">2</span>, arr, <span class="dv">0</span>)   <span class="co"># keep values &gt; 2, replace the rest with 0</span></span>
+<span id="cb55-252"><a href="#cb55-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-253"><a href="#cb55-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-254"><a href="#cb55-254" aria-hidden="true" tabindex="-1"></a>The R version is reassuringly familiar:</span>
+<span id="cb55-255"><a href="#cb55-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-258"><a href="#cb55-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-259"><a href="#cb55-259" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb55-260"><a href="#cb55-260" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">2</span>]                 <span class="co"># logical indexing</span></span>
+<span id="cb55-261"><a href="#cb55-261" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">2</span>, x, <span class="dv">0</span>)      <span class="co"># vectorised if-else</span></span>
+<span id="cb55-262"><a href="#cb55-262" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-263"><a href="#cb55-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-264"><a href="#cb55-264" aria-hidden="true" tabindex="-1"></a><span class="fu"># Going further: speed and the wider ecosystem</span></span>
+<span id="cb55-265"><a href="#cb55-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-266"><a href="#cb55-266" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb55-267"><a href="#cb55-267" aria-hidden="true" tabindex="-1"></a>Just as in R, the golden rule is **vectorise instead of looping**. A Python <span class="in">`for`</span> loop over millions of elements is slow because each step runs in the Python interpreter; a NumPy expression like <span class="in">`arr * 2`</span> runs the loop in compiled C, exactly as R's vectorised operations drop into C/Fortran. So prefer <span class="in">`arr.sum()`</span> over a hand-written loop, and prefer boolean masks over filtering one element at a time.</span>
+<span id="cb55-268"><a href="#cb55-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-269"><a href="#cb55-269" aria-hidden="true" tabindex="-1"></a>NumPy is also the **foundation of the scientific Python stack**. The `scipy` library builds on it for optimisation, integration, and statistics; **pandas** data frames store their columns as NumPy arrays; and **scikit-learn** expects NumPy arrays as the inputs and outputs of its models. Learn NumPy well and the rest of the ecosystem falls into place.</span>
+<span id="cb55-270"><a href="#cb55-270" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb55-271"><a href="#cb55-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-272"><a href="#cb55-272" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary: R to NumPy cheat sheet</span></span>
+<span id="cb55-273"><a href="#cb55-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-274"><a href="#cb55-274" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Task <span class="pp">|</span> R <span class="pp">|</span> NumPy <span class="pp">|</span></span>
+<span id="cb55-275"><a href="#cb55-275" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|------|-------|</span></span>
+<span id="cb55-276"><a href="#cb55-276" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Create a vector/array <span class="pp">|</span> <span class="in">`c(1, 2, 3)`</span> <span class="pp">|</span> <span class="in">`np.array([1, 2, 3])`</span> <span class="pp">|</span></span>
+<span id="cb55-277"><a href="#cb55-277" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sequence by step <span class="pp">|</span> <span class="in">`seq(0, 8, by = 2)`</span> <span class="pp">|</span> <span class="in">`np.arange(0, 10, 2)`</span> <span class="pp">|</span></span>
+<span id="cb55-278"><a href="#cb55-278" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sequence by length <span class="pp">|</span> <span class="in">`seq(0, 1, length.out = 5)`</span> <span class="pp">|</span> <span class="in">`np.linspace(0, 1, 5)`</span> <span class="pp">|</span></span>
+<span id="cb55-279"><a href="#cb55-279" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Repeat a constant <span class="pp">|</span> <span class="in">`rep(0, 3)`</span> <span class="pp">|</span> <span class="in">`np.zeros(3)`</span> <span class="pp">|</span></span>
+<span id="cb55-280"><a href="#cb55-280" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Scale element-wise <span class="pp">|</span> <span class="in">`x * 2`</span> <span class="pp">|</span> <span class="in">`arr * 2`</span> <span class="pp">|</span></span>
+<span id="cb55-281"><a href="#cb55-281" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Vectorised maths <span class="pp">|</span> <span class="in">`sqrt(x)`</span> <span class="pp">|</span> <span class="in">`np.sqrt(arr)`</span> <span class="pp">|</span></span>
+<span id="cb55-282"><a href="#cb55-282" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mean / sum <span class="pp">|</span> <span class="in">`mean(x)`</span> / <span class="in">`sum(x)`</span> <span class="pp">|</span> <span class="in">`arr.mean()`</span> / <span class="in">`arr.sum()`</span> <span class="pp">|</span></span>
+<span id="cb55-283"><a href="#cb55-283" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Standard deviation <span class="pp">|</span> <span class="in">`sd(x)`</span> <span class="pp">|</span> <span class="in">`arr.std(ddof=1)`</span> <span class="pp">|</span></span>
+<span id="cb55-284"><a href="#cb55-284" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Matrix <span class="pp">|</span> <span class="in">`matrix(...)`</span> <span class="pp">|</span> <span class="in">`np.array([[...], [...]])`</span> <span class="pp">|</span></span>
+<span id="cb55-285"><a href="#cb55-285" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Dimensions <span class="pp">|</span> <span class="in">`dim(m)`</span> <span class="pp">|</span> <span class="in">`m.shape`</span> <span class="pp">|</span></span>
+<span id="cb55-286"><a href="#cb55-286" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Element (1- vs 0-indexed) <span class="pp">|</span> <span class="in">`m[1, 2]`</span> <span class="pp">|</span> <span class="in">`m[0, 1]`</span> <span class="pp">|</span></span>
+<span id="cb55-287"><a href="#cb55-287" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Matrix multiply <span class="pp">|</span> <span class="in">`m %*% m`</span> <span class="pp">|</span> <span class="in">`m @ m`</span> <span class="pp">|</span></span>
+<span id="cb55-288"><a href="#cb55-288" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logical filter <span class="pp">|</span> <span class="in">`x[x &gt; 2]`</span> <span class="pp">|</span> <span class="in">`arr[arr &gt; 2]`</span> <span class="pp">|</span></span>
+<span id="cb55-289"><a href="#cb55-289" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Vectorised if-else <span class="pp">|</span> <span class="in">`ifelse(c, a, b)`</span> <span class="pp">|</span> <span class="in">`np.where(c, a, b)`</span> <span class="pp">|</span></span>
+<span id="cb55-290"><a href="#cb55-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-291"><a href="#cb55-291" aria-hidden="true" tabindex="-1"></a>You now have the core translation: a NumPy array is R's vector, arithmetic is element-wise, summaries are methods, and indexing starts at 0. With that mental model, most NumPy code reads like the R you already know.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

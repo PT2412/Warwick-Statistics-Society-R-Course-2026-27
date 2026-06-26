@@ -18,7 +18,13 @@ engine: knitr
 
 # Mathematical Intuition
 
-Recall from Sets and Numbers the Euclidean algorithm where we want to find the greatest common divisor (GCD) of two integers $(a, b)$: $$
+Recall from Sets and Numbers the Euclidean algorithm where we want to find the greatest common divisor (GCD) of two integers $(a, b)$.
+
+::: {.callout-note title="In a nutshell: what is a GCD?"}
+The greatest common divisor is simply the **largest whole number that divides both** of your numbers exactly (with no remainder). For example, $\gcd(12, 8) = 4$, because $4$ divides both $12$ and $8$, and nothing bigger does. Keep that plain picture in mind as you read the formal definition below.
+:::
+
+The GCD is defined as: $$
 \gcd(a,b) =
 \begin{cases}
 |a|, & \text{if } b = 0, \\
@@ -28,7 +34,7 @@ $$
 
 The algorithmic idea: repeatedly replace the pair $(a, b)$ with $(b, a \mod b)$ until the second number becomes $0$. Let us now look at a simplified flowchart of what we want our computer program to do.
 
-**QUESTION FOR THE READER: TRY TO DRAW THE FLOWCHART ON YOUR OWN!**
+**Question for the reader: try to draw the flowchart on your own!**
 
 ------------------------------------------------------------------------
 
@@ -64,7 +70,7 @@ flowchart TD
 
 ```{r}
 # Define the GCD function
-gcd_iterative <- function(a, b) {
+gcdIterative <- function(a, b) {
   a <- abs(as.integer(a))
   b <- abs(as.integer(b))
   while (b != 0) {
@@ -76,11 +82,11 @@ gcd_iterative <- function(a, b) {
 }
 
 # Set up the recursive part of the function
-gcd_recursive <- function(a, b) {
+gcdRecursive <- function(a, b) {
   a <- abs(as.integer(a))
   b <- abs(as.integer(b))
   if (b == 0) return(a)
-  gcd_recursive(b, a %% b)
+  gcdRecursive(b, a %% b)
 }
 ```
 
@@ -89,11 +95,30 @@ gcd_recursive <- function(a, b) {
 # Example usage
 
 ```{r}
-gcd_iterative(384, 24)
+gcdIterative(384, 24)
 ```
 
 ```{r}
-gcd_iterative(1071, 462)
+gcdIterative(1071, 462)
 ```
 
 In this example, we can see how we can **break down** algebraic reasoning (these are the skills proofs of theorems and lemmas give you!) into their **basic building blocks** and then express them as a **loop** or **recursive function** as you would do on paper! We have successfully turned a symbolic rule into a computational process! Now it is your turn, try to implement any algorithm of your choosing and see if you can get it to work!
+
+::: {.callout-tip title="Going further 🚀"}
+The **extended** Euclidean algorithm returns not just the GCD but also integers $s, t$ (the *Bézout coefficients*) satisfying $\gcd(a, b) = s \cdot a + t \cdot b$ — useful for modular inverses in cryptography. We can also extend the GCD to a whole vector by **folding** the two-argument function across it with `Reduce()`.
+
+```{r}
+###| Extended Euclidean algorithm: returns gcd and Bezout coefficients s, t
+extendedGcd <- function(a, b) {
+  if (b == 0) return(c(g = a, s = 1, t = 0))
+  prev <- extendedGcd(b, a %% b)
+  c(g = prev["g"], s = prev["t"], t = prev["s"] - (a %/% b) * prev["t"])
+}
+extendedGcd(240, 46)
+
+###| GCD of a whole vector by folding the pairwise function
+Reduce(gcdIterative, c(48, 36, 60, 24))
+```
+
+In practice you rarely need to write your own: the `numbers` package provides a ready-made `numbers::GCD()`, so reach for that in production code.
+:::

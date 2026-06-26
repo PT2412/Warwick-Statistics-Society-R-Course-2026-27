@@ -1,8 +1,5 @@
 ---
 title: "Introduction to Report Writing"
-author: 
-  name: Niko Gigiberia
-  email: Niko.gigiberia@warwick.ac.uk
 format: 
   html:
     fig-width: 10
@@ -21,6 +18,16 @@ format:
 The subsections here will introduce core principles of **statistical report writing**, with a focus on clarity, structure, and effective communication. These conventions are directly relevant to the **ST117 final project**, **ST231**, and more broadly to academic and professional statistical writing.
 
 Good report writing is not about adding complexity, but about presenting results in a way that allows the reader to understand *what was done*, *why it was done*, and *what the results mean*, without ambiguity or unnecessary detail.
+
+A strong statistical report achieves three things:
+
+- it records the analysis clearly,
+- it makes the conclusions easy to follow,
+- it allows someone else to reproduce the work.
+
+### What you will learn
+
+This section will help you decide what belongs in each report section, how much detail is enough, and how to choose the right form of presentation for your results.
 
 This section covers:
 

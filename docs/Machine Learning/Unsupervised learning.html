@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Unsupervised Learning: Clustering and PCA – Warwick Statistics Society R Course 2026-2027</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-58ec2c53576327155c6cc72c64bc2f59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script data-goatcounter="https://rcourse.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Warwick Statistics Society R Course 2026-2027</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Using R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cheatsheets.html"> 
+<span class="menu-text">Cheatsheets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data/Raw data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Machine Learning/Introduction ML.html">Machine Learning (R and Python)</a></li><li class="breadcrumb-item"><a href="../Machine Learning/Unsupervised learning.html">Unsupervised Learning: Clustering and PCA</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/introduction to r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/data structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Operators</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/control structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control structures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/Random numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random numbers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Introduction to R/figures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Theory of Programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Purpose of Programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Purpose of Programming</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Control Structures and Abstraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Structures &amp; Code Abstraction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Programming Best Practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming Best Practices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Time and Space Efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time and Space Efficiency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Interpreter vs Compilers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpreters vs Compilers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Efficiency in R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Efficiency in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Theory of Programming/Data Structures and Algorithms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Structures and Algorithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mathematics to R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code intuit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mathematical intuition behind coding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code Euclidean Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Euclidean Algorithm — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MonteCarlo Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo Approximation of π — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code NewtonRaph Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Newton–Raphson Method — Translating Math into Code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mathematics to Code/Mathematics to Code MarkovChain Example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Markov Chains</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linear modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Linear modelling intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/What is a linear model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a linear model?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Loading in data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading in data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Continuous data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with continuous data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Categorical data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fitting a model with categorical data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Diagnostics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model diagnostics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Modelling/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check your understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Generalised Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Introduction GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Generalised Linear Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Logistic regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression (Binary Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Poisson regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poisson Regression (Count Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Diagnostics GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diagnostics and Inference for GLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../GLMs/Check your understanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Check Your Understanding</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Frequentist Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/Introduction Statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/likelihood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Likelihood, Score and Fisher Information</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/asymptotics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Asymptotics and Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation in R: Tractable and Intractable Problems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/hypothesis testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Frequentist Statistics/worked examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Pipeline End to End</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bayesian Statistics (Parametric Models)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/Introduction Bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Bayesian Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/posterior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayes’ Theorem and the Posterior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/priors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Priors and the Large-Sample Bridge</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Computation: Grid Approximation and MCMC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/model comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Testing and Model Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/worked examples bayesian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Worked Examples: The Whole Bayesian Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Bayesian Statistics/forecasting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bayesian Forecasting: Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/Cars dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">cars dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/summary tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr: summary tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../EDA/tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wrangling with the tidyverse</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Visualisation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/introvisualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Data Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/importing data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Import and Preparation in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/baseR and ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to ggplot2: The Grammar of Graphics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/customising graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Customisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/univariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Univariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/bivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Bivariate Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/timegraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/multivar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualising Multiple Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/othergraphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Specialised Visualisation Techniques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data Visualisation/advice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Best Practices</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Report Writing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportintro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Report Writing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportstructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Report Structure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Report Statistical Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportreproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility and Workflow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportenglish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">English and Style</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Report Writing/reportai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use AI/LLMs for your studies</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python for R Users</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/Introduction Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for R Users: Setup and Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy: Arrays and Vectorised Computing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pandas: DataFrames for Data Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Python/R vs Python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R vs Python: Key Differences</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Machine Learning (R and Python)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Introduction ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Supervised learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervised Learning: Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Regularisation and cross-validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regularisation and Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Unsupervised learning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Unsupervised Learning: Clustering and PCA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Machine Learning/Deep learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning: Neural Networks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-unsupervised-learning" id="toc-what-is-unsupervised-learning" class="nav-link active" data-scroll-target="#what-is-unsupervised-learning">What is unsupervised learning?</a></li>
+  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering">k-means clustering</a></li>
+  <li><a href="#choosing-k-the-elbow-method" id="toc-choosing-k-the-elbow-method" class="nav-link" data-scroll-target="#choosing-k-the-elbow-method">Choosing k: the elbow method</a></li>
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going further 🚀</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Machine Learning/Introduction ML.html">Machine Learning (R and Python)</a></li><li class="breadcrumb-item"><a href="../Machine Learning/Unsupervised learning.html">Unsupervised Learning: Clustering and PCA</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Unsupervised Learning: Clustering and PCA</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="what-is-unsupervised-learning" class="level1">
+<h1>What is unsupervised learning?</h1>
+<p>So far in this course, most of the modelling we have done has been <em>supervised</em>: we had an outcome variable <span class="math inline">\(y\)</span> (a response) and a set of explanatory variables <span class="math inline">\(X\)</span>, and we tried to learn the relationship between them. <strong>Unsupervised learning</strong> throws away the labels. We are handed only the features <span class="math inline">\(X\)</span> and asked a far more open-ended question: <em>is there any interesting structure in here?</em></p>
+<p>That structure usually takes one of two forms. We might look for <strong>groups</strong> of observations that resemble one another (clustering), or we might look for a <strong>lower-dimensional summary</strong> that captures most of what is going on (dimensionality reduction). Throughout this page we use the famous <code>iris</code> dataset, but we will deliberately pretend we do <strong>not</strong> know the species. We will work only with the four numeric measurements, discover structure from those alone, and then — right at the end — peek at the true species to see how well we did.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-iris</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Pretend we have no labels: keep only the four numeric measurement columns.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>measurements <span class="ot">&lt;-</span> iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(measurements)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(measurements)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width
+1          5.1         3.5          1.4         0.2
+2          4.9         3.0          1.4         0.2
+3          4.7         3.2          1.3         0.2
+4          4.6         3.1          1.5         0.2
+5          5.0         3.6          1.4         0.2
+6          5.4         3.9          1.7         0.4
+  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+ Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+ 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+ Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+ Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+ 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+ Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  </code></pre>
+</div>
+</div>
+<p>Here is the same setup in Python, loading the iris features from <code>scikit-learn</code>:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data            <span class="co"># the four numeric measurements</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> iris.feature_names</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame(X, columns<span class="op">=</span>feature_names).head())</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: no y to predict">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: no y to predict
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Supervised learning has a target column and asks <em>“predict y from X”</em>. Unsupervised learning has <strong>no target</strong> — only the features. Instead of measuring accuracy against known answers, we hunt for hidden structure: clusters of similar observations, or directions along which the data vary most. There is no single “right answer”, which is exactly what makes it both powerful and a little subjective.</p>
+</div>
+</div>
+</section>
+<section id="k-means-clustering" class="level1">
+<h1>k-means clustering</h1>
+<p>The most popular clustering method is <strong>k-means</strong>. We pick a number of clusters <span class="math inline">\(k\)</span> in advance. The algorithm then places <span class="math inline">\(k\)</span> centres in the feature space and repeatedly (i) assigns each point to its nearest centre and (ii) moves each centre to the average of the points assigned to it, until nothing changes. It is essentially trying to minimise the total squared distance from each point to its cluster centre.</p>
+<p>One subtlety matters enormously: k-means uses Euclidean distance, so variables measured on larger scales dominate. We therefore <strong>scale</strong> the data first so each measurement contributes comparably.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: kmeans-fit</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale so every measurement has mean 0 and standard deviation 1.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>scaledData <span class="ot">&lt;-</span> <span class="fu">scale</span>(measurements)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask for 3 clusters. nstart tries several random starts and keeps the best.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>kmeansFit <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(scaledData, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># How many points landed in each cluster?</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(kmeansFit<span class="sc">$</span>cluster)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 1  2  3 
+53 50 47 </code></pre>
+</div>
+</div>
+<p>Now for the moment of truth. We never told the algorithm about species, but let us cross-tabulate the discovered clusters against the true species:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: kmeans-vs-species</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">cluster =</span> kmeansFit<span class="sc">$</span>cluster, <span class="at">species =</span> iris<span class="sc">$</span>Species)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       species
+cluster setosa versicolor virginica
+      1      0         39        14
+      2     50          0         0
+      3      0         11        36</code></pre>
+</div>
+</div>
+<p>Each row is dominated by a single species. <em>Setosa</em> is recovered perfectly; <em>versicolor</em> and <em>virginica</em> overlap a little (they genuinely are more similar to one another), but the structure k-means found from the raw numbers alone lines up remarkably well with the real biology.</p>
+<p>Let us visualise the clusters. We will colour points by their assigned cluster and use plotting symbols for the (secretly known) species:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: kmeans-plot</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "k-means clusters (colour) versus true species (symbol), shown on two of the measurements."</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(measurements<span class="sc">$</span>Petal.Length, measurements<span class="sc">$</span>Petal.Width,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> kmeansFit<span class="sc">$</span>cluster,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="fu">as.integer</span>(iris<span class="sc">$</span>Species),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Petal length (cm)"</span>, <span class="at">ylab =</span> <span class="st">"Petal width (cm)"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"k-means clusters vs true species"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Cluster 1"</span>, <span class="st">"Cluster 2"</span>, <span class="st">"Cluster 3"</span>),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Unsupervised-learning_files/figure-html/kmeans-plot-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>k-means clusters (colour) versus true species (symbol), shown on two of the measurements.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The equivalent in Python uses <code>KMeans</code> from <code>scikit-learn</code>:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>scaled <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">25</span>, random_state<span class="op">=</span><span class="dv">2026</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>clusters <span class="op">=</span> kmeans.fit_predict(scaled)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare discovered clusters with the true species.</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.crosstab(clusters, iris.target))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="choosing-k-the-elbow-method" class="level1">
+<h1>Choosing k: the elbow method</h1>
+<p>In the example above we <em>knew</em> there were three species, so <span class="math inline">\(k = 3\)</span> was an easy choice. In real unsupervised problems we have no such luxury. A common heuristic is the <strong>elbow method</strong>. We fit k-means for a range of <span class="math inline">\(k\)</span> values and record the total within-cluster sum of squares (<code>tot.withinss</code>) — a measure of how tight the clusters are. This always falls as <span class="math inline">\(k\)</span> grows (more clusters can hug the data more closely), but we look for the “elbow”: the point after which adding clusters buys us little.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: elbow</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Elbow plot: total within-cluster sum of squares against the number of clusters."</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>kValues <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>wss <span class="ot">&lt;-</span> <span class="fu">sapply</span>(kValues, <span class="cf">function</span>(k) {</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kmeans</span>(scaledData, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">25</span>)<span class="sc">$</span>tot.withinss</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(kValues, wss, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Number of clusters k"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Total within-cluster sum of squares"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Elbow method"</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Unsupervised-learning_files/figure-html/elbow-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Elbow plot: total within-cluster sum of squares against the number of clusters.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The curve bends sharply at <span class="math inline">\(k = 3\)</span> and flattens thereafter — encouraging support for three clusters, even without knowing the species count in advance.</p>
+<p>The elbow is convenient but a touch subjective. A more principled companion is the <strong>silhouette</strong> score, which measures, for each point, how much closer it sits to its own cluster than to the next nearest one. Averaged over all points, it gives a number in <span class="math inline">\([-1, 1]\)</span> (higher is better), and we can pick the <span class="math inline">\(k\)</span> that maximises it. In R this lives in <code>cluster::silhouette()</code>; in Python it is <code>sklearn.metrics.silhouette_score</code>.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>wss <span class="op">=</span> []</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">9</span>):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    km <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">25</span>, random_state<span class="op">=</span><span class="dv">2026</span>).fit(scaled)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    wss.append(km.inertia_)        <span class="co"># inertia_ is the within-cluster sum of squares</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Silhouette needs at least 2 clusters.</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>sil <span class="op">=</span> silhouette_score(scaled, KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">25</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                                      random_state<span class="op">=</span><span class="dv">2026</span>).fit_predict(scaled))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Silhouette for k=3:"</span>, sil)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="principal-component-analysis-pca" class="level1">
+<h1>Principal Component Analysis (PCA)</h1>
+<p>Clustering finds groups; <strong>Principal Component Analysis</strong> instead finds a better <em>coordinate system</em>. Our data live in four dimensions (four measurements), which is awkward to visualise. PCA re-expresses the data along new axes — the <strong>principal components</strong> — ordered so that the first captures the greatest possible spread (variance), the second the most of what remains, and so on. Keeping just the first couple of components often retains almost all the information in far fewer dimensions.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: pca-fit</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>pcaFit <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pcaFit)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4
+Standard deviation     1.7084 0.9560 0.38309 0.14393
+Proportion of Variance 0.7296 0.2285 0.03669 0.00518
+Cumulative Proportion  0.7296 0.9581 0.99482 1.00000</code></pre>
+</div>
+</div>
+<p>Read the <code>Proportion of Variance</code> row: the first principal component alone captures the large majority of the variation, and the first two together account for the overwhelming bulk of it. In other words, we can compress 4D down to 2D while throwing away very little. Let us plot those first two components, colouring by the (secretly known) species:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: pca-plot</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "The first two principal components, coloured by true species. 4D collapses neatly to 2D."</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> pcaFit<span class="sc">$</span>x   <span class="co"># coordinates of each observation in the new PC space</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(scores[, <span class="dv">1</span>], scores[, <span class="dv">2</span>],</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">as.integer</span>(iris<span class="sc">$</span>Species),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Principal component 1"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Principal component 2"</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Iris in PCA space"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">levels</span>(iris<span class="sc">$</span>Species),</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Unsupervised-learning_files/figure-html/pca-plot-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>The first two principal components, coloured by true species. 4D collapses neatly to 2D.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The three species separate cleanly along just two axes — <em>setosa</em> sits well apart, with <em>versicolor</em> and <em>virginica</em> adjacent but distinguishable. Crucially, PCA produced this picture using only the measurements; the colours were added afterwards purely to check.</p>
+<p>In Python, PCA lives in <code>scikit-learn</code>:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>scaled <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> pca.fit_transform(scaled)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Variance explained:"</span>, pca.explained_variance_ratio_)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>plt.scatter(scores[:, <span class="dv">0</span>], scores[:, <span class="dv">1</span>], c<span class="op">=</span>iris.target)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Principal component 1"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Principal component 2"</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Iris in PCA space"</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="In a nutshell: PCA re-expresses, it does not discard">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>In a nutshell: PCA re-expresses, it does not discard
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PCA does <strong>not</strong> throw columns away. It rotates the data onto new axes pointing in the directions of greatest spread, ranks those axes by how much variance they explain, and lets you keep only the top few. The result is a faithful low-dimensional summary: most of the signal, a fraction of the dimensions, and a picture you can actually plot.</p>
+</div>
+</div>
+</section>
+<section id="going-further" class="level1">
+<h1>Going further 🚀</h1>
+<div class="callout callout-style-default callout-tip callout-titled" title="Going further 🚀">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further 🚀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Hierarchical clustering</strong> needs no <span class="math inline">\(k\)</span> chosen in advance. It starts with every point as its own cluster and repeatedly merges the two closest, building a tree (<em>dendrogram</em>) you can cut at any height. Both <code>dist</code> and <code>hclust</code> are base R, so this runs out of the box:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: hclust</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Dendrogram from hierarchical clustering of the scaled iris measurements."</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>distMatrix <span class="ot">&lt;-</span> <span class="fu">dist</span>(scaledData)              <span class="co"># pairwise distances</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>hclustFit <span class="ot">&lt;-</span> <span class="fu">hclust</span>(distMatrix, <span class="at">method =</span> <span class="st">"ward.D2"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hclustFit, <span class="at">labels =</span> <span class="cn">FALSE</span>, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Hierarchical clustering of iris"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">sub =</span> <span class="st">""</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(hclustFit, <span class="at">k =</span> <span class="dv">3</span>, <span class="at">border =</span> <span class="st">"red"</span>)  <span class="co"># cut into 3 groups</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Unsupervised-learning_files/figure-html/hclust-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Dendrogram from hierarchical clustering of the scaled iris measurements.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Cutting the tree into three groups (the red boxes) gives clusters comparable to k-means.</p>
+<p><strong>Non-linear embeddings.</strong> When structure is curved rather than flat, linear PCA can struggle. Modern methods such as <strong>t-SNE</strong> and <strong>UMAP</strong> learn a 2D map that preserves local neighbourhoods, often producing strikingly well-separated blobs. In R use <code>Rtsne::Rtsne()</code> or <code>uwot::umap()</code>; in Python use <code>sklearn.manifold.TSNE</code> or the <code>umap-learn</code> package. These are powerful for visualisation but are <em>not</em> distance-preserving globally, so treat the gaps between clusters with care.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("Rtsne", "uwot"))</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rtsne)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(uwot)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>tsneFit <span class="ot">&lt;-</span> <span class="fu">Rtsne</span>(scaledData, <span class="at">dims =</span> <span class="dv">2</span>, <span class="at">perplexity =</span> <span class="dv">30</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>umapFit <span class="ot">&lt;-</span> <span class="fu">umap</span>(scaledData, <span class="at">n_neighbors =</span> <span class="dv">15</span>, <span class="at">n_components =</span> <span class="dv">2</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tsneFit<span class="sc">$</span>Y, <span class="at">col =</span> <span class="fu">as.integer</span>(iris<span class="sc">$</span>Species), <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"t-SNE embedding of iris"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install umap-learn scikit-learn</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> umap</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, perplexity<span class="op">=</span><span class="dv">30</span>, random_state<span class="op">=</span><span class="dv">2026</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>emb_tsne <span class="op">=</span> tsne.fit_transform(scaled)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>reducer <span class="op">=</span> umap.UMAP(n_neighbors<span class="op">=</span><span class="dv">15</span>, n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">2026</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>emb_umap <span class="op">=</span> reducer.fit_transform(scaled)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Unsupervised Learning: Clustering and PCA"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 12</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: "#31BAE9"</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: fenced</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">    mathjax: true</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># What is unsupervised learning?</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>So far in this course, most of the modelling we have done has been *supervised*: we had an outcome variable $y$ (a response) and a set of explanatory variables $X$, and we tried to learn the relationship between them. **Unsupervised learning** throws away the labels. We are handed only the features $X$ and asked a far more open-ended question: *is there any interesting structure in here?*</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>That structure usually takes one of two forms. We might look for **groups** of observations that resemble one another (clustering), or we might look for a **lower-dimensional summary** that captures most of what is going on (dimensionality reduction). Throughout this page we use the famous `iris` dataset, but we will deliberately pretend we do **not** know the species. We will work only with the four numeric measurements, discover structure from those alone, and then — right at the end — peek at the true species to see how well we did.</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-iris</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Pretend we have no labels: keep only the four numeric measurement columns.</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>measurements <span class="ot">&lt;-</span> iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(measurements)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(measurements)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>Here is the same setup in Python, loading the iris features from <span class="in">`scikit-learn`</span>:</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data            <span class="co"># the four numeric measurements</span></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> iris.feature_names</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame(X, columns<span class="op">=</span>feature_names).head())</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: no y to predict"}</span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>Supervised learning has a target column and asks *"predict y from X"*. Unsupervised learning has **no target** — only the features. Instead of measuring accuracy against known answers, we hunt for hidden structure: clusters of similar observations, or directions along which the data vary most. There is no single "right answer", which is exactly what makes it both powerful and a little subjective.</span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># k-means clustering</span></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>The most popular clustering method is **k-means**. We pick a number of clusters $k$ in advance. The algorithm then places $k$ centres in the feature space and repeatedly (i) assigns each point to its nearest centre and (ii) moves each centre to the average of the points assigned to it, until nothing changes. It is essentially trying to minimise the total squared distance from each point to its cluster centre.</span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>One subtlety matters enormously: k-means uses Euclidean distance, so variables measured on larger scales dominate. We therefore **scale** the data first so each measurement contributes comparably.</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: kmeans-fit</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale so every measurement has mean 0 and standard deviation 1.</span></span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>scaledData <span class="ot">&lt;-</span> <span class="fu">scale</span>(measurements)</span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Ask for 3 clusters. nstart tries several random starts and keeps the best.</span></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>kmeansFit <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(scaledData, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a><span class="co"># How many points landed in each cluster?</span></span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(kmeansFit<span class="sc">$</span>cluster)</span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a>Now for the moment of truth. We never told the algorithm about species, but let us cross-tabulate the discovered clusters against the true species:</span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: kmeans-vs-species</span></span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">cluster =</span> kmeansFit<span class="sc">$</span>cluster, <span class="at">species =</span> iris<span class="sc">$</span>Species)</span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a>Each row is dominated by a single species. *Setosa* is recovered perfectly; *versicolor* and *virginica* overlap a little (they genuinely are more similar to one another), but the structure k-means found from the raw numbers alone lines up remarkably well with the real biology.</span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a>Let us visualise the clusters. We will colour points by their assigned cluster and use plotting symbols for the (secretly known) species:</span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: kmeans-plot</span></span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "k-means clusters (colour) versus true species (symbol), shown on two of the measurements."</span></span>
+<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(measurements<span class="sc">$</span>Petal.Length, measurements<span class="sc">$</span>Petal.Width,</span>
+<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> kmeansFit<span class="sc">$</span>cluster,</span>
+<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="fu">as.integer</span>(iris<span class="sc">$</span>Species),</span>
+<span id="cb19-98"><a href="#cb19-98" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Petal length (cm)"</span>, <span class="at">ylab =</span> <span class="st">"Petal width (cm)"</span>,</span>
+<span id="cb19-99"><a href="#cb19-99" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"k-means clusters vs true species"</span>)</span>
+<span id="cb19-100"><a href="#cb19-100" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb19-101"><a href="#cb19-101" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Cluster 1"</span>, <span class="st">"Cluster 2"</span>, <span class="st">"Cluster 3"</span>),</span>
+<span id="cb19-102"><a href="#cb19-102" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb19-103"><a href="#cb19-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-104"><a href="#cb19-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-105"><a href="#cb19-105" aria-hidden="true" tabindex="-1"></a>The equivalent in Python uses <span class="in">`KMeans`</span> from <span class="in">`scikit-learn`</span>:</span>
+<span id="cb19-106"><a href="#cb19-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-109"><a href="#cb19-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb19-110"><a href="#cb19-110" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb19-111"><a href="#cb19-111" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb19-112"><a href="#cb19-112" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb19-113"><a href="#cb19-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-114"><a href="#cb19-114" aria-hidden="true" tabindex="-1"></a>scaled <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb19-115"><a href="#cb19-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-116"><a href="#cb19-116" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">25</span>, random_state<span class="op">=</span><span class="dv">2026</span>)</span>
+<span id="cb19-117"><a href="#cb19-117" aria-hidden="true" tabindex="-1"></a>clusters <span class="op">=</span> kmeans.fit_predict(scaled)</span>
+<span id="cb19-118"><a href="#cb19-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-119"><a href="#cb19-119" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare discovered clusters with the true species.</span></span>
+<span id="cb19-120"><a href="#cb19-120" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.crosstab(clusters, iris.target))</span>
+<span id="cb19-121"><a href="#cb19-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-122"><a href="#cb19-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-123"><a href="#cb19-123" aria-hidden="true" tabindex="-1"></a><span class="fu"># Choosing k: the elbow method</span></span>
+<span id="cb19-124"><a href="#cb19-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-125"><a href="#cb19-125" aria-hidden="true" tabindex="-1"></a>In the example above we *knew* there were three species, so $k = 3$ was an easy choice. In real unsupervised problems we have no such luxury. A common heuristic is the **elbow method**. We fit k-means for a range of $k$ values and record the total within-cluster sum of squares (<span class="in">`tot.withinss`</span>) — a measure of how tight the clusters are. This always falls as $k$ grows (more clusters can hug the data more closely), but we look for the "elbow": the point after which adding clusters buys us little.</span>
+<span id="cb19-126"><a href="#cb19-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-129"><a href="#cb19-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-130"><a href="#cb19-130" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: elbow</span></span>
+<span id="cb19-131"><a href="#cb19-131" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Elbow plot: total within-cluster sum of squares against the number of clusters."</span></span>
+<span id="cb19-132"><a href="#cb19-132" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb19-133"><a href="#cb19-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-134"><a href="#cb19-134" aria-hidden="true" tabindex="-1"></a>kValues <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span></span>
+<span id="cb19-135"><a href="#cb19-135" aria-hidden="true" tabindex="-1"></a>wss <span class="ot">&lt;-</span> <span class="fu">sapply</span>(kValues, <span class="cf">function</span>(k) {</span>
+<span id="cb19-136"><a href="#cb19-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kmeans</span>(scaledData, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">25</span>)<span class="sc">$</span>tot.withinss</span>
+<span id="cb19-137"><a href="#cb19-137" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb19-138"><a href="#cb19-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-139"><a href="#cb19-139" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(kValues, wss, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb19-140"><a href="#cb19-140" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Number of clusters k"</span>,</span>
+<span id="cb19-141"><a href="#cb19-141" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Total within-cluster sum of squares"</span>,</span>
+<span id="cb19-142"><a href="#cb19-142" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Elbow method"</span>)</span>
+<span id="cb19-143"><a href="#cb19-143" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb19-144"><a href="#cb19-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-145"><a href="#cb19-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-146"><a href="#cb19-146" aria-hidden="true" tabindex="-1"></a>The curve bends sharply at $k = 3$ and flattens thereafter — encouraging support for three clusters, even without knowing the species count in advance.</span>
+<span id="cb19-147"><a href="#cb19-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-148"><a href="#cb19-148" aria-hidden="true" tabindex="-1"></a>The elbow is convenient but a touch subjective. A more principled companion is the **silhouette** score, which measures, for each point, how much closer it sits to its own cluster than to the next nearest one. Averaged over all points, it gives a number in $<span class="co">[</span><span class="ot">-1, 1</span><span class="co">]</span>$ (higher is better), and we can pick the $k$ that maximises it. In R this lives in <span class="in">`cluster::silhouette()`</span>; in Python it is <span class="in">`sklearn.metrics.silhouette_score`</span>.</span>
+<span id="cb19-149"><a href="#cb19-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-152"><a href="#cb19-152" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb19-153"><a href="#cb19-153" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb19-154"><a href="#cb19-154" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
+<span id="cb19-155"><a href="#cb19-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-156"><a href="#cb19-156" aria-hidden="true" tabindex="-1"></a>wss <span class="op">=</span> []</span>
+<span id="cb19-157"><a href="#cb19-157" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">9</span>):</span>
+<span id="cb19-158"><a href="#cb19-158" aria-hidden="true" tabindex="-1"></a>    km <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>k, n_init<span class="op">=</span><span class="dv">25</span>, random_state<span class="op">=</span><span class="dv">2026</span>).fit(scaled)</span>
+<span id="cb19-159"><a href="#cb19-159" aria-hidden="true" tabindex="-1"></a>    wss.append(km.inertia_)        <span class="co"># inertia_ is the within-cluster sum of squares</span></span>
+<span id="cb19-160"><a href="#cb19-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-161"><a href="#cb19-161" aria-hidden="true" tabindex="-1"></a><span class="co"># Silhouette needs at least 2 clusters.</span></span>
+<span id="cb19-162"><a href="#cb19-162" aria-hidden="true" tabindex="-1"></a>sil <span class="op">=</span> silhouette_score(scaled, KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">25</span>,</span>
+<span id="cb19-163"><a href="#cb19-163" aria-hidden="true" tabindex="-1"></a>                                      random_state<span class="op">=</span><span class="dv">2026</span>).fit_predict(scaled))</span>
+<span id="cb19-164"><a href="#cb19-164" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Silhouette for k=3:"</span>, sil)</span>
+<span id="cb19-165"><a href="#cb19-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-166"><a href="#cb19-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-167"><a href="#cb19-167" aria-hidden="true" tabindex="-1"></a><span class="fu"># Principal Component Analysis (PCA)</span></span>
+<span id="cb19-168"><a href="#cb19-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-169"><a href="#cb19-169" aria-hidden="true" tabindex="-1"></a>Clustering finds groups; **Principal Component Analysis** instead finds a better *coordinate system*. Our data live in four dimensions (four measurements), which is awkward to visualise. PCA re-expresses the data along new axes — the **principal components** — ordered so that the first captures the greatest possible spread (variance), the second the most of what remains, and so on. Keeping just the first couple of components often retains almost all the information in far fewer dimensions.</span>
+<span id="cb19-170"><a href="#cb19-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-173"><a href="#cb19-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-174"><a href="#cb19-174" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: pca-fit</span></span>
+<span id="cb19-175"><a href="#cb19-175" aria-hidden="true" tabindex="-1"></a>pcaFit <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-176"><a href="#cb19-176" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pcaFit)</span>
+<span id="cb19-177"><a href="#cb19-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-178"><a href="#cb19-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-179"><a href="#cb19-179" aria-hidden="true" tabindex="-1"></a>Read the <span class="in">`Proportion of Variance`</span> row: the first principal component alone captures the large majority of the variation, and the first two together account for the overwhelming bulk of it. In other words, we can compress 4D down to 2D while throwing away very little. Let us plot those first two components, colouring by the (secretly known) species:</span>
+<span id="cb19-180"><a href="#cb19-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-183"><a href="#cb19-183" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-184"><a href="#cb19-184" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: pca-plot</span></span>
+<span id="cb19-185"><a href="#cb19-185" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "The first two principal components, coloured by true species. 4D collapses neatly to 2D."</span></span>
+<span id="cb19-186"><a href="#cb19-186" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> pcaFit<span class="sc">$</span>x   <span class="co"># coordinates of each observation in the new PC space</span></span>
+<span id="cb19-187"><a href="#cb19-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-188"><a href="#cb19-188" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(scores[, <span class="dv">1</span>], scores[, <span class="dv">2</span>],</span>
+<span id="cb19-189"><a href="#cb19-189" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">as.integer</span>(iris<span class="sc">$</span>Species),</span>
+<span id="cb19-190"><a href="#cb19-190" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb19-191"><a href="#cb19-191" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Principal component 1"</span>,</span>
+<span id="cb19-192"><a href="#cb19-192" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Principal component 2"</span>,</span>
+<span id="cb19-193"><a href="#cb19-193" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Iris in PCA space"</span>)</span>
+<span id="cb19-194"><a href="#cb19-194" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>,</span>
+<span id="cb19-195"><a href="#cb19-195" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">levels</span>(iris<span class="sc">$</span>Species),</span>
+<span id="cb19-196"><a href="#cb19-196" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb19-197"><a href="#cb19-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-198"><a href="#cb19-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-199"><a href="#cb19-199" aria-hidden="true" tabindex="-1"></a>The three species separate cleanly along just two axes — *setosa* sits well apart, with *versicolor* and *virginica* adjacent but distinguishable. Crucially, PCA produced this picture using only the measurements; the colours were added afterwards purely to check.</span>
+<span id="cb19-200"><a href="#cb19-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-201"><a href="#cb19-201" aria-hidden="true" tabindex="-1"></a>In Python, PCA lives in <span class="in">`scikit-learn`</span>:</span>
+<span id="cb19-202"><a href="#cb19-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-205"><a href="#cb19-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb19-206"><a href="#cb19-206" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb19-207"><a href="#cb19-207" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb19-208"><a href="#cb19-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-209"><a href="#cb19-209" aria-hidden="true" tabindex="-1"></a>scaled <span class="op">=</span> StandardScaler().fit_transform(X)</span>
+<span id="cb19-210"><a href="#cb19-210" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb19-211"><a href="#cb19-211" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> pca.fit_transform(scaled)</span>
+<span id="cb19-212"><a href="#cb19-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-213"><a href="#cb19-213" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Variance explained:"</span>, pca.explained_variance_ratio_)</span>
+<span id="cb19-214"><a href="#cb19-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-215"><a href="#cb19-215" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-216"><a href="#cb19-216" aria-hidden="true" tabindex="-1"></a>plt.scatter(scores[:, <span class="dv">0</span>], scores[:, <span class="dv">1</span>], c<span class="op">=</span>iris.target)</span>
+<span id="cb19-217"><a href="#cb19-217" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Principal component 1"</span>)</span>
+<span id="cb19-218"><a href="#cb19-218" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Principal component 2"</span>)</span>
+<span id="cb19-219"><a href="#cb19-219" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Iris in PCA space"</span>)</span>
+<span id="cb19-220"><a href="#cb19-220" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb19-221"><a href="#cb19-221" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-222"><a href="#cb19-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-223"><a href="#cb19-223" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="In a nutshell: PCA re-expresses, it does not discard"}</span>
+<span id="cb19-224"><a href="#cb19-224" aria-hidden="true" tabindex="-1"></a>PCA does **not** throw columns away. It rotates the data onto new axes pointing in the directions of greatest spread, ranks those axes by how much variance they explain, and lets you keep only the top few. The result is a faithful low-dimensional summary: most of the signal, a fraction of the dimensions, and a picture you can actually plot.</span>
+<span id="cb19-225"><a href="#cb19-225" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb19-226"><a href="#cb19-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-227"><a href="#cb19-227" aria-hidden="true" tabindex="-1"></a><span class="fu"># Going further 🚀</span></span>
+<span id="cb19-228"><a href="#cb19-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-229"><a href="#cb19-229" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip title="Going further 🚀"}</span>
+<span id="cb19-230"><a href="#cb19-230" aria-hidden="true" tabindex="-1"></a>**Hierarchical clustering** needs no $k$ chosen in advance. It starts with every point as its own cluster and repeatedly merges the two closest, building a tree (*dendrogram*) you can cut at any height. Both <span class="in">`dist`</span> and <span class="in">`hclust`</span> are base R, so this runs out of the box:</span>
+<span id="cb19-231"><a href="#cb19-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-234"><a href="#cb19-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-235"><a href="#cb19-235" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: hclust</span></span>
+<span id="cb19-236"><a href="#cb19-236" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Dendrogram from hierarchical clustering of the scaled iris measurements."</span></span>
+<span id="cb19-237"><a href="#cb19-237" aria-hidden="true" tabindex="-1"></a>distMatrix <span class="ot">&lt;-</span> <span class="fu">dist</span>(scaledData)              <span class="co"># pairwise distances</span></span>
+<span id="cb19-238"><a href="#cb19-238" aria-hidden="true" tabindex="-1"></a>hclustFit <span class="ot">&lt;-</span> <span class="fu">hclust</span>(distMatrix, <span class="at">method =</span> <span class="st">"ward.D2"</span>)</span>
+<span id="cb19-239"><a href="#cb19-239" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hclustFit, <span class="at">labels =</span> <span class="cn">FALSE</span>, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb19-240"><a href="#cb19-240" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Hierarchical clustering of iris"</span>,</span>
+<span id="cb19-241"><a href="#cb19-241" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">sub =</span> <span class="st">""</span>)</span>
+<span id="cb19-242"><a href="#cb19-242" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(hclustFit, <span class="at">k =</span> <span class="dv">3</span>, <span class="at">border =</span> <span class="st">"red"</span>)  <span class="co"># cut into 3 groups</span></span>
+<span id="cb19-243"><a href="#cb19-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-244"><a href="#cb19-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-245"><a href="#cb19-245" aria-hidden="true" tabindex="-1"></a>Cutting the tree into three groups (the red boxes) gives clusters comparable to k-means.</span>
+<span id="cb19-246"><a href="#cb19-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-247"><a href="#cb19-247" aria-hidden="true" tabindex="-1"></a>**Non-linear embeddings.** When structure is curved rather than flat, linear PCA can struggle. Modern methods such as **t-SNE** and **UMAP** learn a 2D map that preserves local neighbourhoods, often producing strikingly well-separated blobs. In R use <span class="in">`Rtsne::Rtsne()`</span> or <span class="in">`uwot::umap()`</span>; in Python use <span class="in">`sklearn.manifold.TSNE`</span> or the <span class="in">`umap-learn`</span> package. These are powerful for visualisation but are *not* distance-preserving globally, so treat the gaps between clusters with care.</span>
+<span id="cb19-248"><a href="#cb19-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-251"><a href="#cb19-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb19-252"><a href="#cb19-252" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb19-253"><a href="#cb19-253" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("Rtsne", "uwot"))</span></span>
+<span id="cb19-254"><a href="#cb19-254" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rtsne)</span>
+<span id="cb19-255"><a href="#cb19-255" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(uwot)</span>
+<span id="cb19-256"><a href="#cb19-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-257"><a href="#cb19-257" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb19-258"><a href="#cb19-258" aria-hidden="true" tabindex="-1"></a>tsneFit <span class="ot">&lt;-</span> <span class="fu">Rtsne</span>(scaledData, <span class="at">dims =</span> <span class="dv">2</span>, <span class="at">perplexity =</span> <span class="dv">30</span>)</span>
+<span id="cb19-259"><a href="#cb19-259" aria-hidden="true" tabindex="-1"></a>umapFit <span class="ot">&lt;-</span> <span class="fu">umap</span>(scaledData, <span class="at">n_neighbors =</span> <span class="dv">15</span>, <span class="at">n_components =</span> <span class="dv">2</span>)</span>
+<span id="cb19-260"><a href="#cb19-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-261"><a href="#cb19-261" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tsneFit<span class="sc">$</span>Y, <span class="at">col =</span> <span class="fu">as.integer</span>(iris<span class="sc">$</span>Species), <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb19-262"><a href="#cb19-262" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"t-SNE embedding of iris"</span>)</span>
+<span id="cb19-263"><a href="#cb19-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-264"><a href="#cb19-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-267"><a href="#cb19-267" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb19-268"><a href="#cb19-268" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb19-269"><a href="#cb19-269" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install umap-learn scikit-learn</span></span>
+<span id="cb19-270"><a href="#cb19-270" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb19-271"><a href="#cb19-271" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> umap</span>
+<span id="cb19-272"><a href="#cb19-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-273"><a href="#cb19-273" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, perplexity<span class="op">=</span><span class="dv">30</span>, random_state<span class="op">=</span><span class="dv">2026</span>)</span>
+<span id="cb19-274"><a href="#cb19-274" aria-hidden="true" tabindex="-1"></a>emb_tsne <span class="op">=</span> tsne.fit_transform(scaled)</span>
+<span id="cb19-275"><a href="#cb19-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-276"><a href="#cb19-276" aria-hidden="true" tabindex="-1"></a>reducer <span class="op">=</span> umap.UMAP(n_neighbors<span class="op">=</span><span class="dv">15</span>, n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">2026</span>)</span>
+<span id="cb19-277"><a href="#cb19-277" aria-hidden="true" tabindex="-1"></a>emb_umap <span class="op">=</span> reducer.fit_transform(scaled)</span>
+<span id="cb19-278"><a href="#cb19-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb19-279"><a href="#cb19-279" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

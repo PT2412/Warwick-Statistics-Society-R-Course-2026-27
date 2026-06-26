@@ -1,0 +1,140 @@
+---
+title: "Markov Chains"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+# Mathematical Intuition
+
+A **Markov chain** is a model for a system that hops between a set of **states** over time, where the rule for where it goes next depends *only on where it is now* — not on the whole history of how it got there. That "no memory of the past" property is the defining feature.
+
+Picture the weather, simplified to three states — **Sunny**, **Cloudy**, **Rainy**. If we assume tomorrow's weather depends only on today's (not on the whole week), the weather is a Markov chain. All we need to describe it is, for each state, the probabilities of moving to each other state.
+
+::: {.callout-note title="In a nutshell: the Markov property"}
+"The future depends on the present, not the past." If you know the system is in state $X$ *right now*, knowing how it arrived there tells you nothing extra about where it goes next. This memorylessness is what makes Markov chains so easy to simulate — at every step you only need to look at the current state.
+:::
+
+We collect those move-probabilities into a **transition matrix** $P$, where the entry $P_{ij}$ is the probability of going **from** state $i$ **to** state $j$. Every row is a probability distribution, so **each row sums to 1**. For our weather:
+
+$$
+P = \begin{array}{c|ccc}
+ & \text{Sun} & \text{Cloud} & \text{Rain} \\\hline
+\text{Sun}   & 0.6 & 0.3 & 0.1 \\
+\text{Cloud} & 0.3 & 0.4 & 0.3 \\
+\text{Rain}  & 0.2 & 0.4 & 0.4 \\
+\end{array}
+$$
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart LR
+  S["☀️ Sunny"] -->|0.6| S
+  S -->|0.3| C["☁️ Cloudy"]
+  S -->|0.1| R["🌧️ Rainy"]
+  C -->|0.3| S
+  C -->|0.4| C
+  C -->|0.3| R
+  R -->|0.2| S
+  R -->|0.4| C
+  R -->|0.4| R
+```
+
+# Math → Algorithm → Code Mapping
+
+| Math idea | R translation |
+|---|---|
+| states $\{1,\dots,k\}$ | `states <- c("Sunny", "Cloudy", "Rainy")` |
+| transition matrix $P$ | a `matrix` with rows summing to 1 |
+| one step: draw next state from row $P_{i\cdot}$ | `sample(states, 1, prob = P[current, ])` |
+| run for $T$ steps | a `for` loop updating the current state |
+| long-run behaviour | `table(chain) / T`, or the eigenvector of $P^\top$ |
+
+```{mermaid}
+%%| echo: false
+%%| fig-align: center
+
+flowchart TD
+  A([Start in some state])
+  B[Look up the current state's row of P]
+  C[Draw the next state with those probabilities]
+  D[Record it; it becomes the current state]
+  E{Done T steps?}
+  A --> B --> C --> D --> E
+  E -->|No| B
+  E -->|Yes| F([Return the chain])
+```
+
+# Implementation in R
+
+First we encode the chain and **simulate** a long run of days. At each step we simply sample the next state using the current state's row of $P$ — a direct translation of the Markov rule.
+
+```{r}
+states <- c("Sunny", "Cloudy", "Rainy")
+
+P <- matrix(c(0.6, 0.3, 0.1,
+              0.3, 0.4, 0.3,
+              0.2, 0.4, 0.4),
+            nrow = 3, byrow = TRUE,
+            dimnames = list(states, states))
+
+set.seed(1)
+nDays <- 10000
+chain <- character(nDays)
+chain[1] <- "Sunny"                                  # start sunny
+
+for (t in 2:nDays) {
+  chain[t] <- sample(states, size = 1, prob = P[chain[t - 1], ])
+}
+
+head(chain, 15)                                      # the first fortnight of simulated weather
+```
+
+## The stationary distribution
+
+Run the chain long enough and the *fraction of days* spent in each state settles down to a fixed set of proportions — the **stationary distribution** $\pi$. It answers "in the long run, what fraction of days are sunny?", and remarkably it does *not* depend on where we started. The simplest way to find it is to count.
+
+```{r}
+table(chain) / nDays                                 # long-run fraction of days in each state
+```
+
+The stationary distribution is also the solution of $\pi P = \pi$ — the distribution that the chain leaves unchanged. Mathematically that makes $\pi$ the (left) **eigenvector of $P$ with eigenvalue 1**, which we can compute exactly rather than by simulation.
+
+```{r}
+eig <- eigen(t(P))                                   # work with t(P): left eigenvectors of P
+stat <- Re(eig$vectors[, which.max(Re(eig$values))]) # the eigenvector for eigenvalue 1
+stat <- stat / sum(stat)                             # normalise to a probability distribution
+names(stat) <- states
+round(stat, 4)
+```
+
+A third route makes the convergence visible: multiply $P$ by itself many times. Every row of $P^{n}$ converges to the *same* stationary distribution — whatever today's weather, the forecast far enough ahead is the same.
+
+```{r}
+Pn <- P
+for (i in 1:50) Pn <- Pn %*% P                       # P raised to the 51st power
+round(Pn, 4)                                          # every row is now (almost) identical
+```
+
+All three methods — simulation, eigenvector, and matrix powers — agree on the same long-run answer. That agreement is the whole theory of Markov chains in miniature.
+
+# Reflection
+
+A Markov chain turns a simple, local rule ("given today, here is the chance of each tomorrow") into rich global behaviour (the long-run climate). This is a recurring theme in computational statistics: **complex distributions built from simple, repeated random steps.**
+
+::: {.callout-tip title="Going further 🚀"}
+This page is secretly the engine room of modern Bayesian statistics. **Markov chain Monte Carlo (MCMC)** — the Metropolis sampler on the *Bayesian computation* page — runs a cleverly designed Markov chain whose **stationary distribution is the posterior you want to sample from**. Everything here transfers: the chain wanders, forgets its start (that is the "burn-in"), and settles into $\pi$. Other places the same idea appears: **Google's PageRank** is the stationary distribution of a random surfer clicking links (a Markov chain on billions of web pages); **absorbing** chains model processes that eventually stop (gambler's ruin, board games); and **continuous-time** chains model queues and populations. In R, the `markovchain` package provides ready-made tools, and `expm::%^%` computes matrix powers directly. Try changing a row of `P` and watch the stationary distribution shift.
+:::

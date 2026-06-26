@@ -1,0 +1,163 @@
+---
+title: "Reproducibility and Workflow"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+A report is not just its words and figures — it is the **process** that produced them. A good analysis is **reproducible**: someone else (or you, six months later) can take your files, press one button, and get *exactly* the same results. This page covers the habits and tools that make your work reproducible, organised, and easy to hand in or collaborate on. Across most of your degree you will write reports in **RMarkdown**, so everything here is framed around it.
+
+::: {.callout-note title="In a nutshell: what reproducibility means"}
+**Reproducible** = "rerun it, get the same answer." If your report's numbers and plots are produced by code that runs start-to-finish from the raw data, your work is reproducible. If they were copied by hand, tweaked in Excel, or rely on objects only in your current session, they are not — and "it worked on my machine" is the most expensive sentence in data science.
+:::
+
+# One document for code, prose and output: RMarkdown
+
+The single most important reproducibility tool is **RMarkdown** (`.Rmd`). An RMarkdown file weaves together three things in one place:
+
+- **narrative text** (written in markdown),
+- **R code chunks** that run and produce results, and
+- the **output** (tables, figures, numbers) inserted automatically.
+
+When you **knit** the file, RStudio runs every chunk from a clean state and assembles a polished **PDF, HTML or Word** document. Because the figures and numbers come *directly from the code*, they can never drift out of sync with your analysis — the defining feature of a reproducible report.
+
+A minimal `.Rmd` begins with a **YAML header** that controls the output:
+
+```yaml
+---
+title: "My Analysis"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: pdf_document    # or html_document, word_document
+---
+```
+
+Code lives in **chunks**, whose options control what appears in the final document. A few you will use constantly:
+
+```r
+# ```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+# library(tidyverse)
+# ```
+
+# echo    = FALSE  -> run the code but HIDE it from the report
+# message = FALSE  -> suppress package start-up messages
+# warning = FALSE  -> suppress warnings
+# fig.align= "center", out.width = "80%"  -> tidy figures
+```
+
+You can also drop results straight into a sentence with **inline code** — a short R expression, beginning with `r`, written inside single backticks directly in your prose. For example, writing this line in your report:
+
+
+The sample mean was ``{{r}} round(mean(myData), 1)``.
+
+
+makes the knitted document print the *actual computed mean* in the sentence, so even your prose updates automatically when the data changes.
+
+::: {.callout-note title="In a nutshell: knit early, knit often"}
+The golden test of a reproducible report: **restart R, then knit from scratch.** If it knits cleanly, your document depends only on its code and data — not on some object you created hours ago and forgot. If it breaks, you have just found a hidden dependency *before* your marker does.
+:::
+
+# Organise the project, not just the file
+
+Reproducibility starts with where your files live. Keep one **self-contained folder per project**, with a sensible structure:
+
+```
+my-project/
+├── my-project.Rproj      <- an RStudio Project file
+├── data/                 <- raw data (never edited by hand)
+│   └── survey.csv
+├── R/                    <- analysis scripts
+│   └── clean-data.R
+├── figures/              <- saved plots
+└── report.Rmd            <- the RMarkdown report
+```
+
+Two rules make this portable to any machine:
+
+1. **Use an RStudio Project** (`File → New Project`). It sets the working directory to the project folder automatically, so paths work for anyone who opens it.
+2. **Use relative paths, never absolute ones.** Write `read.csv("data/survey.csv")`, *not* `read.csv("C:/Users/you/Desktop/survey.csv")` — the latter breaks the instant the file moves or someone else opens it. The `here` package (`here::here("data", "survey.csv")`) makes this bullet-proof.
+
+::: {.callout-important title="Never edit your raw data by hand"}
+Treat the raw data file as **read-only**. Every change — fixing a typo, removing an outlier, recoding a variable — should happen *in code*, so the path from raw data to result is fully recorded and repeatable. Hand-edited spreadsheets are the most common source of irreproducible analyses.
+:::
+
+# Make randomness reproducible
+
+Anything involving random numbers — simulations, bootstrap, train/test splits, model fitting with random starts — will give different output each run *unless you fix the seed*. Set it once at the top so the "random" results are identical every time the report is knitted.
+
+```{r}
+set.seed(123)
+sample(1:100, 5)     # these five numbers are now the same on every run
+```
+
+# Track changes with version control
+
+**Git** records the full history of your project: every saved version, who changed what, and when — with the ability to roll back any mistake. Paired with **GitHub**, it also backs up your work to the cloud and lets you collaborate without emailing `report_final_FINAL_v3.Rmd` around.
+
+RStudio has built-in Git support (tick "Create a git repository" when making a Project), so the everyday workflow is just three steps, repeated:
+
+```bash
+git add report.Rmd        # stage the files you changed
+git commit -m "Add results section"   # save a snapshot, with a message
+git push                  # send it to GitHub
+```
+
+You do not need to be a Git expert — even *commit early, commit often* with clear messages turns your project into a safe, navigable history instead of a single fragile file.
+
+# Record your environment
+
+An analysis can break a year later because a package changed. Two levels of defence:
+
+- **Light:** end your report with `sessionInfo()`, which prints your R version and every package version — a permanent record of what produced the results.
+- **Thorough:** use the `renv` package to **lock** the exact package versions in a project, so anyone (including future you) can restore the identical environment and reproduce the analysis precisely.
+
+```{r}
+#| eval: false
+# Light: a record of versions, printed in an appendix
+sessionInfo()
+
+# Thorough: snapshot and restore an exact package environment
+# install.packages("renv")
+renv::init()      # start tracking this project's packages
+renv::snapshot()  # save the exact versions to renv.lock
+renv::restore()   # (later, elsewhere) rebuild the identical environment
+```
+
+# A reproducibility checklist
+
+Before submitting any report, run through this:
+
+- [ ] The report is an **`.Rmd`** that **knits from a clean session** (restart R, then knit).
+- [ ] All paths are **relative** (or via `here::here()`); no `setwd()` to a personal folder.
+- [ ] Raw data is **untouched**; all cleaning is done in code.
+- [ ] **`set.seed()`** is set wherever randomness is used.
+- [ ] Code chunks use **`echo=FALSE`** (and `message`/`warning=FALSE`) so the report shows results, not clutter — with the full code in an appendix.
+- [ ] The project is under **version control** with meaningful commits.
+- [ ] An **environment record** (`sessionInfo()` or `renv`) is included.
+
+::: {.callout-tip title="Going further 🚀"}
+Beyond `renv`, the professional reproducibility stack includes **`targets`** (a make-style pipeline that reruns only the steps whose inputs changed — invaluable for long analyses), **continuous integration** via **GitHub Actions** (which can re-knit your report automatically on every push to prove it still works), and **Docker**, which packages your entire computing environment — R, packages and system libraries — into a container that runs identically anywhere. These are how reproducible research scales from a coursework `.Rmd` to a published paper.
+:::
+
+# Summary
+
+| Habit | Tool | Why |
+|---|---|---|
+| Code + prose + output in one place | **RMarkdown** (`.Rmd`, knit) | Numbers and figures can never drift from the analysis |
+| Self-contained project | **RStudio Project** + relative paths / `here` | Runs on any machine, not just yours |
+| Reproducible randomness | **`set.seed()`** | Identical results every run |
+| History and backup | **Git + GitHub** | Roll back mistakes; collaborate safely |
+| Environment record | **`sessionInfo()` / `renv`** | Reproduces even after packages change |
+
+Reproducibility is not extra work bolted on at the end — it is a *way of working* that makes your reports more trustworthy, your collaboration painless, and your future self grateful. Build the habits now and every analysis you write for the rest of your degree gets easier.
