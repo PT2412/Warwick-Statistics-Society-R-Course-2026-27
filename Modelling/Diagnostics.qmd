@@ -65,7 +65,7 @@ head(data)
 
 One way to test model assumptions is to look at the residual plots.
 
-::: callout-note
+::: {.callout-note}
 A residual (or fitting deviation) is an estimate of the unobserved statistical error. It is the difference between the observed $y_i$ and the estimated $\hat{y}_i$, the value predicted by the model [residuals](https://en.wikipedia.org/wiki/Errors_and_residuals).
 :::
 

@@ -40,7 +40,7 @@ peng <- read_tsv("penguins.txt")
 
 These functions assume that:
 
-:::{}
+::: {}
 
 * The first row contains column names
 * Values are separated by commas (CSV) or tabs (TSV)
@@ -50,14 +50,12 @@ These functions assume that:
 
 Here's what the first few lines of a CSV file look like:
 
-```
 species,island,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g,sex
 Adelie,Torgersen,39.1,18.7,181,3750,male
 Adelie,Torgersen,39.5,17.4,186,3800,female
 Adelie,Torgersen,40.3,18.0,195,3250,female
-```
 
-:::{.callout-tip} 
+:::
 For more options (like different delimiters or handling special cases), check the help documentation with `?read_csv`.
 :::
 
@@ -187,7 +185,7 @@ head(threeIsl)
 
 **Common comparison operators:**
 
-:::{}
+::: {.callout-note}
 
 * `==` equals
 * `!=` not equals
@@ -267,10 +265,8 @@ summ <- summarize(penguins,
 summ
 ```
 
-:::{.callout-note} 
-
+::: {.callout-note}
 The `na.rm = TRUE` option tells R to ignore missing values when calculating means.
-
 :::
 
 ```{r}
@@ -357,7 +353,8 @@ str(dates)
 ```
 
 Common date conversion functions:
-:::{}
+
+::: {.callout-note}
 
 * `ymd()` for year-month-day format (2024-01-15)
 * `mdy()` for month-day-year format (01/15/2024)
@@ -481,7 +478,7 @@ nrow(penguins)  # original rows
 nrow(pengComplete)  # after deletion
 ```
 
-:::{.callout-warning}
+::: {.callout-warning}
 This can remove a lot of data if missingness is spread across many rows!
 :::
 
@@ -500,7 +497,7 @@ pengImputed <- kNN(penguins, k = 5)
 
 This method finds the 5 most similar complete cases and uses their median (for numeric variables) or most common value (for categorical variables) to fill in the missing data.
 
-:::{.callout-important}
+::: {.callout-important}
 Missing data can seriously bias your results. If you have substantial missing data, consult with a statistician before deciding how to handle it.
 :::
 

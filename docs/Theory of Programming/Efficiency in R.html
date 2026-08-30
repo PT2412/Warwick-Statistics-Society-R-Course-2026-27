@@ -847,7 +847,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   8.20    0.25    8.46 </code></pre>
+   7.35    0.12    7.48 </code></pre>
 </div>
 </div>
 <p>Using vectorisation:</p>
@@ -863,10 +863,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.19    0.08    0.26 </code></pre>
+   0.08    0.06    0.14 </code></pre>
 </div>
 </div>
-<p>The vectorised version is shorter, easier to read, and typically much faster <strong>for large data</strong>. Remember that for small vectors, the difference may not be noticeable, but as the size of the data grows, the performance benefits of vectorisation become more pronounced. In this case we save about 0.1 seconds, which is a significant improvement when we scale to maybe 10 million or 100 million elements.</p>
+<p>The vectorised version is shorter, easier to read, and typically much faster <strong>for large data</strong>. Remember that for small vectors, the difference may not be noticeable, but as the size of the data grows, the performance benefits of vectorisation become more pronounced. In this case we save approx. 8 seconds but with even larger datasets, the improvement becomes more significant.</p>
 </section>
 </section>
 <section id="when-to-use-vectorisation" class="level2">
@@ -913,9 +913,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.39    0.31    0.72 
+   0.27    0.25    0.54 
    user  system elapsed 
-   0.01    0.00    0.02 </code></pre>
+      0       0       0 </code></pre>
 </div>
 </div>
 <p>Even at only 20,000 elements the difference is dramatic, and the gap widens quadratically as <code>n</code> grows. The same warning applies to <code>rbind()</code>-ing rows onto a data frame inside a loop — build a list and combine once at the end instead.</p>
@@ -954,13 +954,13 @@ Tip
 <pre><code>[1]  1  4  9 16 25
 [1]  1  4  9 16 25
 [[1]]
-[1] -1.193181
+[1] -1.203234
 
 [[2]]
-[1] -0.7620886  0.6645333
+[1]  0.6359533 -1.1271924
 
 [[3]]
-[1] -1.698030 -1.839281 -1.490898</code></pre>
+[1] -0.6966126  0.5462893 -0.2407120</code></pre>
 </div>
 </div>
 <p>Use <code>vapply()</code> in production-style code: by stating the expected output type you catch errors early and avoid the surprises <code>sapply()</code> can produce when it cannot simplify the result.</p>
@@ -983,9 +983,9 @@ Tip
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.02    0.00    0.01 
+      0       0       0 
    user  system elapsed 
-   0.01    0.00    0.00 </code></pre>
+   0.02    0.00    0.00 </code></pre>
 </div>
 </div>
 <p><code>rowSums()</code>, <code>colMeans()</code>, <code>cumsum()</code>, <code>tabulate()</code>, and <code>which.max()</code> are all examples of purpose-built functions that run almost entirely in C. Reaching for the specialised tool is usually both faster and clearer than assembling the same result yourself.</p>
@@ -1074,7 +1074,7 @@ Note
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.22    0.05    0.29 </code></pre>
+   0.15    0.05    0.22 </code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -1648,7 +1648,7 @@ Note
 <span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>The vectorised version is shorter, easier to read, and typically much faster **for large data**. Remember that for small vectors, the difference may not be noticeable, but as the size of the data grows, the performance benefits of vectorisation become more pronounced. In this case we save about 0.1 seconds, which is a significant improvement when we scale to maybe 10 million or 100 million elements.</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>The vectorised version is shorter, easier to read, and typically much faster **for large data**. Remember that for small vectors, the difference may not be noticeable, but as the size of the data grows, the performance benefits of vectorisation become more pronounced. In this case we save approx. 8 seconds but with even larger datasets, the improvement becomes more significant.</span>
 <span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## When to use vectorisation</span></span>
 <span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a></span>

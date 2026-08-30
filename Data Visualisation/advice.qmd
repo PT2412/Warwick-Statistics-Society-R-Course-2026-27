@@ -13,7 +13,6 @@ format:
     number_sections: true
     echo: fenced
 engine: knitr
-editor: visual
 ---
 
 In this section, we go through what makes a good data visualisation. These come from the lecture material for ST231, ST237, ST346, and ST404.
@@ -22,26 +21,26 @@ In this section, we go through what makes a good data visualisation. These come 
 
 Everything on your graph should be clearly labelled. In general, a graph contains:
 
--   **title** — a clear short title letting the reader know what they’re looking at\
-    *Example:* Relationship between experience and wages by gender
+- **title** — a clear short title letting the reader know what they’re looking at\
+  *Example:* Relationship between experience and wages by gender
 
--   **caption** — a short description of the graph and, where necessary, the source of the data\
-    *Example*: A star plot showing the different characteristics of reviewed wines. Source: <https://www.kaggle.com/datasets/zynicide/wine-reviews/data>
+- **caption** — a short description of the graph and, where necessary, the source of the data\
+  *Example*: A star plot showing the different characteristics of reviewed wines. Source: <https://www.kaggle.com/datasets/zynicide/wine-reviews/data>
 
--   **axis labels** — clear labels for the x and y axes
+- **axis labels** — clear labels for the x and y axes
 
-    -   short but descriptive
-    -   include units of measurement\
-        *Examples:*
-        -   Tree diameter (metres)
-        -   Survival time (days)
-        -   Patient age (years)
+  - short but descriptive
+  - include units of measurement\
+    *Examples:*
+    - Tree diameter (metres)
+    - Survival time (days)
+    - Patient age (years)
 
--   **legend** — short informative title and labels
+- **legend** — short informative title and labels
 
-    *Example:* In `ggplot2`, legends are controlled with `labs()`, `guides()` and `theme()` rather than a separate `legend()` call. Use these to set the legend title, adjust its labels and appearance, and position the legend on the `plot()` you wish to add a legend to
+  *Example:* In `ggplot2`, legends are controlled with `labs()`, `guides()` and `theme()` rather than a separate `legend()` call. Use these to set the legend title, adjust its labels and appearance, and position the legend on the `plot()` you wish to add a legend to
 
--   **lines and bars** — label any trend lines, annotation lines, and error bars
+- **lines and bars** — label any trend lines, annotation lines, and error bars
 
 Essentially, the reader should be able to understand your graph without having to wade through paragraphs of text. When in doubt, show your data visualisation to someone unfamiliar with your assignment and ask them if anything is unclear.
 
@@ -49,7 +48,7 @@ Essentially, the reader should be able to understand your graph without having t
 
 In data science, the goal of data visualisation is to communicate information. Anything that doesn’t support this goal should be reduced or eliminated entirely.
 
--   **Chart Junk** — visual elements of charts that aren’t necessary to comprehend the information represented by the chart or that distract from this information.
+- **Chart Junk** — visual elements of charts that aren’t necessary to comprehend the information represented by the chart or that distract from this information.
 
 Let us now go through an example of chart junk.
 
@@ -98,11 +97,11 @@ If the goal is to compare the fuel efficiency of cars with different numbers of 
 
 :::
 
--   Coloured background and thick border draw attention away from the bars
--   Heavy black grid lines dominate the data
--   Colour fill adds a legend but **doesn’t encode new information**
--   Wordy title (“different”, “numbers of”) adds clutter
--   The reader must constantly look back and forth between the bars and y-axis
+- Coloured background and thick border draw attention away from the bars
+- Heavy black grid lines dominate the data
+- Colour fill adds a legend but **doesn’t encode new information**
+- Wordy title (“different”, “numbers of”) adds clutter
+- The reader must constantly look back and forth between the bars and y-axis
 
 :::
 
@@ -144,12 +143,12 @@ panel.grid.minor = element_blank()
 
 The chart junk has been removed. In addition:
 
--   X-axis label removed (cylinder categories are obvious)
--   Y-axis label made more informative
--   the title has been simplified
--   One bar (8 cylinders) highlighted to aid comparison
--   Values added directly to bars, reducing reliance on the axis
--   Grid lines softened or removed to avoid distraction
+- X-axis label removed (cylinder categories are obvious)
+- Y-axis label made more informative
+- the title has been simplified
+- One bar (8 cylinders) highlighted to aid comparison
+- Values added directly to bars, reducing reliance on the axis
+- Grid lines softened or removed to avoid distraction
 
 I may or may not have gone a bit far leaving out the x-axis label. It’s a fine line, knowing when to stop simplifying.
 
@@ -165,9 +164,9 @@ Basically, think about selecting among sequential, diverging, and qualitative co
 
 :::
 
--   **Sequential** — for plotting a quantitative variable that goes from low to high
--   **Diverging** — for contrasting the extremes (low, medium, and high) of a quantitative variable
--   **Qualitative** — for distinguishing among the levels of a categorical variable
+- **Sequential** — for plotting a quantitative variable that goes from low to high
+- **Diverging** — for contrasting the extremes (low, medium, and high) of a quantitative variable
+- **Qualitative** — for distinguishing among the levels of a categorical variable
 
 :::
 
@@ -177,8 +176,8 @@ Other things to keep in mind:
 
 :::
 
--   Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colours that clash in a discordant fashion (i.e., they hurt to look at!)
--   Avoid combinations of red and green — it can be difficult for a colourblind audience to distinguish these colours
+- Make sure that text is legible — avoid dark text on dark backgrounds, light text on light backgrounds, and colours that clash in a discordant fashion (i.e., they hurt to look at!)
+- Avoid combinations of red and green — it can be difficult for a colourblind audience to distinguish these colours
 
 :::
 
@@ -343,6 +342,7 @@ pLin + facet_zoom(ylim = c(0, 50))
 library(esquisse)
 esquisser(airquality)
 ```
+
 :::
 
 ## Further Resources
@@ -351,11 +351,11 @@ If you would like to learn more about `ggplot2` there are several good sources i
 
 If you would like to learn more about data visualisation in general, here are some useful resources:
 
--   Scott Berinato’s Harvard Business Review article *Visualizations that really work* <https://hbr.org/2016/06/visualizations-that-really-work>
--   Wall Street Journal’s guide to information graphics: *The dos and don’ts of presenting data, facts and figures* (Wong 2010)
--   *A Practical Guide to Graphics Reporting: Information graphics for print, web & broadcast* (George-Palilonis 2017)
--   *Beautiful Data: The stories behind elegant data solutions* (Hammerbacher and Jeff 2009)
--   *The Truthful Art: Data, charts, and maps for communication* (Cairo 2016)
--   The Information is Beautiful website: <https://informationisbeautiful.net>
+- Scott Berinato’s Harvard Business Review article *Visualizations that really work* <https://hbr.org/2016/06/visualizations-that-really-work>
+- Wall Street Journal’s guide to information graphics: *The dos and don’ts of presenting data, facts and figures* (Wong 2010)
+- *A Practical Guide to Graphics Reporting: Information graphics for print, web & broadcast* (George-Palilonis 2017)
+- *Beautiful Data: The stories behind elegant data solutions* (Hammerbacher and Jeff 2009)
+- *The Truthful Art: Data, charts, and maps for communication* (Cairo 2016)
+- The Information is Beautiful website: <https://informationisbeautiful.net>
 
 The best graphs are rarely created on the first attempt. Experiment until you have a visualisation that clarifies the data and helps communicate a meaningful story. And have fun!

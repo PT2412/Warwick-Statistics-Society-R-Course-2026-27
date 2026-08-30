@@ -52,7 +52,7 @@ system.time({
 })
 ```
 
-The vectorised version is shorter, easier to read, and typically much faster **for large data**. Remember that for small vectors, the difference may not be noticeable, but as the size of the data grows, the performance benefits of vectorisation become more pronounced. In this case we save about 0.1 seconds, which is a significant improvement when we scale to maybe 10 million or 100 million elements.
+The vectorised version is shorter, easier to read, and typically much faster **for large data**. Remember that for small vectors, the difference may not be noticeable, but as the size of the data grows, the performance benefits of vectorisation become more pronounced. In this case we save approx. 8 seconds but with even larger datasets, the improvement becomes more significant.
 
 ## When to use vectorisation
 

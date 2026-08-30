@@ -99,6 +99,7 @@ It updates the prior odds on the hypotheses into posterior odds:
 $$
 \underbrace{\frac{P(H_1\mid\text{data})}{P(H_0\mid\text{data})}}_{\text{posterior odds}} = \underbrace{\frac{P(H_1)}{P(H_0)}}_{\text{prior odds}} \times \underbrace{\text{BF}_{10}}_{\text{Bayes factor}} .
 $$
+
 ::: {.callout-note title="In a nutshell: what \"odds\" means"}
 **Odds** are just a ratio of probabilities: the odds on $H_1$ are $P(H_1)/P(H_0)$. So "odds of 3" means $H_1$ is three times as probable as $H_0$. The equation above says the Bayes factor *multiplies* your odds: a **Bayes factor of 10 turns your prior odds into ten times larger posterior odds** — if you started at even (1:1), you end at 10:1 in favour of $H_1$.
 :::
@@ -197,6 +198,7 @@ library(loo)
 loo(fit1); loo(fit2)        # leave-one-out cross-validation per model
 loo_compare(loo(fit1), loo(fit2))   # which predicts new data better?
 ```
+
 :::
 
 # Summary

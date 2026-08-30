@@ -219,7 +219,7 @@ ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g, co
 
 ```
 
-:::{.callout-tip}
+::: {.callout-tip}
 You can manipulate the legend of your graph with the `theme` function. This can be added with `+` and is different from the `theme_minimal()` in the code above. For example if you want to adjust its' position, use `theme(legend.position = )`
 Options for `legend.position`: 
 *  `"top"`, `"bottom"`, `"left"`, `"right"` 
@@ -275,6 +275,7 @@ Once you have saved a plot to an object, the `plotly` package can turn it intera
 library(plotly)
 ggplotly(pFinal)
 ```
+
 :::
 
 # Further Resources

@@ -220,6 +220,7 @@ fibCached <- function(n) {
 }
 fibCached(40)
 ```
+
 :::
 
 ## Practical optimisation strategy
