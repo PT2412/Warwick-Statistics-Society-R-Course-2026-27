@@ -6,7 +6,7 @@ website:
   title: "Warwick Statistics Society R Course 2026-2027"
   sidebar:
     style: "docked"
-    collapse-level: 1
+    collapse-level: 0
     search: true
     contents:
       - text: Welcome
