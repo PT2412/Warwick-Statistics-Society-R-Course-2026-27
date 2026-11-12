@@ -1054,7 +1054,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   9.09    0.35    9.48 </code></pre>
+   8.23    0.21    8.43 </code></pre>
 </div>
 </div>
 <p>Using vectorisation:</p>
@@ -1070,7 +1070,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.22    0.07    0.28 </code></pre>
+   0.17    0.11    0.26 </code></pre>
 </div>
 </div>
 <p>The vectorised version is shorter, easier to read, and typically much faster <strong>for large data</strong>. Remember that for small vectors, the difference may not be noticeable, but as the size of the data grows, the performance benefits of vectorisation become more pronounced. In this case we save approx. 8 seconds but with even larger datasets, the improvement becomes more significant.</p>
@@ -1120,9 +1120,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.32    0.59    1.01 
+   0.23    0.34    0.56 
    user  system elapsed 
-      0       0       0 </code></pre>
+   0.00    0.00    0.02 </code></pre>
 </div>
 </div>
 <p>Even at only 20,000 elements the difference is dramatic, and the gap widens quadratically as <code>n</code> grows. The same warning applies to <code>rbind()</code>-ing rows onto a data frame inside a loop — build a list and combine once at the end instead.</p>
@@ -1161,13 +1161,13 @@ Tip
 <pre><code>[1]  1  4  9 16 25
 [1]  1  4  9 16 25
 [[1]]
-[1] 0.09206275
+[1] -1.325943
 
 [[2]]
-[1] -1.010722  1.031240
+[1] -1.5595672  0.2520132
 
 [[3]]
-[1]  1.16196284  0.35965021 -0.05758959</code></pre>
+[1] -0.5166065  1.5672561  1.5465859</code></pre>
 </div>
 </div>
 <p>Use <code>vapply()</code> in production-style code: by stating the expected output type you catch errors early and avoid the surprises <code>sapply()</code> can produce when it cannot simplify the result.</p>
@@ -1190,9 +1190,9 @@ Tip
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.02    0.00    0.00 
+   0.00    0.00    0.01 
    user  system elapsed 
-   0.00    0.00    0.01 </code></pre>
+      0       0       0 </code></pre>
 </div>
 </div>
 <p><code>rowSums()</code>, <code>colMeans()</code>, <code>cumsum()</code>, <code>tabulate()</code>, and <code>which.max()</code> are all examples of purpose-built functions that run almost entirely in C. Reaching for the specialised tool is usually both faster and clearer than assembling the same result yourself.</p>
@@ -1281,7 +1281,7 @@ Note
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.27    0.70    1.18 </code></pre>
+   0.25    0.03    0.28 </code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">

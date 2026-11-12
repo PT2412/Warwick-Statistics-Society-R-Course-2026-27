@@ -142,7 +142,7 @@ The R equivalents read left-to-right as function calls:
 
 ```{r}
 x <- c(2, 4, 6, 8, 10)
-mean(x); sum(x); min(x); max(x); sd(x)
+mean(x);sum(x);min(x);max(x);sd(x)
 ```
 
 ::: {.callout-tip title="Going further 🚀"}
