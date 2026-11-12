@@ -174,14 +174,19 @@ There are several sections and pages to this website. The following is a general
   + pandas - *DataFrames for wrangling — the analogue of `data.frame`/tibble and `dplyr`.*
   + R vs Python - *A reference of the key differences and gotchas, and when to use which language.*
 * **Machine Learning (ST236/ST349)** - This section steps from statistics into machine learning — building models that predict and find structure — and showcases the same ideas in **both R and Python**, the two main languages of data science.
-  + Introduction to Machine Learning - *Supervised vs unsupervised learning, the train/test split, overfitting, and why we use both R and Python.*
-  + Supervised learning - *Classification with decision trees and random forests on the iris data, in R and Python side by side.*
-  + Regularisation and cross-validation - *Ridge and lasso to control overfitting, with k-fold cross-validation to tune them.*
-  + Unsupervised learning - *k-means clustering and principal component analysis when there is no label to predict.*
-  + Deep learning - *Neural networks from the ground up — neurons, layers and how they learn — with a small network in R and the modern frameworks in R and Python.*
+  + Introduction to Machine Learning - *Supervised and unsupervised learning, generalisation, and the train/test split.*
+  + Feature spaces and data augmentation - *Transform inputs into useful features and create realistic additional training examples.*
+  + Supervised learning - *Classification with decision trees and random forests on the iris data, in R and Python.*
+  + Kernel methods - *Use similarity functions to fit flexible models without explicitly constructing high-dimensional features.*
+  + Gaussian processes - *Make flexible predictions with a kernel and quantify uncertainty about the underlying function.*
+  + Model evaluation - *Choose regression and classification metrics, understand class imbalance, and avoid data leakage.*
+  + Regularisation and cross-validation - *Use ridge and lasso to control overfitting and cross-validation to tune models.*
+  + Hyperparameter selection - *Compare candidate model settings without overusing the test set.*
+  + Unsupervised learning - *Use k-means clustering and principal component analysis to explore data without labels.*
+  + Artificial neural networks and deep learning - *Understand neurons, layers and learning, with a small R network and examples from modern frameworks.*
 
 :::
 
 The necessary data for this website can be found in the `Datasets` folder ([link](https://github.com/PT2412/Warwick-Statistics-Society-R-Course-2026-27)). There is guidance in the relevant pages on how to load in data. 
 
-Please note that **future pages** aim to include: Machine Learning paradigms, Bayesian forecasting, and possibly smaller pages dedicated to other programming languages like C for the sake of efficiency.
+The course continues to grow; check the sidebar for the latest lessons and examples.

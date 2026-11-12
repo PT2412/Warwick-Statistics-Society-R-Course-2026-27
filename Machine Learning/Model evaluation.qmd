@@ -1,0 +1,165 @@
+---
+title: "Model Evaluation and Data Leakage"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+A model is only useful if it performs well on the cases we care about. This page builds on the train/test split from the supervised-learning lesson: we will choose metrics that match the task, see why accuracy can be misleading, and learn how **data leakage** can make an apparently excellent model fail in practice.
+
+The R examples run as part of the site. Python snippets use scikit-learn and are shown for comparison.
+
+# Start with a baseline
+
+Before fitting a complicated model, ask what a simple rule can achieve. For an imbalanced classification problem, predicting the majority class every time may already produce high accuracy. Your model should do better in a way that matters for the task, not just beat a convenient number.
+
+# Regression metrics
+
+For a numeric outcome, common metrics compare predictions $\hat{y}_i$ with observed values $y_i$:
+
+- **Mean absolute error (MAE)** is the average absolute miss. It is in the same units as the outcome and is less sensitive to a few large errors.
+- **Root mean squared error (RMSE)** also uses the outcome's units, but penalises large errors more heavily.
+- **$R^2$** compares squared prediction error with the error from predicting the sample mean. On held-out data it can be negative when the model does worse than that baseline.
+
+```{r}
+actual <- c(3, -0.5, 2, 7)
+predicted <- c(2.5, 0, 2, 8)
+errors <- actual - predicted
+
+c(
+  MAE = mean(abs(errors)),
+  RMSE = sqrt(mean(errors^2)),
+  R2 = 1 - sum(errors^2) / sum((actual - mean(actual))^2)
+)
+```
+
+```{python}
+#| eval: false
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+
+actual = np.array([3, -0.5, 2, 7])
+predicted = np.array([2.5, 0, 2, 8])
+
+print("MAE:", mean_absolute_error(actual, predicted))
+print("RMSE:", np.sqrt(mean_squared_error(actual, predicted)))
+print("R2:", r2_score(actual, predicted))
+```
+
+Choose MAE when a typical-sized error is easiest to communicate; choose RMSE when large misses are especially costly. Neither metric is universally best.
+
+# Classification metrics
+
+For classification, a **confusion matrix** counts correct and incorrect predictions. Consider a screening task with 90 negative and 10 positive cases. The following model gets 91% accuracy, but still misses three positive cases:
+
+```{r}
+actual <- factor(
+  c(rep("negative", 90), rep("positive", 10)),
+  levels = c("negative", "positive")
+)
+predicted <- factor(
+  c(rep("negative", 84), rep("positive", 6),
+    rep("negative", 3), rep("positive", 7)),
+  levels = c("negative", "positive")
+)
+
+confusion <- table(Actual = actual, Predicted = predicted)
+confusion
+```
+
+From this table we can calculate several complementary scores:
+
+- **Accuracy**: the proportion of all cases classified correctly.
+- **Precision**: among predicted positives, the proportion that are truly positive.
+- **Recall (sensitivity)**: among actual positives, the proportion found by the model.
+- **Specificity**: among actual negatives, the proportion correctly identified.
+- **F1 score**: the harmonic mean of precision and recall.
+
+```{r}
+trueNegative <- confusion["negative", "negative"]
+falsePositive <- confusion["negative", "positive"]
+falseNegative <- confusion["positive", "negative"]
+truePositive <- confusion["positive", "positive"]
+
+precision <- truePositive / (truePositive + falsePositive)
+recall <- truePositive / (truePositive + falseNegative)
+
+c(
+  accuracy = sum(diag(confusion)) / sum(confusion),
+  precision = precision,
+  recall = recall,
+  specificity = trueNegative / (trueNegative + falsePositive),
+  F1 = 2 * precision * recall / (precision + recall)
+)
+```
+
+An always-negative rule on these same data would score **90% accuracy and 0% recall**. This is why accuracy alone is a poor choice when classes are imbalanced or the cost of missing a positive case is high.
+
+```{python}
+#| eval: false
+from sklearn.metrics import (
+    accuracy_score, confusion_matrix, f1_score,
+    precision_score, recall_score
+)
+
+y_true = ["negative"] * 90 + ["positive"] * 10
+y_pred = (
+    ["negative"] * 84 + ["positive"] * 6
+    + ["negative"] * 3 + ["positive"] * 7
+)
+
+print(confusion_matrix(y_true, y_pred, labels=["negative", "positive"]))
+print("Accuracy:", accuracy_score(y_true, y_pred))
+print("Precision:", precision_score(y_true, y_pred, pos_label="positive"))
+print("Recall:", recall_score(y_true, y_pred, pos_label="positive"))
+print("F1:", f1_score(y_true, y_pred, pos_label="positive"))
+```
+
+Many classifiers first estimate a probability, then apply a **decision threshold** (often 0.5) to choose a class. Lowering the threshold usually catches more positives (higher recall) but also creates more false alarms (lower precision). Pick a threshold based on the real costs of those errors, using validation data rather than the final test set.
+
+# Data leakage: a model seeing the answer
+
+**Data leakage** happens when information unavailable at prediction time sneaks into model training or evaluation. It can produce excellent scores that do not hold up on new data.
+
+Common examples include:
+
+- Scaling or imputing the *whole* dataset before splitting it. The test-set distribution has influenced training.
+- Including a feature recorded after the event you are trying to predict.
+- Letting repeated measurements from the same person appear in both training and test sets.
+- Randomly splitting time-ordered observations when the real task is to predict the future from the past.
+- Repeatedly adjusting the model after checking its test score. The test set has become part of the tuning process.
+
+To avoid leakage:
+
+1. Split off a final test set before fitting or tuning. For time-dependent tasks, split by time; for grouped observations, keep groups together.
+2. Fit preprocessing steps using training data only. Refit them inside each cross-validation fold; a modelling **pipeline** helps enforce this.
+3. Use cross-validation on the training data to compare models and tune settings.
+4. Evaluate the selected approach on the held-out test set once, at the end.
+
+::: {.callout-note title="Validation data is for decisions; test data is for the final check"}
+Use training data to fit, cross-validation or a validation set to make modelling choices, and the untouched test set to estimate final performance. If you use the test score to keep changing the model, it no longer gives an independent final check.
+:::
+
+# Putting it together
+
+| Question | Useful starting point |
+|---|---|
+| How far are numeric predictions from the truth? | MAE or RMSE |
+| How many cases are classified correctly overall? | Accuracy, alongside a baseline |
+| How costly are missed positives? | Recall / sensitivity |
+| How costly are false alarms? | Precision or specificity |
+| Are both precision and recall important? | F1, plus the confusion matrix |
+| Will the model work on genuinely new cases? | A leakage-safe split and a final held-out test set |
+
+Always report how the data was split, which metric you used, and why that metric reflects the goal. The next page explores regularisation and cross-validation, tools for choosing a model without letting it learn from its evaluation data.

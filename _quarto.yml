@@ -6,6 +6,7 @@ website:
   title: "Warwick Statistics Society R Course 2026-2027"
   sidebar:
     style: "docked"
+    collapse-level: 1
     search: true
     contents:
       - text: Welcome
@@ -105,8 +106,13 @@ website:
       - section: "Machine Learning (R and Python)"
         contents:
           - Machine Learning/Introduction ML.qmd
+          - Machine Learning/Feature spaces and augmentation.qmd
           - Machine Learning/Supervised learning.qmd
+          - Machine Learning/Kernel methods.qmd
+          - Machine Learning/Gaussian processes.qmd
+          - Machine Learning/Model evaluation.qmd
           - Machine Learning/Regularisation and cross-validation.qmd
+          - Machine Learning/Hyperparameter selection.qmd
           - Machine Learning/Unsupervised learning.qmd
           - Machine Learning/Deep learning.qmd
 
@@ -126,12 +132,13 @@ website:
         
 format:
   html:
-    theme: cosmo
+    theme:
+      light: cosmo
+      dark: darkly
+    respect-user-color-scheme: true
     css: styles.css
     toc: true
     include-in-header: analytics.html
 
 server:
   shiny: true
-
-

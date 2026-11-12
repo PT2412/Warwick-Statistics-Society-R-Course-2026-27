@@ -1,5 +1,5 @@
 ---
-title: "Deep Learning: Neural Networks"
+title: "Artificial Neural Networks and Deep Learning"
 format:
   html:
     fig-width: 12
@@ -16,7 +16,7 @@ format:
 engine: knitr
 ---
 
-**Deep learning** is the part of machine learning behind the headlines — image recognition, speech, self-driving cars, and the large language models that power tools like ChatGPT. At its core it is built from **neural networks**: flexible models, loosely inspired by the brain, that stack many simple computing units into something able to learn extraordinarily complex patterns. This page demystifies them, fits a small one in R, and shows the modern frameworks in both R and Python.
+**Artificial neural networks (ANNs)** are flexible models built by connecting simple computing units. A network with multiple hidden layers is called a **deep neural network**, and deep learning is the collection of methods used to train such networks. They power applications such as image recognition, speech processing, and language models. This page explains the core ideas, fits a small network in R, and introduces modern frameworks in both R and Python.
 
 ::: {.callout-note title="In a nutshell: what makes it 'deep'"}
 A neural network is just a very flexible function fitted to data. "**Deep**" means it has **many layers** stacked between the input and the output. Each layer learns to transform the data a little, and stacking many layers lets the network build up from simple features (edges in an image) to complex ones (faces) — without you ever specifying those features by hand.

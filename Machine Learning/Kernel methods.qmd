@@ -1,0 +1,124 @@
+---
+title: "Kernel Methods and the Kernel Trick"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+The previous lesson showed how adding features can let a linear model represent a curve. But explicitly creating every useful feature can become expensive—or even impossible. **Kernel methods** work with similarities between observations to obtain the effect of a high-dimensional feature representation without constructing that representation directly.
+
+# Inner products and feature maps
+
+Many linear algorithms use the **inner product** $x^\top z$ between two feature vectors. Imagine mapping each input $x$ to a richer representation $\phi(x)$ and then taking an inner product there:
+
+$$
+K(x,z) = \phi(x)^\top \phi(z).
+$$
+
+The function $K$ is a **kernel**. For example, the polynomial kernel $K(x,z) = (1 + xz)^2$ is the inner product of the transformed features $\phi(x) = (1, \sqrt{2}x, x^2)$. The kernel evaluates that inner product using only the original $x$ and $z$.
+
+```{r}
+x <- seq(-1, 1, length.out = 5)
+
+explicitFeatures <- function(x) {
+  cbind(1, sqrt(2) * x, x^2)
+}
+
+featureMap <- explicitFeatures(x)
+kernelMatrix <- (1 + outer(x, x))^2
+
+max(abs(kernelMatrix - tcrossprod(featureMap)))
+```
+
+The maximum difference is zero apart from floating-point rounding: the kernel matrix matches the inner products of the explicit transformed features.
+
+# Common kernels
+
+For input vectors $x$ and $z$, popular choices include:
+
+- **Linear:** $K(x,z) = x^\top z$. No nonlinear feature map is added.
+- **Polynomial:** $K(x,z) = (\gamma x^\top z + c)^d$. This represents polynomial interactions up to degree $d$.
+- **Radial basis function (RBF):** $K(x,z) = \exp(-\gamma \lVert x-z\rVert^2)$. Similarity decreases smoothly with distance; it corresponds to a very rich feature representation.
+
+The matrix of pairwise kernel values between training observations is the **Gram matrix**. A valid kernel produces a positive semidefinite Gram matrix. As with distance-based clustering, feature scales matter: standardise predictors using training data when their units differ substantially.
+
+```{r}
+points <- matrix(c(-1, 0, 1), ncol = 1)
+distanceSquared <- as.matrix(dist(points))^2
+gamma <- 0.5
+
+rbfGram <- exp(-gamma * distanceSquared)
+round(rbfGram, 3)
+```
+
+The diagonal is one because each point is maximally similar to itself. Off-diagonal similarities decrease as points move farther apart.
+
+# The kernel trick in a model
+
+In methods such as support vector machines and kernel ridge regression, predictions can be written using only kernel evaluations between a new point and training points. For kernel ridge regression:
+
+$$
+\hat{f}(x) = k(x)^\top (K + \lambda I)^{-1}y,
+$$
+
+where $K$ is the training Gram matrix, $k(x)$ contains similarities between $x$ and each training point, and $\lambda$ controls regularisation.
+
+```{r}
+set.seed(2026)
+xTrain <- matrix(seq(-2, 2, length.out = 35), ncol = 1)
+yTrain <- sin(1.5 * xTrain[, 1]) + rnorm(nrow(xTrain), sd = 0.12)
+xTest <- matrix(seq(-2.2, 2.2, length.out = 100), ncol = 1)
+
+rbfKernel <- function(a, b, gamma) {
+  exp(-gamma * as.matrix(dist(rbind(a, b)))[
+    seq_len(nrow(a)),
+    nrow(a) + seq_len(nrow(b))
+  ]^2)
+}
+
+gamma <- 0.7
+lambda <- 0.05
+K <- rbfKernel(xTrain, xTrain, gamma)
+Ktest <- rbfKernel(xTest, xTrain, gamma)
+weights <- solve(K + lambda * diag(nrow(K)), yTrain)
+prediction <- Ktest %*% weights
+
+plot(xTrain, yTrain, pch = 19, col = "grey50",
+     xlab = "x", ylab = "y", main = "RBF kernel ridge regression")
+lines(xTest[, 1], prediction, col = "#31BAE9", lwd = 2)
+```
+
+This example uses a small training set because forming and solving with an $n \times n$ Gram matrix typically costs about $O(n^3)$ time and $O(n^2)$ memory. Kernel methods can be very expressive, but are not automatically practical for huge datasets.
+
+In Python, scikit-learn offers kernel ridge regression and kernel support vector machines:
+
+```{python}
+#| eval: false
+from sklearn.kernel_ridge import KernelRidge
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+
+model = make_pipeline(
+    StandardScaler(),
+    KernelRidge(kernel="rbf", alpha=0.05, gamma=0.7)
+)
+model.fit(x_train, y_train)
+predictions = model.predict(x_test)
+```
+
+# What controls the fit?
+
+Kernel choice and its settings define the model's **inductive bias**—which patterns it can learn efficiently. For an RBF kernel, small `gamma` gives broad, smooth similarity and large `gamma` makes similarity decay rapidly. The regularisation setting controls how closely the model follows its training labels. These are hyperparameters: compare them using cross-validation, with all learned preprocessing fit separately inside each fold.
+
+Kernels also power the **Gaussian process** models in the next lesson. They describe the covariance between function values, making the same idea of similarity useful for both flexible prediction and uncertainty quantification.

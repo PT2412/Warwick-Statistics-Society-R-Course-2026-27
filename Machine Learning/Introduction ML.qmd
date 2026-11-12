@@ -117,9 +117,15 @@ Running both languages from *one* document is itself a neat trick. Quarto execut
 # Where this section is going
 
 :::{}
-* **Supervised learning: classification** — decision trees and random forests on the `iris` data, in R and Python; the train/test split and overfitting made concrete.
-* **Regularisation and cross-validation** — ridge and lasso to tame overfitting, and k-fold cross-validation to tune them; the disciplined way to choose a model.
+* **Supervised learning: classification** — decision trees and random forests on the `iris` data, in R and Python.
+* **Feature spaces and augmentation** — transform useful information into features a model can learn.
+* **Kernel methods** — use similarities to fit flexible boundaries without explicitly building every feature.
+* **Gaussian processes** — make flexible predictions with a principled measure of uncertainty.
+* **Model evaluation** — choose useful metrics, understand class imbalance, and avoid data leakage.
+* **Regularisation and cross-validation** — ridge and lasso to tame overfitting, and k-fold cross-validation to tune them.
+* **Hyperparameter selection** — compare candidate settings without overusing the test set.
 * **Unsupervised learning** — k-means clustering and principal component analysis to find groups and compress dimensions when there is no label to predict.
+* **Artificial neural networks and deep learning** — neural networks, how they learn, and when they are useful.
 :::
 
 The thread: machine learning is the predictive face of the modelling you already know — same foundations, more flexible models, and a relentless focus on **how well it works on data it has never seen**.

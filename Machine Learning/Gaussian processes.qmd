@@ -1,0 +1,131 @@
+---
+title: "Gaussian Processes"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+Many prediction models return one answer for each input. A **Gaussian process (GP)** instead describes a distribution over plausible functions. After observing data, it gives both a predictive mean and a measure of uncertainty, with kernel functions controlling which patterns are considered plausible.
+
+# From a kernel to a distribution over functions
+
+A Gaussian process is specified by a mean function $m(x)$ and a covariance function (kernel) $k(x,z)$:
+
+$$
+f(x) \sim \mathcal{GP}\big(m(x), k(x,z)\big).
+$$
+
+At any finite set of input points, the corresponding function values have a multivariate normal distribution. Nearby inputs typically have strongly correlated outputs when the chosen kernel says they are similar. The RBF kernel, for example, has a length-scale controlling how quickly that similarity decreases.
+
+For training inputs $X$, observed outcomes $y$, and a test input $x_*$, assume Gaussian observation noise with variance $\sigma_n^2$. The predictive mean for the latent function is
+
+$$
+\mu_* = k_*^\top (K + \sigma_n^2 I)^{-1} y,
+$$
+
+and its predictive covariance is
+
+$$
+\Sigma_* = K_{**} - k_*^\top (K + \sigma_n^2 I)^{-1} k_*.
+$$
+
+The diagonal of $\Sigma_*$ gives the latent-function predictive variances. Uncertainty tends to increase far from observed inputs.
+
+# A small GP regression from scratch
+
+The following example uses only base R. It fits an RBF-kernel GP to noisy observations, then plots the posterior mean and a 95% interval for the underlying function.
+
+```{r}
+set.seed(2026)
+xTrain <- matrix(seq(-4, 4, length.out = 18), ncol = 1)
+yTrain <- sin(xTrain[, 1]) + rnorm(nrow(xTrain), sd = 0.2)
+xTest <- matrix(seq(-5, 5, length.out = 200), ncol = 1)
+
+rbfKernel <- function(a, b, lengthScale, signalVariance) {
+  distanceSquared <- as.matrix(dist(rbind(a, b)))[
+    seq_len(nrow(a)),
+    nrow(a) + seq_len(nrow(b))
+  ]^2
+  signalVariance * exp(-distanceSquared / (2 * lengthScale^2))
+}
+
+lengthScale <- 1
+signalVariance <- 1
+noiseVariance <- 0.2^2
+jitter <- 1e-8
+
+K <- rbfKernel(xTrain, xTrain, lengthScale, signalVariance)
+Knoise <- K + (noiseVariance + jitter) * diag(nrow(K))
+Kstar <- rbfKernel(xTest, xTrain, lengthScale, signalVariance)
+Ktest <- rbfKernel(xTest, xTest, lengthScale, signalVariance)
+
+posteriorMean <- drop(Kstar %*% solve(Knoise, yTrain))
+posteriorCovariance <- Ktest - Kstar %*% solve(Knoise, t(Kstar))
+posteriorSd <- sqrt(pmax(diag(posteriorCovariance), 0))
+
+plot(xTrain, yTrain, pch = 19, col = "grey30",
+     xlim = range(xTest), ylim = range(posteriorMean + 2 * posteriorSd,
+                                       posteriorMean - 2 * posteriorSd),
+     xlab = "x", ylab = "f(x)", main = "Gaussian process regression")
+polygon(c(xTest[, 1], rev(xTest[, 1])),
+        c(posteriorMean - 2 * posteriorSd,
+          rev(posteriorMean + 2 * posteriorSd)),
+        col = adjustcolor("#31BAE9", alpha.f = 0.25), border = NA)
+lines(xTest[, 1], posteriorMean, col = "#1677A8", lwd = 2)
+points(xTrain, yTrain, pch = 19, col = "grey30")
+legend("topleft", c("Posterior mean", "95% latent-function interval",
+                    "Training observations"),
+       col = c("#1677A8", "#31BAE9", "grey30"),
+       lty = c(1, NA, NA), pch = c(NA, 15, 19), bty = "n")
+```
+
+The interval describes uncertainty about the **latent function**, not a new noisy observation. For the latter, add observation-noise variance to the predictive variance. The small jitter on the training covariance matrix improves numerical stability; it is not a substitute for modelling the observation noise.
+
+# Fitting a GP in Python
+
+In practice, libraries handle covariance calculations and hyperparameter optimisation. For example, scikit-learn's `GaussianProcessRegressor` can combine an RBF kernel with a noise term:
+
+```{python}
+#| eval: false
+import numpy as np
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process.kernels import RBF, ConstantKernel, WhiteKernel
+
+kernel = (
+    ConstantKernel(1.0, (1e-2, 1e2))
+    * RBF(length_scale=1.0, length_scale_bounds=(1e-2, 1e2))
+    + WhiteKernel(noise_level=0.04, noise_level_bounds=(1e-4, 1.0))
+)
+
+gp = GaussianProcessRegressor(kernel=kernel, normalize_y=True, random_state=2026)
+gp.fit(x_train, y_train)
+mean, standard_deviation = gp.predict(x_test, return_std=True)
+```
+
+# Choosing a kernel and understanding the limits
+
+The kernel encodes assumptions:
+
+- **RBF:** smooth functions whose variation has a characteristic length-scale.
+- **Matérn:** a family of kernels that can represent rougher functions.
+- **Periodic:** repeating patterns, often combined with another kernel for trends.
+- **Linear:** linear trends with uncertainty over coefficients.
+
+Kernel parameters (such as length-scale, signal variance, and noise variance) are hyperparameters. Many packages fit them by maximising the marginal likelihood, but good predictive performance should still be checked with a leakage-safe validation strategy.
+
+Exact GPs require operations on a dense covariance matrix, scaling roughly cubically with the number of training observations. They are especially useful for smaller datasets, smooth regression tasks, and settings where calibrated uncertainty matters. For very large datasets, approximate GP methods or other scalable models may be a better fit.
+
+::: {.callout-note title="Uncertainty is useful, but not a guarantee"}
+A GP's intervals depend on its kernel, noise assumptions, and data. Poor assumptions can make uncertainty misleading. Validate predictions and uncertainty for the application; do not treat a narrow interval as proof that a prediction is correct.
+:::

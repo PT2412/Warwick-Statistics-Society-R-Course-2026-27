@@ -1,0 +1,119 @@
+---
+title: "Feature Spaces and Data Augmentation"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+A model can only learn from the information it is given. **Features** are the input variables, and a **feature space** is the space formed by those inputs. Choosing or transforming features can make a real pattern easier for a model to learn. This page distinguishes feature engineering from data augmentation and shows how to use both without leaking information.
+
+# A feature space is a modelling choice
+
+Suppose a response follows a curved relationship with one predictor:
+
+$$
+y = 1 + 2x + 1.5x^2 + \epsilon.
+$$
+
+A straight-line model using only $x$ cannot represent the quadratic term. Add $x^2$ as a feature, and the relationship becomes linear in the coefficients:
+
+$$
+y = \beta_0 + \beta_1 x + \beta_2 x^2 + \epsilon.
+$$
+
+The input now lives in a two-dimensional feature space $(x, x^2)$. The fitted curve is still a linear model in its coefficients, even though its predictions curve as a function of the original $x$.
+
+```{r}
+set.seed(2026)
+x <- seq(-2, 2, length.out = 60)
+y <- 1 + 2 * x + 1.5 * x^2 + rnorm(length(x), sd = 1)
+
+linearFit <- lm(y ~ x)
+quadraticFit <- lm(y ~ x + I(x^2))
+
+plot(x, y, pch = 19, col = "grey50", xlab = "x", ylab = "y")
+ord <- order(x)
+lines(x[ord], predict(linearFit)[ord], col = "#31BAE9", lwd = 2)
+lines(x[ord], predict(quadraticFit)[ord], col = "#E76F51", lwd = 2)
+legend("topleft", c("Linear feature", "Linear + quadratic feature"),
+       col = c("#31BAE9", "#E76F51"), lty = 1, bty = "n")
+```
+
+```{python}
+#| eval: false
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+
+X = x.reshape(-1, 1)
+quadratic_model = make_pipeline(
+    PolynomialFeatures(degree=2, include_bias=False),
+    LinearRegression()
+)
+quadratic_model.fit(X, y)
+```
+
+# Useful feature transformations
+
+Feature engineering uses knowledge of the problem to give a model informative inputs. Examples include:
+
+- **Interactions**, such as `temperature * humidity`, when the effect of one measurement depends on another.
+- **Nonlinear terms**, such as $x^2$, splines, or logarithms, when the response changes nonlinearly.
+- **Periodic encodings**, using $\sin(2\pi t / p)$ and $\cos(2\pi t / p)$ for time-of-day or seasonal cycles. The pair keeps nearby points on opposite sides of the cycle close together.
+- **Categorical encodings**, such as indicator columns for unordered categories.
+- **Domain summaries**, such as a rate, a ratio, or an aggregate over a meaningful time window.
+
+Transformations should be justified by the measurement process and prediction goal. High-degree polynomials and large numbers of interactions can create unstable models, so use validation and regularisation rather than assuming more features are always better.
+
+# Feature engineering is not data augmentation
+
+The terms describe related but different ways to change the input:
+
+- **Feature engineering** transforms the inputs into useful representations, usually keeping the same observations and labels.
+- **Data augmentation** creates additional training examples by applying realistic transformations that should preserve the label.
+
+For example, reflecting a labelled image horizontally can create a valid new example when left-right orientation does not change the class. Slightly shifting a sensor trace might be appropriate if the signal's timing is not important. In contrast, reflecting a digit `6` could turn it into a different digit, and mixing future information into a time-series example would invalidate the task.
+
+Augmentation is most familiar in image, text, and audio modelling, where transformations can encode useful invariances and reduce overfitting. It is not automatically beneficial for tabular data: synthetic rows can distort distributions or encode unrealistic combinations. Only augment when the transformation is plausible and the label remains correct.
+
+# Keep preprocessing inside the training process
+
+Feature transformations that learn from the data—such as centring, scaling, imputing missing values, selecting features, or learning an encoding—must be **fit on training data only**. In cross-validation, fit them separately inside each fold. Otherwise, information from validation or test observations leaks into training and makes performance look better than it is.
+
+```{r}
+set.seed(2026)
+values <- c(2, 4, 6, 8, 100)
+trainIndex <- 1:4
+testIndex <- 5
+
+trainMean <- mean(values[trainIndex])
+trainSd <- sd(values[trainIndex])
+
+c(
+  trainingMean = trainMean,
+  trainingSd = trainSd,
+  scaledTestValue = (values[testIndex] - trainMean) / trainSd
+)
+```
+
+The test value is transformed using the **training** mean and standard deviation; it does not help determine them. In a modelling pipeline, place preprocessing steps and the estimator together so each cross-validation split refits the transformations using only its training fold.
+
+::: {.callout-note title="A good representation helps, but does not replace evaluation"}
+Transformations encode assumptions about what matters in the problem. Keep the final test set untouched while choosing them, and compare the resulting model with a simple baseline using metrics that match the task.
+:::
+
+# Summary
+
+Feature spaces let models express relationships that are awkward in the original inputs. Feature engineering changes the representation; data augmentation adds plausible training examples. Both should reflect the problem, preserve label meaning, and be applied in a leakage-safe training workflow.

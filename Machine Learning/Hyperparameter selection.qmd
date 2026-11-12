@@ -1,0 +1,127 @@
+---
+title: "Hyperparameter Selection"
+format:
+  html:
+    fig-width: 12
+    fig-height: 6
+    code-fold: show
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    toc: true
+    code-copy: true
+    number_sections: true
+    echo: fenced
+    mathjax: true
+engine: knitr
+---
+
+Many learning algorithms have settings chosen before fitting that control their flexibility or training process. These are **hyperparameters**: examples include tree depth, the regularisation strength in ridge regression, the RBF-kernel length-scale, and a neural network's learning rate. This page shows how to compare such choices without repeatedly consulting the final test set.
+
+# Parameters versus hyperparameters
+
+The fitted **parameters** are learned from training data: for example, the coefficients of a regression model or the weights in a neural network. **Hyperparameters** configure the learning procedure: for example, a polynomial degree or the penalty strength used when fitting the coefficients.
+
+Hyperparameter selection is itself model fitting. If we try many settings and select the best one, we can overfit the validation data even when each individual model is regularised. A disciplined evaluation scheme is therefore essential.
+
+# A validation workflow
+
+1. Set aside a **test set** before tuning, and do not use it to pick features, metrics, or hyperparameters.
+2. Compare candidate settings using **cross-validation on the training data**.
+3. Choose a setting according to a preselected metric and practical constraints.
+4. Refit the chosen model on the available training data.
+5. Evaluate once on the held-out test set to get a final performance estimate.
+
+Use folds that match the data: stratify folds for imbalanced classification where appropriate, keep all observations from a person or group together, and use forward-chaining or time-based splits for forecasting. Ordinary random folds can give an unrealistic answer when observations have a time or group structure.
+
+# Cross-validating polynomial degree
+
+Here we tune a polynomial degree with five-fold cross-validation, using only the training split to select it. The final test split is evaluated once after selection. The example uses a small, synthetic dataset and base R.
+
+```{r}
+set.seed(2026)
+n <- 150
+x <- runif(n, 0, 1)
+y <- sin(2 * pi * x) + rnorm(n, sd = 0.25)
+data <- data.frame(x = x, y = y)
+
+testIndex <- sample(seq_len(n), size = 30)
+trainData <- data[-testIndex, ]
+testData <- data[testIndex, ]
+
+k <- 5
+foldId <- sample(rep(seq_len(k), length.out = nrow(trainData)))
+degreeGrid <- 1:10
+
+cvRmse <- sapply(degreeGrid, function(degree) {
+  foldRmse <- sapply(seq_len(k), function(fold) {
+    foldTrain <- trainData[foldId != fold, ]
+    foldValid <- trainData[foldId == fold, ]
+    formula <- as.formula(paste(
+      "y ~ poly(x,", degree, ", raw = TRUE)"
+    ))
+    fit <- lm(formula, data = foldTrain)
+    sqrt(mean((foldValid$y - predict(fit, newdata = foldValid))^2))
+  })
+  mean(foldRmse)
+})
+
+bestDegree <- degreeGrid[which.min(cvRmse)]
+bestDegree
+```
+
+```{r}
+plot(degreeGrid, cvRmse, type = "b", pch = 19,
+     xlab = "Polynomial degree", ylab = "Mean cross-validated RMSE")
+abline(v = bestDegree, col = "#31BAE9", lty = 2)
+```
+
+Now refit the selected model on the full training split and use the test set only for a final check:
+
+```{r}
+bestFormula <- as.formula(paste(
+  "y ~ poly(x,", bestDegree, ", raw = TRUE)"
+))
+finalFit <- lm(bestFormula, data = trainData)
+testRmse <- sqrt(mean((testData$y - predict(finalFit, newdata = testData))^2))
+testRmse
+```
+
+One test score is noisy, especially with a small dataset. The important rule is that it was not used to select the degree. If an estimate of the *whole tuning procedure* is needed and there is not a separate final test set, use **nested cross-validation**: an inner loop selects hyperparameters, while an outer loop estimates performance.
+
+# Search strategies
+
+- **Grid search** evaluates a specified set of combinations. It is simple and reproducible, but a large grid can waste computation.
+- **Random search** samples combinations from chosen distributions. It often explores more useful values when only a few of many hyperparameters strongly affect performance.
+- **Bayesian optimisation** uses results from earlier trials to choose promising next settings. It can reduce expensive evaluations, but it does not remove the need for a sound validation design.
+
+Search on sensible scales: regularisation strengths and learning rates often span orders of magnitude, so a logarithmic range is more useful than equally spaced raw values. Include a simple baseline, track the evaluation budget, and account for training time and model complexity—not just the best score.
+
+In scikit-learn, preprocessing belongs inside the pipeline passed to the search, so each validation fold learns transformations from its own training portion:
+
+```{python}
+#| eval: false
+from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+
+pipeline = make_pipeline(StandardScaler(), SVC(kernel="rbf"))
+search = GridSearchCV(
+    pipeline,
+    param_grid={
+        "svc__C": [0.1, 1, 10],
+        "svc__gamma": [0.01, 0.1, 1],
+    },
+    cv=5,
+    scoring="accuracy",
+)
+search.fit(X_train, y_train)
+print(search.best_params_)
+```
+
+This code assumes `X_train` and `y_train` contain training data only. For imbalanced classes, choose a metric such as recall, F1, or balanced accuracy instead of defaulting to accuracy; for time-ordered data, supply a time-aware cross-validation splitter.
+
+# Summary
+
+Hyperparameter tuning compares learning procedures, so the validation data can be overfit too. Keep the test set out of the search, perform preprocessing inside the folds, match the split and metric to the real prediction task, and use nested cross-validation when you need to estimate the generalisation performance of the full selection procedure.
